@@ -92,7 +92,6 @@ class Product {
 
     if (response.statusCode == 200 && jsonData['status']) {
       if (jsonData['products'] == null) return [];
-
       var list = jsonData['products'] as List;
       return list
           .map<Product>((propJson) => Product.fromJson(propJson))

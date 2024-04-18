@@ -98,9 +98,7 @@ class Shop {
     var jsonData = json.decode(response.body);
 
     if (response.statusCode == 200 && jsonData['status']) {
-      if (jsonData['shops'] == null) {
-        return [];
-      }
+      if (jsonData['shops'] == null) return [];
       var shopsList = jsonData['shops'] as List;
       return shopsList
           .map<Shop>((propJson) => Shop.fromJsonForShops(propJson))

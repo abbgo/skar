@@ -60,7 +60,7 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
           _page++;
           _loadPagination = true;
         });
-        List<Shop> newShops = await Shop.fetchShops('shops', 2, _page, true);
+        List<Shop> newShops = await Shop.fetchShops('shops', 10, _page, true);
         brendShops.then((value) {
           value.addAll(newShops);
           setState(() {
@@ -86,7 +86,7 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     bool hasIntConn = await checkIntConn();
 
     if (hasIntConn) {
-      List<Shop> brendshops = await Shop.fetchShops('shops', 2, _page, true);
+      List<Shop> brendshops = await Shop.fetchShops('shops', 10, _page, true);
       brendShops = Future.value(brendshops);
 
       shops = await Shop.fetchShopsForMap('shops/map');
