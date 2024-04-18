@@ -82,7 +82,13 @@ class Shop {
   }
 
   static Future<List<Shop>> fetchShops() async {
-    Response response = await http.get(Uri.parse("$apiUrl/shops"));
+    final Uri uri = Uri.parse('$apiUrl/shops').replace(queryParameters: {
+      'limit': '10',
+      'page': '1',
+      'is_brend': 'false',
+    });
+
+    Response response = await http.get(uri);
     var jsonData = json.decode(response.body);
 
     if (response.statusCode == 200 && jsonData['status']) {

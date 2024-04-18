@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:skar/datas/local_storadge.dart';
 import 'package:skar/helpers/functions.dart';
@@ -73,36 +74,42 @@ class _StatutePageState extends State<StatutePage> {
                 ],
               ),
             ),
-            Container(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Transform.scale(
-                    scale: 1.0,
-                    child: SizedBox(
-                      width: 20,
-                      child: Checkbox(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _isChecked = !_isChecked;
+                });
+              },
+              child: Container(
+                color: const Color.fromRGBO(255, 255, 255, 1),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Transform.scale(
+                      scale: 1.0,
+                      child: SizedBox(
+                        width: 20,
+                        child: Checkbox(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          value: _isChecked,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              _isChecked = !_isChecked;
+                            });
+                          },
+                          activeColor: elevatedButtonColor,
                         ),
-                        value: _isChecked,
-                        onChanged: (bool? newValue) {
-                          setState(() {
-                            _isChecked = newValue!;
-                          });
-                        },
-                        // activeColor: const Color(0xFFFE0002),
-                        activeColor: elevatedButtonColor,
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    lang.acceptStatute,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
+                    const SizedBox(width: 5),
+                    Text(
+                      lang.acceptStatute,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(
@@ -131,10 +138,8 @@ class _StatutePageState extends State<StatutePage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  // backgroundColor: const Color(0xFFFE0002),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+                      borderRadius: BorderRadius.circular(8)),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
