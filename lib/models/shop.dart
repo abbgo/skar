@@ -82,19 +82,35 @@ class Shop {
     );
   }
 
-  static Future<List<Shop>> fetchShops(String api) async {
-    Uri uri;
+  static Future<List<Shop>> fetchShops(
+    String api,
+    int limit,
+    int page,
+    bool isBrend,
+  ) async {
+    Uri uri = Uri.parse('$apiUrl/$api').replace(queryParameters: {
+      'limit': limit.toString(),
+      'page': page.toString(),
+      'is_brend': isBrend.toString(),
+    });
 
-    if (api == 'shops') {
-      uri = Uri.parse('$apiUrl/$api').replace(queryParameters: {
-        'limit': '10',
-        'page': '1',
-        'is_brend': 'false',
-      });
-    } else {
-      uri = Uri.parse('$apiUrl/$api');
+    Response response = await http.get(uri);
+    var jsonData = json.decode(response.body);
+
+    if (response.statusCode == 200 && jsonData['status']) {
+      if (jsonData['shops'] == null) {
+        return [];
+      }
+      var shopsList = jsonData['shops'] as List;
+      return shopsList
+          .map<Shop>((propJson) => Shop.fromJsonForShops(propJson))
+          .toList();
     }
+    return [];
+  }
 
+  static Future<List<Shop>> fetchShopsForMap(String api) async {
+    Uri uri = Uri.parse('$apiUrl/$api');
     Response response = await http.get(uri);
     var jsonData = json.decode(response.body);
 

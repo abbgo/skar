@@ -44,8 +44,10 @@ TextButton vipButtonMethod(BuildContext context) {
   );
 }
 
-ListView listviewMethod(BuildContext context, List<Shop> shops, bool isTM) {
+ListView listviewMethod(BuildContext context, List<Shop> shops, bool isTM,
+    ScrollController scrollController) {
   return ListView.builder(
+    controller: scrollController,
     scrollDirection: Axis.horizontal,
     itemCount: shops.length,
     itemBuilder: (context, index) => Padding(

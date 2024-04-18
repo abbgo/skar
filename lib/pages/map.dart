@@ -31,8 +31,12 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
   bool _hasPermission = false;
   bool _isLoading = true;
   List<Shop> shops = [];
+  Future<List<Shop>> brendShops = Future.value([]);
   double turns = 0.0;
   double bannerHeight = 0.4;
+  int _page = 1;
+  bool _loadPagination = false;
+  final ScrollController _scrollController = ScrollController();
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.898429, 58.354480),
@@ -48,6 +52,23 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     super.initState();
     var localStoradgeFalse = Provider.of<LocalStoragde>(context, listen: false);
     localStoradgeFalse.getLangFromSharedPref();
+
+    _scrollController.addListener(() async {
+      if (_scrollController.position.maxScrollExtent ==
+          _scrollController.offset) {
+        setState(() {
+          _page++;
+          _loadPagination = true;
+        });
+        List<Shop> newShops = await Shop.fetchShops('shops', 2, _page, true);
+        brendShops.then((value) {
+          value.addAll(newShops);
+          setState(() {
+            _loadPagination = false;
+          });
+        });
+      }
+    });
 
     setState(() {
       checkAndGetCurrentLocation(_markers, _controller).then((value) {
@@ -65,7 +86,10 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     bool hasIntConn = await checkIntConn();
 
     if (hasIntConn) {
-      shops = await Shop.fetchShops('shops/map');
+      List<Shop> brendshops = await Shop.fetchShops('shops', 2, _page, true);
+      brendShops = Future.value(brendshops);
+
+      shops = await Shop.fetchShopsForMap('shops/map');
 
       if (shops.isNotEmpty) {
         for (Shop shop in shops) {
@@ -125,12 +149,18 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
           );
         }
         if (mounted) setState(() {});
-        return;
+        return [];
       }
     }
     if (mounted) showIntConnErrSnackBar(context);
+    return [];
   }
 
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
   // FUNCTIONS END -------------------------------------------------------------------
 
   @override
@@ -234,10 +264,19 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 10),
+                              SizedBox(
+                                height: 5,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: _loadPagination
+                                      ? LinearProgressIndicator(
+                                          color: elevatedButtonColor)
+                                      : const SizedBox(),
+                                ),
+                              ),
                               Expanded(
                                 child: FutureBuilder(
-                                  future: Shop.fetchShops('shops'),
+                                  future: brendShops,
                                   builder: (context, snapshot) {
                                     if (snapshot.connectionState ==
                                         ConnectionState.waiting) {
@@ -245,10 +284,11 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                                           child: CircularProgressIndicator(
                                               color: elevatedButtonColor));
                                     } else if (snapshot.hasData) {
-                                      List<Shop> brendShops = snapshot.data!;
-
                                       return listviewMethod(
-                                          context, brendShops, widget.isTM);
+                                          context,
+                                          snapshot.data!,
+                                          widget.isTM,
+                                          _scrollController);
                                     }
                                     return const Center(
                                         child: Text('has error'));
