@@ -211,7 +211,7 @@ SliverAppBar shopDetailMethod(
         children: [
           shopTextMethod(18, isTM ? shop.nameTM : shop.nameRU, FontWeight.bold),
           shopTextMethod(
-              16, isTM ? shop.addressTM : shop.addressRU, FontWeight.normal),
+              16, isTM ? shop.addressTM! : shop.addressRU!, FontWeight.normal),
           shopButtonsMethod(context, shop),
           const SizedBox(height: 10),
           shopCategoriesMethod(
@@ -256,7 +256,7 @@ Row shopButtonsMethod(BuildContext context, Shop shop) {
           ),
           IconButton(
             onPressed: () {
-              showCallBottomSheet(context, shop.phones);
+              showCallBottomSheet(context, shop.phones!);
             },
             icon: const Icon(
               Icons.call,

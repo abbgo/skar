@@ -114,7 +114,7 @@ Container listviewCallButtonMethod(BuildContext context, Shop shop) {
     alignment: Alignment.bottomCenter,
     child: IconButton(
       onPressed: () {
-        FlutterPhoneDirectCaller.callNumber(shop.phones[0]);
+        FlutterPhoneDirectCaller.callNumber(shop.phones![0]);
       },
       icon: const Icon(
         Icons.call,
@@ -137,7 +137,7 @@ Column listviewNameColumnMethod(Shop shop, bool isTM) {
         ),
       ),
       Text(
-        isTM ? shop.addressTM : shop.addressRU,
+        isTM ? shop.addressTM! : shop.addressRU!,
         style: const TextStyle(
           fontSize: 9,
         ),

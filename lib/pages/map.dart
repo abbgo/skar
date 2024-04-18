@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:skar/datas/local_storadge.dart';
 import 'package:skar/helpers/permissions.dart';
 import 'package:skar/helpers/snackbars.dart';
+import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 import 'package:skar/helpers/functions.dart';
@@ -26,7 +27,6 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
   // VARIABLES -----------------------------------------------------------------
   final Completer<GoogleMapController> _controller = Completer();
-  late final GoogleMapController googleMapController;
   final Set<Marker> _markers = {};
   bool _hasPermission = false;
   bool _isLoading = true;
@@ -58,27 +58,14 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
       });
     });
 
-    _getShopDatas();
-    _getVisibleRegionCoordinates();
+    _getShopsForMap();
   }
 
-  void _getVisibleRegionCoordinates() async {
-    LatLngBounds visibleRegion = await googleMapController.getVisibleRegion();
-    LatLng northeast = visibleRegion.northeast;
-    LatLng southwest = visibleRegion.southwest;
-
-    print("------------------------------------------");
-    print(northeast);
-    print(southwest);
-
-    // Görünür bölgedeki koordinatları kullan
-  }
-
-  _getShopDatas() async {
+  _getShopsForMap() async {
     bool hasIntConn = await checkIntConn();
 
     if (hasIntConn) {
-      shops = await Shop.fetchShops();
+      shops = await Shop.fetchShops('shops/map');
 
       if (shops.isNotEmpty) {
         for (Shop shop in shops) {
@@ -144,11 +131,6 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     if (mounted) showIntConnErrSnackBar(context);
   }
 
-  @override
-  void dispose() {
-    googleMapController.dispose();
-    super.dispose();
-  }
   // FUNCTIONS END -------------------------------------------------------------------
 
   @override
@@ -252,12 +234,26 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                                   ),
                                 ],
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
+                              const SizedBox(height: 10),
                               Expanded(
-                                child:
-                                    listviewMethod(context, shops, widget.isTM),
+                                child: FutureBuilder(
+                                  future: Shop.fetchShops('shops'),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return Center(
+                                          child: CircularProgressIndicator(
+                                              color: elevatedButtonColor));
+                                    } else if (snapshot.hasData) {
+                                      List<Shop> brendShops = snapshot.data!;
+
+                                      return listviewMethod(
+                                          context, brendShops, widget.isTM);
+                                    }
+                                    return const Center(
+                                        child: Text('has error'));
+                                  },
+                                ),
                               )
                             ],
                           ),

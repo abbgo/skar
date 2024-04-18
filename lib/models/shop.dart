@@ -4,10 +4,11 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:http/http.dart' as http;
 
 class Shop {
-  final String id, nameTM, nameRU, addressTM, addressRU;
+  final String id, nameTM, nameRU;
+  final String? addressTM, addressRU;
   final String? image;
   final double latitude, longitude;
-  final List<dynamic> phones;
+  final List<dynamic>? phones;
   // final List<Product>? products;
   // final List<Kategory>? categories;
 
@@ -17,10 +18,10 @@ class Shop {
     required this.nameTM,
     required this.latitude,
     required this.longitude,
-    required this.image,
-    required this.addressTM,
-    required this.addressRU,
-    required this.phones,
+    this.image,
+    this.addressTM,
+    this.addressRU,
+    this.phones,
     // this.products,
     // this.categories,
   });
@@ -47,9 +48,9 @@ class Shop {
       latitude: json['latitude'],
       longitude: json['longitude'],
       image: json['image'] ?? "",
-      addressTM: json['address_tm'],
-      addressRU: json['address_ru'],
-      phones: json['phones'],
+      addressTM: json['address_tm'] ?? "",
+      addressRU: json['address_ru'] ?? "",
+      phones: json['phones'] ?? [],
     );
   }
 
@@ -60,10 +61,10 @@ class Shop {
       nameTM: json['name_tm'],
       latitude: json['latitude'],
       longitude: json['longitude'],
-      image: json['image'],
-      addressTM: json['address_tm'],
-      addressRU: json['address_ru'],
-      phones: json['phones'],
+      image: json['image'] ?? "",
+      addressTM: json['address_tm'] ?? "",
+      addressRU: json['address_ru'] ?? "",
+      phones: json['phones'] ?? [],
       // categories: json['shop_categories'] == null
       //     ? []
       //     : List<Kategory>.from(
@@ -81,12 +82,18 @@ class Shop {
     );
   }
 
-  static Future<List<Shop>> fetchShops() async {
-    final Uri uri = Uri.parse('$apiUrl/shops').replace(queryParameters: {
-      'limit': '10',
-      'page': '1',
-      'is_brend': 'false',
-    });
+  static Future<List<Shop>> fetchShops(String api) async {
+    Uri uri;
+
+    if (api == 'shops') {
+      uri = Uri.parse('$apiUrl/$api').replace(queryParameters: {
+        'limit': '10',
+        'page': '1',
+        'is_brend': 'false',
+      });
+    } else {
+      uri = Uri.parse('$apiUrl/$api');
+    }
 
     Response response = await http.get(uri);
     var jsonData = json.decode(response.body);
