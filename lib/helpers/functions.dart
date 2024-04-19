@@ -27,12 +27,14 @@ Future<bool> checkAndGetCurrentLocation(
   if (hasPermission) {
     getCurrentLocation().then((value) async {
       await null;
-      markers.add(
-        Marker(
-          markerId: const MarkerId('1'),
-          position: LatLng(value.latitude, value.longitude),
-          icon: BitmapDescriptor.defaultMarker,
-        ),
+      markers.addAll(
+        [
+          Marker(
+            markerId: const MarkerId('1'),
+            position: LatLng(value.latitude, value.longitude),
+            icon: BitmapDescriptor.defaultMarker,
+          ),
+        ],
       );
 
       CameraPosition cameraPosition = CameraPosition(

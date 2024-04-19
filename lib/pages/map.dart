@@ -114,32 +114,18 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                   Text(
                     widget.isTM ? shop.nameTM : shop.nameRU,
                     style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        shadows: [
-                          Shadow(
-                            offset: Offset(-1.5, -1.5),
-                            color: Colors.red,
-                          ),
-                          Shadow(
-                            offset: Offset(1.5, -1.5),
-                            color: Colors.red,
-                          ),
-                          Shadow(
-                            offset: Offset(1.5, 1.5),
-                            color: Colors.red,
-                          ),
-                          Shadow(
-                            offset: Offset(-1.5, 1.5),
-                            color: Colors.red,
-                          ),
-                        ]),
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(offset: Offset(-1.5, -1.5), color: Colors.red),
+                        Shadow(offset: Offset(1.5, -1.5), color: Colors.red),
+                        Shadow(offset: Offset(1.5, 1.5), color: Colors.red),
+                        Shadow(offset: Offset(-1.5, 1.5), color: Colors.red),
+                      ],
+                    ),
                   ),
-                  Image.asset(
-                    'assets/icons/shirt_location.png',
-                    height: 50,
-                  ),
+                  Image.asset('assets/icons/shirt_location.png', height: 50),
                 ],
               ).toBitmapDescriptor(
                 logicalSize: const Size(1000, 100),
