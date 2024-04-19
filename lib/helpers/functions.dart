@@ -17,7 +17,7 @@ ScreenProperties screenProperties(BuildContext context) {
 }
 
 Future<Position> getCurrentLocation() async {
-  return Geolocator.getCurrentPosition();
+  return await Geolocator.getCurrentPosition();
 }
 
 Future<bool> checkAndGetCurrentLocation(
@@ -36,14 +36,10 @@ Future<bool> checkAndGetCurrentLocation(
       );
 
       CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(value.latitude, value.longitude),
-        zoom: 15,
-      );
+          target: LatLng(value.latitude, value.longitude), zoom: 15);
 
       GoogleMapController controller = await mapController.future;
-      controller.animateCamera(
-        CameraUpdate.newCameraPosition(cameraPosition),
-      );
+      controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
     });
   }
   return hasPermission;

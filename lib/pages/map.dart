@@ -197,18 +197,19 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                         children: [
                           locationButtonMethod(
                             context,
-                            () {
-                              checkAndGetCurrentLocation(_markers, _controller)
-                                  .then((value) {
-                                setState(() {
-                                  _isLoading = false;
-                                });
-                                if (value) {
-                                  setState(() {
-                                    _hasPermission = true;
-                                  });
-                                }
+                            () async {
+                              bool hasPermission =
+                                  await checkAndGetCurrentLocation(
+                                      _markers, _controller);
+
+                              setState(() {
+                                _isLoading = false;
                               });
+                              if (hasPermission) {
+                                setState(() {
+                                  _hasPermission = true;
+                                });
+                              }
                             },
                           ),
                           vipButtonMethod(context),
@@ -332,18 +333,18 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                               }
                             });
 
-                            await checkAndGetCurrentLocation(
-                                    _markers, _controller)
-                                .then((value) {
-                              setState(() {
-                                _isLoading = false;
-                              });
-                              if (value) {
-                                setState(() {
-                                  _hasPermission = true;
-                                });
-                              }
+                            bool hasPermission =
+                                await checkAndGetCurrentLocation(
+                                    _markers, _controller);
+
+                            setState(() {
+                              _isLoading = false;
                             });
+                            if (hasPermission) {
+                              setState(() {
+                                _hasPermission = true;
+                              });
+                            }
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(8),

@@ -13,7 +13,7 @@ class _StartPageState extends State<StartPage> {
   @override
   void initState() {
     super.initState();
-    // _moveNextPage();
+    _moveNextPage();
   }
 
   _moveNextPage() async {
