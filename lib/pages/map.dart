@@ -181,7 +181,7 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                     GoogleMap(
                       markers: Set<Marker>.of(_markers),
                       initialCameraPosition: _kGooglePlex,
-                      mapType: MapType.hybrid,
+                      mapType: MapType.normal,
                       myLocationButtonEnabled: false,
                       onMapCreated: (GoogleMapController controller) {
                         _controller.complete(controller);
