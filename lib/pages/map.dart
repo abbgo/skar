@@ -26,7 +26,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
   // VARIABLES -----------------------------------------------------------------
-  final Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _googleMpCtrl = Completer();
   final Set<Marker> _markers = {};
   bool _hasPermission = false;
   bool _isLoading = true;
@@ -71,7 +71,7 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     });
 
     setState(() {
-      checkAndGetCurrentLocation(_markers, _controller).then((value) {
+      checkAndGetCurrentLocation(_markers, _googleMpCtrl).then((value) {
         _isLoading = false;
         if (value) {
           _hasPermission = true;
@@ -165,14 +165,41 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                   alignment: Alignment.bottomRight,
                   children: [
                     GoogleMap(
-                      markers: Set<Marker>.of(_markers),
-                      initialCameraPosition: _kGooglePlex,
-                      mapType: MapType.normal,
-                      myLocationButtonEnabled: false,
-                      onMapCreated: (GoogleMapController controller) {
-                        _controller.complete(controller);
-                      },
-                    ),
+                        markers: Set<Marker>.of(_markers),
+                        initialCameraPosition: _kGooglePlex,
+                        mapType: MapType.normal,
+                        myLocationButtonEnabled: false,
+                        onMapCreated: (GoogleMapController controller) async {
+                          _googleMpCtrl.complete(controller);
+
+                          final LatLngBounds bounds =
+                              await controller.getVisibleRegion();
+                          print(
+                              'north east: ${bounds.northeast.latitude}, ${bounds.northeast.longitude}');
+                          print(
+                              'north east: ${bounds.southwest.latitude}, ${bounds.southwest.longitude}');
+                        },
+                        onCameraMove: (CameraPosition position) async {
+                          GoogleMapController googleMapController =
+                              await _googleMpCtrl.future;
+                          print("onCameraMove");
+                          LatLngBounds bounds =
+                              await googleMapController.getVisibleRegion();
+                          print("========================================");
+                          print(bounds.northeast);
+                          print(bounds.southwest);
+                        },
+                        onCameraIdle: () async {
+                          GoogleMapController googleMapController =
+                              await _googleMpCtrl.future;
+                          print("onCameraIdle");
+                          LatLngBounds bounds =
+                              await googleMapController.getVisibleRegion();
+                          print(
+                              "++++++++++++++++++++++++++++++++++++++++++++++");
+                          print(bounds.northeast);
+                          print(bounds.southwest);
+                        }),
                     AnimatedPositioned(
                       bottom: bannerHeight == 0.4
                           ? screenProperties(context).height * bannerHeight
@@ -186,7 +213,7 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                             () async {
                               bool hasPermission =
                                   await checkAndGetCurrentLocation(
-                                      _markers, _controller);
+                                      _markers, _googleMpCtrl);
 
                               setState(() {
                                 _isLoading = false;
@@ -321,7 +348,7 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
 
                             bool hasPermission =
                                 await checkAndGetCurrentLocation(
-                                    _markers, _controller);
+                                    _markers, _googleMpCtrl);
 
                             setState(() {
                               _isLoading = false;
