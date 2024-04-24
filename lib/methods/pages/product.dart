@@ -153,6 +153,7 @@ Column productColorsMethod(
             return Padding(
               padding: const EdgeInsets.only(right: 10),
               child: Container(
+                width: screenProperties(context).width * .3,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   border: Border.all(

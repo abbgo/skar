@@ -28,7 +28,7 @@ class _ProductPageState extends State<ProductPage> {
   List<Product> similarProducts = [];
   int _activePage = 0;
   int _selectedColor = 0;
-  final PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController();
 
   // FUNCTIONS -----------------------------------------------------------------
   @override
@@ -101,6 +101,7 @@ class _ProductPageState extends State<ProductPage> {
                         setState(() {
                           _selectedColor = value;
                           _activePage = 0;
+                          _pageController.jumpToPage(0);
                         });
                       },
                     ),
