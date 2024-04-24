@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/shop.dart';
+import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/models/product_color.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,24 +18,28 @@ Stack productImageMethod(
 ) {
   return Stack(
     children: [
-      SizedBox(
-        width: double.infinity,
-        height: screenProperties(context).height / 2,
-        child: PageView.builder(
-          controller: pageController,
-          onPageChanged: (value) {
-            pageChange(value);
-          },
-          itemCount: productColor.images!.length,
-          itemBuilder: (context, index) {
-            return CachedNetworkImage(
-              imageUrl: '$pathUrl/${productColor.images![index]}',
-              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                  loadWidget,
-              errorWidget: (context, url, error) => errImage,
-              fit: BoxFit.cover,
-            );
-          },
+      InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ShowImage(images: productColor.images!),
+            ),
+          );
+        },
+        child: SizedBox(
+          width: double.infinity,
+          height: screenProperties(context).height / 2,
+          child: PageView.builder(
+            controller: pageController,
+            onPageChanged: (value) {
+              pageChange(value);
+            },
+            itemCount: productColor.images!.length,
+            itemBuilder: (context, index) {
+              return showCachImageMethod(productColor.images![index]);
+            },
+          ),
         ),
       ),
       Positioned(
@@ -117,13 +121,7 @@ Padding productPriceAndBrendMethod(Product product, bool isTM) {
             flex: 1,
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
-              child: CachedNetworkImage(
-                imageUrl: '$pathUrl/${product.brend!.image}',
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    loadWidget,
-                errorWidget: (context, url, error) => errImage,
-                fit: BoxFit.cover,
-              ),
+              child: showCachImageMethod(product.brend!.image!),
             ),
           )
         else
@@ -168,14 +166,7 @@ Column productColorsMethod(
                     onTap: () {
                       changeColor(index);
                     },
-                    child: CachedNetworkImage(
-                      width: screenProperties(context).width / 4,
-                      imageUrl: '$pathUrl/${productColors[index].images![0]}',
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) => loadWidget,
-                      errorWidget: (context, url, error) => errImage,
-                      fit: BoxFit.cover,
-                    ),
+                    child: showCachImageMethod(productColors[index].images![0]),
                   ),
                 ),
               ),

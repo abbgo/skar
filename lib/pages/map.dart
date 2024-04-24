@@ -43,7 +43,6 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
     zoom: 15,
   );
 
-  get ui => null;
   // VARIABLES END -----------------------------------------------------------------
 
 // FUNCTIONS -------------------------------------------------------------------
@@ -165,41 +164,14 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                   alignment: Alignment.bottomRight,
                   children: [
                     GoogleMap(
-                        markers: Set<Marker>.of(_markers),
-                        initialCameraPosition: _kGooglePlex,
-                        mapType: MapType.normal,
-                        myLocationButtonEnabled: false,
-                        onMapCreated: (GoogleMapController controller) async {
-                          _googleMpCtrl.complete(controller);
-
-                          final LatLngBounds bounds =
-                              await controller.getVisibleRegion();
-                          print(
-                              'north east: ${bounds.northeast.latitude}, ${bounds.northeast.longitude}');
-                          print(
-                              'north east: ${bounds.southwest.latitude}, ${bounds.southwest.longitude}');
-                        },
-                        onCameraMove: (CameraPosition position) async {
-                          GoogleMapController googleMapController =
-                              await _googleMpCtrl.future;
-                          print("onCameraMove");
-                          LatLngBounds bounds =
-                              await googleMapController.getVisibleRegion();
-                          print("========================================");
-                          print(bounds.northeast);
-                          print(bounds.southwest);
-                        },
-                        onCameraIdle: () async {
-                          GoogleMapController googleMapController =
-                              await _googleMpCtrl.future;
-                          print("onCameraIdle");
-                          LatLngBounds bounds =
-                              await googleMapController.getVisibleRegion();
-                          print(
-                              "++++++++++++++++++++++++++++++++++++++++++++++");
-                          print(bounds.northeast);
-                          print(bounds.southwest);
-                        }),
+                      markers: Set<Marker>.of(_markers),
+                      initialCameraPosition: _kGooglePlex,
+                      mapType: MapType.normal,
+                      myLocationButtonEnabled: false,
+                      onMapCreated: (GoogleMapController controller) async {
+                        _googleMpCtrl.complete(controller);
+                      },
+                    ),
                     AnimatedPositioned(
                       bottom: bannerHeight == 0.4
                           ? screenProperties(context).height * bannerHeight

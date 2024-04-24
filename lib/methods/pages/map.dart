@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 
@@ -181,13 +180,7 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
             ),
           );
         },
-        child: CachedNetworkImage(
-          imageUrl: '$pathUrl/${shop.image}',
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              loadWidget,
-          errorWidget: (context, url, error) => errImage,
-          fit: BoxFit.cover,
-        ),
+        child: showCachImageMethod(shop.image!),
       ),
     ),
   );

@@ -4,6 +4,7 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/services.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/category.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/models/shop.dart';
@@ -175,15 +176,8 @@ SliverAppBar shopImageMethod(ScreenProperties screenSize, String? shopImage) {
     backgroundColor: Colors.white,
     expandedHeight: screenSize.height / 4,
     automaticallyImplyLeading: false,
-    flexibleSpace: FlexibleSpaceBar(
-      background: CachedNetworkImage(
-        imageUrl: '$pathUrl/$shopImage',
-        progressIndicatorBuilder: (context, url, downloadProgress) =>
-            loadWidget,
-        errorWidget: (context, url, error) => errImage,
-        fit: BoxFit.cover,
-      ),
-    ),
+    flexibleSpace:
+        FlexibleSpaceBar(background: showCachImageMethod(shopImage!)),
   );
 }
 
