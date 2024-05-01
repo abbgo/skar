@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/pages/start.dart';
 import 'package:skar/pages/statute.dart';
-import 'datas/local_storadge.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/providers/setting.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,15 +16,9 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  await LocalStoragde().createSharedPrefObject();
   await dotenv.load(fileName: ".env");
 
-  runApp(
-    ChangeNotifierProvider<LocalStoragde>(
-      create: (BuildContext context) => LocalStoragde(),
-      child: const MyApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -54,22 +48,15 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // GET DATA FROM LOCAL STORAGDE
-    var localStoradgeFalse = Provider.of<LocalStoragde>(context, listen: false);
-    localStoradgeFalse.getFirstTimeFromSharedPref();
-    localStoradgeFalse.getLangFromSharedPref();
+  Widget build(BuildContext context, WidgetRef ref) {
+    var setting = ref.watch(settingProvider);
 
-    return localStoradgeFalse.getFirstTime()
+    return setting.isFirstTime
         ? const StatutePage()
-        : BottomNavigationPage(
-            isMapPage: true,
-            shopID: "",
-            isTM: localStoradgeFalse.getLang(),
-          );
+        : BottomNavigationPage(isMapPage: true, shopID: "", isTM: setting.isTM);
   }
 }

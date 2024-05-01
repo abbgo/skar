@@ -3,8 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:skar/datas/local_storadge.dart';
 import 'package:skar/helpers/permissions.dart';
 import 'package:skar/helpers/snackbars.dart';
 import 'package:skar/helpers/static_data.dart';
@@ -49,8 +47,8 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    var localStoradgeFalse = Provider.of<LocalStoragde>(context, listen: false);
-    localStoradgeFalse.getLangFromSharedPref();
+    // var localStoradgeFalse = Provider.of<LocalStoragde>(context, listen: false);
+    // localStoradgeFalse.getLangFromSharedPref();
 
     _scrollController.addListener(() async {
       if (_scrollController.position.maxScrollExtent ==

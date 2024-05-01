@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:skar/datas/local_storadge.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/statute.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/providers/setting.dart';
 
-class StatutePage extends StatefulWidget {
+class StatutePage extends ConsumerStatefulWidget {
   const StatutePage({super.key});
 
   @override
-  State<StatutePage> createState() => _StatutePageState();
+  // State<StatutePage> createState() => _StatutePageState();
+  // ignore: library_private_types_in_public_api
+  _StatutePageState createState() => _StatutePageState();
 }
 
-class _StatutePageState extends State<StatutePage> {
-  // VARIABLES -----------------------------------------------------------------
-  int lenContents = 0;
+class _StatutePageState extends ConsumerState<StatutePage> {
+  // VARIABLES ---------------------------------------------
   bool _isChecked = false;
 
   @override
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
-
-    var localStoradgeFalse = Provider.of<LocalStoragde>(context, listen: false);
-    localStoradgeFalse.getLangFromSharedPref();
+    var setting = ref.watch(settingProvider);
 
     return Scaffold(
       body: Padding(
@@ -41,9 +40,7 @@ class _StatutePageState extends State<StatutePage> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 8,
-            ),
+            const SizedBox(height: 8),
             Expanded(
               child: Stack(
                 alignment: Alignment.bottomLeft,
@@ -119,8 +116,8 @@ class _StatutePageState extends State<StatutePage> {
               child: ElevatedButton(
                 onPressed: () {
                   if (_isChecked) {
-                    Provider.of<LocalStoragde>(context, listen: false)
-                        .changeFirstTime();
+                    ref.read(settingProvider.notifier).update((state) =>
+                        state.copyWith(isFirstTime: !state.isFirstTime));
 
                     Navigator.pushReplacement(
                       context,
@@ -128,7 +125,7 @@ class _StatutePageState extends State<StatutePage> {
                         builder: (context) => BottomNavigationPage(
                           shopID: "",
                           isMapPage: true,
-                          isTM: localStoradgeFalse.getLang(),
+                          isTM: setting.isFirstTime,
                         ),
                       ),
                     );
