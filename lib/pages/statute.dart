@@ -23,7 +23,6 @@ class _StatutePageState extends ConsumerState<StatutePage> {
   @override
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
-    var setting = ref.watch(settingProvider);
 
     return Scaffold(
       body: Padding(
@@ -113,41 +112,47 @@ class _StatutePageState extends ConsumerState<StatutePage> {
               width: screenProperties(context).isPhone
                   ? screenProperties(context).width
                   : screenProperties(context).width * 0.3,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_isChecked) {
-                    ref.read(settingProvider.notifier).update((state) =>
-                        state.copyWith(isFirstTime: !state.isFirstTime));
+              child: Consumer(
+                builder: (context, ref, child) {
+                  var setting = ref.watch(settingProvider);
 
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BottomNavigationPage(
-                          shopID: "",
-                          isMapPage: true,
-                          isTM: setting.isFirstTime,
+                  return ElevatedButton(
+                    onPressed: () {
+                      if (_isChecked) {
+                        ref.read(settingProvider.notifier).update(
+                            (state) => state.copyWith(isFirstTime: false));
+
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BottomNavigationPage(
+                              shopID: "",
+                              isMapPage: true,
+                              isTM: setting.isFirstTime,
+                            ),
+                          ),
+                        );
+                      } else {
+                        warningShowGeneralDialog(context);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text(
+                        lang.next,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    );
-                  } else {
-                    warningShowGeneralDialog(context);
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Text(
-                    lang.next,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ],
