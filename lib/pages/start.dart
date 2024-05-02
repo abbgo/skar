@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:skar/main.dart';
+import 'package:skar/pages/home.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
@@ -13,7 +13,7 @@ class _StartPageState extends State<StartPage> {
   @override
   void initState() {
     super.initState();
-    _moveNextPage();
+    // _moveNextPage();
   }
 
   _moveNextPage() async {
@@ -21,9 +21,7 @@ class _StartPageState extends State<StartPage> {
     if (mounted) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        ),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     }
   }

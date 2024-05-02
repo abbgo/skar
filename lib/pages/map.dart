@@ -47,8 +47,6 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    // var localStoradgeFalse = Provider.of<LocalStoragde>(context, listen: false);
-    // localStoradgeFalse.getLangFromSharedPref();
 
     _scrollController.addListener(() async {
       if (_scrollController.position.maxScrollExtent ==

@@ -1,16 +1,27 @@
 class SettingModel {
-  final bool isFirstTime;
-  final bool isTM;
+  final int isFirstTime;
+  final int isTM;
 
-  SettingModel({this.isFirstTime = true, this.isTM = true});
+  SettingModel({required this.isFirstTime, required this.isTM});
 
-  SettingModel copyWith({
-    bool? isFirstTime,
-    bool? isTM,
-  }) {
+  factory SettingModel.defaultSetting() {
     return SettingModel(
-      isFirstTime: isFirstTime ?? this.isFirstTime,
-      isTM: isTM ?? this.isTM,
+      isFirstTime: 1,
+      isTM: 1,
     );
+  }
+
+  factory SettingModel.fromJson(Map<String, dynamic> json) {
+    return SettingModel(
+      isFirstTime: json['is_first_time'],
+      isTM: json['is_tm'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'is_first_time': isFirstTime,
+      'is_tm': isTM,
+    };
   }
 }

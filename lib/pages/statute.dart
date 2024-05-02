@@ -3,26 +3,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/statute.dart';
+import 'package:skar/models/setting.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/providers/pages/statute.dart';
 import 'package:skar/providers/setting.dart';
 
-class StatutePage extends ConsumerStatefulWidget {
+class StatutePage extends ConsumerWidget {
   const StatutePage({super.key});
 
   @override
-  // State<StatutePage> createState() => _StatutePageState();
-  // ignore: library_private_types_in_public_api
-  _StatutePageState createState() => _StatutePageState();
-}
-
-class _StatutePageState extends ConsumerState<StatutePage> {
-  // VARIABLES ---------------------------------------------
-  bool _isChecked = false;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
+    var setting = ref.watch(settingProvider);
+    var statutePagePr = ref.watch(statutePageProvider);
 
     return Scaffold(
       body: Padding(
@@ -70,11 +64,7 @@ class _StatutePageState extends ConsumerState<StatutePage> {
               ),
             ),
             GestureDetector(
-              onTap: () {
-                setState(() {
-                  _isChecked = !_isChecked;
-                });
-              },
+              onTap: () => ref.read(statutePageProvider.notifier).change(),
               child: Container(
                 color: const Color.fromRGBO(255, 255, 255, 1),
                 child: Row(
@@ -88,11 +78,9 @@ class _StatutePageState extends ConsumerState<StatutePage> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(3),
                           ),
-                          value: _isChecked,
+                          value: statutePagePr,
                           onChanged: (bool? newValue) {
-                            setState(() {
-                              _isChecked = !_isChecked;
-                            });
+                            ref.read(statutePageProvider.notifier).change();
                           },
                           activeColor: elevatedButtonColor,
                         ),
@@ -112,47 +100,46 @@ class _StatutePageState extends ConsumerState<StatutePage> {
               width: screenProperties(context).isPhone
                   ? screenProperties(context).width
                   : screenProperties(context).width * 0.3,
-              child: Consumer(
-                builder: (context, ref, child) {
-                  var setting = ref.watch(settingProvider);
-
-                  return ElevatedButton(
-                    onPressed: () {
-                      if (_isChecked) {
-                        ref.read(settingProvider.notifier).update(
-                            (state) => state.copyWith(isFirstTime: false));
-
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BottomNavigationPage(
-                              shopID: "",
-                              isMapPage: true,
-                              isTM: setting.isFirstTime,
-                            ),
-                          ),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (statutePagePr) {
+                    // ref.read(settingProvider.notifier).setFirstTime(false);
+                    // Update user here
+                    ref.read(settingProvider.notifier).updateUser(
+                          // SettingModel(isFirstTime: false, isTM: setting.isTM),
+                          SettingModel(isFirstTime: 1, isTM: setting.isTM),
                         );
-                      } else {
-                        warningShowGeneralDialog(context);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Text(
-                        lang.next,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BottomNavigationPage(
+                          shopID: "",
+                          isMapPage: true,
+                          // isTM: setting.isFirstTime,
+                          isTM: true,
                         ),
                       ),
-                    ),
-                  );
+                    );
+                  } else {
+                    warningShowGeneralDialog(context);
+                  }
                 },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Text(
+                    lang.next,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
