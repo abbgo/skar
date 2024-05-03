@@ -14,9 +14,7 @@ import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MapPage extends StatefulWidget {
-  const MapPage({super.key, required this.isTM});
-
-  final bool isTM;
+  const MapPage({super.key});
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -99,7 +97,6 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                     builder: (context) => BottomNavigationPage(
                       shopID: shop.id,
                       isMapPage: false,
-                      isTM: widget.isTM,
                     ),
                   ),
                 );
@@ -107,7 +104,8 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
               icon: await Column(
                 children: [
                   Text(
-                    widget.isTM ? shop.nameTM : shop.nameRU,
+                    // widget.isTM ? shop.nameTM : shop.nameRU,
+                    true ? shop.nameTM : shop.nameRU,
                     style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -269,7 +267,8 @@ class _MapPageState extends State<MapPage> with SingleTickerProviderStateMixin {
                                       return listviewMethod(
                                           context,
                                           snapshot.data!,
-                                          widget.isTM,
+                                          // widget.isTM,
+                                          true,
                                           _scrollController);
                                     }
                                     return const Center(

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/datas/local.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/statute.dart';
-import 'package:skar/models/setting.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/pages/statute.dart';
-import 'package:skar/providers/setting.dart';
 
 class StatutePage extends ConsumerWidget {
   const StatutePage({super.key});
@@ -15,8 +14,7 @@ class StatutePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
-    var setting = ref.watch(settingProvider);
-    var statutePagePr = ref.watch(statutePageProvider);
+    bool isChecked = ref.watch(checkBoxProvider);
 
     return Scaffold(
       body: Padding(
@@ -64,7 +62,8 @@ class StatutePage extends ConsumerWidget {
               ),
             ),
             GestureDetector(
-              onTap: () => ref.read(statutePageProvider.notifier).change(),
+              onTap: () =>
+                  ref.read(checkBoxProvider.notifier).state = !isChecked,
               child: Container(
                 color: const Color.fromRGBO(255, 255, 255, 1),
                 child: Row(
@@ -78,9 +77,10 @@ class StatutePage extends ConsumerWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(3),
                           ),
-                          value: statutePagePr,
+                          value: isChecked,
                           onChanged: (bool? newValue) {
-                            ref.read(statutePageProvider.notifier).change();
+                            ref.read(checkBoxProvider.notifier).state =
+                                !isChecked;
                           },
                           activeColor: elevatedButtonColor,
                         ),
@@ -102,22 +102,15 @@ class StatutePage extends ConsumerWidget {
                   : screenProperties(context).width * 0.3,
               child: ElevatedButton(
                 onPressed: () {
-                  if (statutePagePr) {
-                    // ref.read(settingProvider.notifier).setFirstTime(false);
-                    // Update user here
-                    ref.read(settingProvider.notifier).updateUser(
-                          // SettingModel(isFirstTime: false, isTM: setting.isTM),
-                          SettingModel(isFirstTime: 1, isTM: setting.isTM),
-                        );
+                  if (isChecked) {
+                    ref.read(isFirstTimeProvider.notifier).update(false);
 
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BottomNavigationPage(
+                        builder: (context) => const BottomNavigationPage(
                           shopID: "",
                           isMapPage: true,
-                          // isTM: setting.isFirstTime,
-                          isTM: true,
                         ),
                       ),
                     );

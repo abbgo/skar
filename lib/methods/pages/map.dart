@@ -172,11 +172,8 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BottomNavigationPage(
-                shopID: shop.id,
-                isMapPage: false,
-                isTM: isTM,
-              ),
+              builder: (context) =>
+                  BottomNavigationPage(shopID: shop.id, isMapPage: false),
             ),
           );
         },

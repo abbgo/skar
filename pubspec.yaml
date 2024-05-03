@@ -48,6 +48,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_riverpod: ^2.5.1
   sqflite: ^2.3.3
+  shared_preferences: ^2.2.3
+  shared_preferences_riverpod: ^0.3.0
 
 dev_dependencies:
   flutter_test:
