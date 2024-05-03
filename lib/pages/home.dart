@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/datas/local.dart';
+import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/pages/statute.dart';
 
