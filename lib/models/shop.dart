@@ -40,21 +40,7 @@ class Shop {
     );
   }
 
-  factory Shop.fromJsonForShops(Map<String, dynamic> json) {
-    return Shop(
-      id: json['id'],
-      nameRU: json['name_ru'],
-      nameTM: json['name_tm'],
-      latitude: json['latitude'],
-      longitude: json['longitude'],
-      image: json['image'] ?? "",
-      addressTM: json['address_tm'] ?? "",
-      addressRU: json['address_ru'] ?? "",
-      phones: json['phones'] ?? [],
-    );
-  }
-
-  factory Shop.fromJsonForShop(Map<String, dynamic> json) {
+  factory Shop.fromJson(Map<String, dynamic> json) {
     return Shop(
       id: json['id'],
       nameRU: json['name_ru'],
@@ -101,21 +87,7 @@ class Shop {
       if (jsonData['shops'] == null) return [];
       var shopsList = jsonData['shops'] as List;
       return shopsList
-          .map<Shop>((propJson) => Shop.fromJsonForShops(propJson))
-          .toList();
-    }
-    return [];
-  }
-
-  static Future<List<Shop>> fetchShopsForMap(String api) async {
-    Uri uri = Uri.parse('$apiUrl/$api');
-    Response response = await http.get(uri);
-    var jsonData = json.decode(response.body);
-
-    if (response.statusCode == 200 && jsonData['status']) {
-      var shopsList = jsonData['shops'] as List;
-      return shopsList
-          .map<Shop>((propJson) => Shop.fromJsonForShops(propJson))
+          .map<Shop>((propJson) => Shop.fromJson(propJson))
           .toList();
     }
     return [];
@@ -127,7 +99,7 @@ class Shop {
 
     if (response.statusCode == 200 && jsonData['status']) {
       var propJson = jsonData['shop'];
-      return Shop.fromJsonForShop(propJson);
+      return Shop.fromJson(propJson);
     }
     return Shop.defaultShop();
   }

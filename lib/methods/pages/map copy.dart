@@ -1,17 +1,8 @@
-import 'dart:async';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:skar/providers/pages/map.dart';
 
 IconButton locationButtonMethod(BuildContext context, Function()? onPressed) {
   return IconButton(
@@ -187,68 +178,6 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
           );
         },
         child: showCachImageMethod(shop.image!),
-      ),
-    ),
-  );
-}
-
-Center locationPermissionMethod(
-  BuildContext context,
-  Set<Marker> markers,
-  Completer<GoogleMapController> mapController,
-) {
-  var lang = AppLocalizations.of(context)!;
-  return Center(
-    child: SizedBox(
-      width: screenProperties(context).width * 0.7,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "assets/images/location_permission.jpeg",
-            height: screenProperties(context).height * 0.3,
-          ),
-          Text(
-            lang.locationPermission,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Consumer(
-            builder: (context, ref, child) {
-              return ElevatedButton(
-                onPressed: () async {
-                  await Geolocator.requestPermission()
-                      .then((value) {})
-                      .onError((error, stackTrace) {
-                    if (kDebugMode) {
-                      print("error: ${error.toString()}");
-                    }
-                  });
-
-                  bool hasPermission =
-                      await checkAndGetCurrentLocation(mapController, ref);
-
-                  ref.read(loadProvider.notifier).state = false;
-                  if (hasPermission) {
-                    ref.read(locationPermissionProvider.notifier).state = true;
-                  }
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    lang.allow,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
       ),
     ),
   );
