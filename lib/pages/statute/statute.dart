@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/pages/statute/parts/button.dart';
 import 'package:skar/pages/statute/parts/check_box.dart';
 import 'package:skar/pages/statute/parts/content.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class StatutePage extends ConsumerWidget {
+class StatutePage extends StatelessWidget {
   const StatutePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
 
     return Scaffold(
