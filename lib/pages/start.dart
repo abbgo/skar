@@ -17,7 +17,7 @@ class _StartPageState extends State<StartPage> {
   }
 
   _moveNextPage() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     if (mounted) {
       Navigator.pushReplacement(
         context,

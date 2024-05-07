@@ -166,7 +166,7 @@
 //                         _googleMpCtrl.complete(controller);
 //                       },
 //                     ),
-//                     AnimatedPositioned(
+//                     AnimatedPositioned( -------------------------------------
 //                       bottom: bannerHeight == 0.4
 //                           ? screenProperties(context).height * bannerHeight
 //                           : screenProperties(context).height * 0.07,

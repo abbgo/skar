@@ -4,7 +4,7 @@ import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/parts/bottom_navigation.dart';
 import 'package:skar/pages/favorites.dart';
-import 'package:skar/pages/map.dart';
+import 'package:skar/pages/map/map.dart';
 import 'package:skar/pages/search.dart';
 import 'package:skar/pages/setting.dart';
 import 'package:skar/pages/shop.dart';
@@ -24,7 +24,7 @@ class BottomNavigationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
     List<Widget> pages = [
-      isMapPage ? const MapPage() : ShopPage(shopID: shopID, isTM: true),
+      isMapPage ? MapPage() : ShopPage(shopID: shopID, isTM: true),
       const LikesPage(),
       const SearchPage(),
       const SettingPage(),
@@ -66,7 +66,7 @@ class BottomNavigationPage extends StatelessWidget {
               unselectedItemColor: elevatedButtonColor,
               currentIndex: selectedIndex,
               onTap: (value) {
-                selectedIndex = value;
+                ref.read(selectedBottomIndexProvider.notifier).update(value);
               },
             ),
           ),
