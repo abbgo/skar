@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
+import 'package:widget_to_marker/widget_to_marker.dart';
 
 IconButton locationButtonMethod(BuildContext context, Function()? onPressed) {
   return IconButton(
@@ -180,5 +182,30 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
         child: showCachImageMethod(shop.image!),
       ),
     ),
+  );
+}
+
+Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
+  return Column(
+    children: [
+      Text(
+        isTM ? shop.nameTM : shop.nameRU,
+        style: const TextStyle(
+          fontSize: 24,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          shadows: [
+            Shadow(offset: Offset(-1.5, -1.5), color: Colors.red),
+            Shadow(offset: Offset(1.5, -1.5), color: Colors.red),
+            Shadow(offset: Offset(1.5, 1.5), color: Colors.red),
+            Shadow(offset: Offset(-1.5, 1.5), color: Colors.red),
+          ],
+        ),
+      ),
+      Image.asset('assets/icons/shirt_location.png', height: 50),
+    ],
+  ).toBitmapDescriptor(
+    logicalSize: const Size(1000, 100),
+    imageSize: const Size(1000, 100),
   );
 }

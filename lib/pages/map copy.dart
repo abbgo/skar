@@ -195,7 +195,7 @@
 //                         ],
 //                       ),
 //                     ),
-//                     GestureDetector(
+//                     GestureDetector( -------------------
 //                       onVerticalDragEnd: (details) {
 //                         setState(() {
 //                           if (bannerHeight == 0.4) {

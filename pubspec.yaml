@@ -50,7 +50,7 @@ dependencies:
   sqflite: ^2.3.3
   shared_preferences: ^2.2.3
   shared_preferences_riverpod: ^0.3.0
-  widget_marker_google_map: ^0.0.2
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

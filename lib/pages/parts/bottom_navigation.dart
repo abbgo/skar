@@ -66,7 +66,7 @@ class BottomNavigationPage extends StatelessWidget {
               unselectedItemColor: elevatedButtonColor,
               currentIndex: selectedIndex,
               onTap: (value) {
-                ref.read(selectedBottomIndexProvider.notifier).update(value);
+                ref.read(selectedBottomIndexProvider.notifier).state = value;
               },
             ),
           ),

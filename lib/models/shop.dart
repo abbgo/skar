@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'package:equatable/equatable.dart';
 import 'package:http/http.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:http/http.dart' as http;
 
-class Shop {
+class Shop extends Equatable {
   final String id, nameTM, nameRU;
   final String? addressTM, addressRU;
   final String? image;
@@ -12,7 +13,7 @@ class Shop {
   // final List<Product>? products;
   // final List<Kategory>? categories;
 
-  Shop({
+  const Shop({
     required this.id,
     required this.nameRU,
     required this.nameTM,
@@ -27,7 +28,7 @@ class Shop {
   });
 
   factory Shop.defaultShop() {
-    return Shop(
+    return const Shop(
       id: '',
       nameRU: '',
       nameTM: '',
@@ -68,31 +69,6 @@ class Shop {
     );
   }
 
-  static Future<List<Shop>> fetchShops(
-    String api,
-    int limit,
-    int page,
-    bool isBrend,
-  ) async {
-    Uri uri = Uri.parse('$apiUrl/$api').replace(queryParameters: {
-      'limit': limit.toString(),
-      'page': page.toString(),
-      'is_brend': isBrend.toString(),
-    });
-
-    Response response = await http.get(uri);
-    var jsonData = json.decode(response.body);
-
-    if (response.statusCode == 200 && jsonData['status']) {
-      if (jsonData['shops'] == null) return [];
-      var shopsList = jsonData['shops'] as List;
-      return shopsList
-          .map<Shop>((propJson) => Shop.fromJson(propJson))
-          .toList();
-    }
-    return [];
-  }
-
   static Future<Shop> fetchShop(String shopID) async {
     Response response = await http.get(Uri.parse("$apiUrl/shops/$shopID"));
     var jsonData = json.decode(response.body);
@@ -103,4 +79,17 @@ class Shop {
     }
     return Shop.defaultShop();
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        nameTM,
+        nameRU,
+        addressTM,
+        addressRU,
+        image,
+        latitude,
+        longitude,
+        phones
+      ];
 }

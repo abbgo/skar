@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
+import 'package:skar/pages/map/parts/shop_list.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
 
@@ -18,7 +19,8 @@ class Map extends StatelessWidget {
     return Consumer(
       builder: (context, ref, child) {
         Set<Marker> markers = ref.watch(markersProvider);
-        var shopsForMap = ref.watch(shopDataProvider(context));
+        var shopsForMap = ref.watch(shopsForMapProvider(context));
+
         return shopsForMap.when(
           data: (shops) {
             return Stack(
@@ -27,13 +29,14 @@ class Map extends StatelessWidget {
                 GoogleMap(
                   markers: markers,
                   initialCameraPosition: _kGooglePlex,
-                  mapType: MapType.normal,
+                  mapType: MapType.hybrid,
                   myLocationButtonEnabled: false,
                   onMapCreated: (GoogleMapController controller) {
                     mapController.complete(controller);
                   },
                 ),
                 MapButtons(mapController: mapController),
+                const ShopList(),
               ],
             );
           },
