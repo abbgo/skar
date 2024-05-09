@@ -8,29 +8,13 @@ import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/services/shop.dart';
 
-final shopPageProvider = StateProvider<int>((ref) => 1);
-final shopDataProvider = StateProvider<List<Shop>>((ref) => <Shop>[]);
-
 final apiProvider = Provider<ShopService>((ref) => ShopService());
-// final shopDataProvider = FutureProvider<List<Shop>>((ref) {
-//   return ref.read(apiProvider).fetchShopsForMap('shops/map');
-// });
-
-final shopsProvider =
-    FutureProvider.family<List<Shop>, ShopParam>((ref, arg) async {
-  var page = ref.watch(shopPageProvider);
-
-  var shops = await ref
-      .read(apiProvider)
-      .fetchShops(arg.api, arg.limit, page, arg.isBrend);
-  ref.read(shopDataProvider.notifier).state.addAll(shops);
-
-  return shops;
-});
 
 final shopsForMapProvider = FutureProvider.family<List<Shop>, BuildContext>(
   (ref, arg) async {
-    var shops = await ref.read(apiProvider).fetchShopsForMap('shops/map');
+    List<Shop> shops =
+        await ref.read(apiProvider).fetchShopsForMap('shops/map');
+
     bool isTM = ref.read(isTmProvider);
 
     for (Shop shop in shops) {
@@ -55,3 +39,7 @@ final shopsForMapProvider = FutureProvider.family<List<Shop>, BuildContext>(
     return shops;
   },
 );
+
+var fetchMoviesProvider = FutureProvider.family<List<Shop>, int>((ref, page) {
+  return ref.read(apiProvider).fetchShops(page: page);
+});

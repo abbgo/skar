@@ -1,12 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:widget_marker_google_map/widget_marker_google_map.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 final locationPermissionProvider = StateProvider<bool>((ref) => false);
 final loadProvider = StateProvider<bool>((ref) => true);
 final turnsProvider = StateProvider<double>((ref) => 0.0);
 final bannerHeightProvider = StateProvider<double>((ref) => 0.4);
 final pageNumberProvider = StateProvider<int>((ref) => 1);
-final loadPaginationProvider = StateProvider<bool>((ref) => false);
 
 class MarkersNotifier extends StateNotifier<Set<Marker>> {
   MarkersNotifier() : super({});

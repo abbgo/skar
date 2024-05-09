@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:skar/helpers/static_data.dart';
@@ -15,7 +14,9 @@ class ShopService {
 
       if (response.statusCode == 200 && jsonData['status']) {
         var shopsList = jsonData['shops'] as List;
-        shopsList.map<Shop>((propJson) => Shop.fromJson(propJson)).toList();
+        return shopsList
+            .map<Shop>((propJson) => Shop.fromJson(propJson))
+            .toList();
       }
       return [];
     } catch (e) {
@@ -24,17 +25,14 @@ class ShopService {
   }
 
   // fetch shops -------------------------------------------------------
-  Future<List<Shop>> fetchShops(
-    String api,
-    int limit,
-    int page,
-    bool isBrend,
-  ) async {
-    Uri uri = Uri.parse('$apiUrl/$api').replace(queryParameters: {
-      'limit': limit.toString(),
-      'page': page.toString(),
-      'is_brend': isBrend.toString(),
-    });
+  Future<List<Shop>> fetchShops({required int page}) async {
+    Uri uri = Uri.parse('http://192.168.0.142:7723/api/shops').replace(
+      queryParameters: {
+        'limit': '10',
+        'page': '$page',
+        'is_brend': 'true',
+      },
+    );
 
     try {
       Response response = await http.get(uri);
@@ -52,15 +50,4 @@ class ShopService {
       return [];
     }
   }
-}
-
-class ShopParam extends Equatable {
-  final String api;
-  final int limit = 3;
-  final bool isBrend = true;
-
-  const ShopParam({required this.api});
-
-  @override
-  List<Object?> get props => [api, limit, isBrend];
 }
