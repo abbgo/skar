@@ -26,7 +26,7 @@ class ShopService {
 
   // fetch shops -------------------------------------------------------
   Future<List<Shop>> fetchShops({required int page}) async {
-    Uri uri = Uri.parse('http://192.168.0.142:7723/api/shops').replace(
+    Uri uri = Uri.parse('$apiUrl/shops').replace(
       queryParameters: {
         'limit': '10',
         'page': '$page',
@@ -48,6 +48,22 @@ class ShopService {
       return [];
     } catch (e) {
       return [];
+    }
+  }
+
+  // fetch shop by id
+  Future<Shop> fetchShop(String shopID) async {
+    try {
+      Response response = await http.get(Uri.parse("$apiUrl/shops/$shopID"));
+      var jsonData = json.decode(response.body);
+
+      if (response.statusCode == 200 && jsonData['status']) {
+        var propJson = jsonData['shop'];
+        return Shop.fromJson(propJson);
+      }
+      return Shop.defaultShop();
+    } catch (e) {
+      return Shop.defaultShop();
     }
   }
 }

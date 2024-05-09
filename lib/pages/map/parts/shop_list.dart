@@ -55,7 +55,7 @@ class ShopList extends ConsumerWidget {
                     final indexInPage = index % pageSize;
 
                     final AsyncValue<List<Shop>> responseAsync =
-                        ref.watch(fetchMoviesProvider(page));
+                        ref.watch(fetchShopsProvider(page));
 
                     return responseAsync.when(
                       data: (response) {

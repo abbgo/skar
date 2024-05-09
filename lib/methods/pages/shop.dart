@@ -4,8 +4,6 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/services.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/static_data.dart';
-import 'package:skar/methods/api/shop_page.dart';
-import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/category.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/models/shop.dart';
@@ -172,27 +170,27 @@ Text shopTextMethod(double fontSize, String text, FontWeight fontWeight) {
   );
 }
 
-SliverAppBar shopImageMethod(ScreenProperties screenSize,
-    /* String? shopImage*/ String shopID, BuildContext context) {
-  return SliverAppBar(
-    backgroundColor: Colors.white,
-    expandedHeight: screenSize.height / 4,
-    automaticallyImplyLeading: false,
-    flexibleSpace: FlexibleSpaceBar(
-      background: FutureBuilder<Shop>(
-        future: getShopData(shopID, context),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return showCachImageMethod(snapshot.data!.image!);
-          } else if (snapshot.hasError) {
-            return const Center(child: Text("error"));
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
-    ),
-  );
-}
+// SliverAppBar shopImageMethod(
+//     ScreenProperties screenSize, String shopID, BuildContext context) {
+//   return SliverAppBar(
+//     backgroundColor: Colors.white,
+//     expandedHeight: screenSize.height / 4,
+//     automaticallyImplyLeading: false,
+//     flexibleSpace: FlexibleSpaceBar(
+//       background: FutureBuilder<Shop>(
+//         future: getShopData(shopID, context),
+//         builder: (context, snapshot) {
+//           if (snapshot.hasData) {
+//             return showCachImageMethod(snapshot.data!.image!);
+//           } else if (snapshot.hasError) {
+//             return const Center(child: Text("error"));
+//           }
+//           return const Center(child: CircularProgressIndicator());
+//         },
+//       ),
+//     ),
+//   );
+// }
 
 SliverAppBar shopDetailMethod(
   ScreenProperties screenSize,

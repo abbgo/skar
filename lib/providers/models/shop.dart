@@ -40,6 +40,9 @@ final shopsForMapProvider = FutureProvider.family<List<Shop>, BuildContext>(
   },
 );
 
-var fetchMoviesProvider = FutureProvider.family<List<Shop>, int>((ref, page) {
+var fetchShopsProvider = FutureProvider.family<List<Shop>, int>((ref, page) {
   return ref.read(apiProvider).fetchShops(page: page);
 });
+
+var fetchShopProvider = FutureProvider.family<Shop, String>(
+    (ref, shopID) => ref.read(apiProvider).fetchShop(shopID));

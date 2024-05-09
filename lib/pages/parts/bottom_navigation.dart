@@ -7,7 +7,7 @@ import 'package:skar/pages/favorites.dart';
 import 'package:skar/pages/map/map.dart';
 import 'package:skar/pages/search.dart';
 import 'package:skar/pages/setting.dart';
-import 'package:skar/pages/shop.dart';
+import 'package:skar/pages/shop/shop.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BottomNavigationPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class BottomNavigationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
     List<Widget> pages = [
-      isMapPage ? MapPage() : ShopPage(shopID: shopID, isTM: true),
+      isMapPage ? MapPage() : ShopPage(shopID: shopID),
       const LikesPage(),
       const SearchPage(),
       const SettingPage(),

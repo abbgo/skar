@@ -1,8 +1,4 @@
-import 'dart:convert';
 import 'package:equatable/equatable.dart';
-import 'package:http/http.dart';
-import 'package:skar/helpers/static_data.dart';
-import 'package:http/http.dart' as http;
 
 class Shop extends Equatable {
   final String id, nameTM, nameRU;
@@ -67,17 +63,6 @@ class Shop extends Equatable {
       //         ),
       //       ),
     );
-  }
-
-  static Future<Shop> fetchShop(String shopID) async {
-    Response response = await http.get(Uri.parse("$apiUrl/shops/$shopID"));
-    var jsonData = json.decode(response.body);
-
-    if (response.statusCode == 200 && jsonData['status']) {
-      var propJson = jsonData['shop'];
-      return Shop.fromJson(propJson);
-    }
-    return Shop.defaultShop();
   }
 
   @override

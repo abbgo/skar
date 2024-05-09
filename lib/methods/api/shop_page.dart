@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:skar/helpers/permissions.dart';
 import 'package:skar/helpers/snackbars.dart';
-import 'package:skar/models/product.dart';
 import 'package:skar/models/shop.dart';
 
-Future<Shop> getShopData(String shopID, BuildContext context) async {
-  bool hasIntConn = await checkIntConn();
-  if (hasIntConn) {
-    return await Shop.fetchShop(shopID);
-  }
-  showInt() {
-    showIntConnErrSnackBar(context);
-  }
+// Future<Shop> getShopData(String shopID, BuildContext context) async {
+//   bool hasIntConn = await checkIntConn();
+//   if (hasIntConn) {
+//     return await Shop.fetchShop(shopID);
+//   }
+//   showInt() {
+//     showIntConnErrSnackBar(context);
+//   }
 
-  showInt();
-  return Shop.defaultShop();
-}
+//   showInt();
+//   return Shop.defaultShop();
+// }
 
 // getShopWithProducts(String shopID, BuildContext context) async {
 //   bool hasIntConn = await checkIntConn();
@@ -23,10 +22,10 @@ Future<Shop> getShopData(String shopID, BuildContext context) async {
 
 //   if (hasIntConn) {
 //     // get shop
-//     shop = await Shop.fetchShop(shopID);
+//     var shop = await Shop.fetchShop(shopID);
 
 //     // get categories by shop id
-//     categories = await Kategory.fetchCategories(shopID);
+//     var categories = await Kategory.fetchCategories(shopID);
 //     for (Kategory category in categories) {
 //       categorieIDS.add(category.id);
 //     }
