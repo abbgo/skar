@@ -2,9 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/services.dart';
-import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/static_data.dart';
-import 'package:skar/models/category.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/models/shop.dart';
 
@@ -192,46 +190,46 @@ Text shopTextMethod(double fontSize, String text, FontWeight fontWeight) {
 //   );
 // }
 
-SliverAppBar shopDetailMethod(
-  ScreenProperties screenSize,
-  BuildContext context,
-  Shop shop,
-  bool isTM,
-  bool loadMore,
-  List<Kategory> categories,
-  Kategory category,
-  Function getChildCategories,
-) {
-  return SliverAppBar(
-    backgroundColor: Colors.white,
-    pinned: true,
-    elevation: 0,
-    scrolledUnderElevation: 0,
-    toolbarHeight: screenSize.height / 5,
-    automaticallyImplyLeading: false,
-    flexibleSpace: Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          shopTextMethod(18, isTM ? shop.nameTM : shop.nameRU, FontWeight.bold),
-          shopTextMethod(
-              16, isTM ? shop.addressTM! : shop.addressRU!, FontWeight.normal),
-          shopButtonsMethod(context, shop),
-          const SizedBox(height: 10),
-          // shopCategoriesMethod(
-          //     categories, isTM, shop.id, category, getChildCategories),
-          // Padding(
-          //   padding: const EdgeInsets.only(top: 10),
-          //   child: loadMore
-          //       ? LinearProgressIndicator(color: elevatedButtonColor)
-          //       : const SizedBox(),
-          // ),
-        ],
-      ),
-    ),
-  );
-}
+// SliverAppBar shopDetailMethod(
+//   ScreenProperties screenSize,
+//   BuildContext context,
+//   Shop shop,
+//   bool isTM,
+//   bool loadMore,
+//   List<Kategory> categories,
+//   Kategory category,
+//   Function getChildCategories,
+// ) {
+//   return SliverAppBar(
+//     backgroundColor: Colors.white,
+//     pinned: true,
+//     elevation: 0,
+//     scrolledUnderElevation: 0,
+//     toolbarHeight: screenSize.height / 5,
+//     automaticallyImplyLeading: false,
+//     flexibleSpace: Padding(
+//       padding: const EdgeInsets.only(left: 10, right: 10),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           shopTextMethod(18, isTM ? shop.nameTM : shop.nameRU, FontWeight.bold),
+//           shopTextMethod(
+//               16, isTM ? shop.addressTM! : shop.addressRU!, FontWeight.normal),
+//           shopButtonsMethod(context, shop),
+//           const SizedBox(height: 10),
+//           // shopCategoriesMethod(
+//           //     categories, isTM, shop.id, category, getChildCategories),
+//           // Padding(
+//           //   padding: const EdgeInsets.only(top: 10),
+//           //   child: loadMore
+//           //       ? LinearProgressIndicator(color: elevatedButtonColor)
+//           //       : const SizedBox(),
+//           // ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
 Row shopButtonsMethod(BuildContext context, Shop shop) {
   return Row(
@@ -278,57 +276,27 @@ Row shopButtonsMethod(BuildContext context, Shop shop) {
   );
 }
 
-SizedBox shopCategoriesMethod(
-  List<Kategory> categories,
-  bool isTM,
-  String shopID,
-  Kategory kategory,
-  Function getChildCategories,
-) {
-  return SizedBox(
-    height: kategory.id.isEmpty ? 30 : 50,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        kategory.id.isNotEmpty ? Text(kategory.nameTM) : const SizedBox(),
-        Expanded(
-          child: kategory.childCategories == null
-              ? listCategoriesMethod(categories, getChildCategories, isTM)
-              : listCategoriesMethod(
-                  kategory.childCategories!, getChildCategories, isTM),
-        ),
-      ],
-    ),
-  );
-}
-
-ListView listCategoriesMethod(
-    List<Kategory> categories, Function getChildCategories, bool isTM) {
-  return ListView.builder(
-    scrollDirection: Axis.horizontal,
-    itemCount: categories.length,
-    itemBuilder: (context, index) {
-      var category = categories[index];
-
-      return Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-          ),
-          onPressed: () {
-            getChildCategories(index);
-          },
-          child: Text(
-            isTM ? category.nameTM : category.nameRU,
-            style: const TextStyle(color: Colors.white),
-          ),
-        ),
-      );
-    },
-  );
-}
+// SizedBox shopCategoriesMethod(
+//   List<Kategory> categories,
+//   bool isTM,
+//   String shopID,
+//   Kategory kategory,
+//   Function getChildCategories,
+// ) {
+//   return SizedBox(
+//     height: kategory.id.isEmpty ? 30 : 50,
+//     child: Column(
+//       mainAxisSize: MainAxisSize.min,
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         kategory.id.isNotEmpty ? Text(kategory.nameTM) : const SizedBox(),
+//         Expanded(
+//           child: kategory.childCategories == null
+//               ? listCategoriesMethod(categories, getChildCategories, isTM)
+//               : listCategoriesMethod(
+//                   kategory.childCategories!, getChildCategories, isTM),
+//         ),
+//       ],
+//     ),
+//   );
+// }

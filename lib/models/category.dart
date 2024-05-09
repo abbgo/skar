@@ -1,14 +1,11 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:skar/helpers/static_data.dart';
+import 'package:equatable/equatable.dart';
 
-class Kategory {
+class Kategory extends Equatable {
   final String id, nameTM, nameRU;
   final String? image;
   final List<Kategory>? childCategories;
 
-  Kategory({
+  const Kategory({
     required this.nameTM,
     required this.id,
     required this.nameRU,
@@ -17,7 +14,7 @@ class Kategory {
   });
 
   factory Kategory.defaultCategory() {
-    return Kategory(
+    return const Kategory(
       id: '',
       nameRU: '',
       nameTM: '',
@@ -41,36 +38,6 @@ class Kategory {
     );
   }
 
-  static Future<List<Kategory>> fetchCategories(String shopID) async {
-    final Uri uri = Uri.parse('$apiUrl/categories/$shopID');
-
-    Response response = await http.get(uri);
-    var jsonData = json.decode(response.body);
-
-    if (response.statusCode == 200 && jsonData['status']) {
-      if (jsonData['categories'] == null) return [];
-
-      var list = jsonData['categories'] as List;
-      return list
-          .map<Kategory>((propJson) => Kategory.fromJson(propJson))
-          .toList();
-    }
-    return [];
-  }
-
-  static Future<Kategory> fetchChildCategories(
-      String shopID, String categoryID) async {
-    final Uri uri = Uri.parse('$apiUrl/categories/$shopID/$categoryID');
-
-    Response response = await http.get(uri);
-    var jsonData = json.decode(response.body);
-
-    if (response.statusCode == 200 && jsonData['status']) {
-      if (jsonData['category'] == null) return Kategory.defaultCategory();
-
-      var dataJson = jsonData['category'];
-      return Kategory.fromJson(dataJson);
-    }
-    return Kategory.defaultCategory();
-  }
+  @override
+  List<Object?> get props => [id, nameTM, nameRU, childCategories];
 }
