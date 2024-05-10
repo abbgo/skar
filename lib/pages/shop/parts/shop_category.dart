@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/category.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/category.dart';
@@ -44,7 +45,7 @@ class ShopCategory extends ConsumerWidget {
                     },
                     error: (error, stackTrace) =>
                         Center(child: Text(error.toString())),
-                    loading: () => const SizedBox(),
+                    loading: () => loadWidget,
                   ),
           ),
         ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/providers/models/shop.dart';
 
@@ -24,7 +25,7 @@ class ShopImage extends StatelessWidget {
               return showCachImageMethod(data.image!);
             },
             error: (error, stackTrace) => Center(child: Text(error.toString())),
-            loading: () => null,
+            loading: () => loadWidget,
           ),
         );
       },

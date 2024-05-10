@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
@@ -68,8 +69,7 @@ class ShopList extends ConsumerWidget {
                       },
                       error: (error, stackTrace) =>
                           Center(child: Text(error.toString())),
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
+                      loading: () => loadWidget,
                     );
                   },
                 ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/pages/shop/parts/shop_category.dart';
 import 'package:skar/pages/shop/parts/shop_image.dart';
@@ -80,7 +81,7 @@ class ShopPage extends StatelessWidget {
                     },
                     error: (error, stackTrace) =>
                         Center(child: Text(error.toString())),
-                    loading: () => const SizedBox(),
+                    loading: () => loadWidget,
                   );
                 },
               ),
