@@ -1,10 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-final locationPermissionProvider = StateProvider<bool>((ref) => false);
-final loadProvider = StateProvider<bool>((ref) => true);
-final turnsProvider = StateProvider<double>((ref) => 0.0);
-final bannerHeightProvider = StateProvider<double>((ref) => 0.4);
+final locationPermissionProvider =
+    StateProvider.autoDispose<bool>((ref) => false);
+final loadProvider = StateProvider.autoDispose<bool>((ref) => true);
+final turnsProvider = StateProvider.autoDispose<double>((ref) => 0.0);
+final bannerHeightProvider = StateProvider.autoDispose<double>((ref) => 0.4);
 final pageNumberProvider = StateProvider<int>((ref) => 1);
 
 class MarkersNotifier extends StateNotifier<Set<Marker>> {
@@ -25,6 +26,7 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
   }
 }
 
-final markersProvider = StateNotifierProvider<MarkersNotifier, Set<Marker>>(
+final markersProvider =
+    StateNotifierProvider.autoDispose<MarkersNotifier, Set<Marker>>(
   (ref) => MarkersNotifier(),
 );

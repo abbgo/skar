@@ -18,71 +18,84 @@ class ShopCategory extends ConsumerWidget {
     Kategory category = ref.watch(fetchChildCategoriesProvider);
 
     return SizedBox(
-      height: category.id.isEmpty ? 30 : 60,
+      height: 70,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          category.id.isNotEmpty ? Text(category.nameTM) : const SizedBox(),
-          Expanded(
-            child: category.id.isNotEmpty
-                ? listCategoriesMethod(category.childCategories!, () {}, isTM)
-                : categories.when(
-                    data: (categories) {
-                      return listCategoriesMethod(
-                        categories,
-                        () {
-                          CategoryParam categoryParam = CategoryParam(
-                              shopID: shopID,
-                              categoryID:
-                                  '11cf0c1a-e531-4839-a645-5759c7eeceb6');
-                          ref
-                              .read(fetchChildCategoriesProvider.notifier)
-                              .fetchChildCategories(categoryParam);
-                        },
-                        isTM,
-                      );
-                    },
-                    error: (error, stackTrace) =>
-                        Center(child: Text(error.toString())),
-                    loading: () => loadWidget,
+          category.id.isNotEmpty
+              ? Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.home, color: elevatedButtonColor, size: 20),
+                      Text(
+                        ' >  ${category.nameTM}',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
                   ),
-          ),
+                )
+              : const SizedBox(),
+          category.id.isNotEmpty
+              ? listCategoriesMethod(category.childCategories!, () {}, isTM)
+              : categories.when(
+                  data: (categories) {
+                    return listCategoriesMethod(categories, null, isTM);
+                  },
+                  error: (error, stackTrace) =>
+                      Center(child: Text(error.toString())),
+                  loading: () => loadWidget,
+                ),
         ],
       ),
     );
   }
 
-  ListView listCategoriesMethod(
+  SizedBox listCategoriesMethod(
     List<Kategory> categories,
-    Function getChildCategories,
+    void Function()? onPress,
     bool isTM,
   ) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: categories.length,
-      itemBuilder: (context, index) {
-        var category = categories[index];
+    return SizedBox(
+      height: 30,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          var category = categories[index];
 
-        return Padding(
-          padding: const EdgeInsets.only(right: 10),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
+          return Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Consumer(
+              builder: (context, ref, child) {
+                return ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (onPress == null) {
+                      CategoryParam categoryParam = CategoryParam(
+                          shopID: shopID, categoryID: category.id);
+                      ref
+                          .read(fetchChildCategoriesProvider.notifier)
+                          .fetchChildCategories(categoryParam);
+                    }
+                  },
+                  child: Text(
+                    isTM ? category.nameTM : category.nameRU,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                );
+              },
             ),
-            onPressed: () {
-              getChildCategories();
-            },
-            child: Text(
-              isTM ? category.nameTM : category.nameRU,
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

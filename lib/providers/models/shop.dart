@@ -10,7 +10,8 @@ import 'package:skar/services/shop.dart';
 
 final apiProvider = Provider<ShopService>((ref) => ShopService());
 
-final shopsForMapProvider = FutureProvider.family<List<Shop>, BuildContext>(
+final shopsForMapProvider =
+    FutureProvider.autoDispose.family<List<Shop>, BuildContext>(
   (ref, arg) async {
     List<Shop> shops =
         await ref.read(apiProvider).fetchShopsForMap('shops/map');

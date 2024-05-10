@@ -57,15 +57,6 @@ class LocationPermission extends StatelessWidget {
 
                     permissionHandler(markersNotifier, loadNotifier,
                         locationPermissionNotifier, mapController);
-
-                    // bool hasPermission =
-                    //     await checkAndGetCurrentLocation(mapController, ref);
-
-                    // ref.read(loadProvider.notifier).state = false;
-                    // if (hasPermission) {
-                    //   ref.read(locationPermissionProvider.notifier).state =
-                    //       true;
-                    // }
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8),
