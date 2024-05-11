@@ -15,41 +15,90 @@ class ShopCategory extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool isTM = ref.watch(isTmProvider);
     var categories = ref.watch(fetchCategoriesByShopIDProvider(shopID));
-    Kategory category = ref.watch(fetchChildCategoriesProvider);
+    var shopCategories = ref.watch(shopCategoriesProvider);
 
-    return SizedBox(
-      height: 70,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          category.id.isNotEmpty
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
+    return categories.when(
+      data: (categories) {
+        return SizedBox(
+          height: 70,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              if (shopCategories.isNotEmpty)
+                SizedBox(
+                  height: 30,
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.home, color: elevatedButtonColor, size: 20),
-                      Text(
-                        ' >  ${category.nameTM}',
-                        style: const TextStyle(fontSize: 16),
+                      IconButton(
+                        onPressed: () async {
+                          await ref
+                              .read(shopCategoriesProvider.notifier)
+                              .clearCategories();
+                        },
+                        style: IconButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 3),
+                        ),
+                        icon: Icon(Icons.home, color: elevatedButtonColor),
+                      ),
+                      Icon(Icons.chevron_right, color: elevatedButtonColor),
+                      Expanded(
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: shopCategories.length,
+                          itemBuilder: (context, index) {
+                            var shopCategory = shopCategories[index];
+
+                            return TextButton(
+                              onPressed: () async {
+                                if (shopCategory.childCategories!.isNotEmpty) {
+                                  for (var c in shopCategories) {
+                                    if (c.categoryID ==
+                                            shopCategory.categoryID &&
+                                        shopCategory
+                                            .childCategories!.isNotEmpty) {
+                                      await ref
+                                          .read(shopCategoriesProvider.notifier)
+                                          .deleteCategoriesByIndex(index);
+                                    }
+                                  }
+                                }
+                              },
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                  horizontal: 5,
+                                ),
+                              ),
+                              child: Text(shopCategory.name,
+                                  style: TextStyle(color: elevatedButtonColor)),
+                            );
+                          },
+                          separatorBuilder: (context, index) => Icon(
+                              Icons.chevron_right,
+                              color: elevatedButtonColor),
+                        ),
                       ),
                     ],
                   ),
                 )
-              : const SizedBox(),
-          category.id.isNotEmpty
-              ? listCategoriesMethod(category.childCategories!, () {}, isTM)
-              : categories.when(
-                  data: (categories) {
-                    return listCategoriesMethod(categories, null, isTM);
-                  },
-                  error: (error, stackTrace) =>
-                      Center(child: Text(error.toString())),
-                  loading: () => loadWidget,
-                ),
-        ],
-      ),
+              else
+                const SizedBox(),
+              listCategoriesMethod(
+                shopCategories.isEmpty
+                    ? categories
+                    : shopCategories.last.childCategories!,
+                null,
+                isTM,
+              ),
+            ],
+          ),
+        );
+      },
+      error: (error, stackTrace) => Center(child: Text(error.toString())),
+      loading: () => loadWidget,
     );
   }
 
@@ -77,14 +126,14 @@ class ShopCategory extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  onPressed: () {
-                    if (onPress == null) {
-                      CategoryParam categoryParam = CategoryParam(
-                          shopID: shopID, categoryID: category.id);
-                      ref
-                          .read(fetchChildCategoriesProvider.notifier)
-                          .fetchChildCategories(categoryParam);
-                    }
+                  onPressed: () async {
+                    await ref.read(shopCategoriesProvider.notifier).addCategory(
+                          ShopCategories(
+                            categoryID: category.id,
+                            name: isTM ? category.nameTM : category.nameRU,
+                            childCategories: category.childCategories,
+                          ),
+                        );
                   },
                   child: Text(
                     isTM ? category.nameTM : category.nameRU,

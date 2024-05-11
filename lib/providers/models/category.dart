@@ -6,19 +6,28 @@ final categoryApiProvider =
     Provider<CategoryService>((ref) => CategoryService());
 
 var fetchCategoriesByShopIDProvider =
-    FutureProvider.family<List<Kategory>, String>((ref, shopID) =>
-        ref.read(categoryApiProvider).fetchCategoriesByShopID(shopID));
+    FutureProvider.autoDispose.family<List<Kategory>, String>((ref, shopID) {
+  return ref.read(categoryApiProvider).fetchCategoriesByShopID(shopID);
+});
 
-class ChildCategoriesNotifier extends StateNotifier<Kategory> {
-  ChildCategoriesNotifier() : super(Kategory.defaultCategory());
+// ----------------------------------------------------------------------------
+class ShopCategoriesNotifier extends StateNotifier<List<ShopCategories>> {
+  ShopCategoriesNotifier() : super([]);
 
-  void fetchChildCategories(CategoryParam categoryParam) async {
-    var category = await CategoryService.fetchChildCategories(
-        categoryParam.shopID, categoryParam.categoryID);
-    state = category;
+  Future<void> addCategory(ShopCategories shopCategory) async {
+    state = [...state, shopCategory];
+  }
+
+  Future<void> deleteCategoriesByIndex(int index) async {
+    state = state.sublist(0, index + 1);
+  }
+
+  Future<void> clearCategories() async {
+    state = [];
   }
 }
 
-var fetchChildCategoriesProvider =
-    StateNotifierProvider.autoDispose<ChildCategoriesNotifier, Kategory>(
-        (ref) => ChildCategoriesNotifier());
+var shopCategoriesProvider = StateNotifierProvider.autoDispose<
+    ShopCategoriesNotifier, List<ShopCategories>>((ref) {
+  return ShopCategoriesNotifier();
+});

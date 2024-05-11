@@ -4,6 +4,7 @@ class Kategory extends Equatable {
   final String id, nameTM, nameRU;
   final String? image;
   final List<Kategory>? childCategories;
+  final String? parentCategoryID;
 
   const Kategory({
     required this.nameTM,
@@ -11,6 +12,7 @@ class Kategory extends Equatable {
     required this.nameRU,
     this.image,
     this.childCategories,
+    this.parentCategoryID,
   });
 
   factory Kategory.defaultCategory() {
@@ -35,6 +37,7 @@ class Kategory extends Equatable {
                 (dataJson) => Kategory.fromJson(dataJson),
               ),
             ),
+      parentCategoryID: json['parent_category_id'] ?? "",
     );
   }
 

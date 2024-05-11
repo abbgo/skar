@@ -18,45 +18,25 @@ class CategoryService {
         if (jsonData['categories'] == null) return [];
 
         var list = jsonData['categories'] as List;
-        return list
+        var categories = list
             .map<Kategory>((propJson) => Kategory.fromJson(propJson))
             .toList();
+        return categories;
       }
       return [];
     } catch (e) {
       return [];
-    }
-  }
-
-  // FETCH CHILD CATEGORIES BY CATEGORY ID -------------------------------------
-  static Future<Kategory> fetchChildCategories(
-    String shopID,
-    String categoryID,
-  ) async {
-    final Uri uri = Uri.parse('$apiUrl/categories/$shopID/$categoryID');
-
-    try {
-      Response response = await http.get(uri);
-      var jsonData = json.decode(response.body);
-
-      if (response.statusCode == 200 && jsonData['status']) {
-        if (jsonData['category'] == null) return Kategory.defaultCategory();
-
-        var dataJson = jsonData['category'];
-        return Kategory.fromJson(dataJson);
-      }
-      return Kategory.defaultCategory();
-    } catch (e) {
-      return Kategory.defaultCategory();
     }
   }
 }
 
-class CategoryParam extends Equatable {
-  final String shopID;
+class ShopCategories extends Equatable {
+  final String name;
   final String categoryID;
-  const CategoryParam({required this.shopID, required this.categoryID});
+  final List<Kategory>? childCategories;
+  const ShopCategories(
+      {required this.name, required this.categoryID, this.childCategories});
 
   @override
-  List<Object?> get props => [shopID, categoryID];
+  List<Object?> get props => [name, categoryID];
 }
