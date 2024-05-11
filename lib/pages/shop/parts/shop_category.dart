@@ -98,7 +98,7 @@ class ShopCategory extends ConsumerWidget {
         );
       },
       error: (error, stackTrace) => Center(child: Text(error.toString())),
-      loading: () => loadWidget,
+      loading: () => SizedBox(height: 70, child: loadWidget),
     );
   }
 

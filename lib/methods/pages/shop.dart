@@ -168,69 +168,6 @@ Text shopTextMethod(double fontSize, String text, FontWeight fontWeight) {
   );
 }
 
-// SliverAppBar shopImageMethod(
-//     ScreenProperties screenSize, String shopID, BuildContext context) {
-//   return SliverAppBar(
-//     backgroundColor: Colors.white,
-//     expandedHeight: screenSize.height / 4,
-//     automaticallyImplyLeading: false,
-//     flexibleSpace: FlexibleSpaceBar(
-//       background: FutureBuilder<Shop>(
-//         future: getShopData(shopID, context),
-//         builder: (context, snapshot) {
-//           if (snapshot.hasData) {
-//             return showCachImageMethod(snapshot.data!.image!);
-//           } else if (snapshot.hasError) {
-//             return const Center(child: Text("error"));
-//           }
-//           return const Center(child: CircularProgressIndicator());
-//         },
-//       ),
-//     ),
-//   );
-// }
-
-// SliverAppBar shopDetailMethod(
-//   ScreenProperties screenSize,
-//   BuildContext context,
-//   Shop shop,
-//   bool isTM,
-//   bool loadMore,
-//   List<Kategory> categories,
-//   Kategory category,
-//   Function getChildCategories,
-// ) {
-//   return SliverAppBar(
-//     backgroundColor: Colors.white,
-//     pinned: true,
-//     elevation: 0,
-//     scrolledUnderElevation: 0,
-//     toolbarHeight: screenSize.height / 5,
-//     automaticallyImplyLeading: false,
-//     flexibleSpace: Padding(
-//       padding: const EdgeInsets.only(left: 10, right: 10),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           shopTextMethod(18, isTM ? shop.nameTM : shop.nameRU, FontWeight.bold),
-//           shopTextMethod(
-//               16, isTM ? shop.addressTM! : shop.addressRU!, FontWeight.normal),
-//           shopButtonsMethod(context, shop),
-//           const SizedBox(height: 10),
-//           // shopCategoriesMethod(
-//           //     categories, isTM, shop.id, category, getChildCategories),
-//           // Padding(
-//           //   padding: const EdgeInsets.only(top: 10),
-//           //   child: loadMore
-//           //       ? LinearProgressIndicator(color: elevatedButtonColor)
-//           //       : const SizedBox(),
-//           // ),
-//         ],
-//       ),
-//     ),
-//   );
-// }
-
 Row shopButtonsMethod(BuildContext context, Shop shop) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -275,28 +212,3 @@ Row shopButtonsMethod(BuildContext context, Shop shop) {
     ],
   );
 }
-
-// SizedBox shopCategoriesMethod(
-//   List<Kategory> categories,
-//   bool isTM,
-//   String shopID,
-//   Kategory kategory,
-//   Function getChildCategories,
-// ) {
-//   return SizedBox(
-//     height: kategory.id.isEmpty ? 30 : 50,
-//     child: Column(
-//       mainAxisSize: MainAxisSize.min,
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         kategory.id.isNotEmpty ? Text(kategory.nameTM) : const SizedBox(),
-//         Expanded(
-//           child: kategory.childCategories == null
-//               ? listCategoriesMethod(categories, getChildCategories, isTM)
-//               : listCategoriesMethod(
-//                   kategory.childCategories!, getChildCategories, isTM),
-//         ),
-//       ],
-//     ),
-//   );
-// }

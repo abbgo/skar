@@ -68,14 +68,6 @@ class ShopPage extends StatelessWidget {
                           shopButtonsMethod(context, data),
                           const SizedBox(height: 10),
                           ShopCategory(shopID: shopID),
-                          // shopCategoriesMethod(categories, isTM, shopID,
-                          //     category, getChildCategories),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(top: 10),
-                          //   child: loadMore
-                          //       ? LinearProgressIndicator(color: elevatedButtonColor)
-                          //       : const SizedBox(),
-                          // ),
                         ],
                       );
                     },
@@ -87,20 +79,6 @@ class ShopPage extends StatelessWidget {
               ),
             ),
           ),
-          // shopDetailMethod(
-          //   screenSize,
-          //   context,
-          //   shop,
-          //   widget.isTM,
-          //   loadMore,
-          //   categories,
-          //   category,
-          //   (int categoryIndex) async {
-          //     category = await Kategory.fetchChildCategories(
-          //         shop.id, categories[categoryIndex].id);
-          //     setState(() {});
-          //   },
-          // ),
           // SliverGrid.builder(
           //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           //     crossAxisCount: 2,
