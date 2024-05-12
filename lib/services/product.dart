@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:skar/helpers/static_data.dart';
@@ -38,4 +39,16 @@ class ProductService {
       return [];
     }
   }
+}
+
+class ProductParams extends Equatable {
+  final List<String> categories;
+  final String shopID;
+  final int page;
+
+  const ProductParams(
+      {required this.categories, required this.shopID, required this.page});
+
+  @override
+  List<Object?> get props => [categories, shopID];
 }

@@ -38,21 +38,21 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   _getProductData() async {
-    bool hasIntConn = await checkIntConn();
+    // bool hasIntConn = await checkIntConn();
 
-    if (hasIntConn) {
-      // product alynyar
-      product = await Product.fetchProduct(widget.productID);
+    // if (hasIntConn) {
+    //   // product alynyar
+    //   product = await Product.fetchProduct(widget.productID);
 
-      // sol produkta menzes product -lar alynyar
-      List<Product> newProducts = await Product.fetchProducts(
-          "products/similars", 10, 1, [], widget.shopID, widget.productID);
-      similarProducts.addAll(newProducts);
+    //   // sol produkta menzes product -lar alynyar
+    //   List<Product> newProducts = await Product.fetchProducts(
+    //       "products/similars", 10, 1, [], widget.shopID, widget.productID);
+    //   similarProducts.addAll(newProducts);
 
-      if (mounted) setState(() {});
-      return;
-    }
-    if (mounted) showIntConnErrSnackBar(context);
+    //   if (mounted) setState(() {});
+    //   return;
+    // }
+    // if (mounted) showIntConnErrSnackBar(context);
   }
 
   @override
