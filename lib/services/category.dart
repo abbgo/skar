@@ -34,8 +34,13 @@ class ShopCategories extends Equatable {
   final String name;
   final String categoryID;
   final List<Kategory>? childCategories;
-  const ShopCategories(
-      {required this.name, required this.categoryID, this.childCategories});
+  final List<String>? selectedCategories;
+  const ShopCategories({
+    required this.name,
+    required this.categoryID,
+    this.childCategories,
+    this.selectedCategories,
+  });
 
   @override
   List<Object?> get props => [name, categoryID];

@@ -26,7 +26,7 @@ class ShopCategory extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              if (shopCategories.isNotEmpty)
+              if (shopCategories.length > 1)
                 SizedBox(
                   height: 30,
                   child: Row(
@@ -36,14 +36,13 @@ class ShopCategory extends ConsumerWidget {
                         onPressed: () async {
                           await ref
                               .read(shopCategoriesProvider.notifier)
-                              .clearCategories();
+                              .deleteCategoriesByIndex(0);
                         },
                         style: IconButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 3),
                         ),
                         icon: Icon(Icons.home, color: elevatedButtonColor),
                       ),
-                      Icon(Icons.chevron_right, color: elevatedButtonColor),
                       Expanded(
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
@@ -51,30 +50,35 @@ class ShopCategory extends ConsumerWidget {
                           itemBuilder: (context, index) {
                             var shopCategory = shopCategories[index];
 
-                            return TextButton(
-                              onPressed: () async {
-                                if (shopCategory.childCategories!.isNotEmpty) {
-                                  for (var c in shopCategories) {
-                                    if (c.categoryID ==
-                                            shopCategory.categoryID &&
-                                        shopCategory
-                                            .childCategories!.isNotEmpty) {
-                                      await ref
-                                          .read(shopCategoriesProvider.notifier)
-                                          .deleteCategoriesByIndex(index);
-                                    }
-                                  }
-                                }
-                              },
-                              style: TextButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 2,
-                                  horizontal: 5,
-                                ),
-                              ),
-                              child: Text(shopCategory.name,
-                                  style: TextStyle(color: elevatedButtonColor)),
-                            );
+                            return shopCategory.categoryID != ''
+                                ? TextButton(
+                                    onPressed: () async {
+                                      if (shopCategory
+                                          .childCategories!.isNotEmpty) {
+                                        for (var c in shopCategories) {
+                                          if (c.categoryID ==
+                                                  shopCategory.categoryID &&
+                                              shopCategory.childCategories!
+                                                  .isNotEmpty) {
+                                            await ref
+                                                .read(shopCategoriesProvider
+                                                    .notifier)
+                                                .deleteCategoriesByIndex(index);
+                                          }
+                                        }
+                                      }
+                                    },
+                                    style: TextButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 2,
+                                        horizontal: 5,
+                                      ),
+                                    ),
+                                    child: Text(shopCategory.name,
+                                        style: TextStyle(
+                                            color: elevatedButtonColor)),
+                                  )
+                                : const SizedBox();
                           },
                           separatorBuilder: (context, index) => Icon(
                               Icons.chevron_right,
@@ -87,10 +91,9 @@ class ShopCategory extends ConsumerWidget {
               else
                 const SizedBox(),
               listCategoriesMethod(
-                shopCategories.isEmpty
-                    ? categories
-                    : shopCategories.last.childCategories!,
-                null,
+                shopCategories.length > 1
+                    ? shopCategories.last.childCategories!
+                    : categories,
                 isTM,
               ),
             ],
@@ -102,11 +105,7 @@ class ShopCategory extends ConsumerWidget {
     );
   }
 
-  SizedBox listCategoriesMethod(
-    List<Kategory> categories,
-    void Function()? onPress,
-    bool isTM,
-  ) {
+  SizedBox listCategoriesMethod(List<Kategory> categories, bool isTM) {
     return SizedBox(
       height: 30,
       child: ListView.builder(
@@ -132,6 +131,9 @@ class ShopCategory extends ConsumerWidget {
                             categoryID: category.id,
                             name: isTM ? category.nameTM : category.nameRU,
                             childCategories: category.childCategories,
+                            selectedCategories: List.generate(
+                                category.childCategories!.length,
+                                (index) => category.childCategories![index].id),
                           ),
                         );
                   },
