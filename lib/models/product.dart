@@ -70,33 +70,4 @@ class Product {
     }
     return Product.defaultProduct();
   }
-
-  static Future<List<Product>> fetchProducts(
-    String api,
-    int limit,
-    int page,
-    List<String> categories,
-    String shopID,
-    String productID,
-  ) async {
-    final Uri uri = Uri.parse('$apiUrl/$api').replace(queryParameters: {
-      'limit': limit.toString(),
-      'page': page.toString(),
-      'categories': categories,
-      'shop_id': shopID,
-      'product_id': productID,
-    });
-
-    Response response = await http.get(uri);
-    var jsonData = json.decode(response.body);
-
-    if (response.statusCode == 200 && jsonData['status']) {
-      if (jsonData['products'] == null) return [];
-      var list = jsonData['products'] as List;
-      return list
-          .map<Product>((propJson) => Product.fromJson(propJson))
-          .toList();
-    }
-    return [];
-  }
 }

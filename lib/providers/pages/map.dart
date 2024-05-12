@@ -26,7 +26,6 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
   }
 }
 
-final markersProvider =
-    StateNotifierProvider.autoDispose<MarkersNotifier, Set<Marker>>(
+final markersProvider = StateNotifierProvider<MarkersNotifier, Set<Marker>>(
   (ref) => MarkersNotifier(),
 );
