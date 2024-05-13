@@ -20,8 +20,11 @@ class ShopCategory extends ConsumerWidget {
     return categories.when(
       data: (categories) {
         return SizedBox(
-          height: 70,
+          height: 65,
           child: Column(
+            verticalDirection: shopCategories.length > 1
+                ? VerticalDirection.down
+                : VerticalDirection.up,
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,7 +104,7 @@ class ShopCategory extends ConsumerWidget {
         );
       },
       error: (error, stackTrace) => Center(child: Text(error.toString())),
-      loading: () => SizedBox(height: 70, child: loadWidget),
+      loading: () => SizedBox(height: 65, child: loadWidget),
     );
   }
 

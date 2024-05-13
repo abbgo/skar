@@ -29,10 +29,10 @@ class ShopPage extends StatelessWidget {
             pinned: true,
             elevation: 0,
             scrolledUnderElevation: 0,
-            toolbarHeight: screenSize.height / 5,
+            toolbarHeight: screenSize.height / 5 + 20,
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
               child: Consumer(
                 builder: (context, ref, child) {
                   bool isTM = ref.watch(isTmProvider);
@@ -53,6 +53,7 @@ class ShopPage extends StatelessWidget {
                           shopButtonsMethod(context, data),
                           const SizedBox(height: 10),
                           ShopCategory(shopID: shopID),
+                          const SizedBox(height: 5),
                         ],
                       );
                     },
