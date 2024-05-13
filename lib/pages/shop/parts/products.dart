@@ -3,7 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/product.dart';
+import 'package:skar/pages/product.dart';
+import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/category.dart';
 import 'package:skar/providers/models/product.dart';
 import 'package:skar/services/product.dart';
@@ -16,45 +19,83 @@ class ShopProducts extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('======================================');
     ScreenProperties screenSize = screenProperties(context);
     var shopCategories = ref.watch(shopCategoriesProvider);
+    bool isTM = ref.watch(isTmProvider);
 
-    print('----------------- ${shopCategories.length}');
-    print(shopCategories.last.selectedCategories);
+    return shopCategories.isNotEmpty
+        ? SliverGrid.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 2,
+              mainAxisSpacing: 8,
+              mainAxisExtent: screenSize.height * 0.35,
+            ),
+            itemBuilder: (context, index) {
+              final page = index ~/ pageSize + 1;
+              final indexInPage = index % pageSize;
+              ProductParams params = ProductParams(
+                categories: shopCategories.last.selectedCategories!,
+                page: page,
+                shopID: shopID,
+              );
 
-    return SliverGrid.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 2,
-        mainAxisSpacing: 8,
-        mainAxisExtent: screenSize.height * 0.35,
-      ),
-      itemCount: 1,
-      itemBuilder: (context, index) {
-        print('--------------------- ${shopCategories.isEmpty}');
-        return const SizedBox();
-        // final page = index ~/ pageSize + 1;
-        // final indexInPage = index % pageSize;
-        // ProductParams params =
-        //     ProductParams(categories: categoryIDs, page: page, shopID: shopID);
+              final AsyncValue<List<Product>> responseAsync =
+                  ref.watch(fetchProductsProvider(params));
 
-        // final AsyncValue<List<Product>> responseAsync =
-        //     ref.watch(fetchProductsProvider(params));
+              return responseAsync.when(
+                data: (response) {
+                  if (indexInPage >= response.length) {
+                    return null;
+                  }
+                  final product = response[indexInPage];
 
-        // return responseAsync.when(
-        //   data: (response) {
-        //     if (indexInPage >= response.length) {
-        //       return null;
-        //     }
-        //     final product = response[indexInPage];
-
-        //     return Text(product.nameTM);
-        //   },
-        //   error: (error, stackTrace) => Center(child: Text(error.toString())),
-        //   loading: () => loadWidget,
-        // );
-      },
-    );
+                  return Hero(
+                    tag: product.id,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductPage(
+                              productID: product.id,
+                              isTM: isTM,
+                              shopID: shopID,
+                            ),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: index % 2 == 0
+                            ? const EdgeInsets.only(left: 5)
+                            : const EdgeInsets.only(right: 5),
+                        child: Card(
+                          surfaceTintColor: Colors.white,
+                          color: Colors.white,
+                          elevation: 3,
+                          child: productStackMethod(
+                            product,
+                            isTM,
+                            screenSize.height * 0.25,
+                            double.infinity,
+                            16,
+                            14,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                error: (error, stackTrace) =>
+                    Center(child: Text(error.toString())),
+                loading: () => loadWidget,
+              );
+            },
+          )
+        : SliverGrid(
+            delegate: SliverChildListDelegate([]),
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 2),
+          );
   }
 }

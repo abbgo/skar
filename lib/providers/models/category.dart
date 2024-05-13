@@ -39,7 +39,7 @@ class ShopCategoriesNotifier extends StateNotifier<List<ShopCategories>> {
   }
 }
 
-var shopCategoriesProvider =
-    StateNotifierProvider<ShopCategoriesNotifier, List<ShopCategories>>((ref) {
+var shopCategoriesProvider = StateNotifierProvider.autoDispose<
+    ShopCategoriesNotifier, List<ShopCategories>>((ref) {
   return ShopCategoriesNotifier();
 });
