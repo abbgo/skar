@@ -9,3 +9,6 @@ var fetchProductsProvider =
   return ref.read(productApiProvider).fetchProducts(
       "products", 10, params.page, params.categories, params.shopID, "");
 });
+
+var fetchProductProvider = FutureProvider.family<Product, String>(
+    (ref, productID) => ref.read(productApiProvider).fetchProduct(productID));

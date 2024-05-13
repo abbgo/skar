@@ -21,7 +21,7 @@ class MapButtons extends ConsumerWidget {
           ? screenProperties(context).height * bannerHeight
           : screenProperties(context).height * 0.07,
       right: 5,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 300),
       child: Row(
         children: [
           locationButtonMethod(

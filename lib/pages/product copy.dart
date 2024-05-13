@@ -81,30 +81,30 @@ class _ProductPageState extends State<ProductPage> {
                   child: CircularProgressIndicator(color: elevatedButtonColor))
               : ListView(
                   children: [
-                    productImageMethod(
-                      context,
-                      _pageController,
-                      product.productColors![_selectedColor],
-                      _activePage,
-                      (value) {
-                        setState(() {
-                          _activePage = value;
-                        });
-                      },
-                    ),
-                    productPriceAndBrendMethod(product, widget.isTM),
-                    productColorsMethod(
-                      context,
-                      product.productColors,
-                      _selectedColor,
-                      (value) {
-                        setState(() {
-                          _selectedColor = value;
-                          _activePage = 0;
-                          _pageController.jumpToPage(0);
-                        });
-                      },
-                    ),
+                    // productImageMethod(
+                    //   context,
+                    //   _pageController,
+                    //   product.productColors![_selectedColor],
+                    //   _activePage,
+                    //   (value) {
+                    //     setState(() {
+                    //       _activePage = value;
+                    //     });
+                    //   },
+                    // ),
+                    // productPriceAndBrendMethod(product, widget.isTM),
+                    // productColorsMethod(
+                    //   context,
+                    //   product.productColors,
+                    //   _selectedColor,
+                    //   (value) {
+                    //     setState(() {
+                    //       _selectedColor = value;
+                    //       _activePage = 0;
+                    //       _pageController.jumpToPage(0);
+                    //     });
+                    //   },
+                    // ),
                     similarProducts.isNotEmpty
                         ? similarProductsMethod(context, screenSize,
                             similarProducts, widget.isTM, widget.shopID)

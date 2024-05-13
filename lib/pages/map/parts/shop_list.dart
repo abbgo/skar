@@ -41,7 +41,7 @@ class ShopList extends ConsumerWidget {
             topRight: Radius.circular(20),
           ),
         ),
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 300),
         child: Padding(
           padding: const EdgeInsets.only(left: 18, top: 15, right: 15),
           child: Column(

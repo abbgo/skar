@@ -39,6 +39,22 @@ class ProductService {
       return [];
     }
   }
+
+  Future<Product> fetchProduct(String productID) async {
+    try {
+      Response response =
+          await http.get(Uri.parse("$apiUrl/products/$productID"));
+      var jsonData = json.decode(response.body);
+
+      if (response.statusCode == 200 && jsonData['status']) {
+        var propJson = jsonData['product'];
+        return Product.fromJson(propJson);
+      }
+      return Product.defaultProduct();
+    } catch (e) {
+      return Product.defaultProduct();
+    }
+  }
 }
 
 class ProductParams extends Equatable {

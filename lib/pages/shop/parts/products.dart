@@ -5,7 +5,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/product.dart';
-import 'package:skar/pages/product.dart';
+import 'package:skar/pages/product/product.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/category.dart';
 import 'package:skar/providers/models/product.dart';
@@ -58,10 +58,7 @@ class ShopProducts extends ConsumerWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ProductPage(
-                              productID: product.id,
-                              isTM: isTM,
-                              shopID: shopID,
-                            ),
+                                productID: product.id, shopID: shopID),
                           ),
                         );
                       },

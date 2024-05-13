@@ -1,8 +1,3 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/brend.dart';
 import 'package:skar/models/product_color.dart';
 
@@ -57,17 +52,5 @@ class Product {
           ? Brend.defaultBrend()
           : Brend.fromJson(json['brend']),
     );
-  }
-
-  static Future<Product> fetchProduct(String productID) async {
-    Response response =
-        await http.get(Uri.parse("$apiUrl/products/$productID"));
-    var jsonData = json.decode(response.body);
-
-    if (response.statusCode == 200 && jsonData['status']) {
-      var propJson = jsonData['product'];
-      return Product.fromJson(propJson);
-    }
-    return Product.defaultProduct();
   }
 }
