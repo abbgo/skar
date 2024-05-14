@@ -45,5 +45,5 @@ var fetchShopsProvider = FutureProvider.family<List<Shop>, int>((ref, page) {
   return ref.read(apiProvider).fetchShops(page: page);
 });
 
-var fetchShopProvider = FutureProvider.family<Shop, String>(
+var fetchShopProvider = FutureProvider.autoDispose.family<Shop, String>(
     (ref, shopID) => ref.read(apiProvider).fetchShop(shopID));

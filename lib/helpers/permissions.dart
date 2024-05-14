@@ -11,3 +11,12 @@ Future<bool> hasLocationPermission() async {
   return permission == LocationPermission.always ||
       permission == LocationPermission.whileInUse;
 }
+
+// Future<bool> checkIntConn() async {
+//   final result = await (Connectivity().checkConnectivity());
+//   if (result == ConnectivityResult.mobile ||
+//       result == ConnectivityResult.wifi) {
+//     return true;
+//   }
+//   return false;
+// }

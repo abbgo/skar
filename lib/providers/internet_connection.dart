@@ -1,32 +1,41 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum ConnectivityStatus { NotDetermined, isConnected, isDisonnected }
+enum ConnectivityStatus { notDetermined, isConnected, isDisonnected }
 
 class ConnectivityStatusNotifier extends StateNotifier<ConnectivityStatus> {
-  ConnectivityStatusNotifier() : super(ConnectivityStatus.isConnected) {
-    Connectivity().checkConnectivity().then((value) {
-      if (value == ConnectivityResult.mobile ||
-          value == ConnectivityResult.wifi) {
-        state = ConnectivityStatus.isConnected;
-      } else {
-        state = ConnectivityStatus.isDisonnected;
-      }
-    });
-  }
+  ConnectivityStatus? lastResult;
+  ConnectivityStatus? newState;
 
-  void checkInt() {
-    Connectivity().checkConnectivity().then((value) {
-      if (value == ConnectivityResult.mobile ||
-          value == ConnectivityResult.wifi) {
-        state = ConnectivityStatus.isConnected;
-      } else {
-        state = ConnectivityStatus.isDisonnected;
+  ConnectivityStatusNotifier() : super(ConnectivityStatus.isConnected) {
+    if (state == ConnectivityStatus.isConnected) {
+      lastResult = ConnectivityStatus.isConnected;
+    } else {
+      lastResult = ConnectivityStatus.isDisonnected;
+    }
+    lastResult = ConnectivityStatus.notDetermined;
+    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      switch (result) {
+        case ConnectivityResult.mobile:
+          newState = ConnectivityStatus.isConnected;
+          break;
+        case ConnectivityResult.wifi:
+          newState = ConnectivityStatus.isConnected;
+          break;
+        case ConnectivityResult.none:
+          newState = ConnectivityStatus.isDisonnected;
+          break;
+        default:
+          newState = ConnectivityStatus.isDisonnected;
+      }
+      if (newState != lastResult) {
+        state = newState!;
+        lastResult = newState;
       }
     });
   }
 }
 
-final intConnStatusProvider = StateNotifierProvider((ref) {
+final connectivityStatusProviders = StateNotifierProvider((ref) {
   return ConnectivityStatusNotifier();
 });

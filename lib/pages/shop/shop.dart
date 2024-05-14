@@ -10,63 +10,62 @@ import 'package:skar/pages/shop/parts/shop_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
 
-class ShopPage extends StatelessWidget {
+class ShopPage extends ConsumerWidget {
   const ShopPage({super.key, required this.shopID});
 
   final String shopID;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     ScreenProperties screenSize = screenProperties(context);
+
+    bool isTM = ref.watch(isTmProvider);
+    var shop = ref.watch(fetchShopProvider(shopID));
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: [
-          ShopImage(shopID: shopID),
-          SliverAppBar(
-            backgroundColor: Colors.white,
-            pinned: true,
-            elevation: 0,
-            scrolledUnderElevation: 0,
-            toolbarHeight: screenSize.height / 5 + 20,
-            automaticallyImplyLeading: false,
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
-              child: Consumer(
-                builder: (context, ref, child) {
-                  bool isTM = ref.watch(isTmProvider);
-                  var shop = ref.watch(fetchShopProvider(shopID));
-
-                  return shop.when(
-                    data: (data) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          shopTextMethod(18, isTM ? data.nameTM : data.nameRU,
-                              FontWeight.bold),
-                          shopTextMethod(
-                            16,
-                            isTM ? data.addressTM! : data.addressRU!,
-                            FontWeight.normal,
-                          ),
-                          shopButtonsMethod(context, data),
-                          const SizedBox(height: 10),
-                          ShopCategory(shopID: shopID),
-                          const SizedBox(height: 5),
-                        ],
-                      );
-                    },
-                    error: (error, stackTrace) =>
-                        Center(child: Text(error.toString())),
-                    loading: () => loadWidget,
-                  );
-                },
+      body: shop.when(
+        data: (shopData) {
+          return CustomScrollView(
+            slivers: [
+              ShopImage(shopImage: shopData.image!),
+              SliverAppBar(
+                backgroundColor: Colors.white,
+                pinned: true,
+                elevation: 0,
+                scrolledUnderElevation: 0,
+                toolbarHeight: screenSize.height / 5 + 20,
+                automaticallyImplyLeading: false,
+                flexibleSpace: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      shopTextMethod(
+                          18,
+                          isTM ? shopData.nameTM : shopData.nameRU,
+                          FontWeight.bold),
+                      shopTextMethod(
+                        16,
+                        isTM ? shopData.addressTM! : shopData.addressRU!,
+                        FontWeight.normal,
+                      ),
+                      shopButtonsMethod(context, shopData),
+                      const SizedBox(height: 10),
+                      ShopCategory(shopID: shopID),
+                      const SizedBox(height: 5),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
-          ShopProducts(shopID: shopID),
-        ],
+              ShopProducts(shopID: shopID),
+            ],
+          );
+        },
+        error: (error, stackTrace) => Center(
+          child: Text(error.toString(), textAlign: TextAlign.center),
+        ),
+        loading: () => loadWidget,
       ),
     );
   }
