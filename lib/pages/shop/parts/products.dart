@@ -34,6 +34,7 @@ class ShopProducts extends ConsumerWidget {
             itemBuilder: (context, index) {
               final page = index ~/ pageSize + 1;
               final indexInPage = index % pageSize;
+
               ProductParams params = ProductParams(
                 api: 'products',
                 limit: 10,
