@@ -58,13 +58,29 @@ class ProductService {
 }
 
 class ProductParams extends Equatable {
+  final String api;
+  final int limit;
+  final int page;
   final List<String> categories;
   final String shopID;
-  final int page;
+  final String productID;
 
-  const ProductParams(
-      {required this.categories, required this.shopID, required this.page});
+  const ProductParams({
+    required this.api,
+    required this.limit,
+    required this.page,
+    required this.categories,
+    required this.shopID,
+    required this.productID,
+  });
 
   @override
-  List<Object?> get props => [categories, shopID];
+  List<Object?> get props => [
+        api,
+        limit,
+        page,
+        categories,
+        shopID,
+        productID,
+      ];
 }

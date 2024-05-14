@@ -7,7 +7,13 @@ final productApiProvider = Provider<ProductService>((ref) => ProductService());
 var fetchProductsProvider =
     FutureProvider.family<List<Product>, ProductParams>((ref, params) {
   return ref.read(productApiProvider).fetchProducts(
-      "products", 10, params.page, params.categories, params.shopID, "");
+        params.api,
+        params.limit,
+        params.page,
+        params.categories,
+        params.shopID,
+        params.productID,
+      );
 });
 
 var fetchProductProvider = FutureProvider.family<Product, String>(

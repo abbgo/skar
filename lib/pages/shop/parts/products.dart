@@ -35,9 +35,12 @@ class ShopProducts extends ConsumerWidget {
               final page = index ~/ pageSize + 1;
               final indexInPage = index % pageSize;
               ProductParams params = ProductParams(
-                categories: shopCategories.last.selectedCategories!,
+                api: 'products',
+                limit: 10,
                 page: page,
+                categories: shopCategories.last.selectedCategories!,
                 shopID: shopID,
+                productID: '',
               );
 
               final AsyncValue<List<Product>> responseAsync =
