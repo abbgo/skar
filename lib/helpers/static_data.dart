@@ -10,3 +10,9 @@ Image errImage = Image.asset("assets/images/back_logo.jpg", fit: BoxFit.cover);
 
 Widget loadWidget =
     Center(child: CircularProgressIndicator(color: elevatedButtonColor));
+
+Center errorMethod(Object error) {
+  return Center(
+    child: Text(error.toString(), textAlign: TextAlign.center),
+  );
+}

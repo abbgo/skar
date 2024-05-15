@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
 import 'package:skar/pages/map/parts/shop_list.dart';
 import 'package:skar/pages/parts/error.dart';
@@ -45,9 +46,7 @@ class Map extends StatelessWidget {
                     ],
                   );
           },
-          error: (error, stackTrace) => Center(
-            child: Text(error.toString(), textAlign: TextAlign.center),
-          ),
+          error: (error, stackTrace) => errorMethod(error),
           loading: () => Center(
             child: Image.asset("assets/animated_icons/animated_map.gif"),
           ),
