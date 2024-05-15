@@ -20,7 +20,7 @@ class ShopService {
       }
       return [];
     } catch (e) {
-      return [];
+      rethrow;
     }
   }
 

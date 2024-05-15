@@ -34,5 +34,6 @@
     "differentColor":"Разного цвета",
     "body":"Размер",
     "similarProducts":"Похожие продукты",
-    "connectToInternet":"Вы подключены к Интернету !"
+    "connectToInternet":"Вы подключены к Интернету !",
+    "wentWrong":"Что-то пошло не так !"
 }

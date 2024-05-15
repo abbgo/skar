@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:skar/pages/parts/internet_error.dart';
+import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/internet_connection.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/helpers/functions.dart';

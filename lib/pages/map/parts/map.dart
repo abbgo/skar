@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
 import 'package:skar/pages/map/parts/shop_list.dart';
+import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
 
@@ -22,25 +23,27 @@ class Map extends StatelessWidget {
         var shopsForMap = ref.watch(shopsForMapProvider(context));
 
         return shopsForMap.when(
-          data: (shops) {
-            return Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                GoogleMap(
-                  markers: markers,
-                  initialCameraPosition: _kGooglePlex,
-                  mapType: MapType.hybrid,
-                  myLocationButtonEnabled: false,
-                  onMapCreated: (GoogleMapController controller) {
-                    if (!mapController.isCompleted) {
-                      mapController.complete(controller);
-                    }
-                  },
-                ),
-                MapButtons(mapController: mapController),
-                const ShopList(),
-              ],
-            );
+          data: (resultShopsForMap) {
+            return resultShopsForMap.error != ''
+                ? const SomeThingWrong()
+                : Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      GoogleMap(
+                        markers: markers,
+                        initialCameraPosition: _kGooglePlex,
+                        mapType: MapType.hybrid,
+                        myLocationButtonEnabled: false,
+                        onMapCreated: (GoogleMapController controller) {
+                          if (!mapController.isCompleted) {
+                            mapController.complete(controller);
+                          }
+                        },
+                      ),
+                      MapButtons(mapController: mapController),
+                      const ShopList(),
+                    ],
+                  );
           },
           error: (error, stackTrace) => Center(
             child: Text(error.toString(), textAlign: TextAlign.center),

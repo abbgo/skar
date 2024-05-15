@@ -34,5 +34,6 @@
     "differentColor":"Different Color",
     "body":"Body",
     "similarProducts":"Similar products",
-    "connectToInternet":"You are connected to the Internet !"
+    "connectToInternet":"You are connected to the Internet !",
+    "wentWrong":"Something went wrong !"
 }

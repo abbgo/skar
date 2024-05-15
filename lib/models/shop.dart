@@ -78,3 +78,30 @@ class Shop extends Equatable {
         phones
       ];
 }
+
+class ResultShop extends Equatable {
+  final List<Shop>? shops;
+  final Shop? shop;
+  final String? error;
+
+  const ResultShop({
+    this.shops,
+    this.shop,
+    this.error,
+  });
+
+  factory ResultShop.defaultResult() {
+    return const ResultShop(
+      shops: null,
+      shop: null,
+      error: '',
+    );
+  }
+
+  @override
+  List<Object?> get props => [
+        shops,
+        shop,
+        error,
+      ];
+}

@@ -11,33 +11,41 @@ import 'package:skar/services/shop.dart';
 final apiProvider = Provider<ShopService>((ref) => ShopService());
 
 final shopsForMapProvider =
-    FutureProvider.autoDispose.family<List<Shop>, BuildContext>(
+    FutureProvider.autoDispose.family<ResultShop, BuildContext>(
   (ref, arg) async {
-    List<Shop> shops =
-        await ref.read(apiProvider).fetchShopsForMap('shops/map');
+    ResultShop result = ResultShop.defaultResult();
 
-    bool isTM = ref.read(isTmProvider);
+    try {
+      List<Shop> shops =
+          await ref.read(apiProvider).fetchShopsForMap('shops/map');
+      bool isTM = ref.read(isTmProvider);
 
-    for (Shop shop in shops) {
-      ref.read(markersProvider.notifier).addMarker(
-            Marker(
-              markerId: MarkerId(shop.id),
-              position: LatLng(shop.latitude, shop.longitude),
-              onTap: () {
-                Navigator.push(
-                  arg,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        BottomNavigationPage(shopID: shop.id, isMapPage: false),
-                  ),
-                );
-              },
-              icon: await generateMarkerIconMethod(isTM, shop),
-            ),
-          );
+      for (Shop shop in shops) {
+        ref.read(markersProvider.notifier).addMarker(
+              Marker(
+                markerId: MarkerId(shop.id),
+                position: LatLng(shop.latitude, shop.longitude),
+                onTap: () {
+                  Navigator.push(
+                    arg,
+                    MaterialPageRoute(
+                      builder: (context) => BottomNavigationPage(
+                        shopID: shop.id,
+                        isMapPage: false,
+                      ),
+                    ),
+                  );
+                },
+                icon: await generateMarkerIconMethod(isTM, shop),
+              ),
+            );
+      }
+      result = ResultShop(shops: shops);
+    } catch (e) {
+      result = ResultShop(error: e.toString());
     }
 
-    return shops;
+    return result;
   },
 );
 
