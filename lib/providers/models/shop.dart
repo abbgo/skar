@@ -40,7 +40,7 @@ final shopsForMapProvider =
               ),
             );
       }
-      result = ResultShop(shops: shops);
+      result = ResultShop(shops: shops, error: '');
     } catch (e) {
       result = ResultShop(error: e.toString());
     }
@@ -49,9 +49,20 @@ final shopsForMapProvider =
   },
 );
 
-var fetchShopsProvider = FutureProvider.family<List<Shop>, int>((ref, page) {
-  return ref.read(apiProvider).fetchShops(page: page);
+var fetchShopsProvider =
+    FutureProvider.family<ResultShop, int>((ref, page) async {
+  ResultShop result = ResultShop.defaultResult();
+
+  try {
+    List<Shop> shops = await ref.read(apiProvider).fetchShops(page: page);
+    result = ResultShop(shops: shops, error: '');
+  } catch (e) {
+    result = ResultShop(error: e.toString());
+  }
+
+  return result;
 });
 
 var fetchShopProvider = FutureProvider.autoDispose.family<Shop, String>(
-    (ref, shopID) => ref.read(apiProvider).fetchShop(shopID));
+  (ref, shopID) => ref.read(apiProvider).fetchShop(shopID),
+);

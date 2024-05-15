@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
@@ -55,20 +56,22 @@ class ShopList extends ConsumerWidget {
                     final page = index ~/ pageSize + 1;
                     final indexInPage = index % pageSize;
 
-                    final AsyncValue<List<Shop>> responseAsync =
+                    final AsyncValue<ResultShop> responseAsync =
                         ref.watch(fetchShopsProvider(page));
 
                     return responseAsync.when(
                       data: (response) {
-                        if (indexInPage >= response.length) {
+                        if (response.error != '') {
+                          return const SomeThingWrong();
+                        }
+
+                        if (indexInPage >= response.shops!.length) {
                           return null;
                         }
-                        final shop = response[indexInPage];
-
+                        final shop = response.shops![indexInPage];
                         return listviewChildMethod(context, shop, isTM);
                       },
-                      error: (error, stackTrace) =>
-                          Center(child: Text(error.toString())),
+                      error: (error, stackTrace) => errorMethod(error),
                       loading: () => loadWidget,
                     );
                   },

@@ -82,12 +82,12 @@ class Shop extends Equatable {
 class ResultShop extends Equatable {
   final List<Shop>? shops;
   final Shop? shop;
-  final String? error;
+  final String error;
 
   const ResultShop({
     this.shops,
     this.shop,
-    this.error,
+    required this.error,
   });
 
   factory ResultShop.defaultResult() {

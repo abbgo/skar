@@ -24,7 +24,7 @@ class BottomNavigationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
     List<Widget> pages = [
-      isMapPage ? MapPage() : ShopPage(shopID: shopID),
+      isMapPage ? const MapPage() : ShopPage(shopID: shopID),
       const LikesPage(),
       const SearchPage(),
       const SettingPage(),
