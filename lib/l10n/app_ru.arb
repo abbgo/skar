@@ -33,5 +33,6 @@
     "colors":"Цвета",
     "differentColor":"Разного цвета",
     "body":"Размер",
-    "similarProducts":"Похожие продукты"
+    "similarProducts":"Похожие продукты",
+    "connectToInternet":"Вы подключены к Интернету !"
 }

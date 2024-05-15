@@ -32,7 +32,9 @@ class Map extends StatelessWidget {
                   mapType: MapType.hybrid,
                   myLocationButtonEnabled: false,
                   onMapCreated: (GoogleMapController controller) {
-                    mapController.complete(controller);
+                    if (!mapController.isCompleted) {
+                      mapController.complete(controller);
+                    }
                   },
                 ),
                 MapButtons(mapController: mapController),
