@@ -4,6 +4,7 @@ import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/shop.dart';
+import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/shop/parts/products.dart';
 import 'package:skar/pages/shop/parts/shop_category.dart';
 import 'package:skar/pages/shop/parts/shop_image.dart';
@@ -26,9 +27,13 @@ class ShopPage extends ConsumerWidget {
       backgroundColor: Colors.white,
       body: shop.when(
         data: (shopData) {
+          if (shopData.error != '') {
+            return const SomeThingWrong();
+          }
+
           return CustomScrollView(
             slivers: [
-              ShopImage(shopImage: shopData.image!),
+              ShopImage(shopImage: shopData.shop!.image!),
               SliverAppBar(
                 backgroundColor: Colors.white,
                 pinned: true,
@@ -43,14 +48,16 @@ class ShopPage extends ConsumerWidget {
                     children: [
                       shopTextMethod(
                           18,
-                          isTM ? shopData.nameTM : shopData.nameRU,
+                          isTM ? shopData.shop!.nameTM : shopData.shop!.nameRU,
                           FontWeight.bold),
                       shopTextMethod(
                         16,
-                        isTM ? shopData.addressTM! : shopData.addressRU!,
+                        isTM
+                            ? shopData.shop!.addressTM!
+                            : shopData.shop!.addressRU!,
                         FontWeight.normal,
                       ),
-                      shopButtonsMethod(context, shopData),
+                      shopButtonsMethod(context, shopData.shop!),
                       const SizedBox(height: 10),
                       ShopCategory(shopID: shopID),
                       const SizedBox(height: 5),

@@ -63,7 +63,7 @@ class ShopService {
       }
       return Shop.defaultShop();
     } catch (e) {
-      return Shop.defaultShop();
+      rethrow;
     }
   }
 }

@@ -63,6 +63,17 @@ var fetchShopsProvider =
   return result;
 });
 
-var fetchShopProvider = FutureProvider.autoDispose.family<Shop, String>(
-  (ref, shopID) => ref.read(apiProvider).fetchShop(shopID),
+var fetchShopProvider = FutureProvider.autoDispose.family<ResultShop, String>(
+  (ref, shopID) async {
+    ResultShop result = ResultShop.defaultResult();
+
+    try {
+      Shop shop = await ref.read(apiProvider).fetchShop(shopID);
+      result = ResultShop(shop: shop, error: '');
+    } catch (e) {
+      result = ResultShop(error: e.toString());
+    }
+
+    return result;
+  },
 );
