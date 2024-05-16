@@ -4,7 +4,7 @@ import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/shop.dart';
-import 'package:skar/models/product.dart';
+import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/product/product.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/category.dart';
@@ -44,16 +44,18 @@ class ShopProducts extends ConsumerWidget {
                 productID: '',
               );
 
-              final AsyncValue<List<Product>> responseAsync =
-                  ref.watch(fetchProductsProvider(params));
+              var responseAsync = ref.watch(fetchProductsProvider(params));
 
               return responseAsync.when(
-                data: (response) {
-                  if (indexInPage >= response.length) {
+                data: (productsData) {
+                  if (productsData.error != '') {
+                    return const SomeThingWrong();
+                  }
+
+                  if (indexInPage >= productsData.products!.length) {
                     return null;
                   }
-                  final product = response[indexInPage];
-
+                  final product = productsData.products![indexInPage];
                   return Hero(
                     tag: product.id,
                     child: GestureDetector(
@@ -62,7 +64,9 @@ class ShopProducts extends ConsumerWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ProductPage(
-                                productID: product.id, shopID: shopID),
+                              productID: product.id,
+                              shopID: shopID,
+                            ),
                           ),
                         );
                       },
@@ -87,8 +91,7 @@ class ShopProducts extends ConsumerWidget {
                     ),
                   );
                 },
-                error: (error, stackTrace) =>
-                    Center(child: Text(error.toString())),
+                error: (error, stackTrace) => errorMethod(error),
                 loading: () => loadWidget,
               );
             },
@@ -96,7 +99,8 @@ class ShopProducts extends ConsumerWidget {
         : SliverGrid(
             delegate: SliverChildListDelegate([]),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 2),
+              maxCrossAxisExtent: 2,
+            ),
           );
   }
 }

@@ -36,7 +36,7 @@ class ProductService {
       }
       return [];
     } catch (e) {
-      return [];
+      rethrow;
     }
   }
 
