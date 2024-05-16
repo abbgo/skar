@@ -52,7 +52,7 @@ class ProductService {
       }
       return Product.defaultProduct();
     } catch (e) {
-      return Product.defaultProduct();
+      rethrow;
     }
   }
 }

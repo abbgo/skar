@@ -27,6 +27,17 @@ var fetchProductsProvider = FutureProvider.family<ResultProduct, ProductParams>(
   },
 );
 
-var fetchProductProvider = FutureProvider.family<Product, String>(
-  (ref, productID) => ref.read(productApiProvider).fetchProduct(productID),
+var fetchProductProvider = FutureProvider.family<ResultProduct, String>(
+  (ref, productID) async {
+    ResultProduct result = ResultProduct.defaultResult();
+
+    try {
+      Product product =
+          await ref.read(productApiProvider).fetchProduct(productID);
+      result = ResultProduct(error: '', product: product);
+    } catch (e) {
+      result = ResultProduct(error: e.toString());
+    }
+    return result;
+  },
 );

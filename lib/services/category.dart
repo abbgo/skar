@@ -25,7 +25,7 @@ class CategoryService {
       }
       return [];
     } catch (e) {
-      return [];
+      rethrow;
     }
   }
 }

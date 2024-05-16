@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/product/parts/price_and_brend.dart';
 import 'package:skar/pages/product/parts/product_color_page.dart';
 import 'package:skar/pages/product/parts/product_image.dart';
@@ -51,16 +52,20 @@ class _ProductPageState extends State<ProductPage> {
                 int selectedColors = ref.watch(selectedProductColorProvider);
 
                 return product.when(
-                  data: (product) {
+                  data: (productData) {
+                    if (productData.error != '') {
+                      return const SomeThingWrong();
+                    }
                     return ListView(
                       children: [
                         ProductImage(
-                          productColor: product.productColors![selectedColors],
+                          productColor: productData
+                              .product!.productColors![selectedColors],
                           pageController: _pageController,
                         ),
-                        ProductPriceAndBrend(product: product),
+                        ProductPriceAndBrend(product: productData.product!),
                         ProductColorPage(
-                          productColors: product.productColors!,
+                          productColors: productData.product!.productColors!,
                           pageController: _pageController,
                         ),
                         SimilarProducts(
@@ -70,9 +75,7 @@ class _ProductPageState extends State<ProductPage> {
                       ],
                     );
                   },
-                  error: (error, stackTrace) => Center(
-                    child: Text(error.toString(), textAlign: TextAlign.center),
-                  ),
+                  error: (error, stackTrace) => errorMethod(error),
                   loading: () => loadWidget,
                 );
               },
