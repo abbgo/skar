@@ -6,7 +6,7 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/product.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/methods/pages/shop.dart';
-import 'package:skar/models/product.dart';
+import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/product/product.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/product.dart';
@@ -35,12 +35,14 @@ class SimilarProducts extends ConsumerWidget {
       productID: productID,
     );
 
-    final AsyncValue<List<Product>> similarProducts =
-        ref.watch(fetchProductsProvider(params));
+    var similarProducts = ref.watch(fetchProductsProvider(params));
 
     return similarProducts.when(
-      data: (products) {
-        if (products.isEmpty) {
+      data: (productsData) {
+        if (productsData.error != '') {
+          return const SomeThingWrong();
+        }
+        if (productsData.products!.isEmpty) {
           return const SizedBox();
         }
 
@@ -55,7 +57,7 @@ class SimilarProducts extends ConsumerWidget {
               height: screenSize.height * 0.35,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: products.length,
+                itemCount: productsData.products!.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
@@ -63,7 +65,7 @@ class SimilarProducts extends ConsumerWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ProductPage(
-                            productID: products[index].id,
+                            productID: productsData.products![index].id,
                             shopID: shopID,
                           ),
                         ),
@@ -76,7 +78,7 @@ class SimilarProducts extends ConsumerWidget {
                         color: Colors.white,
                         elevation: 3,
                         child: productStackMethod(
-                          products[index],
+                          productsData.products![index],
                           isTM,
                           screenSize.height * 0.25,
                           screenSize.width * 0.5 - 30,
@@ -92,8 +94,7 @@ class SimilarProducts extends ConsumerWidget {
           ],
         );
       },
-      error: (error, stackTrace) =>
-          Center(child: Text(error.toString(), textAlign: TextAlign.center)),
+      error: (error, stackTrace) => errorMethod(error),
       loading: () => loadWidget,
     );
   }
