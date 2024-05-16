@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/category.dart';
+import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/category.dart';
 import 'package:skar/services/category.dart';
@@ -18,7 +19,10 @@ class ShopCategory extends ConsumerWidget {
     var shopCategories = ref.watch(shopCategoriesProvider);
 
     return categories.when(
-      data: (categories) {
+      data: (categoriesData) {
+        if (categoriesData.error != '') {
+          return const SomeThingWrong();
+        }
         return SizedBox(
           height: 65,
           child: Column(
@@ -96,14 +100,15 @@ class ShopCategory extends ConsumerWidget {
               listCategoriesMethod(
                 shopCategories.length > 1
                     ? shopCategories.last.childCategories!
-                    : categories,
+                    : categoriesData.categories!,
                 isTM,
               ),
             ],
           ),
         );
       },
-      error: (error, stackTrace) => Center(child: Text(error.toString())),
+      error: (error, stackTrace) =>
+          SizedBox(height: 65, child: errorMethod(error)),
       loading: () => SizedBox(height: 65, child: loadWidget),
     );
   }
@@ -135,8 +140,9 @@ class ShopCategory extends ConsumerWidget {
                             name: isTM ? category.nameTM : category.nameRU,
                             childCategories: category.childCategories,
                             selectedCategories: List.generate(
-                                category.childCategories!.length,
-                                (index) => category.childCategories![index].id),
+                              category.childCategories!.length,
+                              (index) => category.childCategories![index].id,
+                            ),
                           ),
                         );
                   },

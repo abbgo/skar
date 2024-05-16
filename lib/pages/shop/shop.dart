@@ -47,9 +47,10 @@ class ShopPage extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       shopTextMethod(
-                          18,
-                          isTM ? shopData.shop!.nameTM : shopData.shop!.nameRU,
-                          FontWeight.bold),
+                        18,
+                        isTM ? shopData.shop!.nameTM : shopData.shop!.nameRU,
+                        FontWeight.bold,
+                      ),
                       shopTextMethod(
                         16,
                         isTM

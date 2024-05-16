@@ -5,22 +5,31 @@ import 'package:skar/services/category.dart';
 final categoryApiProvider =
     Provider<CategoryService>((ref) => CategoryService());
 
-var fetchCategoriesByShopIDProvider = FutureProvider.autoDispose
-    .family<List<Kategory>, String>((ref, shopID) async {
-  var categories =
-      await ref.read(categoryApiProvider).fetchCategoriesByShopID(shopID);
-  await ref.read(shopCategoriesProvider.notifier).addCategory(
-        ShopCategories(
-          categoryID: '',
-          name: '',
-          childCategories: categories,
-          selectedCategories:
-              List.generate(categories.length, (index) => categories[index].id),
-        ),
-      );
+var fetchCategoriesByShopIDProvider =
+    FutureProvider.autoDispose.family<ResultCategory, String>(
+  (ref, shopID) async {
+    ResultCategory result = ResultCategory.defaultResult();
 
-  return categories;
-});
+    try {
+      var categories =
+          await ref.read(categoryApiProvider).fetchCategoriesByShopID(shopID);
+      await ref.read(shopCategoriesProvider.notifier).addCategory(
+            ShopCategories(
+              categoryID: '',
+              name: '',
+              childCategories: categories,
+              selectedCategories: List.generate(
+                  categories.length, (index) => categories[index].id),
+            ),
+          );
+      result = ResultCategory(error: '', categories: categories);
+    } catch (e) {
+      result = ResultCategory(error: e.toString());
+    }
+
+    return result;
+  },
+);
 
 // ----------------------------------------------------------------------------
 class ShopCategoriesNotifier extends StateNotifier<List<ShopCategories>> {

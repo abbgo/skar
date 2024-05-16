@@ -44,3 +44,26 @@ class Kategory extends Equatable {
   @override
   List<Object?> get props => [id, nameTM, nameRU, childCategories];
 }
+
+class ResultCategory extends Equatable {
+  final List<Kategory>? categories;
+  final String error;
+
+  const ResultCategory({
+    this.categories,
+    required this.error,
+  });
+
+  factory ResultCategory.defaultResult() {
+    return const ResultCategory(
+      categories: null,
+      error: '',
+    );
+  }
+
+  @override
+  List<Object?> get props => [
+        categories,
+        error,
+      ];
+}
