@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:skar/models/brend.dart';
 import 'package:skar/models/product_color.dart';
 
@@ -53,4 +54,31 @@ class Product {
           : Brend.fromJson(json['brend']),
     );
   }
+}
+
+class ResultProduct extends Equatable {
+  final List<Product>? products;
+  final Product? product;
+  final String error;
+
+  const ResultProduct({
+    this.products,
+    this.product,
+    required this.error,
+  });
+
+  factory ResultProduct.defaultResult() {
+    return const ResultProduct(
+      products: null,
+      product: null,
+      error: '',
+    );
+  }
+
+  @override
+  List<Object?> get props => [
+        products,
+        product,
+        error,
+      ];
 }
