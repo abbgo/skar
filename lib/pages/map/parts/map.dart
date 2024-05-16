@@ -42,6 +42,10 @@ class Map extends StatelessWidget {
                       mapController.complete(controller);
                     }
                   },
+                  // onCameraMove: (CameraPosition position) {
+                  //   print(
+                  //       "Latitude: ${position.target.latitude}; Longitude: ${position.target.longitude}");
+                  // },
                 ),
                 MapButtons(mapController: mapController),
                 const ShopList(),
