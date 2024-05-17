@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:skar/helpers/static_data.dart';
@@ -66,4 +68,26 @@ class ShopService {
       rethrow;
     }
   }
+}
+
+class ShopParams extends Equatable {
+  final BuildContext context;
+  final double latitude;
+  final double longitude;
+  final int kilometer;
+
+  const ShopParams({
+    required this.context,
+    required this.latitude,
+    required this.longitude,
+    required this.kilometer,
+  });
+
+  @override
+  List<Object?> get props => [
+        context,
+        latitude,
+        longitude,
+        kilometer,
+      ];
 }
