@@ -39,7 +39,7 @@ class Map extends StatelessWidget {
                 GoogleMap(
                   markers: markers,
                   initialCameraPosition: _kGooglePlex,
-                  mapType: MapType.normal,
+                  mapType: MapType.hybrid,
                   myLocationButtonEnabled: false,
                   onMapCreated: (GoogleMapController controller) {
                     if (!mapController.isCompleted) {
@@ -50,7 +50,7 @@ class Map extends StatelessWidget {
                     ShopParams shopParams = ShopParams(
                       latitude: position.target.latitude,
                       longitude: position.target.longitude,
-                      kilometer: 2,
+                      kilometer: 1,
                     );
                     await ref
                         .read(shopParamProvider.notifier)

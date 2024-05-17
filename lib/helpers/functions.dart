@@ -55,7 +55,7 @@ Future<bool> checkAndGetCurrentLocation(
       );
 
       ShopParams shopParams = ShopParams(
-          latitude: value.latitude, longitude: value.longitude, kilometer: 2);
+          latitude: value.latitude, longitude: value.longitude, kilometer: 1);
 
       GoogleMapController controller = await mapController.future;
       controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
