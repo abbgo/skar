@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:skar/helpers/static_data.dart';
@@ -8,8 +7,14 @@ import 'package:skar/models/shop.dart';
 
 class ShopService {
   // fetch shops for map ------------------------------------
-  Future<List<Shop>> fetchShopsForMap(String api) async {
-    Uri uri = Uri.parse('$apiUrl/$api');
+  Future<List<Shop>> fetchShopsForMap(String api, ShopParams shopParams) async {
+    Uri uri = Uri.parse('$apiUrl/$api').replace(
+      queryParameters: {
+        'latitude': shopParams.latitude.toString(),
+        'longitude': shopParams.longitude.toString(),
+        'kilometer': shopParams.kilometer.toString(),
+      },
+    );
     try {
       Response response = await http.get(uri);
       var jsonData = json.decode(response.body);

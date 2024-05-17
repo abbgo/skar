@@ -19,12 +19,7 @@ class MapPage extends ConsumerWidget {
 
     final Completer<GoogleMapController> googleMpCtrl = Completer();
 
-    var markersNotifier = ref.read(markersProvider.notifier);
-    var loadNotifier = ref.read(loadProvider.notifier);
-    var locationPermissionNotifier =
-        ref.read(locationPermissionProvider.notifier);
-    permissionHandler(markersNotifier, loadNotifier, locationPermissionNotifier,
-        googleMpCtrl);
+    permissionHandler(googleMpCtrl, ref);
 
     bool isLoading = ref.watch(loadProvider);
     bool hasPermission = ref.watch(locationPermissionProvider);

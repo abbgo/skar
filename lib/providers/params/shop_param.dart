@@ -6,4 +6,12 @@ class ShopParamsNotifier extends StateNotifier<ShopParams> {
       : super(
           const ShopParams(latitude: 0, longitude: 0, kilometer: 0),
         );
+
+  Future<void> change(ShopParams params) async {
+    state = params;
+  }
 }
+
+var shopParamProvider = StateNotifierProvider<ShopParamsNotifier, ShopParams>(
+  (ref) => ShopParamsNotifier(),
+);

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,7 +6,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:skar/providers/pages/map.dart';
 
 class LocationPermission extends StatelessWidget {
   const LocationPermission({super.key, required this.mapController});
@@ -50,13 +48,7 @@ class LocationPermission extends StatelessWidget {
                       }
                     });
 
-                    var markersNotifier = ref.read(markersProvider.notifier);
-                    var loadNotifier = ref.read(loadProvider.notifier);
-                    var locationPermissionNotifier =
-                        ref.read(locationPermissionProvider.notifier);
-
-                    permissionHandler(markersNotifier, loadNotifier,
-                        locationPermissionNotifier, mapController);
+                    permissionHandler(mapController, ref);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8),

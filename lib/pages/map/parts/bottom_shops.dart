@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -27,12 +26,7 @@ class MapButtons extends ConsumerWidget {
           locationButtonMethod(
             context,
             () {
-              var markersNotifier = ref.read(markersProvider.notifier);
-              var loadNotifier = ref.read(loadProvider.notifier);
-              var locationPermissionNotifier =
-                  ref.read(locationPermissionProvider.notifier);
-              permissionHandler(markersNotifier, loadNotifier,
-                  locationPermissionNotifier, mapController);
+              permissionHandler(mapController, ref);
             },
           ),
           vipButtonMethod(context),

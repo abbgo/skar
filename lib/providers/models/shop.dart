@@ -6,6 +6,7 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
+import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
 final apiProvider = Provider<ShopService>((ref) => ShopService());
@@ -16,8 +17,9 @@ final shopsForMapProvider =
     ResultShop result = ResultShop.defaultResult();
 
     try {
+      var shopParams = ref.read(shopParamProvider);
       List<Shop> shops =
-          await ref.read(apiProvider).fetchShopsForMap('shops/map');
+          await ref.read(apiProvider).fetchShopsForMap('shops/map', shopParams);
       bool isTM = ref.read(isTmProvider);
 
       for (Shop shop in shops) {
