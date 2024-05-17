@@ -71,13 +71,11 @@ class ShopService {
 }
 
 class ShopParams extends Equatable {
-  final BuildContext context;
   final double latitude;
   final double longitude;
   final int kilometer;
 
   const ShopParams({
-    required this.context,
     required this.latitude,
     required this.longitude,
     required this.kilometer,
@@ -85,7 +83,6 @@ class ShopParams extends Equatable {
 
   @override
   List<Object?> get props => [
-        context,
         latitude,
         longitude,
         kilometer,
