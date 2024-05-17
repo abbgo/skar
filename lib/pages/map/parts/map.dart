@@ -8,6 +8,8 @@ import 'package:skar/pages/map/parts/shop_list.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
+import 'package:skar/providers/params/shop_param.dart';
+import 'package:skar/services/shop.dart';
 
 class Map extends StatelessWidget {
   const Map({super.key, required this.mapController});
@@ -24,6 +26,8 @@ class Map extends StatelessWidget {
         var shopsForMap = ref.watch(shopsForMapProvider(context));
 
         return shopsForMap.when(
+          // skipLoadingOnRefresh: true,
+          skipLoadingOnReload: true,
           data: (resultShopsForMap) {
             if (resultShopsForMap.error != '') {
               return const SomeThingWrong();
@@ -35,17 +39,23 @@ class Map extends StatelessWidget {
                 GoogleMap(
                   markers: markers,
                   initialCameraPosition: _kGooglePlex,
-                  mapType: MapType.hybrid,
+                  mapType: MapType.normal,
                   myLocationButtonEnabled: false,
                   onMapCreated: (GoogleMapController controller) {
                     if (!mapController.isCompleted) {
                       mapController.complete(controller);
                     }
                   },
-                  // onCameraMove: (CameraPosition position) {
-                  //   print(
-                  //       "Latitude: ${position.target.latitude}; Longitude: ${position.target.longitude}");
-                  // },
+                  onCameraMove: (CameraPosition position) async {
+                    ShopParams shopParams = ShopParams(
+                      latitude: position.target.latitude,
+                      longitude: position.target.longitude,
+                      kilometer: 2,
+                    );
+                    await ref
+                        .read(shopParamProvider.notifier)
+                        .change(shopParams);
+                  },
                 ),
                 MapButtons(mapController: mapController),
                 const ShopList(),

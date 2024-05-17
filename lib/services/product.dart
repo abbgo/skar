@@ -48,6 +48,7 @@ class ProductService {
 
       if (response.statusCode == 200 && jsonData['status']) {
         var propJson = jsonData['product'];
+        if (propJson == null) return Product.defaultProduct();
         return Product.fromJson(propJson);
       }
       return Product.defaultProduct();

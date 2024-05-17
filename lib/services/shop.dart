@@ -20,6 +20,7 @@ class ShopService {
       var jsonData = json.decode(response.body);
 
       if (response.statusCode == 200 && jsonData['status']) {
+        if (jsonData['shops'] == null) return [];
         var shopsList = jsonData['shops'] as List;
         return shopsList
             .map<Shop>((propJson) => Shop.fromJson(propJson))
@@ -66,6 +67,7 @@ class ShopService {
 
       if (response.statusCode == 200 && jsonData['status']) {
         var propJson = jsonData['shop'];
+        if (propJson == null) return Shop.defaultShop();
         return Shop.fromJson(propJson);
       }
       return Shop.defaultShop();

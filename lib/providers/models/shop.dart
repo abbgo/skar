@@ -17,30 +17,32 @@ final shopsForMapProvider =
     ResultShop result = ResultShop.defaultResult();
 
     try {
-      var shopParams = ref.read(shopParamProvider);
+      var shopParams = ref.watch(shopParamProvider);
       List<Shop> shops =
           await ref.read(apiProvider).fetchShopsForMap('shops/map', shopParams);
       bool isTM = ref.read(isTmProvider);
 
-      for (Shop shop in shops) {
-        ref.read(markersProvider.notifier).addMarker(
-              Marker(
-                markerId: MarkerId(shop.id),
-                position: LatLng(shop.latitude, shop.longitude),
-                onTap: () {
-                  Navigator.push(
-                    arg,
-                    MaterialPageRoute(
-                      builder: (context) => BottomNavigationPage(
-                        shopID: shop.id,
-                        isMapPage: false,
+      if (shops.isNotEmpty) {
+        for (Shop shop in shops) {
+          ref.read(markersProvider.notifier).addMarker(
+                Marker(
+                  markerId: MarkerId(shop.id),
+                  position: LatLng(shop.latitude, shop.longitude),
+                  onTap: () {
+                    Navigator.push(
+                      arg,
+                      MaterialPageRoute(
+                        builder: (context) => BottomNavigationPage(
+                          shopID: shop.id,
+                          isMapPage: false,
+                        ),
                       ),
-                    ),
-                  );
-                },
-                icon: await generateMarkerIconMethod(isTM, shop),
-              ),
-            );
+                    );
+                  },
+                  icon: await generateMarkerIconMethod(isTM, shop),
+                ),
+              );
+        }
       }
       result = ResultShop(shops: shops, error: '');
     } catch (e) {

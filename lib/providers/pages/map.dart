@@ -22,7 +22,10 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
   }
 
   void addMarker(Marker marker) {
-    state = {...state, marker};
+    List<MarkerId> markerIDs = state.map((e) => e.markerId).toList();
+    if (!markerIDs.contains(marker.markerId)) {
+      state = {...state, marker};
+    }
   }
 }
 
