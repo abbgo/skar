@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
+import 'package:skar/pages/map/parts/search_bar.dart';
 import 'package:skar/pages/map/parts/shop_list.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/models/shop.dart';
@@ -26,7 +27,6 @@ class Map extends StatelessWidget {
         var shopsForMap = ref.watch(shopsForMapProvider(context));
 
         return shopsForMap.when(
-          // skipLoadingOnRefresh: true,
           skipLoadingOnReload: true,
           data: (resultShopsForMap) {
             if (resultShopsForMap.error != '') {
@@ -56,6 +56,11 @@ class Map extends StatelessWidget {
                         .read(shopParamProvider.notifier)
                         .change(shopParams);
                   },
+                ),
+                Positioned(
+                  top: 50,
+                  right: 25,
+                  child: const MapSearchBar(),
                 ),
                 MapButtons(mapController: mapController),
                 const ShopList(),
