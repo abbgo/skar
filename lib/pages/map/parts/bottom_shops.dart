@@ -18,7 +18,7 @@ class MapButtons extends ConsumerWidget {
     return AnimatedPositioned(
       bottom: bannerHeight == 0.4
           ? screenProperties(context).height * bannerHeight
-          : screenProperties(context).height * 0.07,
+          : screenProperties(context).height * 0.06,
       right: 5,
       duration: const Duration(milliseconds: 300),
       child: Row(
