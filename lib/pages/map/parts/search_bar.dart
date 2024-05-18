@@ -6,10 +6,11 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/providers/pages/search_bar.dart';
 
 class MapSearchBar extends ConsumerWidget {
-  const MapSearchBar({super.key});
+  MapSearchBar({super.key});
 
   final double minRightSize = 10.0;
   final double maxRightSize = 25.0;
+  final FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,6 +24,8 @@ class MapSearchBar extends ConsumerWidget {
       height: 40,
       width: rightSize == minRightSize ? 40 : screenSize.width - 50,
       child: TextFormField(
+        focusNode: focusNode,
+        textInputAction: TextInputAction.search,
         textAlignVertical: TextAlignVertical.center,
         cursorColor: elevatedButtonColor,
         decoration: InputDecoration(
@@ -36,9 +39,11 @@ class MapSearchBar extends ConsumerWidget {
             onPressed: () {
               if (rightSize == minRightSize) {
                 ref.read(rightSizeProvider.notifier).state = maxRightSize;
+                FocusScope.of(context).requestFocus(focusNode);
                 return;
               }
               ref.read(rightSizeProvider.notifier).state = minRightSize;
+              FocusScope.of(context).unfocus();
             },
             icon: Icon(
               rightSize == minRightSize ? Icons.search : Icons.close,

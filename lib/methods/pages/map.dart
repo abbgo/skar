@@ -29,7 +29,7 @@ TextButton vipButtonMethod(BuildContext context) {
   return TextButton(
     onPressed: () {},
     style: TextButton.styleFrom(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 0),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
