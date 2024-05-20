@@ -35,5 +35,6 @@
     "body":"Body",
     "similarProducts":"Similar products",
     "connectToInternet":"You are connected to the Internet !",
-    "wentWrong":"Something went wrong !"
+    "wentWrong":"Something went wrong !",
+    "searchShop":"Search shop..."
 }

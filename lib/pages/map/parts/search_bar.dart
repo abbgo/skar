@@ -4,6 +4,8 @@ import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/providers/pages/search_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/providers/params/shop_param.dart';
 
 class MapSearchBar extends ConsumerWidget {
   MapSearchBar({super.key});
@@ -11,9 +13,11 @@ class MapSearchBar extends ConsumerWidget {
   final double minRightSize = 10.0;
   final double maxRightSize = 25.0;
   final FocusNode focusNode = FocusNode();
+  final TextEditingController searchShopCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var lang = AppLocalizations.of(context)!;
     ScreenProperties screenSize = screenProperties(context);
     double rightSize = ref.watch(rightSizeProvider);
 
@@ -23,14 +27,15 @@ class MapSearchBar extends ConsumerWidget {
       duration: const Duration(milliseconds: 300),
       height: 40,
       width: rightSize == minRightSize ? 40 : screenSize.width - 50,
-      child: TextFormField(
+      child: TextField(
+        controller: searchShopCtrl,
         focusNode: focusNode,
         textInputAction: TextInputAction.search,
         textAlignVertical: TextAlignVertical.center,
         cursorColor: elevatedButtonColor,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(top: 0, left: 20),
-          hintText: 'Magazyn gozle...',
+          hintText: lang.searchShop,
           filled: true,
           fillColor: Colors.white,
           enabledBorder: outlinedInputBorder(),
@@ -52,6 +57,10 @@ class MapSearchBar extends ConsumerWidget {
             ),
           ),
         ),
+        onSubmitted: (value) {
+          print('-------------------- $value');
+          ref.read(shopParamProvider.notifier).changeSearch(value);
+        },
       ),
     );
   }

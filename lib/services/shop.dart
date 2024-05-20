@@ -1,7 +1,10 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
 
@@ -78,20 +81,32 @@ class ShopService {
 }
 
 class ShopParams extends Equatable {
-  final double latitude;
-  final double longitude;
-  final int kilometer;
+  final double? latitude;
+  final double? longitude;
+  final int? kilometer;
+  final String? search;
 
   const ShopParams({
-    required this.latitude,
-    required this.longitude,
-    required this.kilometer,
+    this.latitude,
+    this.longitude,
+    this.kilometer,
+    this.search,
   });
 
   @override
-  List<Object?> get props => [
-        latitude,
-        longitude,
-        kilometer,
-      ];
+  List<Object?> get props => [latitude, longitude, kilometer, search];
+
+  ShopParams copyWith({
+    double? latitude,
+    double? longitude,
+    int? kilometer,
+    String? search,
+  }) {
+    return ShopParams(
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      kilometer: kilometer ?? this.kilometer,
+      search: search ?? this.search,
+    );
+  }
 }
