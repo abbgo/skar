@@ -16,6 +16,7 @@ class ShopService {
         'latitude': shopParams.latitude.toString(),
         'longitude': shopParams.longitude.toString(),
         'kilometer': shopParams.kilometer.toString(),
+        'search': shopParams.search,
       },
     );
     try {

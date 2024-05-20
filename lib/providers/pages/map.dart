@@ -27,8 +27,14 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
       state = {...state, marker};
     }
   }
+
+  Future<void> removeAllMarkers() async {
+    var firstElement = state.toList().sublist(0, 1);
+    state = firstElement.toSet();
+  }
 }
 
-final markersProvider = StateNotifierProvider<MarkersNotifier, Set<Marker>>(
+final markersProvider =
+    StateNotifierProvider.autoDispose<MarkersNotifier, Set<Marker>>(
   (ref) => MarkersNotifier(),
 );

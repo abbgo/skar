@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/pages/search_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/params/shop_param.dart';
@@ -57,7 +58,8 @@ class MapSearchBar extends ConsumerWidget {
             ),
           ),
         ),
-        onSubmitted: (value) {
+        onSubmitted: (value) async {
+          await ref.read(markersProvider.notifier).removeAllMarkers();
           ref.read(shopParamProvider.notifier).changeSearch(value);
         },
       ),
