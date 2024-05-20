@@ -19,6 +19,18 @@ ScreenProperties screenProperties(BuildContext context) {
   return screenProperties;
 }
 
+Future<double> calculateMapWidthInKm(
+  int zoomLevel,
+  BuildContext context,
+) async {
+  const earthCircumferenceKm = 40075.0;
+  int totalPixels = 256 * (1 << zoomLevel);
+  double metersPerPixel = earthCircumferenceKm * 1000 / totalPixels;
+  double mapWidthInMeters = screenProperties(context).width * metersPerPixel;
+  double mapWidthInKm = mapWidthInMeters / 1000;
+  return mapWidthInKm;
+}
+
 Future<Position> getCurrentLocation() async {
   return await Geolocator.getCurrentPosition();
 }
@@ -55,8 +67,8 @@ Future<bool> checkAndGetCurrentLocation(
         zoom: 15,
       );
 
-      ShopParams shopParams = ShopParams(
-          latitude: value.latitude, longitude: value.longitude, kilometer: 1);
+      ShopParams shopParams =
+          ShopParams(latitude: value.latitude, longitude: value.longitude);
 
       GoogleMapController controller = await mapController.future;
       controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));

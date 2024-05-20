@@ -58,7 +58,6 @@ class MapSearchBar extends ConsumerWidget {
           ),
         ),
         onSubmitted: (value) {
-          print('-------------------- $value');
           ref.read(shopParamProvider.notifier).changeSearch(value);
         },
       ),
