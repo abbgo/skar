@@ -24,16 +24,14 @@ class MapPage extends ConsumerWidget {
     bool isLoading = ref.watch(loadProvider);
     bool hasPermission = ref.watch(locationPermissionProvider);
 
-    return Scaffold(
-      body: hasInternet
-          ? isLoading
-              ? Center(
-                  child: Image.asset("assets/animated_icons/animated_map.gif"),
-                )
-              : hasPermission
-                  ? map.Map(mapController: googleMpCtrl)
-                  : permission.LocationPermission(mapController: googleMpCtrl)
-          : const InternetError(),
-    );
+    return hasInternet
+        ? isLoading
+            ? Center(
+                child: Image.asset("assets/animated_icons/animated_map.gif"),
+              )
+            : hasPermission
+                ? map.Map(mapController: googleMpCtrl)
+                : permission.LocationPermission(mapController: googleMpCtrl)
+        : const InternetError();
   }
 }

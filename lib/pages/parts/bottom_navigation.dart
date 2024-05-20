@@ -35,40 +35,39 @@ class BottomNavigationPage extends StatelessWidget {
         int selectedIndex = ref.watch(selectedBottomIndexProvider);
 
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           body: IndexedStack(
             index: selectedIndex,
             children: pages,
           ),
-          bottomNavigationBar: SizedBox(
-            child: BottomNavigationBar(
-              items: [
-                bottomNavigationBarItemMethod(
-                    lang.map, const Icon(Icons.travel_explore, size: 24)),
-                bottomNavigationBarItemMethod(lang.myFavorites,
-                    const Icon(Icons.favorite_border, size: 24)),
-                bottomNavigationBarItemMethod(
-                    lang.search,
-                    Image.asset(
-                      "assets/icons/search.png",
-                      color: elevatedButtonColor,
-                      height: 24,
-                    )),
-                bottomNavigationBarItemMethod(
-                    lang.settings,
-                    Image.asset(
-                      "assets/icons/setting.png",
-                      color: elevatedButtonColor,
-                      height: 22,
-                    )),
-              ],
-              elevation: 0,
-              selectedItemColor: elevatedButtonColor,
-              unselectedItemColor: elevatedButtonColor,
-              currentIndex: selectedIndex,
-              onTap: (value) {
-                ref.read(selectedBottomIndexProvider.notifier).state = value;
-              },
-            ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: [
+              bottomNavigationBarItemMethod(
+                  lang.map, const Icon(Icons.travel_explore, size: 24)),
+              bottomNavigationBarItemMethod(lang.myFavorites,
+                  const Icon(Icons.favorite_border, size: 24)),
+              bottomNavigationBarItemMethod(
+                  lang.search,
+                  Image.asset(
+                    "assets/icons/search.png",
+                    color: elevatedButtonColor,
+                    height: 24,
+                  )),
+              bottomNavigationBarItemMethod(
+                  lang.settings,
+                  Image.asset(
+                    "assets/icons/setting.png",
+                    color: elevatedButtonColor,
+                    height: 22,
+                  )),
+            ],
+            elevation: 0,
+            selectedItemColor: elevatedButtonColor,
+            unselectedItemColor: elevatedButtonColor,
+            currentIndex: selectedIndex,
+            onTap: (value) {
+              ref.read(selectedBottomIndexProvider.notifier).state = value;
+            },
           ),
         );
       },

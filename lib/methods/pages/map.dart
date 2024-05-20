@@ -47,7 +47,7 @@ TextButton vipButtonMethod(BuildContext context) {
 
 Container listviewCallButtonMethod(BuildContext context, Shop shop) {
   return Container(
-    alignment: Alignment.bottomCenter,
+    alignment: Alignment.topCenter,
     child: IconButton(
       onPressed: () {
         FlutterPhoneDirectCaller.callNumber(shop.phones![0]);
