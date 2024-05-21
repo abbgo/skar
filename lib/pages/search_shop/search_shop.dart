@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
+import 'package:skar/pages/search_shop/parts/search_shop_result.dart';
 
 class SearchShopPage extends StatelessWidget {
   const SearchShopPage({super.key});
@@ -13,13 +14,18 @@ class SearchShopPage extends StatelessWidget {
       body: Padding(
         padding:
             EdgeInsets.only(top: screenProperties(context).topSafeArea + 5),
-        child: Row(
+        child: Column(
           children: [
-            IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: Icon(Icons.arrow_back, color: elevatedButtonColor),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.arrow_back, color: elevatedButtonColor),
+                ),
+                ShopSearchField(),
+              ],
             ),
-            ShopSearchField(),
+            const SearchShopResult(),
           ],
         ),
       ),

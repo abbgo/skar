@@ -15,9 +15,9 @@ class ShopParamsNotifier extends StateNotifier<ShopParams> {
     state = params;
   }
 
-  // Future<void> changeSearch(String search) async {
-  //   state = state.copyWith(search: search);
-  // }
+  Future<void> changeSearch(String search) async {
+    state = state.copyWith(search: search);
+  }
 }
 
 var shopParamProvider =

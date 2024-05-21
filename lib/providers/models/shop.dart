@@ -53,8 +53,9 @@ var fetchShopsProvider =
   ResultShop result = ResultShop.defaultResult();
 
   try {
-    List<Shop> shops =
-        await ref.read(apiProvider).fetchShops(page: shopParams.page!);
+    List<Shop> shops = await ref
+        .read(apiProvider)
+        .fetchShops(page: shopParams.page!, isBrend: shopParams.isBrend!);
     result = ResultShop(shops: shops, error: '');
   } catch (e) {
     result = ResultShop(error: e.toString());

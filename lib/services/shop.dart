@@ -36,12 +36,15 @@ class ShopService {
   }
 
   // fetch shops -------------------------------------------------------
-  Future<List<Shop>> fetchShops({required int page}) async {
+  Future<List<Shop>> fetchShops({
+    required int page,
+    required bool isBrend,
+  }) async {
     Uri uri = Uri.parse('$apiUrl/shops').replace(
       queryParameters: {
         'limit': '10',
         'page': '$page',
-        'is_brend': 'true',
+        'is_brend': isBrend.toString(),
       },
     );
 
