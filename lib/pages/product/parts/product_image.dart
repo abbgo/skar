@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/product_color.dart';
 import 'package:skar/providers/pages/product.dart';
@@ -22,15 +23,11 @@ class ProductImage extends StatelessWidget {
         return Stack(
           children: [
             InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        ShowImage(images: productColor.images!),
-                  ),
-                );
-              },
+              onTap: () => goToPage(
+                context,
+                ShowImage(images: productColor.images!),
+                false,
+              ),
               child: SizedBox(
                 width: double.infinity,
                 height: screenProperties(context).height / 2,

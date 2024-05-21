@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/product/product.dart';
@@ -59,17 +60,14 @@ class ShopProducts extends ConsumerWidget {
                   return Hero(
                     tag: product.id,
                     child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProductPage(
-                              productID: product.id,
-                              shopID: shopID,
-                            ),
-                          ),
-                        );
-                      },
+                      onTap: () => goToPage(
+                        context,
+                        ProductPage(
+                          productID: product.id,
+                          shopID: shopID,
+                        ),
+                        false,
+                      ),
                       child: Padding(
                         padding: index % 2 == 0
                             ? const EdgeInsets.only(left: 5)

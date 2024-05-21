@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/product.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/methods/pages/shop.dart';
@@ -60,17 +61,14 @@ class SimilarProducts extends ConsumerWidget {
                 itemCount: productsData.products!.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProductPage(
-                            productID: productsData.products![index].id,
-                            shopID: shopID,
-                          ),
-                        ),
-                      );
-                    },
+                    onTap: () => goToPage(
+                      context,
+                      ProductPage(
+                        productID: productsData.products![index].id,
+                        shopID: shopID,
+                      ),
+                      false,
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(right: 5),
                       child: Card(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
@@ -28,17 +29,11 @@ final shopsForMapProvider =
                 Marker(
                   markerId: MarkerId(shop.id),
                   position: LatLng(shop.latitude, shop.longitude),
-                  onTap: () {
-                    Navigator.push(
-                      arg,
-                      MaterialPageRoute(
-                        builder: (context) => BottomNavigationPage(
-                          shopID: shop.id,
-                          isMapPage: false,
-                        ),
-                      ),
-                    );
-                  },
+                  onTap: () => goToPage(
+                    arg,
+                    BottomNavigationPage(shopID: shop.id, isMapPage: false),
+                    false,
+                  ),
                   icon: await generateMarkerIconMethod(isTM, shop),
                 ),
               );

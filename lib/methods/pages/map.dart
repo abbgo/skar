@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
@@ -103,15 +104,11 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
     child: ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  BottomNavigationPage(shopID: shop.id, isMapPage: false),
-            ),
-          );
-        },
+        onTap: () => goToPage(
+          context,
+          BottomNavigationPage(shopID: shop.id, isMapPage: false),
+          false,
+        ),
         child: showCachImageMethod(shop.image!),
       ),
     ),
