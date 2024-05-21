@@ -15,7 +15,7 @@ class ShopSearchField extends StatelessWidget {
       width: screenProperties(context).width - 70,
       child: TextField(
         controller: searchShopCtrl,
-        // focusNode: focusNode,
+        autofocus: true,
         textInputAction: TextInputAction.search,
         textAlignVertical: TextAlignVertical.center,
         cursorColor: elevatedButtonColor,
@@ -26,19 +26,7 @@ class ShopSearchField extends StatelessWidget {
           fillColor: Colors.white,
           enabledBorder: outlinedInputBorder(),
           focusedBorder: outlinedInputBorder(),
-          suffixIcon: IconButton(
-            onPressed: () {},
-            // onPressed: () {
-            //   if (rightSize == minRightSize) {
-            //     ref.read(rightSizeProvider.notifier).state = maxRightSize;
-            //     FocusScope.of(context).requestFocus(focusNode);
-            //     return;
-            //   }
-            //   ref.read(rightSizeProvider.notifier).state = minRightSize;
-            //   FocusScope.of(context).unfocus();
-            // },
-            icon: Icon(Icons.search, color: elevatedButtonColor),
-          ),
+          suffixIcon: Icon(Icons.search, color: elevatedButtonColor),
         ),
         // onSubmitted: (value) async {
         //   await ref.read(markersProvider.notifier).removeAllMarkers();
