@@ -74,7 +74,7 @@ Future<bool> checkAndGetCurrentLocation(
       controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
       await markersNotifier.setMarker(value.latitude, value.longitude);
-      await shopParamsNotifier.change(shopParams);
+      await shopParamsNotifier.changeForMap(shopParams);
     });
   }
   return hasPermission;

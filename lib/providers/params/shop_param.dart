@@ -11,13 +11,21 @@ class ShopParamsNotifier extends StateNotifier<ShopParams> {
           ),
         );
 
-  Future<void> change(ShopParams params) async {
-    state = params;
+  Future<void> changeForMap(ShopParams params) async {
+    state = state.copyWith(
+      latitude: params.latitude,
+      longitude: params.longitude,
+      kilometer: params.kilometer,
+    );
   }
 
-  Future<void> changeSearch(String search) async {
-    state = state.copyWith(search: search);
-  }
+  // Future<void> changeForShop(ShopParams params) async {
+  //   state = state.copyWith(
+  //     search: params.search,
+  //     isBrend: params.isBrend,
+  //     page: params.page,
+  //   );
+  // }
 }
 
 var shopParamProvider =

@@ -61,7 +61,7 @@ class Map extends StatelessWidget {
                     );
                     await ref
                         .read(shopParamProvider.notifier)
-                        .change(shopParams);
+                        .changeForMap(shopParams);
                   },
                 ),
                 // MapSearchBar(),
