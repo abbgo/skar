@@ -16,7 +16,6 @@ class ShopService {
         'latitude': shopParams.latitude.toString(),
         'longitude': shopParams.longitude.toString(),
         'kilometer': shopParams.kilometer.toString(),
-        // 'search': shopParams.search,
       },
     );
     try {
@@ -85,33 +84,38 @@ class ShopParams extends Equatable {
   final double? latitude;
   final double? longitude;
   final int? kilometer;
-  // final String? search;
+  final bool? isBrend;
+  final String? search;
+  final int? page;
 
   const ShopParams({
     this.latitude,
     this.longitude,
     this.kilometer,
-    // this.search,
+    this.isBrend,
+    this.search,
+    this.page,
   });
 
   @override
-  List<Object?> get props => [
-        latitude,
-        longitude,
-        kilometer, /* search */
-      ];
+  List<Object?> get props =>
+      [latitude, longitude, kilometer, isBrend, search, page];
 
   ShopParams copyWith({
     double? latitude,
     double? longitude,
     int? kilometer,
-    // String? search,
+    bool? isBrend,
+    String? search,
+    int? page,
   }) {
     return ShopParams(
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
       kilometer: kilometer ?? this.kilometer,
-      // search: search ?? this.search,
+      isBrend: isBrend ?? this.isBrend,
+      search: search ?? this.search,
+      page: page ?? this.page,
     );
   }
 }

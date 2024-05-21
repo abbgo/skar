@@ -9,6 +9,7 @@ import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
+import 'package:skar/services/shop.dart';
 
 class ShopList extends ConsumerWidget {
   const ShopList({super.key});
@@ -56,8 +57,10 @@ class ShopList extends ConsumerWidget {
                     final page = index ~/ pageSize + 1;
                     final indexInPage = index % pageSize;
 
+                    ShopParams shopParams = ShopParams(page: page);
+
                     final AsyncValue<ResultShop> responseAsync =
-                        ref.watch(fetchShopsProvider(page));
+                        ref.watch(fetchShopsProvider(shopParams));
 
                     return responseAsync.when(
                       data: (response) {

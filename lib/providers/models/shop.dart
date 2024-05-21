@@ -49,11 +49,12 @@ final shopsForMapProvider =
 );
 
 var fetchShopsProvider =
-    FutureProvider.family<ResultShop, int>((ref, page) async {
+    FutureProvider.family<ResultShop, ShopParams>((ref, shopParams) async {
   ResultShop result = ResultShop.defaultResult();
 
   try {
-    List<Shop> shops = await ref.read(apiProvider).fetchShops(page: page);
+    List<Shop> shops =
+        await ref.read(apiProvider).fetchShops(page: shopParams.page!);
     result = ResultShop(shops: shops, error: '');
   } catch (e) {
     result = ResultShop(error: e.toString());

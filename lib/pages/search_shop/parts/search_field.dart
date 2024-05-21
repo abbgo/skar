@@ -26,12 +26,18 @@ class ShopSearchField extends StatelessWidget {
           fillColor: Colors.white,
           enabledBorder: outlinedInputBorder(),
           focusedBorder: outlinedInputBorder(),
-          suffixIcon: Icon(Icons.search, color: elevatedButtonColor),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.search, color: elevatedButtonColor, size: 26),
+            onPressed: () async {
+              // Navigator.pop(context);
+            },
+          ),
         ),
-        // onSubmitted: (value) async {
-        //   await ref.read(markersProvider.notifier).removeAllMarkers();
-        //   ref.read(shopParamProvider.notifier).changeSearch(value);
-        // },
+        onSubmitted: (value) async {
+          // await ref.read(markersProvider.notifier).removeAllMarkers();
+          // ref.read(shopParamProvider.notifier).changeSearch(value);
+          // Navigator.pop(context);
+        },
       ),
     );
   }
