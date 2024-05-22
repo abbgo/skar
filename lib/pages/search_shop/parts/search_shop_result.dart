@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/error.dart';
@@ -8,22 +9,22 @@ import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
 class SearchShopResult extends ConsumerWidget {
-  const SearchShopResult({super.key, required this.shopParams});
+  const SearchShopResult({super.key});
 
   static const pageSize = 10;
-  final ShopParams shopParams;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ShopParams shopParams = ref.watch(shopParamProvider);
-    return shopParams.search != null
-        ? Expanded(
+    String search = ref.watch(shopSearchProvider);
+    return search != ''
+        ? SizedBox(
+            height: screenProperties(context).height - 500,
             child: ListView.builder(
               itemBuilder: (context, index) {
                 final page = index ~/ pageSize + 1;
                 final indexInPage = index % pageSize;
 
-                shopParams = shopParams.copyWith(page: page);
+                ShopParams shopParams = ShopParams(page: page, isBrend: false);
 
                 final AsyncValue<ResultShop> responseAsync =
                     ref.watch(fetchShopsProvider(shopParams));

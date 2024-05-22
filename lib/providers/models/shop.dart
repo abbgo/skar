@@ -48,14 +48,15 @@ final shopsForMapProvider =
   },
 );
 
-var fetchShopsProvider =
-    FutureProvider.family<ResultShop, ShopParams>((ref, shopParams) async {
+var fetchShopsProvider = FutureProvider.autoDispose
+    .family<ResultShop, ShopParams>((ref, shopParams) async {
   ResultShop result = ResultShop.defaultResult();
 
   try {
-    List<Shop> shops = await ref
-        .read(apiProvider)
-        .fetchShops(page: shopParams.page!, isBrend: shopParams.isBrend!);
+    String search = ref.watch(shopSearchProvider);
+
+    List<Shop> shops = await ref.read(apiProvider).fetchShops(
+        page: shopParams.page!, isBrend: shopParams.isBrend!, search: search);
     result = ResultShop(shops: shops, error: '');
   } catch (e) {
     result = ResultShop(error: e.toString());

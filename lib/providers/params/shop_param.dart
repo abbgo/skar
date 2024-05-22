@@ -7,7 +7,7 @@ class ShopParamsNotifier extends StateNotifier<ShopParams> {
           const ShopParams(
             latitude: 0,
             longitude: 0,
-            kilometer: 2, /* search: '' */
+            kilometer: 2,
           ),
         );
 
@@ -18,17 +18,11 @@ class ShopParamsNotifier extends StateNotifier<ShopParams> {
       kilometer: params.kilometer,
     );
   }
-
-  // Future<void> changeForShop(ShopParams params) async {
-  //   state = state.copyWith(
-  //     search: params.search,
-  //     isBrend: params.isBrend,
-  //     page: params.page,
-  //   );
-  // }
 }
 
 var shopParamProvider =
     StateNotifierProvider.autoDispose<ShopParamsNotifier, ShopParams>(
   (ref) => ShopParamsNotifier(),
 );
+
+var shopSearchProvider = StateProvider.autoDispose<String>((ref) => '');

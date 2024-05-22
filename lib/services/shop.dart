@@ -39,17 +39,16 @@ class ShopService {
   Future<List<Shop>> fetchShops({
     required int page,
     required bool isBrend,
+    required String search,
   }) async {
     Uri uri = Uri.parse('$apiUrl/shops').replace(
       queryParameters: {
         'limit': '10',
         'page': '$page',
         'is_brend': isBrend.toString(),
+        'search': search,
       },
     );
-
-    print('-----------------------------------------------------------------');
-    print(uri);
 
     try {
       Response response = await http.get(uri);
@@ -91,7 +90,6 @@ class ShopParams extends Equatable {
   final double? longitude;
   final int? kilometer;
   final bool? isBrend;
-  final String? search;
   final int? page;
 
   const ShopParams({
@@ -99,13 +97,11 @@ class ShopParams extends Equatable {
     this.longitude,
     this.kilometer,
     this.isBrend,
-    this.search,
     this.page,
   });
 
   @override
-  List<Object?> get props =>
-      [latitude, longitude, kilometer, isBrend, search, page];
+  List<Object?> get props => [latitude, longitude, kilometer, isBrend, page];
 
   ShopParams copyWith({
     double? latitude,
@@ -120,7 +116,6 @@ class ShopParams extends Equatable {
       longitude: longitude ?? this.longitude,
       kilometer: kilometer ?? this.kilometer,
       isBrend: isBrend ?? this.isBrend,
-      search: search ?? this.search,
       page: page ?? this.page,
     );
   }
