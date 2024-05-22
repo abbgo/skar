@@ -51,39 +51,43 @@ final shopsForMapProvider =
 var fetchShopsProvider =
     FutureProvider.autoDispose.family<ResultShop, ShopParams>(
   (ref, shopParams) async {
-    return await getShopsFunction(ref, shopParams, true);
+    ResultShop result = ResultShop.defaultResult();
+
+    try {
+      String search = ref.watch(shopSearchProvider);
+
+      List<Shop> shops = await ref.read(apiProvider).fetchShops(
+            page: shopParams.page!,
+            isBrend: shopParams.isBrend!,
+            search: search,
+          );
+      result = ResultShop(shops: shops, error: '');
+    } catch (e) {
+      result = ResultShop(error: e.toString());
+    }
+
+    return result;
   },
 );
 
-var fetchBrendShopsProvider =
-    FutureProvider.autoDispose.family<ResultShop, ShopParams>(
+var fetchBrendShopsProvider = FutureProvider.family<ResultShop, ShopParams>(
   (ref, shopParams) async {
-    return await getShopsFunction(ref, shopParams, false);
+    ResultShop result = ResultShop.defaultResult();
+
+    try {
+      List<Shop> shops = await ref.read(apiProvider).fetchShops(
+            page: shopParams.page!,
+            isBrend: shopParams.isBrend!,
+            search: '',
+          );
+      result = ResultShop(shops: shops, error: '');
+    } catch (e) {
+      result = ResultShop(error: e.toString());
+    }
+
+    return result;
   },
 );
-
-Future<ResultShop> getShopsFunction(
-  AutoDisposeFutureProviderRef<ResultShop> ref,
-  ShopParams shopParams,
-  bool hasSearch,
-) async {
-  ResultShop result = ResultShop.defaultResult();
-
-  try {
-    String search = ref.watch(shopSearchProvider);
-
-    List<Shop> shops = await ref.read(apiProvider).fetchShops(
-          page: shopParams.page!,
-          isBrend: shopParams.isBrend!,
-          search: hasSearch ? search : '',
-        );
-    result = ResultShop(shops: shops, error: '');
-  } catch (e) {
-    result = ResultShop(error: e.toString());
-  }
-
-  return result;
-}
 
 var fetchShopProvider = FutureProvider.autoDispose.family<ResultShop, String>(
   (ref, shopID) async {

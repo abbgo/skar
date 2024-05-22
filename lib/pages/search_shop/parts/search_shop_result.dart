@@ -30,6 +30,8 @@ class SearchShopResult extends ConsumerWidget {
                     ref.watch(fetchShopsProvider(shopParams));
 
                 return responseAsync.when(
+                  skipLoadingOnRefresh: true,
+                  skipLoadingOnReload: true,
                   data: (response) {
                     if (response.error != '') {
                       return const SomeThingWrong();
@@ -42,7 +44,9 @@ class SearchShopResult extends ConsumerWidget {
                     return Text(shop.nameTM);
                   },
                   error: (error, stackTrace) => errorMethod(error),
-                  loading: () => loadWidget,
+                  loading: () {
+                    return null;
+                  },
                 );
               },
             ),
