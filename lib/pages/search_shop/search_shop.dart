@@ -18,7 +18,6 @@ class SearchShopPage extends ConsumerWidget {
           ref.read(shopSearchProvider.notifier).state = '';
           return;
         }
-        // ref.read(shopSearchProvider.notifier).state = '';
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,

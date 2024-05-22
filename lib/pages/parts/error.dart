@@ -30,6 +30,7 @@ class SomeThingWrong extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -40,11 +41,8 @@ class SomeThingWrong extends StatelessWidget {
             size: 80,
           ),
           Text(
-            AppLocalizations.of(context)!.wentWrong,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            lang.wentWrong,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ],
       ),
