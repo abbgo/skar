@@ -5,13 +5,13 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/params/shop_param.dart';
 
-class ShopSearchField extends StatelessWidget {
+class ShopSearchField extends ConsumerWidget {
   ShopSearchField({super.key});
 
   final TextEditingController searchShopCtrl = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: 40,
       width: screenProperties(context).width - 70,
@@ -28,26 +28,16 @@ class ShopSearchField extends StatelessWidget {
           fillColor: Colors.white,
           enabledBorder: outlinedInputBorder(),
           focusedBorder: outlinedInputBorder(),
-          suffixIcon: Consumer(
-            builder: (context, ref, child) {
-              return IconButton(
-                icon: Icon(Icons.search, color: elevatedButtonColor, size: 26),
-                onPressed: () async {
-                  // await ref
-                  //     .read(shopParamProvider.notifier)
-                  //     .changeSearch(searchShopCtrl.text);
-                  ref.read(shopSearchProvider.notifier).state =
-                      searchShopCtrl.text;
-                },
-              );
+          suffixIcon: IconButton(
+            icon: Icon(Icons.search, color: elevatedButtonColor, size: 26),
+            onPressed: () async {
+              ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
             },
           ),
         ),
-        // onSubmitted: (value) async {
-        //   // await ref.read(markersProvider.notifier).removeAllMarkers();
-        //   // ref.read(shopParamProvider.notifier).changeSearch(value);
-        //   // Navigator.pop(context);
-        // },
+        onSubmitted: (value) async {
+          ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
+        },
       ),
     );
   }
