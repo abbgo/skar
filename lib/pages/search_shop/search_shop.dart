@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/helpers/functions.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:skar/pages/search_shop/parts/search_shop_result.dart';
 import 'package:skar/providers/params/shop_param.dart';
@@ -27,11 +26,7 @@ class SearchShopPage extends ConsumerWidget {
           scrolledUnderElevation: 0,
           title: ShopSearchField(),
         ),
-        body: Padding(
-          padding:
-              EdgeInsets.only(top: screenProperties(context).topSafeArea + 5),
-          child: const SearchShopResult(),
-        ),
+        body: const SearchShopResult(),
       ),
     );
   }

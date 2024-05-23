@@ -87,9 +87,7 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
   return Container(
     decoration: BoxDecoration(
       color: Colors.white,
-      borderRadius: const BorderRadius.all(
-        Radius.circular(10),
-      ),
+      borderRadius: const BorderRadius.all(Radius.circular(10)),
       boxShadow: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.1),

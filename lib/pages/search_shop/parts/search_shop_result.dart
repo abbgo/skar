@@ -4,6 +4,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/error.dart';
+import 'package:skar/pages/search_shop/parts/shop_list_tile.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
@@ -20,8 +21,9 @@ class SearchShopResult extends ConsumerWidget {
     return search != ''
         ? !hasShops
             ? const NoResult()
-            : SizedBox(
-                height: screenProperties(context).height - 500,
+            : Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                height: screenProperties(context).height,
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -45,7 +47,7 @@ class SearchShopResult extends ConsumerWidget {
                           return null;
                         }
                         final shop = response.shops![indexInPage];
-                        return Text(shop.nameTM);
+                        return ShopListTile(shop: shop);
                       },
                       error: (error, stackTrace) => errorMethod(error),
                       loading: () {
