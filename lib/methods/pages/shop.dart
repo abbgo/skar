@@ -4,7 +4,6 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/services.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/product.dart';
-import 'package:skar/models/shop.dart';
 
 Padding shopCardTextMethod(
   String text,
@@ -165,48 +164,5 @@ Text shopTextMethod(double fontSize, String text, FontWeight fontWeight) {
     ),
     textAlign: TextAlign.center,
     maxLines: 2,
-  );
-}
-
-Row shopButtonsMethod(BuildContext context, Shop shop) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: Icon(
-          Icons.adaptive.arrow_back,
-          color: Colors.black,
-        ),
-      ),
-      Row(
-        children: [
-          IconButton(
-            onPressed: null,
-            icon: Image.asset("assets/icons/search.png", height: 25),
-          ),
-          const IconButton(
-            onPressed: null,
-            icon: Icon(
-              Icons.favorite_border,
-              color: Colors.black,
-            ),
-          ),
-          IconButton(
-            onPressed: () => showCallBottomSheet(context, shop.phones!),
-            icon: const Icon(
-              Icons.call,
-              color: Colors.green,
-            ),
-          ),
-          const IconButton(
-            onPressed: null,
-            icon: Icon(Icons.more_horiz, color: Colors.black),
-          ),
-        ],
-      ),
-    ],
   );
 }

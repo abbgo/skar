@@ -6,6 +6,7 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/shop/parts/products.dart';
+import 'package:skar/pages/shop/parts/shop_buttons.dart';
 import 'package:skar/pages/shop/parts/shop_category.dart';
 import 'package:skar/pages/shop/parts/shop_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
@@ -58,7 +59,7 @@ class ShopPage extends ConsumerWidget {
                             : shopData.shop!.addressRU!,
                         FontWeight.normal,
                       ),
-                      shopButtonsMethod(context, shopData.shop!),
+                      ShopPageButtons(shop: shopData.shop!),
                       const SizedBox(height: 10),
                       ShopCategory(shopID: shopID),
                       const SizedBox(height: 5),
