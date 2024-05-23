@@ -61,9 +61,9 @@ var fetchShopsProvider =
             isBrend: shopParams.isBrend!,
             search: search,
           );
-      if (shops.isEmpty) {
-        ref.read(hasShopsProvider.notifier).state = false;
-      }
+
+      ref.read(hasShopsProvider.notifier).state = shops.isNotEmpty;
+
       result = ResultShop(shops: shops, error: '');
     } catch (e) {
       result = ResultShop(error: e.toString());

@@ -32,11 +32,13 @@ class ShopSearchField extends ConsumerWidget {
             icon: Icon(Icons.search, color: elevatedButtonColor, size: 26),
             onPressed: () async {
               ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
+              ref.read(hasShopsProvider.notifier).state = true;
             },
           ),
         ),
         onSubmitted: (value) async {
           ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
+          ref.read(hasShopsProvider.notifier).state = true;
         },
       ),
     );
