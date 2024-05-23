@@ -4,11 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
-import 'package:skar/methods/navigation.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
+import 'package:skar/pages/map/parts/search_button.dart';
 import 'package:skar/pages/map/parts/shop_list.dart';
 import 'package:skar/pages/parts/error.dart';
-import 'package:skar/pages/search_shop/search_shop.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/params/shop_param.dart';
@@ -41,7 +40,7 @@ class Map extends StatelessWidget {
                 GoogleMap(
                   markers: markers,
                   initialCameraPosition: _kGooglePlex,
-                  mapType: MapType.hybrid,
+                  mapType: MapType.normal,
                   myLocationButtonEnabled: false,
                   onMapCreated: (GoogleMapController controller) {
                     if (!mapController.isCompleted) {
@@ -64,21 +63,7 @@ class Map extends StatelessWidget {
                         .changeForMap(shopParams);
                   },
                 ),
-                // MapSearchBar(),
-                Positioned(
-                  top: screenProperties(context).topSafeArea + 5,
-                  right: 10,
-                  child: IconButton(
-                    style: IconButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: () =>
-                        goToPage(context, const SearchShopPage(), false),
-                    icon: Icon(
-                      Icons.search,
-                      color: elevatedButtonColor,
-                      size: 22,
-                    ),
-                  ),
-                ),
+                const MapSearchButton(),
                 MapButtons(mapController: mapController),
                 const ShopList(),
               ],
