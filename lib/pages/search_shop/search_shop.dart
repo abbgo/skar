@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:skar/pages/search_shop/parts/search_shop_result.dart';
 import 'package:skar/providers/params/shop_param.dart';
 
 class SearchShopPage extends ConsumerWidget {
-  const SearchShopPage({super.key});
+  const SearchShopPage({super.key, required this.mapController});
+
+  final Completer<GoogleMapController> mapController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,7 +31,7 @@ class SearchShopPage extends ConsumerWidget {
           scrolledUnderElevation: 0,
           title: ShopSearchField(),
         ),
-        body: const SearchShopResult(),
+        body: SearchShopResult(mapController: mapController),
       ),
     );
   }

@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
@@ -10,9 +13,10 @@ import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
 class SearchShopResult extends ConsumerWidget {
-  const SearchShopResult({super.key});
+  const SearchShopResult({super.key, required this.mapController});
 
   static const pageSize = 10;
+  final Completer<GoogleMapController> mapController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -47,7 +51,10 @@ class SearchShopResult extends ConsumerWidget {
                           return null;
                         }
                         final shop = response.shops![indexInPage];
-                        return ShopListTile(shop: shop);
+                        return ShopListTile(
+                          shop: shop,
+                          mapController: mapController,
+                        );
                       },
                       error: (error, stackTrace) => errorMethod(error),
                       loading: () {

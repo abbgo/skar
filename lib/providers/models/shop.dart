@@ -25,7 +25,7 @@ final shopsForMapProvider =
 
       if (shops.isNotEmpty) {
         for (Shop shop in shops) {
-          ref.read(markersProvider.notifier).addMarker(
+          await ref.read(markersProvider.notifier).addMarker(
                 Marker(
                   markerId: MarkerId(shop.id),
                   position: LatLng(shop.latitude, shop.longitude),

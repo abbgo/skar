@@ -1,15 +1,25 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
+import 'package:skar/methods/pages/map.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/pages/shop/shop.dart';
+import 'package:skar/providers/local_storadge/setting.dart';
+import 'package:skar/providers/pages/map.dart';
 
 class ShopListTile extends StatelessWidget {
-  const ShopListTile({super.key, required this.shop});
+  const ShopListTile(
+      {super.key, required this.shop, required this.mapController});
 
   final Shop shop;
   static const double cardHeight = 100.0;
+  final Completer<GoogleMapController> mapController;
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +76,44 @@ class ShopListTile extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.travel_explore, color: elevatedButtonColor),
+            Consumer(
+              builder: (context, ref, child) {
+                bool isTM = ref.watch(isTmProvider);
+
+                return IconButton(
+                  onPressed: () async {
+                    await ref.read(markersProvider.notifier).removeAllMarkers();
+                    await ref.read(markersProvider.notifier).addMarker(
+                          Marker(
+                            markerId: MarkerId(shop.id),
+                            position: LatLng(shop.latitude, shop.longitude),
+                            onTap: () => goToPage(
+                              context,
+                              BottomNavigationPage(
+                                  shopID: shop.id, isMapPage: false),
+                              false,
+                            ),
+                            icon: await generateMarkerIconMethod(isTM, shop),
+                          ),
+                        );
+
+                    CameraPosition cameraPosition = CameraPosition(
+                      target: LatLng(shop.latitude, shop.longitude),
+                      zoom: 20,
+                    );
+
+                    GoogleMapController controller = await mapController.future;
+                    await controller.animateCamera(
+                      CameraUpdate.newCameraPosition(cameraPosition),
+                    );
+
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                    }
+                  },
+                  icon: Icon(Icons.travel_explore, color: elevatedButtonColor),
+                );
+              },
             ),
           ],
         ),

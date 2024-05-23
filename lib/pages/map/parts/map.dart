@@ -66,7 +66,7 @@ class Map extends StatelessWidget {
                         .changeForMap(shopParams);
                   },
                 ),
-                const MapSearchAndMapTypeButton(),
+                MapSearchAndMapTypeButton(mapController: mapController),
                 MapButtons(mapController: mapController),
                 const ShopList(),
               ],

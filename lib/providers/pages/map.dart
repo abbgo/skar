@@ -21,7 +21,7 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
     state = {...state, marker};
   }
 
-  void addMarker(Marker marker) {
+  Future<void> addMarker(Marker marker) async {
     List<MarkerId> markerIDs = state.map((e) => e.markerId).toList();
     if (!markerIDs.contains(marker.markerId)) {
       state = {...state, marker};
