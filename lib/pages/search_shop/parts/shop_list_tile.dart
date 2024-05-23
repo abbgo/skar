@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/shop/shop.dart';
 
 class ShopListTile extends StatelessWidget {
   const ShopListTile({super.key, required this.shop});
@@ -21,38 +23,46 @@ class ShopListTile extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: SizedBox(
-                height: cardHeight,
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
+              child: GestureDetector(
+                onTap: () =>
+                    goToPage(context, ShopPage(shopID: shop.id), false),
+                child: SizedBox(
+                  height: cardHeight,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                    ),
+                    child: showCachImageMethod(shop.image!),
                   ),
-                  child: showCachImageMethod(shop.image!),
                 ),
               ),
             ),
             Expanded(
               flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      shop.nameTM,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: elevatedButtonColor,
+              child: GestureDetector(
+                onTap: () =>
+                    goToPage(context, ShopPage(shopID: shop.id), false),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        shop.nameTM,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: elevatedButtonColor,
+                        ),
                       ),
-                    ),
-                    Text(
-                      shop.addressTM!,
-                      style: const TextStyle(fontSize: 12),
-                    ),
-                  ],
+                      Text(
+                        shop.addressTM!,
+                        style: const TextStyle(fontSize: 12),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
