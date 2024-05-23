@@ -38,3 +38,15 @@ final markersProvider =
     StateNotifierProvider.autoDispose<MarkersNotifier, Set<Marker>>(
   (ref) => MarkersNotifier(),
 );
+
+class HybridMapNotifier extends StateNotifier<bool> {
+  HybridMapNotifier() : super(false);
+
+  void change() {
+    state = !state;
+  }
+}
+
+final isHybridMapProvider = StateNotifierProvider<HybridMapNotifier, bool>(
+  (ref) => HybridMapNotifier(),
+);

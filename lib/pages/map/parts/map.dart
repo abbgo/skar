@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/models/shop.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
 import 'package:skar/pages/map/parts/search_button.dart';
 import 'package:skar/pages/map/parts/shop_list.dart';
@@ -25,7 +26,9 @@ class Map extends StatelessWidget {
     return Consumer(
       builder: (context, ref, child) {
         Set<Marker> markers = ref.watch(markersProvider);
-        var shopsForMap = ref.watch(shopsForMapProvider(context));
+        AsyncValue<ResultShop> shopsForMap =
+            ref.watch(shopsForMapProvider(context));
+        bool isHybridMap = ref.watch(isHybridMapProvider);
 
         return shopsForMap.when(
           skipLoadingOnReload: true,
@@ -40,7 +43,7 @@ class Map extends StatelessWidget {
                 GoogleMap(
                   markers: markers,
                   initialCameraPosition: _kGooglePlex,
-                  mapType: MapType.normal,
+                  mapType: isHybridMap ? MapType.hybrid : MapType.normal,
                   myLocationButtonEnabled: false,
                   onMapCreated: (GoogleMapController controller) {
                     if (!mapController.isCompleted) {
