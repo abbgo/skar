@@ -195,9 +195,7 @@ Row shopButtonsMethod(BuildContext context, Shop shop) {
             ),
           ),
           IconButton(
-            onPressed: () {
-              showCallBottomSheet(context, shop.phones!);
-            },
+            onPressed: () => showCallBottomSheet(context, shop.phones!),
             icon: const Icon(
               Icons.call,
               color: Colors.green,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/methods/navigation.dart';
+import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
@@ -50,14 +50,8 @@ Container listviewCallButtonMethod(BuildContext context, Shop shop) {
   return Container(
     alignment: Alignment.topCenter,
     child: IconButton(
-      onPressed: () {
-        FlutterPhoneDirectCaller.callNumber(shop.phones![0]);
-      },
-      icon: const Icon(
-        Icons.call,
-        color: Color(0xFF4AC76D),
-        size: 20,
-      ),
+      onPressed: () => showCallBottomSheet(context, shop.phones!),
+      icon: const Icon(Icons.call, color: Color(0xFF4AC76D), size: 20),
     ),
   );
 }
