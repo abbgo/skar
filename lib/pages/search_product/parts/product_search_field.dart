@@ -22,7 +22,7 @@ class ProductSearchField extends StatelessWidget {
         cursorColor: elevatedButtonColor,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(top: 0, left: 20),
-          hintText: AppLocalizations.of(context)!.searchShop,
+          hintText: AppLocalizations.of(context)!.searchProduct,
           filled: true,
           fillColor: Colors.white,
           enabledBorder: outlinedInputBorder(),

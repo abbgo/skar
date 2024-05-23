@@ -37,6 +37,6 @@
     "connectToInternet":"You are connected to the Internet !",
     "wentWrong":"Something went wrong !",
     "searchShop":"Search shop...",
-    "noResult":"No Result !"
-
+    "noResult":"No Result !",
+    "searchProduct":"Search product..."
 }
