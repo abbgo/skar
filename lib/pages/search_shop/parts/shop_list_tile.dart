@@ -55,23 +55,29 @@ class ShopListTile extends StatelessWidget {
                     goToPage(context, ShopPage(shopID: shop.id), false),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        shop.nameTM,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: elevatedButtonColor,
-                        ),
-                      ),
-                      Text(
-                        shop.addressTM!,
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                    ],
+                  child: Consumer(
+                    builder: (context, ref, child) {
+                      bool isTM = ref.watch(isTmProvider);
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            isTM ? shop.nameTM : shop.nameRU,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: elevatedButtonColor,
+                            ),
+                          ),
+                          Text(
+                            isTM ? shop.addressTM! : shop.addressRU!,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),
