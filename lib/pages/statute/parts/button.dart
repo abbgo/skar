@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/statute.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
@@ -26,12 +27,10 @@ class StatuteButton extends StatelessWidget {
               if (isChecked) {
                 ref.read(isFirstTimeProvider.notifier).update(false);
 
-                Navigator.pushReplacement(
+                goToPage(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        const BottomNavigationPage(shopID: "", isMapPage: true),
-                  ),
+                  const BottomNavigationPage(shopID: "", isMapPage: true),
+                  true,
                 );
               } else {
                 warningShowGeneralDialog(context);
