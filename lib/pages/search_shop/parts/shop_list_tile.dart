@@ -38,6 +38,7 @@ class ShopListTile extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       shop.nameTM,
@@ -54,6 +55,10 @@ class ShopListTile extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.travel_explore, color: elevatedButtonColor),
             ),
           ],
         ),
