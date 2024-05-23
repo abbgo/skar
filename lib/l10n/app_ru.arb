@@ -36,5 +36,6 @@
     "similarProducts":"Похожие продукты",
     "connectToInternet":"Вы подключены к Интернету !",
     "wentWrong":"Что-то пошло не так !",
-    "searchShop":"Поиск магазина..."
+    "searchShop":"Поиск магазина...",
+    "noResult":"Безрезультатно !"
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
-import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:skar/pages/search_shop/parts/search_shop_result.dart';
 import 'package:skar/providers/params/shop_param.dart';
@@ -22,28 +21,13 @@ class SearchShopPage extends ConsumerWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: ShopSearchField(),
+        ),
         body: Padding(
           padding:
               EdgeInsets.only(top: screenProperties(context).topSafeArea + 5),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        ref.read(shopSearchProvider.notifier).state = '';
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(Icons.arrow_back, color: elevatedButtonColor),
-                    ),
-                    ShopSearchField(),
-                  ],
-                ),
-                const SearchShopResult(),
-              ],
-            ),
-          ),
+          child: const SearchShopResult(),
         ),
       ),
     );

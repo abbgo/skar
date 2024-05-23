@@ -49,3 +49,28 @@ class SomeThingWrong extends StatelessWidget {
     );
   }
 }
+
+class NoResult extends StatelessWidget {
+  const NoResult({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.manage_search,
+            color: elevatedButtonColor,
+            size: 80,
+          ),
+          Text(
+            lang.noResult,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+}
