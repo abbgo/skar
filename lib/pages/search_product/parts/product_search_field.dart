@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/providers/pages/shop.dart';
 
 class ProductSearchField extends StatelessWidget {
   ProductSearchField({super.key});
@@ -11,34 +13,42 @@ class ProductSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      width: screenProperties(context).width - 70,
-      child: TextField(
-        controller: searchProductCtrl,
-        autofocus: true,
-        textInputAction: TextInputAction.search,
-        textAlignVertical: TextAlignVertical.center,
-        cursorColor: elevatedButtonColor,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(top: 0, left: 20),
-          hintText: AppLocalizations.of(context)!.searchProduct,
-          filled: true,
-          fillColor: Colors.white,
-          enabledBorder: outlinedInputBorder(),
-          focusedBorder: outlinedInputBorder(),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.search, color: elevatedButtonColor, size: 26),
-            onPressed: () async {
-              // ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
-              // ref.read(hasShopsProvider.notifier).state = true;
-            },
+    return Padding(
+      padding: const EdgeInsets.only(right: 25),
+      child: SizedBox(
+        height: 40,
+        width: screenProperties(context).width - 100,
+        child: TextField(
+          controller: searchProductCtrl,
+          autofocus: true,
+          textInputAction: TextInputAction.search,
+          textAlignVertical: TextAlignVertical.center,
+          cursorColor: elevatedButtonColor,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.only(top: 0, left: 20),
+            hintText: AppLocalizations.of(context)!.searchProduct,
+            filled: true,
+            fillColor: Colors.white,
+            enabledBorder: outlinedInputBorder(),
+            focusedBorder: outlinedInputBorder(),
+            suffixIcon: Consumer(
+              builder: (context, ref, child) {
+                return IconButton(
+                  icon: Icon(Icons.close, color: elevatedButtonColor, size: 24),
+                  onPressed: () async {
+                    ref.read(openSearchBarProvider.notifier).state = false;
+                    // ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
+                    // ref.read(hasShopsProvider.notifier).state = true;
+                  },
+                );
+              },
+            ),
           ),
+          onSubmitted: (value) async {
+            // ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
+            // ref.read(hasShopsProvider.notifier).state = true;
+          },
         ),
-        onSubmitted: (value) async {
-          // ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
-          // ref.read(hasShopsProvider.notifier).state = true;
-        },
       ),
     );
   }
