@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/search_product/search_product.dart';
+import 'package:skar/providers/pages/shop.dart';
 
 class ShopPageButtons extends StatelessWidget {
   const ShopPageButtons({super.key, required this.shop});
@@ -22,9 +24,16 @@ class ShopPageButtons extends StatelessWidget {
         ),
         Row(
           children: [
-            IconButton(
-              onPressed: () => goToPage(context, const SearchProduct(), false),
-              icon: Image.asset("assets/icons/search.png", height: 25),
+            Consumer(
+              builder: (context, ref, child) {
+                return IconButton(
+                  // onPressed: () =>
+                  //     goToPage(context, const SearchProduct(), false),
+                  onPressed: () =>
+                      ref.read(openSearchBarProvider.notifier).state = true,
+                  icon: Image.asset("assets/icons/search.png", height: 25),
+                );
+              },
             ),
             const IconButton(
               onPressed: null,

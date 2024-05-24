@@ -11,6 +11,7 @@ import 'package:skar/pages/shop/parts/shop_category.dart';
 import 'package:skar/pages/shop/parts/shop_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
+import 'package:skar/providers/pages/shop.dart';
 
 class ShopPage extends ConsumerWidget {
   const ShopPage({super.key, required this.shopID});
@@ -23,6 +24,7 @@ class ShopPage extends ConsumerWidget {
 
     bool isTM = ref.watch(isTmProvider);
     var shop = ref.watch(fetchShopProvider(shopID));
+    bool openSearchBar = ref.watch(openSearchBarProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -67,7 +69,9 @@ class ShopPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              ShopProducts(shopID: shopID),
+              !openSearchBar
+                  ? ShopProducts(shopID: shopID)
+                  : const SliverToBoxAdapter(),
             ],
           );
         },
