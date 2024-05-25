@@ -71,10 +71,7 @@ class ShopPage extends ConsumerWidget {
               ),
               !openSearchBar
                   ? ShopProducts(shopID: shopID)
-                  // : const SliverToBoxAdapter(),
-                  : const SliverFillRemaining(
-                      hasScrollBody: true,
-                    ),
+                  : const SliverFillRemaining(hasScrollBody: true),
             ],
           );
         },
