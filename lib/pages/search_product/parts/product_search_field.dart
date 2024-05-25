@@ -36,6 +36,8 @@ class ProductSearchField extends ConsumerWidget {
               icon: Icon(Icons.close, color: elevatedButtonColor, size: 24),
               onPressed: () {
                 ref.read(openSearchBarProvider.notifier).state = false;
+                ref.read(productSearchProvider.notifier).state = '';
+                ref.read(hasProductsProvider.notifier).state = true;
               },
             ),
           ),

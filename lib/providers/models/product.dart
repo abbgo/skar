@@ -22,6 +22,8 @@ var fetchProductsProvider =
             search,
           );
 
+      ref.read(hasProductsProvider.notifier).state = products.isNotEmpty;
+
       result = ResultProduct(error: '', products: products);
     } catch (e) {
       result = ResultProduct(error: e.toString());

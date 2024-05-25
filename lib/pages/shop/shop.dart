@@ -11,7 +11,7 @@ import 'package:skar/pages/shop/parts/shop_category.dart';
 import 'package:skar/pages/shop/parts/shop_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
-import 'package:skar/providers/pages/shop.dart';
+import 'package:skar/providers/params/product_param.dart';
 
 class ShopPage extends ConsumerWidget {
   const ShopPage({super.key, required this.shopID});
@@ -24,9 +24,10 @@ class ShopPage extends ConsumerWidget {
 
     bool isTM = ref.watch(isTmProvider);
     var shop = ref.watch(fetchShopProvider(shopID));
-    bool openSearchBar = ref.watch(openSearchBarProvider);
+    bool hasProducts = ref.watch(hasProductsProvider);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: shop.when(
         data: (shopData) {
@@ -69,9 +70,12 @@ class ShopPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              !openSearchBar
+              hasProducts
                   ? ShopProducts(shopID: shopID)
-                  : const SliverFillRemaining(hasScrollBody: true),
+                  : const SliverFillRemaining(
+                      hasScrollBody: true,
+                      child: NoResult(),
+                    ),
             ],
           );
         },
