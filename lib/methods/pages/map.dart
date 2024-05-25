@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/shop.dart';
@@ -95,13 +96,17 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
     height: double.infinity,
     child: ClipRRect(
       borderRadius: BorderRadius.circular(10),
-      child: GestureDetector(
-        onTap: () => goToPage(
-          context,
-          BottomNavigationPage(shopID: shop.id, isMapPage: false),
-          false,
-        ),
-        child: showCachImageMethod(shop.image!),
+      child: Consumer(
+        builder: (context, ref, child) {
+          return GestureDetector(
+            onTap: () => goToPage(
+              context,
+              BottomNavigationPage(shopID: shop.id, isMapPage: false),
+              false,
+            ),
+            child: showCachImageMethod(shop.image!),
+          );
+        },
       ),
     ),
   );

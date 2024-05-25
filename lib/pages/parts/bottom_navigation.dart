@@ -23,19 +23,21 @@ class BottomNavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
-    List<Widget> pages = [
-      isMapPage ? const MapPage() : ShopPage(shopID: shopID),
-      const LikesPage(),
-      const SearchPage(),
-      const SettingPage(),
-    ];
 
     return Consumer(
       builder: (context, ref, child) {
         int selectedIndex = ref.watch(selectedBottomIndexProvider);
 
+        List<Widget> pages = [
+          isMapPage ? const MapPage() : ShopPage(shopID: shopID),
+          const LikesPage(),
+          const SearchPage(),
+          const SettingPage(),
+        ];
+
         return Scaffold(
           resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
           body: IndexedStack(
             index: selectedIndex,
             children: pages,

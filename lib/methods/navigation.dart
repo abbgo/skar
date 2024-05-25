@@ -5,13 +5,15 @@ goToPage(
   Widget page,
   bool forReplace,
 ) {
-  return forReplace
-      ? Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => page),
-        )
-      : Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => page),
-        );
+  return context.mounted
+      ? forReplace
+          ? Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => page),
+            )
+          : Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => page),
+            )
+      : null;
 }
