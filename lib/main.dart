@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(elevatedButtonColor),
+            backgroundColor: WidgetStateProperty.all(elevatedButtonColor),
           ),
         ),
       ),

@@ -28,8 +28,6 @@ class ShopPageButtons extends ConsumerWidget {
             : Row(
                 children: [
                   IconButton(
-                    // onPressed: () =>
-                    //     goToPage(context, const SearchProduct(), false),
                     onPressed: () =>
                         ref.read(openSearchBarProvider.notifier).state = true,
                     icon: Image.asset("assets/icons/search.png", height: 25),

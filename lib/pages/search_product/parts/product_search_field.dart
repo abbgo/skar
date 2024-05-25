@@ -5,14 +5,15 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/pages/shop.dart';
+import 'package:skar/providers/params/product_param.dart';
 
-class ProductSearchField extends StatelessWidget {
+class ProductSearchField extends ConsumerWidget {
   ProductSearchField({super.key});
 
   final TextEditingController searchProductCtrl = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(right: 25),
       child: SizedBox(
@@ -31,22 +32,17 @@ class ProductSearchField extends StatelessWidget {
             fillColor: Colors.white,
             enabledBorder: outlinedInputBorder(),
             focusedBorder: outlinedInputBorder(),
-            suffixIcon: Consumer(
-              builder: (context, ref, child) {
-                return IconButton(
-                  icon: Icon(Icons.close, color: elevatedButtonColor, size: 24),
-                  onPressed: () async {
-                    ref.read(openSearchBarProvider.notifier).state = false;
-                    // ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
-                    // ref.read(hasShopsProvider.notifier).state = true;
-                  },
-                );
+            suffixIcon: IconButton(
+              icon: Icon(Icons.close, color: elevatedButtonColor, size: 24),
+              onPressed: () {
+                ref.read(openSearchBarProvider.notifier).state = false;
               },
             ),
           ),
           onSubmitted: (value) async {
-            // ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
-            // ref.read(hasShopsProvider.notifier).state = true;
+            ref.read(productSearchProvider.notifier).state =
+                searchProductCtrl.text;
+            ref.read(hasProductsProvider.notifier).state = true;
           },
         ),
       ),
