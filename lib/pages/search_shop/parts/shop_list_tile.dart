@@ -8,7 +8,6 @@ import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
-import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
@@ -95,8 +94,7 @@ class ShopListTile extends StatelessWidget {
                             position: LatLng(shop.latitude, shop.longitude),
                             onTap: () => goToPage(
                               context,
-                              BottomNavigationPage(
-                                  shopID: shop.id, isMapPage: false),
+                              ShopPage(shopID: shop.id),
                               false,
                             ),
                             icon: await generateMarkerIconMethod(isTM, shop),

@@ -27,11 +27,7 @@ class StatuteButton extends StatelessWidget {
               if (isChecked) {
                 ref.read(isFirstTimeProvider.notifier).update(false);
 
-                goToPage(
-                  context,
-                  const BottomNavigationPage(shopID: "", isMapPage: true),
-                  true,
-                );
+                goToPage(context, const BottomNavigationPage(), true);
               } else {
                 warningShowGeneralDialog(context);
               }

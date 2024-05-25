@@ -22,8 +22,6 @@ class HomePage extends ConsumerWidget {
       },
     );
 
-    return isFirstTime
-        ? const StatutePage()
-        : const BottomNavigationPage(isMapPage: true, shopID: "");
+    return isFirstTime ? const StatutePage() : const BottomNavigationPage();
   }
 }

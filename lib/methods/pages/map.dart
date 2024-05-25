@@ -5,7 +5,7 @@ import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
-import 'package:skar/pages/parts/bottom_navigation.dart';
+import 'package:skar/pages/shop/shop.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 
 IconButton locationButtonMethod(BuildContext context, Function()? onPressed) {
@@ -99,11 +99,7 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
       child: Consumer(
         builder: (context, ref, child) {
           return GestureDetector(
-            onTap: () => goToPage(
-              context,
-              BottomNavigationPage(shopID: shop.id, isMapPage: false),
-              false,
-            ),
+            onTap: () => goToPage(context, ShopPage(shopID: shop.id), false),
             child: showCachImageMethod(shop.image!),
           );
         },

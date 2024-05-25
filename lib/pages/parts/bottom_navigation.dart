@@ -7,18 +7,12 @@ import 'package:skar/pages/favorites.dart';
 import 'package:skar/pages/map/map.dart';
 import 'package:skar/pages/search.dart';
 import 'package:skar/pages/setting.dart';
-import 'package:skar/pages/shop/shop.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BottomNavigationPage extends StatelessWidget {
   const BottomNavigationPage({
     super.key,
-    required this.isMapPage,
-    required this.shopID,
   });
-
-  final bool isMapPage;
-  final String shopID;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +23,7 @@ class BottomNavigationPage extends StatelessWidget {
         int selectedIndex = ref.watch(selectedBottomIndexProvider);
 
         List<Widget> pages = [
-          isMapPage ? const MapPage() : ShopPage(shopID: shopID),
+          const MapPage(),
           const LikesPage(),
           const SearchPage(),
           const SettingPage(),
