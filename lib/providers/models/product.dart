@@ -1,12 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/models/product.dart';
+import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/services/product.dart';
 
 final productApiProvider = Provider<ProductService>((ref) => ProductService());
 
-var fetchProductsProvider = FutureProvider.family<ResultProduct, ProductParams>(
+var fetchProductsProvider =
+    FutureProvider.autoDispose.family<ResultProduct, ProductParams>(
   (ref, params) async {
     ResultProduct result = ResultProduct.defaultResult();
+    String search = ref.watch(productSearchProvider);
 
     try {
       List<Product> products = await ref.read(productApiProvider).fetchProducts(
@@ -16,6 +19,7 @@ var fetchProductsProvider = FutureProvider.family<ResultProduct, ProductParams>(
             params.categories,
             params.shopID,
             params.productID,
+            search,
           );
 
       result = ResultProduct(error: '', products: products);
