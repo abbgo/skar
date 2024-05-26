@@ -62,10 +62,7 @@ class ShopProducts extends ConsumerWidget {
                     child: GestureDetector(
                       onTap: () => goToPage(
                         context,
-                        ProductPage(
-                          productID: product.id,
-                          shopID: shopID,
-                        ),
+                        ProductPage(productID: product.id, shopID: shopID),
                         false,
                       ),
                       child: Padding(

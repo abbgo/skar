@@ -22,7 +22,9 @@ var fetchProductsProvider =
             search,
           );
 
-      ref.read(hasProductsProvider.notifier).state = products.isNotEmpty;
+      if (params.api == 'products') {
+        ref.read(hasProductsProvider.notifier).state = products.isNotEmpty;
+      }
 
       result = ResultProduct(error: '', products: products);
     } catch (e) {
