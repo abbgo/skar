@@ -13,12 +13,17 @@ import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
 
 class ShopListTile extends StatelessWidget {
-  const ShopListTile(
-      {super.key, required this.shop, required this.mapController});
+  const ShopListTile({
+    super.key,
+    required this.shop,
+    required this.mapController,
+    required this.mapPageContext,
+  });
 
   final Shop shop;
   static const double cardHeight = 100.0;
   final Completer<GoogleMapController> mapController;
+  final BuildContext mapPageContext;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +98,7 @@ class ShopListTile extends StatelessWidget {
                             markerId: MarkerId(shop.id),
                             position: LatLng(shop.latitude, shop.longitude),
                             onTap: () => goToPage(
-                              context,
+                              mapPageContext,
                               ShopPage(shopID: shop.id),
                               false,
                             ),

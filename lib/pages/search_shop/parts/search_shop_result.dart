@@ -13,10 +13,15 @@ import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
 class SearchShopResult extends ConsumerWidget {
-  const SearchShopResult({super.key, required this.mapController});
+  const SearchShopResult({
+    super.key,
+    required this.mapController,
+    required this.mapPageContext,
+  });
 
   static const pageSize = 10;
   final Completer<GoogleMapController> mapController;
+  final BuildContext mapPageContext;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,6 +59,7 @@ class SearchShopResult extends ConsumerWidget {
                         return ShopListTile(
                           shop: shop,
                           mapController: mapController,
+                          mapPageContext: mapPageContext,
                         );
                       },
                       error: (error, stackTrace) => errorMethod(error),

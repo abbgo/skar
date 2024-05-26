@@ -8,9 +8,14 @@ import 'package:skar/pages/search_shop/parts/search_shop_result.dart';
 import 'package:skar/providers/params/shop_param.dart';
 
 class SearchShopPage extends ConsumerWidget {
-  const SearchShopPage({super.key, required this.mapController});
+  const SearchShopPage({
+    super.key,
+    required this.mapController,
+    required this.mapPageContext,
+  });
 
   final Completer<GoogleMapController> mapController;
+  final BuildContext mapPageContext;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +36,10 @@ class SearchShopPage extends ConsumerWidget {
           scrolledUnderElevation: 0,
           title: ShopSearchField(),
         ),
-        body: SearchShopResult(mapController: mapController),
+        body: SearchShopResult(
+          mapController: mapController,
+          mapPageContext: mapPageContext,
+        ),
       ),
     );
   }

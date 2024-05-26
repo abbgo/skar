@@ -25,7 +25,13 @@ class MapSearchAndMapTypeButton extends StatelessWidget {
           IconButton(
             style: IconButton.styleFrom(backgroundColor: Colors.white),
             onPressed: () => goToPage(
-                context, SearchShopPage(mapController: mapController), false),
+              context,
+              SearchShopPage(
+                mapController: mapController,
+                mapPageContext: context,
+              ),
+              false,
+            ),
             icon: Icon(Icons.search, color: elevatedButtonColor, size: 22),
           ),
           Consumer(
