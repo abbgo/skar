@@ -139,10 +139,7 @@ class ShopCategory extends ConsumerWidget {
                             categoryID: category.id,
                             name: isTM ? category.nameTM : category.nameRU,
                             childCategories: category.childCategories,
-                            selectedCategories: List.generate(
-                              category.childCategories!.length,
-                              (index) => category.childCategories![index].id,
-                            ),
+                            selectedCategories: [category.id],
                           ),
                         );
                   },
