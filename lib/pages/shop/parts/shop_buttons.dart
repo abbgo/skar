@@ -24,7 +24,7 @@ class ShopPageButtons extends ConsumerWidget {
           icon: Icon(Icons.adaptive.arrow_back, color: Colors.black),
         ),
         openSearchBar
-            ? ProductSearchField()
+            ? const ProductSearchField()
             : Row(
                 children: [
                   IconButton(

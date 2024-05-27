@@ -29,15 +29,15 @@ class ShopSearchField extends ConsumerWidget {
           enabledBorder: outlinedInputBorder(),
           focusedBorder: outlinedInputBorder(),
           suffixIcon: IconButton(
-            icon: Icon(Icons.search, color: elevatedButtonColor, size: 26),
+            icon: Icon(Icons.clear, color: elevatedButtonColor, size: 26),
             onPressed: () async {
-              ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
-              ref.read(hasShopsProvider.notifier).state = true;
+              ref.read(shopSearchProvider.notifier).state = '';
+              searchShopCtrl.clear();
             },
           ),
         ),
         onSubmitted: (value) async {
-          ref.read(shopSearchProvider.notifier).state = searchShopCtrl.text;
+          ref.read(shopSearchProvider.notifier).state = value;
           ref.read(hasShopsProvider.notifier).state = true;
         },
       ),
