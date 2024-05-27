@@ -79,9 +79,7 @@ class ShopPage extends ConsumerWidget {
             ],
           );
         },
-        error: (error, stackTrace) => Center(
-          child: Text(error.toString(), textAlign: TextAlign.center),
-        ),
+        error: (error, stackTrace) => errorMethod(error),
         loading: () => loadWidget,
       ),
     );
