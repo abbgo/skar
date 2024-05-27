@@ -42,10 +42,6 @@ class ShopCategoriesNotifier extends StateNotifier<List<ShopCategories>> {
   Future<void> deleteCategoriesByIndex(int index) async {
     state = state.sublist(0, index + 1);
   }
-
-  Future<void> clearCategories() async {
-    state = [];
-  }
 }
 
 var shopCategoriesProvider = StateNotifierProvider.autoDispose<

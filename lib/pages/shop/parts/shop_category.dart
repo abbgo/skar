@@ -5,6 +5,7 @@ import 'package:skar/models/category.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/category.dart';
+import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/services/category.dart';
 
 class ShopCategory extends ConsumerWidget {
@@ -44,6 +45,7 @@ class ShopCategory extends ConsumerWidget {
                           await ref
                               .read(shopCategoriesProvider.notifier)
                               .deleteCategoriesByIndex(0);
+                          ref.read(hasProductsProvider.notifier).state = true;
                         },
                         style: IconButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 3),
@@ -74,6 +76,9 @@ class ShopCategory extends ConsumerWidget {
                                           }
                                         }
                                       }
+                                      ref
+                                          .read(hasProductsProvider.notifier)
+                                          .state = true;
                                     },
                                     style: TextButton.styleFrom(
                                       padding: const EdgeInsets.symmetric(
@@ -142,6 +147,7 @@ class ShopCategory extends ConsumerWidget {
                             selectedCategories: [category.id],
                           ),
                         );
+                    ref.read(hasProductsProvider.notifier).state = true;
                   },
                   child: Text(
                     isTM ? category.nameTM : category.nameRU,
