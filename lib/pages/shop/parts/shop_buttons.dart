@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/search_product/parts/product_search_field.dart';
+import 'package:skar/pages/shop/parts/shop_favorite_button.dart';
 import 'package:skar/providers/pages/shop.dart';
 
 class ShopPageButtons extends ConsumerWidget {
@@ -32,10 +33,7 @@ class ShopPageButtons extends ConsumerWidget {
                         ref.read(openSearchBarProvider.notifier).state = true,
                     icon: Image.asset("assets/icons/search.png", height: 25),
                   ),
-                  const IconButton(
-                    onPressed: null,
-                    icon: Icon(Icons.favorite_border, color: Colors.black),
-                  ),
+                  ShopFavoriteButton(shopID: shop.id),
                   IconButton(
                     onPressed: () => showCallBottomSheet(context, shop.phones!),
                     icon: const Icon(Icons.call, color: Colors.green),
