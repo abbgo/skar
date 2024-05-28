@@ -28,9 +28,11 @@ class ShopFavoriteButton extends ConsumerWidget {
             Favorite favorite = Favorite(id: shopID, type: FavoriteType.shop);
             if (data) {
               await removeFromFavorites(favorite);
+              ref.invalidate(hasInFavoritesProvider(favorite));
               return;
             }
             await createFavorite(favorite);
+            ref.invalidate(hasInFavoritesProvider(favorite));
           },
           icon: Icon(
             data ? Icons.favorite : Icons.favorite_border,
