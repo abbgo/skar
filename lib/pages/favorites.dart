@@ -10,10 +10,6 @@ class LikesPage extends StatefulWidget {
 class _LikesPageState extends State<LikesPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Likes Page"),
-      ),
-    );
+    return const Center(child: Text("Likes Page"));
   }
 }

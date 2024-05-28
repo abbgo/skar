@@ -12,6 +12,7 @@ class StatutePage extends StatelessWidget {
     var lang = AppLocalizations.of(context)!;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(24, 50, 24, 15),
         child: Column(
