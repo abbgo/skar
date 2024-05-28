@@ -39,23 +39,29 @@ class BottomNavigationPage extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             items: [
               bottomNavigationBarItemMethod(
-                  lang.map, const Icon(Icons.travel_explore, size: 24)),
-              bottomNavigationBarItemMethod(lang.myFavorites,
-                  const Icon(Icons.favorite_border, size: 24)),
+                lang.map,
+                const Icon(Icons.travel_explore, size: 24),
+              ),
               bottomNavigationBarItemMethod(
-                  lang.search,
-                  Image.asset(
-                    "assets/icons/search.png",
-                    color: elevatedButtonColor,
-                    height: 24,
-                  )),
+                lang.myFavorites,
+                const Icon(Icons.favorite_border, size: 24),
+              ),
               bottomNavigationBarItemMethod(
-                  lang.settings,
-                  Image.asset(
-                    "assets/icons/setting.png",
-                    color: elevatedButtonColor,
-                    height: 22,
-                  )),
+                lang.search,
+                Image.asset(
+                  "assets/icons/search.png",
+                  color: elevatedButtonColor,
+                  height: 24,
+                ),
+              ),
+              bottomNavigationBarItemMethod(
+                lang.settings,
+                Image.asset(
+                  "assets/icons/setting.png",
+                  color: elevatedButtonColor,
+                  height: 22,
+                ),
+              ),
             ],
             elevation: 0,
             selectedItemColor: elevatedButtonColor,

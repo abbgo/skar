@@ -29,44 +29,52 @@ Padding shopCardTextMethod(
 
 showCallBottomSheet(BuildContext context, List<dynamic> shopPhones) {
   showModalBottomSheet(
+    backgroundColor: Colors.transparent,
     context: context,
-    builder: (context) => Wrap(
-      children: shopPhones
-          .map(
-            (e) => ListTile(
-              title: Text(
-                e.toString(),
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                textAlign: TextAlign.center,
-              ),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    onPressed: () async {
-                      await Clipboard.setData(
-                          ClipboardData(text: e.toString()));
-                    },
-                    icon: const Icon(
-                      Icons.copy_all,
-                      color: Colors.black,
+    builder: (context) => Container(
+      margin: const EdgeInsets.all(20),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      child: Wrap(
+        children: shopPhones
+            .map(
+              (e) => ListTile(
+                title: Text(
+                  e.toString(),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
+                  textAlign: TextAlign.center,
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () async {
+                        await Clipboard.setData(
+                            ClipboardData(text: e.toString()));
+                      },
+                      icon: const Icon(
+                        Icons.copy_all,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      FlutterPhoneDirectCaller.callNumber(e.toString());
-                    },
-                    icon: const Icon(
-                      Icons.call,
-                      color: Colors.green,
+                    IconButton(
+                      onPressed: () {
+                        FlutterPhoneDirectCaller.callNumber(e.toString());
+                      },
+                      icon: const Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          )
-          .toList(),
+            )
+            .toList(),
+      ),
     ),
   );
 }
