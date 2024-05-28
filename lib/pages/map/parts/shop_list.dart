@@ -58,7 +58,7 @@ class ShopList extends ConsumerWidget {
                     final indexInPage = index % pageSize;
 
                     ShopParams shopParams =
-                        ShopParams(page: page, isBrend: true);
+                        ShopParams(page: page, isRandom: true);
 
                     final AsyncValue<ResultShop> responseAsync =
                         ref.watch(fetchBrendShopsProvider(shopParams));

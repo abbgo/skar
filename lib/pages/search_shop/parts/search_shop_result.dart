@@ -40,7 +40,7 @@ class SearchShopResult extends ConsumerWidget {
                     final indexInPage = index % pageSize;
 
                     ShopParams shopParams =
-                        ShopParams(page: page, isBrend: false);
+                        ShopParams(page: page, isRandom: false);
 
                     final AsyncValue<ResultShop> responseAsync =
                         ref.watch(fetchShopsProvider(shopParams));

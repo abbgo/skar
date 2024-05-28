@@ -54,7 +54,7 @@ var fetchShopsProvider =
 
       List<Shop> shops = await ref.read(apiProvider).fetchShops(
             page: shopParams.page!,
-            isBrend: shopParams.isBrend!,
+            isRandom: shopParams.isRandom!,
             search: search,
           );
 
@@ -76,7 +76,7 @@ var fetchBrendShopsProvider = FutureProvider.family<ResultShop, ShopParams>(
     try {
       List<Shop> shops = await ref.read(apiProvider).fetchShops(
             page: shopParams.page!,
-            isBrend: shopParams.isBrend!,
+            isRandom: shopParams.isRandom!,
             search: '',
           );
       result = ResultShop(shops: shops, error: '');

@@ -1,10 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
 
@@ -38,14 +35,14 @@ class ShopService {
   // fetch shops -------------------------------------------------------
   Future<List<Shop>> fetchShops({
     required int page,
-    required bool isBrend,
+    required bool isRandom,
     required String search,
   }) async {
     Uri uri = Uri.parse('$apiUrl/shops').replace(
       queryParameters: {
         'limit': '10',
         'page': '$page',
-        'is_brend': isBrend.toString(),
+        'is_random': isRandom.toString(),
         'search': search,
       },
     );
@@ -89,25 +86,25 @@ class ShopParams extends Equatable {
   final double? latitude;
   final double? longitude;
   final int? kilometer;
-  final bool? isBrend;
+  final bool? isRandom;
   final int? page;
 
   const ShopParams({
     this.latitude,
     this.longitude,
     this.kilometer,
-    this.isBrend,
+    this.isRandom,
     this.page,
   });
 
   @override
-  List<Object?> get props => [latitude, longitude, kilometer, isBrend, page];
+  List<Object?> get props => [latitude, longitude, kilometer, isRandom, page];
 
   ShopParams copyWith({
     double? latitude,
     double? longitude,
     int? kilometer,
-    bool? isBrend,
+    bool? isRandom,
     String? search,
     int? page,
   }) {
@@ -115,7 +112,7 @@ class ShopParams extends Equatable {
       latitude: latitude ?? this.latitude,
       longitude: longitude ?? this.longitude,
       kilometer: kilometer ?? this.kilometer,
-      isBrend: isBrend ?? this.isBrend,
+      isRandom: isRandom ?? this.isRandom,
       page: page ?? this.page,
     );
   }
