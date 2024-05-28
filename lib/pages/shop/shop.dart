@@ -30,6 +30,7 @@ class ShopPage extends ConsumerWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: shop.when(
+        skipError: true,
         data: (shopData) {
           if (shopData.error != '') {
             return const SomeThingWrong();

@@ -20,6 +20,7 @@ class ShopCategory extends ConsumerWidget {
     var shopCategories = ref.watch(shopCategoriesProvider);
 
     return categories.when(
+      skipError: true,
       data: (categoriesData) {
         if (categoriesData.error != '') {
           return const SomeThingWrong();

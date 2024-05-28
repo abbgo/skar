@@ -8,7 +8,6 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
 import 'package:skar/pages/map/parts/search_button.dart';
 import 'package:skar/pages/map/parts/shop_list.dart';
-import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/params/shop_param.dart';
@@ -31,12 +30,9 @@ class Map extends StatelessWidget {
         bool isHybridMap = ref.watch(isHybridMapProvider);
 
         return shopsForMap.when(
+          skipError: true,
           skipLoadingOnReload: true,
           data: (resultShopsForMap) {
-            if (resultShopsForMap.error != '') {
-              return const SomeThingWrong();
-            }
-
             return Stack(
               alignment: Alignment.bottomRight,
               children: [

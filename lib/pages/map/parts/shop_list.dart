@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
-import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
@@ -64,9 +63,10 @@ class ShopList extends ConsumerWidget {
                         ref.watch(fetchBrendShopsProvider(shopParams));
 
                     return responseAsync.when(
+                      skipError: true,
                       data: (response) {
                         if (response.error != '') {
-                          return const SomeThingWrong();
+                          return null;
                         }
 
                         if (indexInPage >= response.shops!.length) {

@@ -52,6 +52,7 @@ class _ProductPageState extends State<ProductPage> {
                 int selectedColors = ref.watch(selectedProductColorProvider);
 
                 return product.when(
+                  skipError: true,
                   data: (productData) {
                     if (productData.error != '') {
                       return const SomeThingWrong();

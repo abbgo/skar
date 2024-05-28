@@ -5,7 +5,6 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/shop.dart';
-import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/product/product.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/category.dart';
@@ -48,9 +47,10 @@ class ShopProducts extends ConsumerWidget {
               var responseAsync = ref.watch(fetchProductsProvider(params));
 
               return responseAsync.when(
+                skipError: true,
                 data: (productsData) {
                   if (productsData.error != '') {
-                    return const SomeThingWrong();
+                    return null;
                   }
 
                   if (indexInPage >= productsData.products!.length) {

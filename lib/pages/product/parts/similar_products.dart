@@ -39,6 +39,7 @@ class SimilarProducts extends ConsumerWidget {
     var similarProducts = ref.watch(fetchProductsProvider(params));
 
     return similarProducts.when(
+      skipError: true,
       data: (productsData) {
         if (productsData.error != '') {
           return const SomeThingWrong();

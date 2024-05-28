@@ -48,9 +48,10 @@ class SearchShopResult extends ConsumerWidget {
                     return responseAsync.when(
                       skipLoadingOnRefresh: true,
                       skipLoadingOnReload: true,
+                      skipError: true,
                       data: (response) {
                         if (response.error != '') {
-                          return const SomeThingWrong();
+                          return null;
                         }
                         if (indexInPage >= response.shops!.length) {
                           return null;
