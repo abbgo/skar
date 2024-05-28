@@ -26,9 +26,16 @@ class ShopFavoriteButton extends ConsumerWidget {
         return IconButton(
           onPressed: () async {
             Favorite favorite = Favorite(id: shopID, type: FavoriteType.shop);
+            if (data) {
+              await removeFromFavorites(favorite);
+              return;
+            }
             await createFavorite(favorite);
           },
-          icon: const Icon(Icons.favorite_border, color: Colors.black),
+          icon: Icon(
+            data ? Icons.favorite : Icons.favorite_border,
+            color: data ? Colors.red : Colors.black,
+          ),
         );
       },
       error: (error, stackTrace) => errorMethod(error),

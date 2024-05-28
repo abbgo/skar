@@ -21,3 +21,10 @@ Future<bool> hasInFavorites(String id, int type) async {
   }
   return false;
 }
+
+Future<void> removeFromFavorites(Favorite favorite) async {
+  if (db.isOpen) {
+    await db.rawDelete(
+        "DELETE FROM favorites WHERE id='${favorite.id}' AND type=${favorite.type}");
+  }
+}
