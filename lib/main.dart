@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:skar/database/config.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/start.dart';
@@ -10,14 +11,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  prefs = await SharedPreferences.getInstance();
-
+  prefs = await SharedPreferences.getInstance(); // shared preferences
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]);
-  await dotenv.load(fileName: ".env");
-  runApp(const ProviderScope(child: MyApp()));
+  ]); // app dine portrait gornusinde bolmagy ucin
+  await createDB(); // create database
+  await dotenv.load(fileName: ".env"); // load .env file
+  runApp(const ProviderScope(child: MyApp())); // run app
 }
 
 class MyApp extends StatelessWidget {
