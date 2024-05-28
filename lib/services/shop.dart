@@ -37,6 +37,7 @@ class ShopService {
     required int page,
     required bool isRandom,
     required String search,
+    required String lang,
   }) async {
     Uri uri = Uri.parse('$apiUrl/shops').replace(
       queryParameters: {
@@ -44,6 +45,7 @@ class ShopService {
         'page': '$page',
         'is_random': isRandom.toString(),
         'search': search,
+        'lang': lang,
       },
     );
 

@@ -51,11 +51,13 @@ var fetchShopsProvider =
 
     try {
       String search = ref.watch(shopSearchProvider);
+      bool isTM = ref.read(isTmProvider);
 
       List<Shop> shops = await ref.read(apiProvider).fetchShops(
             page: shopParams.page!,
             isRandom: shopParams.isRandom!,
             search: search,
+            lang: isTM ? 'tm' : 'ru',
           );
 
       ref.read(hasShopsProvider.notifier).state = shops.isNotEmpty;
@@ -78,6 +80,7 @@ var fetchBrendShopsProvider = FutureProvider.family<ResultShop, ShopParams>(
             page: shopParams.page!,
             isRandom: shopParams.isRandom!,
             search: '',
+            lang: '',
           );
       result = ResultShop(shops: shops, error: '');
     } catch (e) {
