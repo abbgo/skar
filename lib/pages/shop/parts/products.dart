@@ -4,9 +4,8 @@ import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
-import 'package:skar/methods/pages/shop.dart';
+import 'package:skar/pages/parts/product_card/product_card.dart';
 import 'package:skar/pages/product/product.dart';
-import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/category.dart';
 import 'package:skar/providers/models/product.dart';
 import 'package:skar/services/product.dart';
@@ -21,7 +20,6 @@ class ShopProducts extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ScreenProperties screenSize = screenProperties(context);
     var shopCategories = ref.watch(shopCategoriesProvider);
-    bool isTM = ref.watch(isTmProvider);
 
     return shopCategories.isNotEmpty
         ? SliverGrid.builder(
@@ -69,18 +67,9 @@ class ShopProducts extends ConsumerWidget {
                         padding: index % 2 == 0
                             ? const EdgeInsets.only(left: 5)
                             : const EdgeInsets.only(right: 5),
-                        child: Card(
-                          surfaceTintColor: Colors.white,
-                          color: Colors.white,
-                          elevation: 3,
-                          child: productStackMethod(
-                            product,
-                            isTM,
-                            screenSize.height * 0.25,
-                            double.infinity,
-                            16,
-                            14,
-                          ),
+                        child: ProductCard(
+                          product: product,
+                          forSimilarProducts: false,
                         ),
                       ),
                     ),

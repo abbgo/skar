@@ -46,6 +46,7 @@ class _ProductPageState extends State<ProductPage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Material(
+            color: Colors.white,
             child: Consumer(
               builder: (context, ref, child) {
                 var product = ref.watch(fetchProductProvider(widget.productID));

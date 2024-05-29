@@ -6,10 +6,9 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/product.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/pages/parts/error.dart';
+import 'package:skar/pages/parts/product_card/product_card.dart';
 import 'package:skar/pages/product/product.dart';
-import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/product.dart';
 import 'package:skar/services/product.dart';
 
@@ -25,7 +24,6 @@ class SimilarProducts extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ScreenProperties screenSize = screenProperties(context);
-    bool isTM = ref.watch(isTmProvider);
 
     ProductParams params = ProductParams(
       api: 'products/similars',
@@ -72,18 +70,9 @@ class SimilarProducts extends ConsumerWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(right: 5),
-                      child: Card(
-                        surfaceTintColor: Colors.white,
-                        color: Colors.white,
-                        elevation: 3,
-                        child: productStackMethod(
-                          productsData.products![index],
-                          isTM,
-                          screenSize.height * 0.25,
-                          screenSize.width * 0.5 - 30,
-                          16,
-                          14,
-                        ),
+                      child: ProductCard(
+                        product: productsData.products![index],
+                        forSimilarProducts: true,
                       ),
                     ),
                   );
