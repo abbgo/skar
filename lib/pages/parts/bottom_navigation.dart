@@ -31,7 +31,6 @@ class BottomNavigationPage extends StatelessWidget {
 
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.white,
           body: IndexedStack(
             index: selectedIndex,
             children: pages,

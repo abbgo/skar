@@ -29,9 +29,7 @@ class SearchShopPage extends ConsumerWidget {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
           elevation: 0,
           scrolledUnderElevation: 0,
           title: ShopSearchField(),

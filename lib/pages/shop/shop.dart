@@ -28,7 +28,6 @@ class ShopPage extends ConsumerWidget {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
       body: shop.when(
         skipError: true,
         data: (shopData) {
