@@ -31,6 +31,9 @@ class MyApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'HeyWowRegular',
+        textTheme:
+            Theme.of(context).textTheme.apply(fontFamily: 'HeyWowRegular'),
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
