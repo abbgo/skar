@@ -22,8 +22,8 @@ class FavoritesPage extends ConsumerWidget {
           const Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              FavoritePageTabBar(text: 'Dukan'),
-              FavoritePageTabBar(text: 'Haryt'),
+              FavoritePageTabBar(text: 'Dukan', index: 0),
+              FavoritePageTabBar(text: 'Haryt', index: 1),
             ],
           ),
           Expanded(
