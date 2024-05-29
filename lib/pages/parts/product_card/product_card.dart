@@ -77,7 +77,7 @@ class ProductCard extends ConsumerWidget {
               ),
             ],
           ),
-          const ProductFavoriteButton(),
+          ProductFavoriteButton(productID: product.id),
         ],
       ),
     );
