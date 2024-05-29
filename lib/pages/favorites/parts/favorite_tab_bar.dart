@@ -18,26 +18,29 @@ class FavoritePageTabBar extends ConsumerWidget {
     int activeFavorite = ref.watch(activeFavoriteProvider);
 
     return Expanded(
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            height: 30,
-            child: Text(
-              text,
-              style: const TextStyle(fontWeight: FontWeight.bold),
+      child: GestureDetector(
+        onTap: () => ref.read(activeFavoriteProvider.notifier).state = index,
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              height: 30,
+              child: Text(
+                text,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          if (activeFavorite == index)
-            Divider(
-              color: elevatedButtonColor,
-              height: 10,
-              indent: 10,
-              endIndent: 10,
-            )
-          else
-            const SizedBox(height: 10)
-        ],
+            if (activeFavorite == index)
+              Divider(
+                color: elevatedButtonColor,
+                height: 10,
+                indent: 10,
+                endIndent: 10,
+              )
+            else
+              const SizedBox(height: 10)
+          ],
+        ),
       ),
     );
   }

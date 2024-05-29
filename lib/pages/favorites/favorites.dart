@@ -14,6 +14,8 @@ class FavoritesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    int activeFavorite = ref.watch(activeFavoriteProvider);
+
     return Padding(
       padding: EdgeInsets.only(top: screenProperties(context).topSafeArea + 10),
       child: Column(
@@ -28,13 +30,12 @@ class FavoritesPage extends ConsumerWidget {
           ),
           Expanded(
             child: PageView.builder(
-              onPageChanged: (value) {
-                ref.read(activeFavoriteProvider.notifier).state = value;
-              },
+              onPageChanged: (value) =>
+                  ref.read(activeFavoriteProvider.notifier).state = value,
               controller: _pageController,
               itemCount: _pages.length,
               itemBuilder: (BuildContext context, int index) {
-                return _pages[index];
+                return _pages[activeFavorite];
               },
             ),
           ),
