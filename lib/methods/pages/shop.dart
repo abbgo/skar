@@ -76,17 +76,6 @@ showCallBottomSheet(BuildContext context, List<dynamic> shopPhones) {
   );
 }
 
-// Stack productStackMethod(
-//   Product product,
-//   bool isTM,
-//   double imageHeigt,
-//   double imageWidth,
-//   double nameSize,
-//   double priceSize,
-// ) {
-//   return ;
-// }
-
 Text shopTextMethod(double fontSize, String text, FontWeight fontWeight) {
   return Text(
     text,

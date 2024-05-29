@@ -6,6 +6,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/product.dart';
+import 'package:skar/pages/parts/product_card/parts/product_favorite_button.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 
 class ProductCard extends ConsumerWidget {
@@ -76,30 +77,7 @@ class ProductCard extends ConsumerWidget {
               ),
             ],
           ),
-          Positioned(
-            right: 5,
-            top: 5,
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      blurRadius: 10.0,
-                      spreadRadius: 2.0,
-                    ),
-                  ],
-                ),
-                child: const CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 15,
-                  child: Icon(Icons.favorite_border, size: 16),
-                ),
-              ),
-            ),
-          ),
+          const ProductFavoriteButton(),
         ],
       ),
     );
