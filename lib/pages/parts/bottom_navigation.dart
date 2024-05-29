@@ -22,7 +22,7 @@ class BottomNavigationPage extends StatelessWidget {
 
         List<Widget> pages = [
           const MapPage(),
-          const LikesPage(),
+          FavoritesPage(),
           const SearchPage(),
           const SettingPage(),
         ];
