@@ -8,13 +8,13 @@ class LikesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: screenProperties(context).topSafeArea),
+      padding: EdgeInsets.only(top: screenProperties(context).topSafeArea + 10),
       child: const Column(
         children: [
           Row(
             children: [
-              FavoritePageTabBar(),
-              FavoritePageTabBar(),
+              FavoritePageTabBar(text: 'Dukan'),
+              FavoritePageTabBar(text: 'Haryt'),
             ],
           ),
         ],
