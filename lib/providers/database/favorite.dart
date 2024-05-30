@@ -8,3 +8,10 @@ final hasInFavoritesProvider =
     return await hasInFavorites(arg.id, arg.type);
   },
 );
+
+final getFavoriteShopsProvider =
+    FutureProvider.autoDispose.family<List<String>, int>(
+  (ref, type) async {
+    return await getFavoriteShops(type);
+  },
+);

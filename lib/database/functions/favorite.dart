@@ -28,3 +28,21 @@ Future<void> removeFromFavorites(Favorite favorite) async {
         "DELETE FROM favorites WHERE id='${favorite.id}' AND type=${favorite.type}");
   }
 }
+
+Future<List<String>> getFavoriteShops(int type) async {
+  if (db.isOpen) {
+    List<String> ids = [];
+
+    List<Map<String, dynamic>>? maps = await db.rawQuery(
+      "SELECT id FROM favorites WHERE type=$type",
+    );
+
+    for (var map in maps) {
+      String id = map['id'] as String;
+      ids.add(id);
+    }
+
+    return ids;
+  }
+  return [];
+}
