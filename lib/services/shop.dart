@@ -82,6 +82,28 @@ class ShopService {
       rethrow;
     }
   }
+
+  // fetch favorite shops by ids
+  Future<List<Shop>> fetchShopsByIDs({required List<String> ids}) async {
+    Uri uri = Uri.parse('$apiUrl/shops/favorite')
+        .replace(queryParameters: {'ids': ids});
+
+    try {
+      Response response = await http.get(uri);
+      var jsonData = json.decode(response.body);
+
+      if (response.statusCode == 200 && jsonData['status']) {
+        if (jsonData['shops'] == null) return [];
+        var shopsList = jsonData['shops'] as List;
+        return shopsList
+            .map<Shop>((propJson) => Shop.fromJson(propJson))
+            .toList();
+      }
+      return [];
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
 
 class ShopParams extends Equatable {

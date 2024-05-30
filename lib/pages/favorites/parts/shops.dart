@@ -2,28 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/favorite_type.dart';
-import 'package:skar/providers/database/favorite.dart';
+import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/error.dart';
+import 'package:skar/providers/models/favorite.dart';
+import 'package:skar/providers/params/shop_param.dart';
 
 class FavoriteShops extends ConsumerWidget {
   const FavoriteShops({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    AsyncValue<List<String>> favoriteShops =
+    bool hasFavoriteShops = ref.watch(hasFavoriteShopsProvider);
+    AsyncValue<ResultShop> favoriteShops =
         ref.watch(getFavoriteShopsProvider(FavoriteType.shop));
 
-    return favoriteShops.when(
-      data: (favorites) {
-        return ListView.builder(
-          itemCount: favorites.length,
-          itemBuilder: (context, index) {
-            String favorite = favorites[index];
-            return Text(favorite);
-          },
-        );
-      },
-      error: (error, stackTrace) => errorMethod(error),
-      loading: () => loadWidget,
-    );
+    return !hasFavoriteShops
+        ? const NoResult()
+        : favoriteShops.when(
+            data: (data) {
+              if (data.error != '' || data.shops == null) {
+                return const SomeThingWrong();
+              }
+              var favorites = data.shops!;
+              return ListView.builder(
+                itemCount: favorites.length,
+                itemBuilder: (context, index) {
+                  Shop shop = favorites[index];
+                  return Text(shop.nameTM);
+                },
+              );
+            },
+            error: (error, stackTrace) => errorMethod(error),
+            loading: () => loadWidget,
+          );
   }
 }
