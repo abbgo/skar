@@ -4,7 +4,7 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/params/shop_param.dart';
 
-final getFavoriteShopsProvider = FutureProvider.family<ResultShop, int>(
+final fetchFavoriteShopsProvider = FutureProvider.family<ResultShop, int>(
   (ref, type) async {
     ResultShop result = ResultShop.defaultResult();
     List<String> shopIDs = await getFavoriteShops(type);

@@ -14,7 +14,7 @@ class FavoriteShops extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool hasFavoriteShops = ref.watch(hasFavoriteShopsProvider);
     AsyncValue<ResultShop> favoriteShops =
-        ref.watch(getFavoriteShopsProvider(FavoriteType.shop));
+        ref.watch(fetchFavoriteShopsProvider(FavoriteType.shop));
 
     return !hasFavoriteShops
         ? const NoResult()
