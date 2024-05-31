@@ -18,6 +18,7 @@ class BottomNavigationPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
     int selectedIndex = ref.watch(selectedBottomIndexProvider);
+
     List<Widget> pages = [
       const MapPage(),
       const FavoritesPage(),

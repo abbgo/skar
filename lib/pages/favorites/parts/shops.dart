@@ -4,6 +4,7 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/favorite_type.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/error.dart';
+import 'package:skar/pages/search_shop/parts/shop_list_tile.dart';
 import 'package:skar/providers/models/favorite.dart';
 import 'package:skar/providers/params/shop_param.dart';
 
@@ -28,7 +29,12 @@ class FavoriteShops extends ConsumerWidget {
                 itemCount: favorites.length,
                 itemBuilder: (context, index) {
                   Shop shop = favorites[index];
-                  return Text(shop.nameTM);
+                  // return Text(shop.nameTM);
+                  return ShopListTile(
+                    shop: shop,
+                    mapPageContext: context,
+                    forFavorite: true,
+                  );
                 },
               );
             },

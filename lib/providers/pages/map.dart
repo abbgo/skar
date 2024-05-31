@@ -50,3 +50,7 @@ class HybridMapNotifier extends StateNotifier<bool> {
 final isHybridMapProvider = StateNotifierProvider<HybridMapNotifier, bool>(
   (ref) => HybridMapNotifier(),
 );
+
+final cameraPositionProvider = StateProvider<CameraPosition>(
+  (ref) => const CameraPosition(target: LatLng(37.898429, 58.354480), zoom: 15),
+);

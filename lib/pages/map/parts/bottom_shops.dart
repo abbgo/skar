@@ -26,7 +26,7 @@ class MapButtons extends ConsumerWidget {
           locationButtonMethod(
             context,
             () {
-              permissionHandler(mapController, ref);
+              permissionHandler(ref);
             },
           ),
           vipButtonMethod(context),

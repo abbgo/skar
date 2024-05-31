@@ -59,8 +59,8 @@ class SearchShopResult extends ConsumerWidget {
                         final shop = response.shops![indexInPage];
                         return ShopListTile(
                           shop: shop,
-                          mapController: mapController,
                           mapPageContext: mapPageContext,
+                          forFavorite: false,
                         );
                       },
                       error: (error, stackTrace) => errorMethod(error),

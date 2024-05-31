@@ -13,67 +13,70 @@ import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
-class Map extends StatelessWidget {
-  const Map({super.key, required this.mapController});
-  final Completer<GoogleMapController> mapController;
+class Map extends ConsumerWidget {
+  Map({super.key});
 
-  static const CameraPosition _kGooglePlex =
-      CameraPosition(target: LatLng(37.898429, 58.354480), zoom: 15);
+  final Completer<GoogleMapController> mapController = Completer();
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        Set<Marker> markers = ref.watch(markersProvider);
-        AsyncValue<ResultShop> shopsForMap =
-            ref.watch(shopsForMapProvider(context));
-        bool isHybridMap = ref.watch(isHybridMapProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    Set<Marker> markers = ref.watch(markersProvider);
+    AsyncValue<ResultShop> shopsForMap =
+        ref.watch(shopsForMapProvider(context));
+    bool isHybridMap = ref.watch(isHybridMapProvider);
+    CameraPosition cameraPosition = ref.watch(cameraPositionProvider);
 
-        return shopsForMap.when(
-          skipError: true,
-          skipLoadingOnReload: true,
-          data: (resultShopsForMap) {
-            return Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                GoogleMap(
-                  markers: markers,
-                  initialCameraPosition: _kGooglePlex,
-                  mapType: isHybridMap ? MapType.hybrid : MapType.normal,
-                  myLocationButtonEnabled: false,
-                  onMapCreated: (GoogleMapController controller) {
-                    if (!mapController.isCompleted) {
-                      mapController.complete(controller);
-                    }
-                  },
-                  onCameraMove: (CameraPosition position) async {
-                    double kilometer = await calculateMapWidthInKm(
-                      position.zoom.toInt(),
-                      context,
-                    );
+    ref.listen(
+      cameraPositionProvider,
+      (previous, next) async {
+        GoogleMapController controller = await mapController.future;
+        controller.animateCamera(CameraUpdate.newCameraPosition(next));
+      },
+    );
 
-                    ShopParams shopParams = ShopParams(
-                      latitude: position.target.latitude,
-                      longitude: position.target.longitude,
-                      kilometer: kilometer.toInt(),
-                    );
-                    await ref
-                        .read(shopParamProvider.notifier)
-                        .changeForMap(shopParams);
-                  },
-                ),
-                MapSearchAndMapTypeButton(mapController: mapController),
-                MapButtons(mapController: mapController),
-                const ShopList(),
-              ],
-            );
-          },
-          error: (error, stackTrace) => errorMethod(error),
-          loading: () => Center(
-            child: Image.asset("assets/animated_icons/animated_map.gif"),
-          ),
+    return shopsForMap.when(
+      skipError: true,
+      skipLoadingOnReload: true,
+      data: (resultShopsForMap) {
+        return Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            GoogleMap(
+              markers: markers,
+              initialCameraPosition: cameraPosition,
+              mapType: isHybridMap ? MapType.hybrid : MapType.normal,
+              myLocationButtonEnabled: false,
+              onMapCreated: (GoogleMapController controller) {
+                if (!mapController.isCompleted) {
+                  mapController.complete(controller);
+                }
+              },
+              onCameraMove: (CameraPosition position) async {
+                double kilometer = await calculateMapWidthInKm(
+                  position.zoom.toInt(),
+                  context,
+                );
+
+                ShopParams shopParams = ShopParams(
+                  latitude: position.target.latitude,
+                  longitude: position.target.longitude,
+                  kilometer: kilometer.toInt(),
+                );
+                await ref
+                    .read(shopParamProvider.notifier)
+                    .changeForMap(shopParams);
+              },
+            ),
+            MapSearchAndMapTypeButton(mapController: mapController),
+            MapButtons(mapController: mapController),
+            const ShopList(),
+          ],
         );
       },
+      error: (error, stackTrace) => errorMethod(error),
+      loading: () => Center(
+        child: Image.asset("assets/animated_icons/animated_map.gif"),
+      ),
     );
   }
 }

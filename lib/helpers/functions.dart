@@ -36,17 +36,13 @@ Future<Position> getCurrentLocation() async {
 }
 
 void permissionHandler(
-  Completer<GoogleMapController> mapController,
   WidgetRef ref,
 ) async {
-  var markersNotifier = ref.read(markersProvider.notifier);
   var loadNotifier = ref.read(loadProvider.notifier);
   var locationPermissionNotifier =
       ref.read(locationPermissionProvider.notifier);
-  var shopParamsNotifier = ref.read(shopParamProvider.notifier);
 
-  bool hasPermission = await checkAndGetCurrentLocation(
-      mapController, markersNotifier, shopParamsNotifier);
+  bool hasPermission = await checkAndGetCurrentLocation(ref);
   loadNotifier.state = false;
   if (hasPermission) {
     locationPermissionNotifier.state = true;
@@ -54,9 +50,7 @@ void permissionHandler(
 }
 
 Future<bool> checkAndGetCurrentLocation(
-  Completer<GoogleMapController> mapController,
-  MarkersNotifier markersNotifier,
-  ShopParamsNotifier shopParamsNotifier,
+  WidgetRef ref,
 ) async {
   bool hasPermission = await hasLocationPermission();
 
@@ -67,14 +61,16 @@ Future<bool> checkAndGetCurrentLocation(
         zoom: 15,
       );
 
+      ref.read(cameraPositionProvider.notifier).state = cameraPosition;
+
       ShopParams shopParams =
           ShopParams(latitude: value.latitude, longitude: value.longitude);
 
-      GoogleMapController controller = await mapController.future;
-      controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+      await ref
+          .read(markersProvider.notifier)
+          .setMarker(value.latitude, value.longitude);
 
-      await markersNotifier.setMarker(value.latitude, value.longitude);
-      await shopParamsNotifier.changeForMap(shopParams);
+      await ref.read(shopParamProvider.notifier).changeForMap(shopParams);
     });
   }
   return hasPermission;

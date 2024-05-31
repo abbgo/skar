@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -16,14 +14,14 @@ class ShopListTile extends StatelessWidget {
   const ShopListTile({
     super.key,
     required this.shop,
-    required this.mapController,
     required this.mapPageContext,
+    required this.forFavorite,
   });
 
   final Shop shop;
   static const double cardHeight = 100.0;
-  final Completer<GoogleMapController> mapController;
   final BuildContext mapPageContext;
+  final bool forFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -110,11 +108,13 @@ class ShopListTile extends StatelessWidget {
                       target: LatLng(shop.latitude, shop.longitude),
                       zoom: 20,
                     );
+                    ref.read(cameraPositionProvider.notifier).state =
+                        cameraPosition;
 
-                    GoogleMapController controller = await mapController.future;
-                    await controller.animateCamera(
-                      CameraUpdate.newCameraPosition(cameraPosition),
-                    );
+                    if (forFavorite) {
+                      ref.read(selectedBottomIndexProvider.notifier).state = 0;
+                      return;
+                    }
 
                     if (context.mounted) {
                       Navigator.pop(context);
