@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:skar/datas/static.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
@@ -19,7 +20,6 @@ class SearchShopResult extends ConsumerWidget {
     required this.mapPageContext,
   });
 
-  static const pageSize = 10;
   final Completer<GoogleMapController> mapController;
   final BuildContext mapPageContext;
 

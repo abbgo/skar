@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/screen.dart';
+import 'package:skar/datas/static.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
@@ -13,8 +14,6 @@ import 'package:skar/services/product.dart';
 class ShopProducts extends ConsumerWidget {
   const ShopProducts({super.key, required this.shopID});
   final String shopID;
-
-  static const pageSize = 10;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

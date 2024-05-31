@@ -29,7 +29,6 @@ class FavoriteShops extends ConsumerWidget {
                 itemCount: favorites.length,
                 itemBuilder: (context, index) {
                   Shop shop = favorites[index];
-                  // return Text(shop.nameTM);
                   return ShopListTile(
                     shop: shop,
                     mapPageContext: context,
