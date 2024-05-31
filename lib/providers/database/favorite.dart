@@ -4,8 +4,22 @@ import 'package:skar/models/favorite.dart';
 
 final hasInFavoritesProvider =
     FutureProvider.autoDispose.family<bool, Favorite>(
-  (ref, arg) async {
-    return await hasInFavorites(arg.id, arg.type);
+  (ref, favorite) async {
+    return await hasInFavorites(favorite.id, favorite.type);
+  },
+);
+
+final createFavoriteProvider = FutureProvider.family<void, Favorite>(
+  (ref, favorite) async {
+    await createFavorite(favorite);
+    ref.invalidate(hasInFavoritesProvider(favorite));
+  },
+);
+
+final removeFromFavoriteProvider = FutureProvider.family<void, Favorite>(
+  (ref, favorite) async {
+    await removeFromFavorites(favorite);
+    ref.invalidate(hasInFavoritesProvider(favorite));
   },
 );
 

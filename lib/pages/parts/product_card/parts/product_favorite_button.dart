@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/database/functions/favorite.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/favorite.dart';
 import 'package:skar/models/favorite_type.dart';
@@ -28,12 +27,10 @@ class ProductFavoriteButton extends ConsumerWidget {
               Favorite favorite =
                   Favorite(id: productID, type: FavoriteType.product);
               if (data) {
-                await removeFromFavorites(favorite);
-                ref.invalidate(hasInFavoritesProvider(favorite));
+                await ref.read(removeFromFavoriteProvider(favorite).future);
                 return;
               }
-              await createFavorite(favorite);
-              ref.invalidate(hasInFavoritesProvider(favorite));
+              await ref.read(createFavoriteProvider(favorite).future);
             },
             child: Container(
               decoration: BoxDecoration(

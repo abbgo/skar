@@ -26,9 +26,9 @@ class FavoriteShops extends ConsumerWidget {
 
               ShopParams shopParams =
                   ShopParams(page: page, favoriteType: FavoriteType.shop);
-
               AsyncValue<ResultShop> favoriteShops =
                   ref.watch(fetchFavoriteShopsProvider(shopParams));
+
               return favoriteShops.when(
                 skipError: true,
                 data: (data) {
@@ -41,7 +41,6 @@ class FavoriteShops extends ConsumerWidget {
                   }
 
                   Shop shop = data.shops![indexInPage];
-
                   return ShopListTile(
                     shop: shop,
                     mapPageContext: context,
