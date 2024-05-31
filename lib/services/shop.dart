@@ -84,9 +84,15 @@ class ShopService {
   }
 
   // fetch favorite shops by ids
-  Future<List<Shop>> fetchShopsByIDs({required List<String> ids}) async {
-    Uri uri = Uri.parse('$apiUrl/shops/favorite')
-        .replace(queryParameters: {'ids': ids});
+  Future<List<Shop>> fetchShopsByIDs(
+      {required List<String> ids, required int page}) async {
+    Uri uri = Uri.parse('$apiUrl/shops/favorite').replace(
+      queryParameters: {
+        'ids': ids,
+        'page': page.toString(),
+        'limit': '10',
+      },
+    );
 
     try {
       Response response = await http.get(uri);
@@ -112,6 +118,7 @@ class ShopParams extends Equatable {
   final int? kilometer;
   final bool? isRandom;
   final int? page;
+  final int? favoriteType;
 
   const ShopParams({
     this.latitude,
@@ -119,6 +126,7 @@ class ShopParams extends Equatable {
     this.kilometer,
     this.isRandom,
     this.page,
+    this.favoriteType,
   });
 
   @override
@@ -131,6 +139,7 @@ class ShopParams extends Equatable {
     bool? isRandom,
     String? search,
     int? page,
+    int? favoriteType,
   }) {
     return ShopParams(
       latitude: latitude ?? this.latitude,
@@ -138,6 +147,7 @@ class ShopParams extends Equatable {
       kilometer: kilometer ?? this.kilometer,
       isRandom: isRandom ?? this.isRandom,
       page: page ?? this.page,
+      favoriteType: favoriteType ?? this.favoriteType,
     );
   }
 }
