@@ -25,6 +25,10 @@ class FavoriteShops extends ConsumerWidget {
               if (data.error != '' || data.shops == null) {
                 return const SomeThingWrong();
               }
+              if (data.shops!.isEmpty) {
+                return NoFavorites(
+                    text: AppLocalizations.of(context)!.noFavoriteShops);
+              }
               var favorites = data.shops!;
               return ListView.builder(
                 physics: const BouncingScrollPhysics(),
