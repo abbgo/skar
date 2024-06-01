@@ -118,7 +118,6 @@ class ShopParams extends Equatable {
   final int? kilometer;
   final bool? isRandom;
   final int? page;
-  final int? favoriteType;
 
   const ShopParams({
     this.latitude,
@@ -126,7 +125,6 @@ class ShopParams extends Equatable {
     this.kilometer,
     this.isRandom,
     this.page,
-    this.favoriteType,
   });
 
   @override
@@ -139,7 +137,6 @@ class ShopParams extends Equatable {
     bool? isRandom,
     String? search,
     int? page,
-    int? favoriteType,
   }) {
     return ShopParams(
       latitude: latitude ?? this.latitude,
@@ -147,7 +144,6 @@ class ShopParams extends Equatable {
       kilometer: kilometer ?? this.kilometer,
       isRandom: isRandom ?? this.isRandom,
       page: page ?? this.page,
-      favoriteType: favoriteType ?? this.favoriteType,
     );
   }
 }
