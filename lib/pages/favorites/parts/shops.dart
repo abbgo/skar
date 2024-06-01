@@ -19,7 +19,7 @@ class FavoriteShops extends ConsumerWidget {
         ref.watch(fetchFavoriteShopsProvider);
 
     return !hasFavoriteShops
-        ? NoFavorites(text: AppLocalizations.of(context)!.noResult)
+        ? NoFavorites(text: AppLocalizations.of(context)!.noFavoriteShops)
         : favoriteShops.when(
             data: (data) {
               if (data.error != '' || data.shops == null) {
