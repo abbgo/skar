@@ -8,7 +8,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/error.dart';
-import 'package:skar/pages/search_shop/parts/shop_list_tile.dart';
+import 'package:skar/pages/parts/shop_list_tile.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';

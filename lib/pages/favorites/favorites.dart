@@ -46,9 +46,12 @@ class _FavoritesPageState extends State<FavoritesPage>
           ],
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: const [FavoriteShops(), FavoriteProducts()],
+      body: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: TabBarView(
+          controller: _tabController,
+          children: const [FavoriteShops(), FavoriteProducts()],
+        ),
       ),
     );
   }
