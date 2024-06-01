@@ -27,6 +27,7 @@ class BottomNavigationPage extends ConsumerWidget {
 
     if (selectedIndex == 1) {
       ref.invalidate(fetchFavoriteShopsProvider);
+      ref.invalidate(fetchFavoriteProductsProvider);
     }
 
     return Scaffold(

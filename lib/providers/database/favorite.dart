@@ -28,6 +28,6 @@ final removeFromFavoriteProvider =
 final getFavoriteShopsProvider =
     FutureProvider.autoDispose.family<List<String>, int>(
   (ref, type) async {
-    return await getFavoriteShops(type);
+    return await getFavorites(type);
   },
 );

@@ -29,7 +29,7 @@ Future<void> removeFromFavorites(Favorite favorite) async {
   }
 }
 
-Future<List<String>> getFavoriteShops(int type) async {
+Future<List<String>> getFavorites(int type) async {
   if (db.isOpen) {
     List<String> ids = [];
 

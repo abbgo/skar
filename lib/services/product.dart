@@ -60,6 +60,28 @@ class ProductService {
       rethrow;
     }
   }
+
+  // fetch favorite products by ids
+  Future<List<Product>> fetchProductsByIDs({required List<String> ids}) async {
+    Uri uri = Uri.parse('$apiUrl/products/favorite')
+        .replace(queryParameters: {'ids': ids});
+
+    try {
+      Response response = await http.get(uri);
+      var jsonData = json.decode(response.body);
+
+      if (response.statusCode == 200 && jsonData['status']) {
+        if (jsonData['products'] == null) return [];
+        var productsList = jsonData['products'] as List;
+        return productsList
+            .map<Product>((propJson) => Product.fromJson(propJson))
+            .toList();
+      }
+      return [];
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
 
 class ProductParams extends Equatable {
