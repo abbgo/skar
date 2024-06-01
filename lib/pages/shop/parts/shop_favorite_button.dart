@@ -29,7 +29,6 @@ class ShopFavoriteButton extends ConsumerWidget {
             if (data) {
               await ref.read(removeFromFavoriteProvider(favorite).future);
               ref.invalidate(fetchFavoriteShopsProvider);
-
               return;
             }
             await ref.read(createFavoriteProvider(favorite).future);

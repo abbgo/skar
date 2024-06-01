@@ -9,14 +9,16 @@ final hasInFavoritesProvider =
   },
 );
 
-final createFavoriteProvider = FutureProvider.family<void, Favorite>(
+final createFavoriteProvider =
+    FutureProvider.autoDispose.family<void, Favorite>(
   (ref, favorite) async {
     await createFavorite(favorite);
     ref.invalidate(hasInFavoritesProvider(favorite));
   },
 );
 
-final removeFromFavoriteProvider = FutureProvider.family<void, Favorite>(
+final removeFromFavoriteProvider =
+    FutureProvider.autoDispose.family<void, Favorite>(
   (ref, favorite) async {
     await removeFromFavorites(favorite);
     ref.invalidate(hasInFavoritesProvider(favorite));
