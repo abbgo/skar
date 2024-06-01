@@ -9,7 +9,7 @@ import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
 
-class ShopListTileButtons extends StatelessWidget {
+class ShopListTileButtons extends ConsumerWidget {
   const ShopListTileButtons({
     super.key,
     required this.shop,
@@ -22,45 +22,41 @@ class ShopListTileButtons extends StatelessWidget {
   final bool forFavorite;
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        bool isTM = ref.watch(isTmProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isTM = ref.watch(isTmProvider);
 
-        return IconButton(
-          onPressed: () async {
-            await ref.read(markersProvider.notifier).removeAllMarkers();
-            await ref.read(markersProvider.notifier).addMarker(
-                  Marker(
-                    markerId: MarkerId(shop.id),
-                    position: LatLng(shop.latitude, shop.longitude),
-                    onTap: () => goToPage(
-                      mapPageContext,
-                      ShopPage(shopID: shop.id),
-                      false,
-                    ),
-                    icon: await generateMarkerIconMethod(isTM, shop),
-                  ),
-                );
-
-            CameraPosition cameraPosition = CameraPosition(
-              target: LatLng(shop.latitude, shop.longitude),
-              zoom: 20,
+    return IconButton(
+      onPressed: () async {
+        await ref.read(markersProvider.notifier).removeAllMarkers();
+        await ref.read(markersProvider.notifier).addMarker(
+              Marker(
+                markerId: MarkerId(shop.id),
+                position: LatLng(shop.latitude, shop.longitude),
+                onTap: () => goToPage(
+                  mapPageContext,
+                  ShopPage(shopID: shop.id),
+                  false,
+                ),
+                icon: await generateMarkerIconMethod(isTM, shop),
+              ),
             );
-            ref.read(cameraPositionProvider.notifier).state = cameraPosition;
 
-            if (forFavorite) {
-              ref.read(selectedBottomIndexProvider.notifier).state = 0;
-              return;
-            }
-
-            if (context.mounted) {
-              Navigator.pop(context);
-            }
-          },
-          icon: Icon(Icons.travel_explore, color: elevatedButtonColor),
+        CameraPosition cameraPosition = CameraPosition(
+          target: LatLng(shop.latitude, shop.longitude),
+          zoom: 20,
         );
+        ref.read(cameraPositionProvider.notifier).state = cameraPosition;
+
+        if (forFavorite) {
+          ref.read(selectedBottomIndexProvider.notifier).state = 0;
+          return;
+        }
+
+        if (context.mounted) {
+          Navigator.pop(context);
+        }
       },
+      icon: Icon(Icons.travel_explore, color: elevatedButtonColor),
     );
   }
 }
