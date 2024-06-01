@@ -84,15 +84,9 @@ class ShopService {
   }
 
   // fetch favorite shops by ids
-  Future<List<Shop>> fetchShopsByIDs(
-      {required List<String> ids, required int page}) async {
-    Uri uri = Uri.parse('$apiUrl/shops/favorite').replace(
-      queryParameters: {
-        'ids': ids,
-        'page': page.toString(),
-        'limit': '10',
-      },
-    );
+  Future<List<Shop>> fetchShopsByIDs({required List<String> ids}) async {
+    Uri uri = Uri.parse('$apiUrl/shops/favorite')
+        .replace(queryParameters: {'ids': ids});
 
     try {
       Response response = await http.get(uri);

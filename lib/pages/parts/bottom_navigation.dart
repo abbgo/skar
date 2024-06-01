@@ -8,6 +8,7 @@ import 'package:skar/pages/map/map.dart';
 import 'package:skar/pages/search.dart';
 import 'package:skar/pages/setting.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/providers/models/favorite.dart';
 
 class BottomNavigationPage extends ConsumerWidget {
   const BottomNavigationPage({super.key});
@@ -23,6 +24,10 @@ class BottomNavigationPage extends ConsumerWidget {
       const SearchPage(),
       const SettingPage(),
     ];
+
+    if (selectedIndex == 1) {
+      ref.invalidate(fetchFavoriteShopsProvider);
+    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
