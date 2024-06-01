@@ -4,8 +4,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/map.dart';
-import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/shop_list_tile/parts/shop_image.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
@@ -33,23 +33,7 @@ class ShopListTile extends StatelessWidget {
         elevation: 3,
         child: Row(
           children: [
-            Expanded(
-              flex: 1,
-              child: GestureDetector(
-                onTap: () =>
-                    goToPage(context, ShopPage(shopID: shop.id), false),
-                child: SizedBox(
-                  height: cardHeight,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                    ),
-                    child: showCachImageMethod(shop.image!),
-                  ),
-                ),
-              ),
-            ),
+            ShopListTileImage(shop: shop, cardHeight: cardHeight),
             Expanded(
               flex: 2,
               child: GestureDetector(
