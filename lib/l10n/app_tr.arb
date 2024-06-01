@@ -38,5 +38,7 @@
     "wentWrong":"Käbir ýalňyşlyk ýüze çykdy !",
     "searchShop":"Dükan gözle...",
     "noResult":"Netije ýok !",
-    "searchProduct":"Haryt gözle..."
+    "searchProduct":"Haryt gözle...",
+    "noFavoriteShops":"Halan dükanlaryňyzyň sanawy boş !",
+    "noFavoriteProducts":"Halan harytlaryňyzyň sanawy boş !"
 }

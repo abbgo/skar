@@ -38,5 +38,7 @@
     "wentWrong":"Что-то пошло не так !",
     "searchShop":"Поиск магазина...",
     "noResult":"Безрезультатно !",
-    "searchProduct":"Поиск продукта..."
+    "searchProduct":"Поиск продукта...",
+    "noFavoriteShops":"Нет любимых магазинов !",
+    "noFavoriteProducts":"Нет любимых продуктов !"
 }

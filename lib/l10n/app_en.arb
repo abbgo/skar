@@ -38,5 +38,7 @@
     "wentWrong":"Something went wrong !",
     "searchShop":"Search shop...",
     "noResult":"No Result !",
-    "searchProduct":"Search product..."
+    "searchProduct":"Search product...",
+    "noFavoriteShops":"No your favorite shops !",
+    "noFavoriteProducts":"No your favorite products !"
 }
