@@ -9,8 +9,8 @@ import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
 
-class ShopListTileButtons extends ConsumerWidget {
-  const ShopListTileButtons({
+class ShopListTileMapButton extends ConsumerWidget {
+  const ShopListTileMapButton({
     super.key,
     required this.shop,
     required this.mapPageContext,

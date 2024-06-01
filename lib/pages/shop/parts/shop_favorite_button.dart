@@ -4,6 +4,7 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/favorite.dart';
 import 'package:skar/models/favorite_type.dart';
 import 'package:skar/providers/database/favorite.dart';
+import 'package:skar/providers/models/favorite.dart';
 
 class ShopFavoriteButton extends ConsumerWidget {
   const ShopFavoriteButton({super.key, required this.shopID});
@@ -27,9 +28,12 @@ class ShopFavoriteButton extends ConsumerWidget {
             Favorite favorite = Favorite(id: shopID, type: FavoriteType.shop);
             if (data) {
               await ref.read(removeFromFavoriteProvider(favorite).future);
+              ref.invalidate(fetchFavoriteShopsProvider);
+
               return;
             }
             await ref.read(createFavoriteProvider(favorite).future);
+            ref.invalidate(fetchFavoriteShopsProvider);
           },
           icon: Icon(
             data ? Icons.favorite : Icons.favorite_border,

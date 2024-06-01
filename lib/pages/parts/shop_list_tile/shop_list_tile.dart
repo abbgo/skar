@@ -13,7 +13,7 @@ class ShopListTile extends StatelessWidget {
   });
 
   final Shop shop;
-  static const double cardHeight = 100.0;
+  static const double cardHeight = 110.0;
   final BuildContext mapPageContext;
   final bool forFavorite;
 
@@ -29,7 +29,7 @@ class ShopListTile extends StatelessWidget {
           children: [
             ShopListTileImage(shop: shop, cardHeight: cardHeight),
             ShopListTileData(shop: shop),
-            ShopListTileButtons(
+            ShopListTileMapButton(
               shop: shop,
               mapPageContext: mapPageContext,
               forFavorite: forFavorite,
