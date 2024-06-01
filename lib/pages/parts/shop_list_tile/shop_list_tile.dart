@@ -5,6 +5,7 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/shop_list_tile/parts/shop_data.dart';
 import 'package:skar/pages/parts/shop_list_tile/parts/shop_image.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
@@ -34,40 +35,7 @@ class ShopListTile extends StatelessWidget {
         child: Row(
           children: [
             ShopListTileImage(shop: shop, cardHeight: cardHeight),
-            Expanded(
-              flex: 2,
-              child: GestureDetector(
-                onTap: () =>
-                    goToPage(context, ShopPage(shopID: shop.id), false),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Consumer(
-                    builder: (context, ref, child) {
-                      bool isTM = ref.watch(isTmProvider);
-
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            isTM ? shop.nameTM : shop.nameRU,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: elevatedButtonColor,
-                            ),
-                          ),
-                          Text(
-                            isTM ? shop.addressTM! : shop.addressRU!,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ),
+            ShopListTileData(shop: shop),
             Consumer(
               builder: (context, ref, child) {
                 bool isTM = ref.watch(isTmProvider);
