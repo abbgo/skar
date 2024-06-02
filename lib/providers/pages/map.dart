@@ -5,7 +5,7 @@ final locationPermissionProvider =
     StateProvider.autoDispose<bool>((ref) => false);
 final loadProvider = StateProvider.autoDispose<bool>((ref) => true);
 final turnsProvider = StateProvider.autoDispose<double>((ref) => 0.0);
-final bannerHeightProvider = StateProvider.autoDispose<double>((ref) => 0.4);
+final bannerHeightProvider = StateProvider.autoDispose<double>((ref) => 0.25);
 final pageNumberProvider = StateProvider<int>((ref) => 1);
 
 class MarkersNotifier extends StateNotifier<Set<Marker>> {

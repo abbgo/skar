@@ -16,7 +16,7 @@ class MapButtons extends ConsumerWidget {
     double bannerHeight = ref.watch(bannerHeightProvider);
 
     return AnimatedPositioned(
-      bottom: bannerHeight == 0.4
+      bottom: bannerHeight == 0.25
           ? screenProperties(context).height * bannerHeight
           : screenProperties(context).height * 0.06,
       right: 5,
@@ -29,7 +29,7 @@ class MapButtons extends ConsumerWidget {
               permissionHandler(ref);
             },
           ),
-          vipButtonMethod(context),
+          // vipButtonMethod(context),
         ],
       ),
     );

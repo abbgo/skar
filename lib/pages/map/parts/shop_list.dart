@@ -23,11 +23,11 @@ class ShopList extends ConsumerWidget {
 
     return GestureDetector(
       onVerticalDragEnd: (details) {
-        if (bannerHeight == 0.4) {
+        if (bannerHeight == 0.25) {
           ref.read(bannerHeightProvider.notifier).state = 0.06;
           ref.read(turnsProvider.notifier).state += 1 / 2;
         } else {
-          ref.read(bannerHeightProvider.notifier).state = 0.4;
+          ref.read(bannerHeightProvider.notifier).state = 0.25;
           ref.read(turnsProvider.notifier).state -= 1 / 2;
         }
       },
@@ -91,7 +91,7 @@ class ShopList extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
       child: Container(
-        width: 230,
+        width: screenProperties(context).width * 0.35,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -100,7 +100,7 @@ class ShopList extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              flex: 2,
+              flex: 1,
               child: Center(
                 child: listviewImageMethod(context, shop, isTM),
               ),
@@ -108,12 +108,8 @@ class ShopList extends ConsumerWidget {
             Expanded(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 8,
-                  right: 8,
-                  bottom: 8,
-                  top: 8,
-                ),
+                padding:
+                    const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 8),
                 child: Container(
                   constraints: const BoxConstraints(
                     maxHeight: double.infinity,
@@ -151,15 +147,12 @@ class ShopList extends ConsumerWidget {
       children: [
         Text(
           lang.proposedShops,
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
         ),
         AnimatedRotation(
           turns: turns,
           duration: const Duration(microseconds: 1000),
-          child: const Icon(Icons.arrow_downward_rounded),
+          child: const Icon(Icons.arrow_downward_rounded, size: 20),
         ),
       ],
     );

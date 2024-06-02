@@ -14,10 +14,7 @@ IconButton locationButtonMethod(BuildContext context, Function()? onPressed) {
     style: IconButton.styleFrom(
       backgroundColor: const Color(0xFFFE0002),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            bottomLeft: Radius.circular(20),
-            topRight: Radius.zero),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
     ),
     icon: const Icon(
@@ -27,25 +24,25 @@ IconButton locationButtonMethod(BuildContext context, Function()? onPressed) {
   );
 }
 
-TextButton vipButtonMethod(BuildContext context) {
-  return TextButton(
-    onPressed: () {},
-    style: TextButton.styleFrom(
-      backgroundColor: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 0),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20),
-            topRight: Radius.circular(20),
-            bottomLeft: Radius.zero),
-      ),
-    ),
-    child: const Text(
-      "VIP",
-      style: TextStyle(color: Colors.black),
-    ),
-  );
-}
+// TextButton vipButtonMethod(BuildContext context) {
+//   return TextButton(
+//     onPressed: () {},
+//     style: TextButton.styleFrom(
+//       backgroundColor: Colors.white,
+//       padding: const EdgeInsets.symmetric(horizontal: 0),
+//       shape: const RoundedRectangleBorder(
+//         borderRadius: BorderRadius.only(
+//             bottomRight: Radius.circular(20),
+//             topRight: Radius.circular(20),
+//             bottomLeft: Radius.zero),
+//       ),
+//     ),
+//     child: const Text(
+//       "VIP",
+//       style: TextStyle(color: Colors.black),
+//     ),
+//   );
+// }
 
 Container listviewCallButtonMethod(BuildContext context, Shop shop) {
   return Container(
@@ -64,16 +61,14 @@ Column listviewNameColumnMethod(Shop shop, bool isTM) {
       Text(
         isTM ? shop.nameTM : shop.nameRU,
         style: const TextStyle(
-          fontSize: 16,
+          fontSize: 12,
           fontWeight: FontWeight.bold,
         ),
       ),
-      Text(
-        isTM ? shop.addressTM! : shop.addressRU!,
-        style: const TextStyle(
-          fontSize: 9,
-        ),
-      ),
+      // Text(
+      //   isTM ? shop.addressTM! : shop.addressRU!,
+      //   style: const TextStyle(fontSize: 9),
+      // ),
     ],
   );
 }
