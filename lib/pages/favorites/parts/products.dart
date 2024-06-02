@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/pages/favorites/parts/no_favorites.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/parts/product_card/product_card.dart';
+import 'package:skar/pages/product/product.dart';
 import 'package:skar/providers/models/favorite.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -47,10 +49,14 @@ class FavoriteProducts extends ConsumerWidget {
                         padding: index % 2 == 0
                             ? const EdgeInsets.only(left: 5)
                             : const EdgeInsets.only(right: 5),
-                        child: ProductCard(
-                          product: product,
-                          forSimilarProducts: false,
-                          forFavorites: true,
+                        child: GestureDetector(
+                          onTap: () => goToPage(context,
+                              ProductPage(productID: product.id), false),
+                          child: ProductCard(
+                            product: product,
+                            forSimilarProducts: false,
+                            forFavorites: true,
+                          ),
                         ),
                       );
                     },
