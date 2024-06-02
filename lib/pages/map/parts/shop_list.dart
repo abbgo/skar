@@ -43,7 +43,7 @@ class ShopList extends ConsumerWidget {
         ),
         duration: const Duration(milliseconds: 300),
         child: Padding(
-          padding: const EdgeInsets.only(left: 18, top: 15, right: 15),
+          padding: const EdgeInsets.only(left: 18, top: 10, right: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -100,7 +100,7 @@ class ShopList extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Center(
                 child: listviewImageMethod(context, shop, isTM),
               ),

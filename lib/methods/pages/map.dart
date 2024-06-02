@@ -54,22 +54,10 @@ Container listviewCallButtonMethod(BuildContext context, Shop shop) {
   );
 }
 
-Column listviewNameColumnMethod(Shop shop, bool isTM) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        isTM ? shop.nameTM : shop.nameRU,
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      // Text(
-      //   isTM ? shop.addressTM! : shop.addressRU!,
-      //   style: const TextStyle(fontSize: 9),
-      // ),
-    ],
+Text listviewNameColumnMethod(Shop shop, bool isTM) {
+  return Text(
+    isTM ? shop.nameTM : shop.nameRU,
+    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
   );
 }
 
