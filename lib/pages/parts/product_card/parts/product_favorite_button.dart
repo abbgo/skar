@@ -40,6 +40,7 @@ class ProductFavoriteButton extends ConsumerWidget {
                 return;
               }
               await ref.read(createFavoriteProvider(favorite).future);
+              ref.invalidate(fetchFavoriteProductsProvider);
             },
             child: Container(
               decoration: BoxDecoration(
