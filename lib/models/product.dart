@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:skar/models/brend.dart';
 import 'package:skar/models/product_color.dart';
+import 'package:skar/models/shop.dart';
 
 class Product {
   final String id, nameTM, nameRU;
@@ -8,6 +9,7 @@ class Product {
   final num? price, oldPrice;
   final List<ProductColor>? productColors;
   final Brend? brend;
+  final Shop? shop;
 
   Product({
     required this.id,
@@ -19,6 +21,7 @@ class Product {
     this.productColors,
     this.brendID,
     this.brend,
+    this.shop,
   });
 
   factory Product.defaultProduct() {
@@ -52,6 +55,9 @@ class Product {
       brend: json['brend'] == null
           ? Brend.defaultBrend()
           : Brend.fromJson(json['brend']),
+      shop: json['shop'] == null
+          ? Shop.defaultShop()
+          : Shop.fromJson(json['shop']),
     );
   }
 }

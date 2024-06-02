@@ -31,7 +31,7 @@ class ShopListTileMapButton extends ConsumerWidget {
         await ref.read(markersProvider.notifier).addMarker(
               Marker(
                 markerId: MarkerId(shop.id),
-                position: LatLng(shop.latitude, shop.longitude),
+                position: LatLng(shop.latitude!, shop.longitude!),
                 onTap: () => goToPage(
                   mapPageContext,
                   ShopPage(shopID: shop.id),
@@ -42,7 +42,7 @@ class ShopListTileMapButton extends ConsumerWidget {
             );
 
         CameraPosition cameraPosition = CameraPosition(
-          target: LatLng(shop.latitude, shop.longitude),
+          target: LatLng(shop.latitude!, shop.longitude!),
           zoom: 20,
         );
         ref.read(cameraPositionProvider.notifier).state = cameraPosition;

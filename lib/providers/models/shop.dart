@@ -28,7 +28,7 @@ final shopsForMapProvider =
           await ref.read(markersProvider.notifier).addMarker(
                 Marker(
                   markerId: MarkerId(shop.id),
-                  position: LatLng(shop.latitude, shop.longitude),
+                  position: LatLng(shop.latitude!, shop.longitude!),
                   onTap: () => goToPage(arg, ShopPage(shopID: shop.id), false),
                   icon: await generateMarkerIconMethod(isTM, shop),
                 ),

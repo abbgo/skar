@@ -33,6 +33,16 @@ class ProductPriceAndBrend extends StatelessWidget {
                     );
                   },
                 ),
+                Consumer(
+                  builder: (context, ref, child) {
+                    bool isTM = ref.watch(isTmProvider);
+                    return Text(
+                      isTM ? product.nameTM : product.nameRU,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                    );
+                  },
+                ),
                 productPriceMethod(product.price, product.oldPrice),
               ],
             ),

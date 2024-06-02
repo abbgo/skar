@@ -4,7 +4,7 @@ class Shop extends Equatable {
   final String id, nameTM, nameRU;
   final String? addressTM, addressRU;
   final String? image;
-  final double latitude, longitude;
+  final double? latitude, longitude;
   final List<dynamic>? phones;
   // final List<Product>? products;
   // final List<Kategory>? categories;
@@ -13,8 +13,8 @@ class Shop extends Equatable {
     required this.id,
     required this.nameRU,
     required this.nameTM,
-    required this.latitude,
-    required this.longitude,
+    this.latitude,
+    this.longitude,
     this.image,
     this.addressTM,
     this.addressRU,
@@ -42,8 +42,8 @@ class Shop extends Equatable {
       id: json['id'],
       nameRU: json['name_ru'],
       nameTM: json['name_tm'],
-      latitude: json['latitude'],
-      longitude: json['longitude'],
+      latitude: json['latitude'] ?? 0,
+      longitude: json['longitude'] ?? 0,
       image: json['image'] ?? "",
       addressTM: json['address_tm'] ?? "",
       addressRU: json['address_ru'] ?? "",
