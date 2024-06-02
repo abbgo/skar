@@ -40,5 +40,7 @@
     "noResult":"No Result !",
     "searchProduct":"Search product...",
     "noFavoriteShops":"No your favorite shops !",
-    "noFavoriteProducts":"No your favorite products !"
+    "noFavoriteProducts":"No your favorite products !",
+    "myFavoriteShops":"My favorite shops",
+    "myFavoriteProducts":"My favorite products"
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/favorites/parts/products.dart';
 import 'package:skar/pages/favorites/parts/shops.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
@@ -28,6 +29,8 @@ class _FavoritesPageState extends State<FavoritesPage>
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
@@ -40,9 +43,9 @@ class _FavoritesPageState extends State<FavoritesPage>
           indicatorWeight: 2,
           dividerColor: Colors.white,
           overlayColor: WidgetStateColor.transparent,
-          tabs: const [
-            Text('Dukan'),
-            Text('Haryt'),
+          tabs: [
+            Text(lang.myFavoriteShops),
+            Text(lang.myFavoriteProducts),
           ],
         ),
       ),

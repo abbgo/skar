@@ -40,5 +40,7 @@
     "noResult":"Безрезультатно !",
     "searchProduct":"Поиск продукта...",
     "noFavoriteShops":"Нет любимых магазинов !",
-    "noFavoriteProducts":"Нет любимых продуктов !"
+    "noFavoriteProducts":"Нет любимых продуктов !",
+    "myFavoriteShops":"Мои любимые магазины",
+    "myFavoriteProducts":"Мои любимые продукты"
 }

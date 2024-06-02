@@ -40,5 +40,7 @@
     "noResult":"Netije ýok !",
     "searchProduct":"Haryt gözle...",
     "noFavoriteShops":"Halan dükanlaryňyzyň sanawy boş !",
-    "noFavoriteProducts":"Halan harytlaryňyzyň sanawy boş !"
+    "noFavoriteProducts":"Halan harytlaryňyzyň sanawy boş !",
+    "myFavoriteShops":"Halan dükanlarym",
+    "myFavoriteProducts":"Halan harytlarym"
 }
