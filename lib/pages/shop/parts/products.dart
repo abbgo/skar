@@ -69,6 +69,7 @@ class ShopProducts extends ConsumerWidget {
                         child: ProductCard(
                           product: product,
                           forSimilarProducts: false,
+                          forFavorites: false,
                         ),
                       ),
                     ),

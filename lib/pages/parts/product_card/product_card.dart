@@ -14,10 +14,12 @@ class ProductCard extends ConsumerWidget {
     super.key,
     required this.product,
     required this.forSimilarProducts,
+    required this.forFavorites,
   });
 
   final Product product;
   final bool forSimilarProducts;
+  final bool forFavorites;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -77,7 +79,10 @@ class ProductCard extends ConsumerWidget {
               ),
             ],
           ),
-          ProductFavoriteButton(productID: product.id),
+          ProductFavoriteButton(
+            productID: product.id,
+            forFavorites: forFavorites,
+          ),
         ],
       ),
     );

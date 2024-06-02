@@ -73,6 +73,7 @@ class SimilarProducts extends ConsumerWidget {
                       child: ProductCard(
                         product: productsData.products![index],
                         forSimilarProducts: true,
+                        forFavorites: false,
                       ),
                     ),
                   );

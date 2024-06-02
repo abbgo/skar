@@ -50,6 +50,7 @@ class FavoriteProducts extends ConsumerWidget {
                         child: ProductCard(
                           product: product,
                           forSimilarProducts: false,
+                          forFavorites: true,
                         ),
                       );
                     },

@@ -4,11 +4,17 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/favorite.dart';
 import 'package:skar/models/favorite_type.dart';
 import 'package:skar/providers/database/favorite.dart';
+import 'package:skar/providers/models/favorite.dart';
 
 class ProductFavoriteButton extends ConsumerWidget {
-  const ProductFavoriteButton({super.key, required this.productID});
+  const ProductFavoriteButton({
+    super.key,
+    required this.productID,
+    required this.forFavorites,
+  });
 
   final String productID;
+  final bool forFavorites;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,6 +34,9 @@ class ProductFavoriteButton extends ConsumerWidget {
                   Favorite(id: productID, type: FavoriteType.product);
               if (data) {
                 await ref.read(removeFromFavoriteProvider(favorite).future);
+                if (forFavorites) {
+                  ref.invalidate(fetchFavoriteProductsProvider);
+                }
                 return;
               }
               await ref.read(createFavoriteProvider(favorite).future);
