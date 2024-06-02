@@ -10,13 +10,9 @@ import 'package:skar/providers/models/product.dart';
 import 'package:skar/providers/pages/product.dart';
 
 class ProductPage extends StatefulWidget {
-  const ProductPage({
-    super.key,
-    required this.productID,
-    required this.shopID,
-  });
+  const ProductPage({super.key, required this.productID});
 
-  final String productID, shopID;
+  final String productID;
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -68,10 +64,7 @@ class _ProductPageState extends State<ProductPage> {
                           productColors: productData.product!.productColors!,
                           pageController: _pageController,
                         ),
-                        SimilarProducts(
-                          shopID: widget.shopID,
-                          productID: widget.productID,
-                        ),
+                        SimilarProducts(productID: widget.productID),
                       ],
                     );
                   },

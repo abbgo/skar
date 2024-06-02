@@ -13,13 +13,9 @@ import 'package:skar/providers/models/product.dart';
 import 'package:skar/services/product.dart';
 
 class SimilarProducts extends ConsumerWidget {
-  const SimilarProducts({
-    super.key,
-    required this.shopID,
-    required this.productID,
-  });
+  const SimilarProducts({super.key, required this.productID});
 
-  final String shopID, productID;
+  final String productID;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,7 +26,7 @@ class SimilarProducts extends ConsumerWidget {
       limit: 10,
       page: 1,
       categories: const [],
-      shopID: shopID,
+      shopID: '',
       productID: productID,
     );
 
@@ -62,10 +58,7 @@ class SimilarProducts extends ConsumerWidget {
                   return GestureDetector(
                     onTap: () => goToPage(
                       context,
-                      ProductPage(
-                        productID: productsData.products![index].id,
-                        shopID: shopID,
-                      ),
+                      ProductPage(productID: productsData.products![index].id),
                       false,
                     ),
                     child: Padding(
