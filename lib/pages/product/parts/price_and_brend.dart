@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/static_data.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/product.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/product.dart';
+import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 
 class ProductPriceAndBrend extends StatelessWidget {
@@ -26,10 +29,17 @@ class ProductPriceAndBrend extends StatelessWidget {
                 Consumer(
                   builder: (context, ref, child) {
                     bool isTM = ref.watch(isTmProvider);
-                    return Text(
-                      isTM ? product.nameTM : product.nameRU,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
+                    return GestureDetector(
+                      onTap: () => goToPage(
+                          context, ShopPage(shopID: product.shop!.id), false),
+                      child: Text(
+                        isTM ? product.shop!.nameTM : product.shop!.nameRU,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: elevatedButtonColor,
+                        ),
+                      ),
                     );
                   },
                 ),
@@ -38,8 +48,7 @@ class ProductPriceAndBrend extends StatelessWidget {
                     bool isTM = ref.watch(isTmProvider);
                     return Text(
                       isTM ? product.nameTM : product.nameRU,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     );
                   },
                 ),
