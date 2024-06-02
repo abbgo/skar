@@ -14,7 +14,6 @@ class ShopFavoriteButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Favorite favorite = Favorite(id: shopID, type: FavoriteType.shop);
-
     AsyncValue<bool> hasInFavorites =
         ref.watch(hasInFavoritesProvider(favorite));
 
@@ -25,7 +24,6 @@ class ShopFavoriteButton extends ConsumerWidget {
       data: (data) {
         return IconButton(
           onPressed: () async {
-            Favorite favorite = Favorite(id: shopID, type: FavoriteType.shop);
             if (data) {
               await ref.read(removeFromFavoriteProvider(favorite).future);
               ref.invalidate(fetchFavoriteShopsProvider);
