@@ -19,7 +19,6 @@ class ProductFavoriteButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Favorite favorite = Favorite(id: productID, type: FavoriteType.product);
-
     AsyncValue<bool> hasInFavorites =
         ref.watch(hasInFavoritesProvider(favorite));
 
@@ -30,8 +29,6 @@ class ProductFavoriteButton extends ConsumerWidget {
         data: (data) {
           return GestureDetector(
             onTap: () async {
-              Favorite favorite =
-                  Favorite(id: productID, type: FavoriteType.product);
               if (data) {
                 await ref.read(removeFromFavoriteProvider(favorite).future);
                 if (forFavorites) {
