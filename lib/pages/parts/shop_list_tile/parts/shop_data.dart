@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
-import 'package:skar/models/favorite.dart';
-import 'package:skar/models/favorite_type.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/shop/parts/shop_favorite_button.dart';
 import 'package:skar/pages/shop/shop.dart';
-import 'package:skar/providers/database/favorite.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
-import 'package:skar/providers/models/favorite.dart';
 
 class ShopListTileData extends StatelessWidget {
   const ShopListTileData(
@@ -55,42 +52,7 @@ class ShopListTileData extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Consumer(
-                    builder: (context, ref, child) {
-                      Favorite favorite =
-                          Favorite(id: shop.id, type: FavoriteType.shop);
-                      AsyncValue<bool> hasInFavorites =
-                          ref.watch(hasInFavoritesProvider(favorite));
-
-                      return hasInFavorites.when(
-                        skipError: true,
-                        skipLoadingOnRefresh: true,
-                        skipLoadingOnReload: true,
-                        data: (data) {
-                          return GestureDetector(
-                            onTap: () async {
-                              if (data) {
-                                await ref.read(
-                                    removeFromFavoriteProvider(favorite)
-                                        .future);
-                                ref.invalidate(fetchFavoriteShopsProvider);
-                                return;
-                              }
-                              await ref.read(
-                                  createFavoriteProvider(favorite).future);
-                              ref.invalidate(fetchFavoriteShopsProvider);
-                            },
-                            child: Icon(
-                              data ? Icons.favorite : Icons.favorite_border,
-                              color: data ? Colors.red : Colors.black,
-                            ),
-                          );
-                        },
-                        error: (error, stackTrace) => errorMethod(error),
-                        loading: () => loadWidget,
-                      );
-                    },
-                  ),
+                  ShopFavoriteButton(shopID: shop.id),
                 ],
               );
             },

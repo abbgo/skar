@@ -17,29 +17,32 @@ class ShopFavoriteButton extends ConsumerWidget {
     AsyncValue<bool> hasInFavorites =
         ref.watch(hasInFavoritesProvider(favorite));
 
-    return hasInFavorites.when(
-      skipError: true,
-      skipLoadingOnRefresh: true,
-      skipLoadingOnReload: true,
-      data: (data) {
-        return IconButton(
-          onPressed: () async {
-            if (data) {
-              await ref.read(removeFromFavoriteProvider(favorite).future);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: hasInFavorites.when(
+        skipError: true,
+        skipLoadingOnRefresh: true,
+        skipLoadingOnReload: true,
+        data: (data) {
+          return GestureDetector(
+            onTap: () async {
+              if (data) {
+                await ref.read(removeFromFavoriteProvider(favorite).future);
+                ref.invalidate(fetchFavoriteShopsProvider);
+                return;
+              }
+              await ref.read(createFavoriteProvider(favorite).future);
               ref.invalidate(fetchFavoriteShopsProvider);
-              return;
-            }
-            await ref.read(createFavoriteProvider(favorite).future);
-            ref.invalidate(fetchFavoriteShopsProvider);
-          },
-          icon: Icon(
-            data ? Icons.favorite : Icons.favorite_border,
-            color: data ? Colors.red : Colors.black,
-          ),
-        );
-      },
-      error: (error, stackTrace) => errorMethod(error),
-      loading: () => loadWidget,
+            },
+            child: Icon(
+              data ? Icons.favorite : Icons.favorite_border,
+              color: data ? Colors.red : Colors.black,
+            ),
+          );
+        },
+        error: (error, stackTrace) => errorMethod(error),
+        loading: () => loadWidget,
+      ),
     );
   }
 }
