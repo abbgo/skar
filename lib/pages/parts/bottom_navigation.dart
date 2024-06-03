@@ -21,7 +21,7 @@ class BottomNavigationPage extends ConsumerWidget {
     List<Widget> pages = [
       const MapPage(),
       const FavoritesPage(),
-      const SearchPage(),
+      const SearchProductPage(),
       const SettingPage(),
     ];
 

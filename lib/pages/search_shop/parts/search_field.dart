@@ -13,6 +13,8 @@ class ShopSearchField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var lang = AppLocalizations.of(context)!;
+
     return SizedBox(
       height: 40,
       width: screenProperties(context).width - 70,
@@ -24,7 +26,7 @@ class ShopSearchField extends ConsumerWidget {
         cursorColor: elevatedButtonColor,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(top: 0, left: 20),
-          hintText: AppLocalizations.of(context)!.searchShop,
+          hintText: forShops ? lang.searchShop : lang.searchProduct,
           filled: true,
           fillColor: Colors.white,
           enabledBorder: outlinedInputBorder(),

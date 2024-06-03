@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/shop.dart';
-import 'package:skar/pages/search_product/parts/product_search_field.dart';
+import 'package:skar/pages/shop/parts/product_search_field.dart';
 import 'package:skar/pages/shop/parts/shop_favorite_button.dart';
 import 'package:skar/providers/pages/shop.dart';
 
