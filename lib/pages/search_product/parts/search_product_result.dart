@@ -19,11 +19,12 @@ class SearchProductResult extends ConsumerWidget {
     String search = ref.watch(productSearchProvider);
     bool hasProducts = ref.watch(hasProductsProvider);
 
-    return Expanded(
-      child: search != ''
-          ? !hasProducts
-              ? const NoResult()
-              : CustomScrollView(
+    return search != ''
+        ? !hasProducts
+            ? const NoResult()
+            : Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: CustomScrollView(
                   slivers: [
                     SliverGrid.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -86,8 +87,8 @@ class SearchProductResult extends ConsumerWidget {
                       },
                     )
                   ],
-                )
-          : const SizedBox(),
-    );
+                ),
+              )
+        : const SizedBox();
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skar/helpers/functions.dart';
 import 'package:skar/pages/search_product/parts/search_product_result.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 
@@ -8,19 +7,15 @@ class SearchProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: screenProperties(context).topSafeArea + 10),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ShopSearchField(forShops: false),
-            ],
-          ),
-          const SearchProductResult(),
-        ],
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: ShopSearchField(forShops: false),
+        centerTitle: true,
       ),
+      body: const SearchProductResult(),
     );
   }
 }
