@@ -5,6 +5,7 @@ import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/product/parts/price_and_brend.dart';
 import 'package:skar/pages/product/parts/product_color_page.dart';
 import 'package:skar/pages/product/parts/product_image.dart';
+import 'package:skar/pages/product/parts/product_page_favorite_button.dart';
 import 'package:skar/pages/product/parts/similar_products.dart';
 import 'package:skar/providers/models/product.dart';
 import 'package:skar/providers/pages/product.dart';
@@ -34,6 +35,7 @@ class _ProductPageState extends State<ProductPage> {
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
+        actions: [ProductPageFavoriteButton(productID: widget.productID)],
       ),
       body: Hero(
         tag: widget.productID,
