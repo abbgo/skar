@@ -24,7 +24,7 @@ class ShopPage extends ConsumerWidget {
 
     bool isTM = ref.watch(isTmProvider);
     var shop = ref.watch(fetchShopProvider(shopID));
-    bool hasProducts = ref.watch(hasProductsProvider);
+    bool hasProducts = ref.watch(hasShopProductsProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

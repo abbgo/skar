@@ -35,14 +35,14 @@ class ProductSearchField extends StatelessWidget {
                   icon: Icon(Icons.close, color: elevatedButtonColor, size: 24),
                   onPressed: () {
                     ref.read(openSearchBarProvider.notifier).state = false;
-                    ref.read(productSearchProvider.notifier).state = '';
-                    ref.read(hasProductsProvider.notifier).state = true;
+                    ref.read(shopProductSearchProvider.notifier).state = '';
+                    ref.read(hasShopProductsProvider.notifier).state = true;
                   },
                 ),
               ),
               onSubmitted: (value) async {
-                ref.read(productSearchProvider.notifier).state = value;
-                ref.read(hasProductsProvider.notifier).state = true;
+                ref.read(shopProductSearchProvider.notifier).state = value;
+                ref.read(hasShopProductsProvider.notifier).state = true;
               },
             );
           },

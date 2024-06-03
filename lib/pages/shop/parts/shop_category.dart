@@ -46,7 +46,8 @@ class ShopCategory extends ConsumerWidget {
                           await ref
                               .read(shopCategoriesProvider.notifier)
                               .deleteCategoriesByIndex(0);
-                          ref.read(hasProductsProvider.notifier).state = true;
+                          ref.read(hasShopProductsProvider.notifier).state =
+                              true;
                         },
                         style: IconButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 3),
@@ -78,7 +79,8 @@ class ShopCategory extends ConsumerWidget {
                                         }
                                       }
                                       ref
-                                          .read(hasProductsProvider.notifier)
+                                          .read(
+                                              hasShopProductsProvider.notifier)
                                           .state = true;
                                     },
                                     style: TextButton.styleFrom(
@@ -148,7 +150,7 @@ class ShopCategory extends ConsumerWidget {
                             selectedCategories: [category.id],
                           ),
                         );
-                    ref.read(hasProductsProvider.notifier).state = true;
+                    ref.read(hasShopProductsProvider.notifier).state = true;
                   },
                   child: Text(
                     isTM ? category.nameTM : category.nameRU,

@@ -38,10 +38,6 @@ class ShopPageButtons extends ConsumerWidget {
                     onPressed: () => showCallBottomSheet(context, shop.phones!),
                     icon: const Icon(Icons.call, color: Colors.green),
                   ),
-                  const IconButton(
-                    onPressed: null,
-                    icon: Icon(Icons.more_horiz, color: Colors.black),
-                  ),
                 ],
               ),
       ],

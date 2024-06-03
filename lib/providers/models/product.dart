@@ -10,7 +10,9 @@ var fetchProductsProvider =
     FutureProvider.autoDispose.family<ResultProduct, ProductParams>(
   (ref, params) async {
     ResultProduct result = ResultProduct.defaultResult();
-    String search = ref.watch(productSearchProvider);
+    String search = params.shopID != ''
+        ? ref.watch(shopProductSearchProvider)
+        : ref.watch(productSearchProvider);
     bool isTM = ref.read(isTmProvider);
 
     try {
@@ -26,7 +28,12 @@ var fetchProductsProvider =
           );
 
       if (params.api == 'products') {
-        ref.read(hasProductsProvider.notifier).state = products.isNotEmpty;
+        if (params.shopID != '') {
+          ref.read(hasShopProductsProvider.notifier).state =
+              products.isNotEmpty;
+        } else {
+          ref.read(hasProductsProvider.notifier).state = products.isNotEmpty;
+        }
       }
 
       result = ResultProduct(error: '', products: products);
