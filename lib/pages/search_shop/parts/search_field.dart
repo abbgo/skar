@@ -20,7 +20,7 @@ class ShopSearchField extends ConsumerWidget {
       width: screenProperties(context).width - 70,
       child: TextField(
         controller: searchCtrl,
-        autofocus: true,
+        autofocus: forShops ? true : false,
         textInputAction: TextInputAction.search,
         textAlignVertical: TextAlignVertical.center,
         cursorColor: elevatedButtonColor,

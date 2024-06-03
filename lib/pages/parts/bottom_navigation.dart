@@ -5,7 +5,7 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/parts/bottom_navigation.dart';
 import 'package:skar/pages/favorites/favorites.dart';
 import 'package:skar/pages/map/map.dart';
-import 'package:skar/pages/search.dart';
+import 'package:skar/pages/search_product/search_product.dart';
 import 'package:skar/pages/setting.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/models/favorite.dart';
