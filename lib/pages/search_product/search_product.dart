@@ -9,10 +9,19 @@ class SearchProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: screenProperties(context).topSafeArea + 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
         children: [
-          ShopSearchField(forShops: false),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ShopSearchField(forShops: false),
+            ],
+          ),
+          Expanded(
+            child: Center(
+              child: Text('rasult products'),
+            ),
+          ),
         ],
       ),
     );

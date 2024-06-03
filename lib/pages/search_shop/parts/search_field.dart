@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/providers/params/shop_param.dart';
 
 class ShopSearchField extends ConsumerWidget {
@@ -36,6 +37,8 @@ class ShopSearchField extends ConsumerWidget {
             onPressed: () async {
               if (forShops) {
                 ref.read(shopSearchProvider.notifier).state = '';
+              } else {
+                ref.read(productSearchProvider.notifier).state = '';
               }
               searchCtrl.clear();
             },
@@ -47,6 +50,8 @@ class ShopSearchField extends ConsumerWidget {
             ref.read(hasShopsProvider.notifier).state = true;
             return;
           }
+          ref.read(productSearchProvider.notifier).state = value;
+          ref.read(hasProductsProvider.notifier).state = true;
         },
       ),
     );
