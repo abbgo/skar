@@ -79,10 +79,7 @@ class ProductCard extends ConsumerWidget {
               ),
             ],
           ),
-          ProductFavoriteButton(
-            productID: product.id,
-            forFavorites: forFavorites,
-          ),
+          ProductFavoriteButton(productID: product.id),
         ],
       ),
     );
