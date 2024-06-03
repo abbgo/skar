@@ -64,9 +64,7 @@ class SearchShopResult extends ConsumerWidget {
                         );
                       },
                       error: (error, stackTrace) => errorMethod(error),
-                      loading: () {
-                        return null;
-                      },
+                      loading: () => null,
                     );
                   },
                 ),
