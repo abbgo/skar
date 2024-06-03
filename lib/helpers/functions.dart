@@ -35,9 +35,7 @@ Future<Position> getCurrentLocation() async {
   return await Geolocator.getCurrentPosition();
 }
 
-void permissionHandler(
-  WidgetRef ref,
-) async {
+void permissionHandler(WidgetRef ref) async {
   var loadNotifier = ref.read(loadProvider.notifier);
   var locationPermissionNotifier =
       ref.read(locationPermissionProvider.notifier);
@@ -49,9 +47,7 @@ void permissionHandler(
   }
 }
 
-Future<bool> checkAndGetCurrentLocation(
-  WidgetRef ref,
-) async {
+Future<bool> checkAndGetCurrentLocation(WidgetRef ref) async {
   bool hasPermission = await hasLocationPermission();
 
   if (hasPermission) {

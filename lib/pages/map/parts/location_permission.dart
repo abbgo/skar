@@ -7,7 +7,9 @@ import 'package:skar/helpers/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LocationPermission extends StatelessWidget {
-  const LocationPermission({super.key});
+  const LocationPermission({super.key, required this.ref});
+
+  final WidgetRef ref;
 
   @override
   Widget build(BuildContext context) {
@@ -33,29 +35,25 @@ class LocationPermission extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Consumer(
-              builder: (context, ref, child) {
-                return ElevatedButton(
-                  onPressed: () async {
-                    await Geolocator.requestPermission()
-                        .then((value) {})
-                        .onError((error, stackTrace) {
-                      if (kDebugMode) {
-                        print("error: ${error.toString()}");
-                      }
-                    });
+            ElevatedButton(
+              onPressed: () async {
+                await Geolocator.requestPermission()
+                    .then((value) {})
+                    .onError((error, stackTrace) {
+                  if (kDebugMode) {
+                    print("error: ${error.toString()}");
+                  }
+                });
 
-                    permissionHandler(ref);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      lang.allow,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                );
+                permissionHandler(ref);
               },
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  lang.allow,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
             ),
           ],
         ),

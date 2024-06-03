@@ -21,6 +21,6 @@ class MapPage extends ConsumerWidget {
           )
         : hasPermission
             ? map.Map()
-            : const permission.LocationPermission();
+            : permission.LocationPermission(ref: ref);
   }
 }
