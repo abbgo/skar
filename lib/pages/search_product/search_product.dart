@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/pages/search_product/parts/search_product_result.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 
 class SearchProductPage extends StatelessWidget {
@@ -17,11 +18,7 @@ class SearchProductPage extends StatelessWidget {
               ShopSearchField(forShops: false),
             ],
           ),
-          Expanded(
-            child: Center(
-              child: Text('rasult products'),
-            ),
-          ),
+          const SearchProductResult(),
         ],
       ),
     );
