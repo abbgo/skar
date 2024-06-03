@@ -37,44 +37,41 @@ class _ProductPageState extends State<ProductPage> {
         scrolledUnderElevation: 0,
         actions: [ProductPageFavoriteButton(productID: widget.productID)],
       ),
-      body: Hero(
-        tag: widget.productID,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Material(
-            color: Colors.white,
-            child: Consumer(
-              builder: (context, ref, child) {
-                var product = ref.watch(fetchProductProvider(widget.productID));
-                int selectedColors = ref.watch(selectedProductColorProvider);
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Material(
+          color: Colors.white,
+          child: Consumer(
+            builder: (context, ref, child) {
+              var product = ref.watch(fetchProductProvider(widget.productID));
+              int selectedColors = ref.watch(selectedProductColorProvider);
 
-                return product.when(
-                  skipError: true,
-                  data: (productData) {
-                    if (productData.error != '') {
-                      return const SomeThingWrong();
-                    }
-                    return ListView(
-                      children: [
-                        ProductImage(
-                          productColor: productData
-                              .product!.productColors![selectedColors],
-                          pageController: _pageController,
-                        ),
-                        ProductPriceAndBrend(product: productData.product!),
-                        ProductColorPage(
-                          productColors: productData.product!.productColors!,
-                          pageController: _pageController,
-                        ),
-                        SimilarProducts(productID: widget.productID),
-                      ],
-                    );
-                  },
-                  error: (error, stackTrace) => errorMethod(error),
-                  loading: () => loadWidget,
-                );
-              },
-            ),
+              return product.when(
+                skipError: true,
+                data: (productData) {
+                  if (productData.error != '') {
+                    return const SomeThingWrong();
+                  }
+                  return ListView(
+                    children: [
+                      ProductImage(
+                        productColor:
+                            productData.product!.productColors![selectedColors],
+                        pageController: _pageController,
+                      ),
+                      ProductPriceAndBrend(product: productData.product!),
+                      ProductColorPage(
+                        productColors: productData.product!.productColors!,
+                        pageController: _pageController,
+                      ),
+                      SimilarProducts(productID: widget.productID),
+                    ],
+                  );
+                },
+                error: (error, stackTrace) => errorMethod(error),
+                loading: () => loadWidget,
+              );
+            },
           ),
         ),
       ),

@@ -60,23 +60,20 @@ class SearchProductResult extends ConsumerWidget {
                               return null;
                             }
                             final product = productsData.products![indexInPage];
-                            return Hero(
-                              tag: product.id,
-                              child: GestureDetector(
-                                onTap: () => goToPage(
-                                  context,
-                                  ProductPage(productID: product.id),
-                                  false,
-                                ),
-                                child: Padding(
-                                  padding: index % 2 == 0
-                                      ? const EdgeInsets.only(left: 5)
-                                      : const EdgeInsets.only(right: 5),
-                                  child: ProductCard(
-                                    product: product,
-                                    forSimilarProducts: false,
-                                    forFavorites: false,
-                                  ),
+                            return GestureDetector(
+                              onTap: () => goToPage(
+                                context,
+                                ProductPage(productID: product.id),
+                                false,
+                              ),
+                              child: Padding(
+                                padding: index % 2 == 0
+                                    ? const EdgeInsets.only(left: 5)
+                                    : const EdgeInsets.only(right: 5),
+                                child: ProductCard(
+                                  product: product,
+                                  forSimilarProducts: false,
+                                  forFavorites: false,
                                 ),
                               ),
                             );
