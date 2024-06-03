@@ -1,41 +1,50 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/providers/pages/product.dart';
 
-class ShowImage extends StatefulWidget {
+class ShowImage extends ConsumerWidget {
   const ShowImage({super.key, required this.images});
 
   final List<dynamic> images;
 
   @override
-  State<ShowImage> createState() => _ShowImageState();
-}
-
-class _ShowImageState extends State<ShowImage> {
-  // VARIABLES ---------------------------------
-  int _selectedColor = 0;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    int selectedImage = ref.watch(selectedImageProvider);
     return Scaffold(
-      appBar: AppBar(elevation: 0, scrolledUnderElevation: 0),
       body: Column(
         children: [
-          SizedBox(
-            width: double.infinity,
-            height: screenProperties(context).height * .7,
-            child: InteractiveViewer(
-              minScale: 0.01,
-              maxScale: 4,
-              child: showCachImageMethod(widget.images[_selectedColor]),
-            ),
+          Stack(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: screenProperties(context).height * .8,
+                child: InteractiveViewer(
+                  minScale: 0.01,
+                  maxScale: 4,
+                  child: showCachImageMethod(images[selectedImage]),
+                ),
+              ),
+              Positioned(
+                top: 20,
+                left: 5,
+                child: IconButton(
+                  style: IconButton.styleFrom(backgroundColor: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.arrow_back),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: widget.images.length,
+              itemCount: images.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.only(left: 10),
@@ -45,18 +54,17 @@ class _ShowImageState extends State<ShowImage> {
                       borderRadius: BorderRadius.circular(10.0),
                       border: Border.all(
                         color: elevatedButtonColor,
-                        width: _selectedColor == index ? 2 : 0,
+                        width: selectedImage == index ? 2 : 0,
                       ),
                     ),
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       child: InkWell(
                         onTap: () {
-                          setState(() {
-                            _selectedColor = index;
-                          });
+                          ref.read(selectedImageProvider.notifier).state =
+                              index;
                         },
-                        child: showCachImageMethod(widget.images[index]),
+                        child: showCachImageMethod(images[index]),
                       ),
                     ),
                   ),
