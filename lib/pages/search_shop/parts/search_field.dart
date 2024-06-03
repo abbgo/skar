@@ -6,9 +6,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/params/shop_param.dart';
 
 class ShopSearchField extends ConsumerWidget {
-  ShopSearchField({super.key});
+  ShopSearchField({super.key, required this.forShops});
 
-  final TextEditingController searchShopCtrl = TextEditingController();
+  final TextEditingController searchCtrl = TextEditingController();
+  final bool forShops;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,7 +17,7 @@ class ShopSearchField extends ConsumerWidget {
       height: 40,
       width: screenProperties(context).width - 70,
       child: TextField(
-        controller: searchShopCtrl,
+        controller: searchCtrl,
         autofocus: true,
         textInputAction: TextInputAction.search,
         textAlignVertical: TextAlignVertical.center,
@@ -31,14 +32,19 @@ class ShopSearchField extends ConsumerWidget {
           suffixIcon: IconButton(
             icon: Icon(Icons.clear, color: elevatedButtonColor, size: 26),
             onPressed: () async {
-              ref.read(shopSearchProvider.notifier).state = '';
-              searchShopCtrl.clear();
+              if (forShops) {
+                ref.read(shopSearchProvider.notifier).state = '';
+              }
+              searchCtrl.clear();
             },
           ),
         ),
         onSubmitted: (value) async {
-          ref.read(shopSearchProvider.notifier).state = value;
-          ref.read(hasShopsProvider.notifier).state = true;
+          if (forShops) {
+            ref.read(shopSearchProvider.notifier).state = value;
+            ref.read(hasShopsProvider.notifier).state = true;
+            return;
+          }
         },
       ),
     );

@@ -32,7 +32,7 @@ class SearchShopPage extends ConsumerWidget {
         appBar: AppBar(
           elevation: 0,
           scrolledUnderElevation: 0,
-          title: ShopSearchField(),
+          title: ShopSearchField(forShops: true),
         ),
         body: SearchShopResult(
           mapController: mapController,
