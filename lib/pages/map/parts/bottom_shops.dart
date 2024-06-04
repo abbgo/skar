@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
-import 'package:skar/methods/pages/map.dart';
 import 'package:skar/providers/pages/map.dart';
 
 class MapButtons extends ConsumerWidget {
@@ -21,16 +20,15 @@ class MapButtons extends ConsumerWidget {
           : screenProperties(context).height * 0.06,
       right: 5,
       duration: const Duration(milliseconds: 300),
-      child: Row(
-        children: [
-          locationButtonMethod(
-            context,
-            () {
-              permissionHandler(ref);
-            },
+      child: IconButton(
+        onPressed: () => permissionHandler(ref),
+        style: IconButton.styleFrom(
+          backgroundColor: const Color(0xFFFE0002),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
-          // vipButtonMethod(context),
-        ],
+        ),
+        icon: const Icon(Icons.location_on_outlined, color: Colors.white),
       ),
     );
   }

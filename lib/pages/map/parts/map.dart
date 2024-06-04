@@ -46,6 +46,7 @@ class Map extends ConsumerWidget {
               initialCameraPosition: cameraPosition,
               mapType: isHybridMap ? MapType.hybrid : MapType.normal,
               myLocationButtonEnabled: false,
+              zoomControlsEnabled: false,
               onMapCreated: (GoogleMapController controller) {
                 if (!mapController.isCompleted) {
                   mapController.complete(controller);

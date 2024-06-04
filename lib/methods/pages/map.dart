@@ -8,42 +8,6 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 
-IconButton locationButtonMethod(BuildContext context, Function()? onPressed) {
-  return IconButton(
-    onPressed: onPressed,
-    style: IconButton.styleFrom(
-      backgroundColor: const Color(0xFFFE0002),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-    ),
-    icon: const Icon(
-      Icons.location_on_outlined,
-      color: Colors.white,
-    ),
-  );
-}
-
-// TextButton vipButtonMethod(BuildContext context) {
-//   return TextButton(
-//     onPressed: () {},
-//     style: TextButton.styleFrom(
-//       backgroundColor: Colors.white,
-//       padding: const EdgeInsets.symmetric(horizontal: 0),
-//       shape: const RoundedRectangleBorder(
-//         borderRadius: BorderRadius.only(
-//             bottomRight: Radius.circular(20),
-//             topRight: Radius.circular(20),
-//             bottomLeft: Radius.zero),
-//       ),
-//     ),
-//     child: const Text(
-//       "VIP",
-//       style: TextStyle(color: Colors.black),
-//     ),
-//   );
-// }
-
 Container listviewCallButtonMethod(BuildContext context, Shop shop) {
   return Container(
     alignment: Alignment.topCenter,
