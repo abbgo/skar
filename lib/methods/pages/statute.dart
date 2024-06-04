@@ -21,9 +21,7 @@ Future<Object?> warningShowGeneralDialog(BuildContext context) {
           child: AlertDialog(
             title: Text(
               lang.warning,
-              style: const TextStyle(
-                fontSize: 18,
-              ),
+              style: const TextStyle(fontSize: 18),
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
@@ -47,9 +45,7 @@ Future<Object?> warningShowGeneralDialog(BuildContext context) {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Text(
                   lang.statuteDialogContent,
                   style: const TextStyle(fontSize: 12),
@@ -58,21 +54,15 @@ Future<Object?> warningShowGeneralDialog(BuildContext context) {
             ),
             actions: [
               ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
-                  // backgroundColor: const Color(0xFFFE0002),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 child: Text(
                   lang.ok,
-                  style: const TextStyle(
-                    fontSize: 10,
-                    color: Colors.white,
-                  ),
+                  style: const TextStyle(fontSize: 10, color: Colors.white),
                 ),
               ),
             ],
@@ -98,14 +88,9 @@ Padding columnOfListviewMethod(String title, String description) {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
-        const SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
         Text(description),
       ],
     ),

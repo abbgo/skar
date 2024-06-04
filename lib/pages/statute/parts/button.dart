@@ -26,7 +26,6 @@ class StatuteButton extends StatelessWidget {
             onPressed: () {
               if (isChecked) {
                 ref.read(isFirstTimeProvider.notifier).update(false);
-
                 goToPage(context, const BottomNavigationPage(), true);
               } else {
                 warningShowGeneralDialog(context);
