@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:skar/pages/profile/parts/language_button.dart';
 
 Future<dynamic> showLanguageMethod(BuildContext context) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
-      return AlertDialog.adaptive(
+      return const AlertDialog.adaptive(
         backgroundColor: Colors.white,
-        title: const Text('Dil saylan'),
+        title: Text('Dil saylan', textAlign: TextAlign.center),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Turkmen'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Rus'),
-            ),
+            LanguageButton(),
+            LanguageButton(),
           ],
         ),
       );
