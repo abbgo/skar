@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LanguageButton extends StatelessWidget {
-  const LanguageButton({super.key});
+  const LanguageButton({super.key, required this.text});
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -9,12 +11,11 @@ class LanguageButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
         onPressed: () {},
-        child: const Text('Turkmen', style: TextStyle(color: Colors.white)),
+        child: Text(text, style: const TextStyle(color: Colors.white)),
       ),
     );
   }
