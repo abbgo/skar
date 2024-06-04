@@ -21,7 +21,7 @@ final shopsForMapProvider =
       var shopParams = ref.watch(shopParamProvider);
       List<Shop> shops =
           await ref.read(apiProvider).fetchShopsForMap('shops/map', shopParams);
-      bool isTM = ref.read(isTmProvider);
+      bool isTM = ref.read(langProvider) == 'tr';
 
       if (shops.isNotEmpty) {
         for (Shop shop in shops) {
@@ -51,7 +51,7 @@ var fetchShopsProvider =
 
     try {
       String search = ref.watch(shopSearchProvider);
-      bool isTM = ref.read(isTmProvider);
+      bool isTM = ref.read(langProvider) == 'tr';
 
       List<Shop> shops = await ref.read(apiProvider).fetchShops(
             page: shopParams.page!,

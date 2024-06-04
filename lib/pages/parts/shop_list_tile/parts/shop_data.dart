@@ -24,7 +24,7 @@ class ShopListTileData extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Consumer(
             builder: (context, ref, child) {
-              bool isTM = ref.watch(isTmProvider);
+              bool isTM = ref.watch(langProvider) == 'tr';
 
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -23,7 +23,7 @@ class ShopListTileMapButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isTM = ref.watch(isTmProvider);
+    bool isTM = ref.watch(langProvider) == 'tr';
 
     return IconButton(
       onPressed: () async {

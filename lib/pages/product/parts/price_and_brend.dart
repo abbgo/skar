@@ -28,7 +28,7 @@ class ProductPriceAndBrend extends StatelessWidget {
               children: [
                 Consumer(
                   builder: (context, ref, child) {
-                    bool isTM = ref.watch(isTmProvider);
+                    bool isTM = ref.watch(langProvider) == 'tr';
                     return GestureDetector(
                       onTap: () => goToPage(
                           context, ShopPage(shopID: product.shop!.id), false),
@@ -45,7 +45,7 @@ class ProductPriceAndBrend extends StatelessWidget {
                 ),
                 Consumer(
                   builder: (context, ref, child) {
-                    bool isTM = ref.watch(isTmProvider);
+                    bool isTM = ref.watch(langProvider) == 'tr';
                     return Text(
                       isTM ? product.nameTM : product.nameRU,
                       style: const TextStyle(fontSize: 18),

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LanguageButton extends StatelessWidget {
-  const LanguageButton({super.key, required this.text});
+class LanguageButton extends ConsumerWidget {
+  const LanguageButton({super.key, required this.text, required this.lang});
 
   final String text;
+  final String lang;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // bool isTm = ref.read(isTmProvider);
+
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(

@@ -22,7 +22,7 @@ class ShopPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ScreenProperties screenSize = screenProperties(context);
 
-    bool isTM = ref.watch(isTmProvider);
+    bool isTM = ref.watch(langProvider) == 'tr';
     var shop = ref.watch(fetchShopProvider(shopID));
     bool hasProducts = ref.watch(hasShopProductsProvider);
 

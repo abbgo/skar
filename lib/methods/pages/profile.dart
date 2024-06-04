@@ -11,8 +11,8 @@ Future<dynamic> showLanguageMethod(BuildContext context) {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            LanguageButton(text: 'Turkmen'),
-            LanguageButton(text: 'Rus'),
+            LanguageButton(text: 'Turkmen', lang: 'tr'),
+            LanguageButton(text: 'Rus', lang: 'ru'),
           ],
         ),
       );

@@ -13,7 +13,7 @@ var fetchProductsProvider =
     String search = params.shopID != ''
         ? ref.watch(shopProductSearchProvider)
         : ref.watch(productSearchProvider);
-    bool isTM = ref.read(isTmProvider);
+    bool isTM = ref.read(langProvider) == 'tr';
 
     try {
       List<Product> products = await ref.read(productApiProvider).fetchProducts(

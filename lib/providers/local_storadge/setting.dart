@@ -10,10 +10,10 @@ final isFirstTimeProvider = createPrefProvider<bool>(
   defaultValue: true,
 );
 
-final isTmProvider = createPrefProvider<bool>(
+final langProvider = createPrefProvider<String>(
   prefs: (_) => prefs,
-  prefKey: "is_tm",
-  defaultValue: true,
+  prefKey: "lang",
+  defaultValue: 'tr',
 );
 
 var selectedBottomIndexProvider = StateProvider.autoDispose<int>((ref) => 0);

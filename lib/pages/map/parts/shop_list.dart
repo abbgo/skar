@@ -19,7 +19,7 @@ class ShopList extends ConsumerWidget {
     var lang = AppLocalizations.of(context)!;
     double bannerHeight = ref.watch(bannerHeightProvider);
     double turns = ref.watch(turnsProvider);
-    bool isTM = ref.watch(isTmProvider);
+    bool isTM = ref.watch(langProvider) == 'tr';
 
     return GestureDetector(
       onVerticalDragEnd: (details) {

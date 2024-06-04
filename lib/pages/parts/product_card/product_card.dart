@@ -24,7 +24,7 @@ class ProductCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ScreenProperties screenSize = screenProperties(context);
-    bool isTM = ref.watch(isTmProvider);
+    bool isTM = ref.watch(langProvider) == 'tr';
 
     return Card(
       surfaceTintColor: Colors.white,
