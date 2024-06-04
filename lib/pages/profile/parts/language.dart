@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/profile.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguagePage extends StatelessWidget {
   const LanguagePage({super.key});
@@ -19,7 +20,10 @@ class LanguagePage extends StatelessWidget {
           return ListTile(
             onTap: () => showLanguageMethod(context),
             leading: const Icon(Icons.translate, color: Colors.white),
-            title: const Text('Dil', style: TextStyle(color: Colors.white)),
+            title: Text(
+              AppLocalizations.of(context)!.language,
+              style: const TextStyle(color: Colors.white),
+            ),
             trailing: Text(
               language == 'tr' ? 'Turkmen' : 'Русский',
               style: const TextStyle(color: Colors.white, fontSize: 16),

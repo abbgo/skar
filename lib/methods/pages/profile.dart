@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:skar/pages/profile/parts/language_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<dynamic> showLanguageMethod(BuildContext context) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
-      return const AlertDialog.adaptive(
+      return AlertDialog.adaptive(
         backgroundColor: Colors.white,
-        title: Text('Dil saylan', textAlign: TextAlign.center),
-        content: Column(
+        title: Text(
+          AppLocalizations.of(context)!.selectLanguage,
+          textAlign: TextAlign.center,
+        ),
+        content: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             LanguageButton(text: 'Turkmen', lang: 'tr'),

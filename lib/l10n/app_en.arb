@@ -42,5 +42,7 @@
     "noFavoriteShops":"No your favorite shops !",
     "noFavoriteProducts":"No your favorite products !",
     "myFavoriteShops":"My favorite shops",
-    "myFavoriteProducts":"My favorite products"
+    "myFavoriteProducts":"My favorite products",
+    "language":"Language",
+    "selectLanguage":"Select language"
 }

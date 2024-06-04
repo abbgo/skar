@@ -42,5 +42,7 @@
     "noFavoriteShops":"Нет любимых магазинов !",
     "noFavoriteProducts":"Нет любимых продуктов !",
     "myFavoriteShops":"Мои любимые магазины",
-    "myFavoriteProducts":"Мои любимые продукты"
+    "myFavoriteProducts":"Мои любимые продукты",
+    "language":"Язук",
+    "selectLanguage":"Выберите язык"
 }
