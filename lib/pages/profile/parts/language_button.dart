@@ -23,7 +23,10 @@ class LanguageButton extends ConsumerWidget {
               language == lang ? elevatedButtonColor : Colors.white,
           elevation: 3,
         ),
-        onPressed: () {},
+        onPressed: () async {
+          await ref.read(langProvider.notifier).update(lang);
+          if (context.mounted) Navigator.pop(context);
+        },
         child: Text(
           text,
           style: TextStyle(
