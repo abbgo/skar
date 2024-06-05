@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
-import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
-import 'package:skar/providers/pages/map.dart';
 
 class ThemeButton extends ConsumerWidget {
-  const ThemeButton({super.key, required this.text, required this.lang});
+  const ThemeButton({super.key, required this.text, required this.theme});
 
   final String text;
-  final String lang;
+  final int theme;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String language = ref.read(langProvider);
+    int selectedTheme = ref.read(themeProvider);
 
     return SizedBox(
       width: double.infinity,
@@ -22,26 +20,14 @@ class ThemeButton extends ConsumerWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           backgroundColor:
-              language == lang ? elevatedButtonColor : Colors.white,
+              selectedTheme == theme ? elevatedButtonColor : Colors.white,
           elevation: 3,
         ),
-        onPressed: () async {
-          await ref.read(langProvider.notifier).update(lang);
-          await ref.read(markersProvider.notifier).removeAllMarkers();
-          if (context.mounted) {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const BottomNavigationPage(),
-              ),
-              (Route<dynamic> route) => false,
-            );
-          }
-        },
+        onPressed: () {},
         child: Text(
           text,
           style: TextStyle(
-            color: language == lang ? Colors.white : elevatedButtonColor,
+            color: selectedTheme == theme ? Colors.white : elevatedButtonColor,
           ),
         ),
       ),
