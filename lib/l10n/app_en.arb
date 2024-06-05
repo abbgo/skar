@@ -44,5 +44,10 @@
     "myFavoriteShops":"My favorite shops",
     "myFavoriteProducts":"My favorite products",
     "language":"Language",
-    "selectLanguage":"Select language"
+    "selectLanguage":"Select language",
+    "theme":"Theme",
+    "selectTheme":"Select theme",
+    "whiteTheme":"White theme",
+    "blackTheme":"Black theme",
+    "systemTheme":"System theme"
 }

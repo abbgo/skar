@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
-import 'package:skar/methods/pages/profile.dart';
-import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class LanguagePage extends StatelessWidget {
-  const LanguagePage({super.key});
+class ThemePage extends StatelessWidget {
+  const ThemePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +16,10 @@ class LanguagePage extends StatelessWidget {
           String language = ref.watch(langProvider);
 
           return ListTile(
-            onTap: () => showLanguageMethod(context),
+            // onTap: () => showLanguageMethod(context),
             leading: const Icon(Icons.translate, color: Colors.white),
             title: Text(
-              AppLocalizations.of(context)!.language,
+              AppLocalizations.of(context)!.theme,
               style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
             trailing: Text(

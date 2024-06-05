@@ -44,5 +44,10 @@
     "myFavoriteShops":"Мои любимые магазины",
     "myFavoriteProducts":"Мои любимые продукты",
     "language":"Язук",
-    "selectLanguage":"Выберите язык"
+    "selectLanguage":"Выберите язык",
+    "theme":"Тема",
+    "selectTheme":"Выберите тему",
+    "whiteTheme":"Белая тема",
+    "blackTheme":"Черная тема",
+    "systemTheme":"Системная тема"
 }

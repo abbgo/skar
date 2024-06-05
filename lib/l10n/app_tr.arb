@@ -44,5 +44,10 @@
     "myFavoriteShops":"Halan dükanlarym",
     "myFavoriteProducts":"Halan harytlarym",
     "language":"Dil",
-    "selectLanguage":"Dil saýlaň"
+    "selectLanguage":"Dil saýlaň",
+    "theme":"Tema",
+    "selectTheme":"Tema saýlaň",
+    "whiteTheme":"Açyk tema",
+    "blackTheme":"Gara tema",
+    "systemTheme":"Sistema temasy"
 }

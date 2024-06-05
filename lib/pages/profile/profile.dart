@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skar/pages/profile/parts/language.dart';
+import 'package:skar/pages/profile/parts/theme_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -9,8 +10,10 @@ class ProfilePage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: ListView(
+        physics: const BouncingScrollPhysics(),
         children: const [
           LanguagePage(),
+          ThemePage(),
         ],
       ),
     );
