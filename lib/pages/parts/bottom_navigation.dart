@@ -15,6 +15,7 @@ class BottomNavigationPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
+    Brightness brightness = MediaQuery.of(context).platformBrightness;
     int selectedIndex = ref.watch(selectedBottomIndexProvider);
 
     List<Widget> pages = [
@@ -35,31 +36,36 @@ class BottomNavigationPage extends ConsumerWidget {
           bottomNavigationBarItemMethod(
             lang.map,
             const Icon(Icons.travel_explore, size: 24),
+            brightness == Brightness.light ? Colors.white : Colors.black,
           ),
           bottomNavigationBarItemMethod(
             lang.myFavorites,
             const Icon(Icons.favorite_border, size: 24),
+            brightness == Brightness.light ? Colors.white : Colors.black,
           ),
           bottomNavigationBarItemMethod(
             lang.search,
             Image.asset(
               "assets/icons/search.png",
-              color: elevatedButtonColor,
+              color: brightness == Brightness.light
+                  ? elevatedButtonColor
+                  : Colors.white,
               height: 24,
             ),
+            brightness == Brightness.light ? Colors.white : Colors.black,
           ),
           bottomNavigationBarItemMethod(
             lang.settings,
             Image.asset(
               "assets/icons/setting.png",
-              color: elevatedButtonColor,
+              color: brightness == Brightness.light
+                  ? elevatedButtonColor
+                  : Colors.white,
               height: 22,
             ),
+            brightness == Brightness.light ? Colors.white : Colors.black,
           ),
         ],
-        elevation: 0,
-        selectedItemColor: elevatedButtonColor,
-        unselectedItemColor: elevatedButtonColor,
         currentIndex: selectedIndex,
         onTap: (value) {
           ref.read(selectedBottomIndexProvider.notifier).state = value;
