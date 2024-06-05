@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
 
@@ -27,7 +28,15 @@ class LanguageButton extends ConsumerWidget {
         onPressed: () async {
           await ref.read(langProvider.notifier).update(lang);
           await ref.read(markersProvider.notifier).removeAllMarkers();
-          if (context.mounted) Navigator.pop(context);
+          if (context.mounted) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const BottomNavigationPage(),
+              ),
+              (Route<dynamic> route) => false,
+            );
+          }
         },
         child: Text(
           text,
