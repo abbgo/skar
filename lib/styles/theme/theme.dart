@@ -15,6 +15,7 @@ class AppTheme {
     elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
     appBarTheme: AppAppBarTheme.lightAppBarTheme,
     checkboxTheme: AppCheckBoxTheme.checkboxThemeData,
+    dialogBackgroundColor: Colors.white,
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -26,5 +27,6 @@ class AppTheme {
     elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
     appBarTheme: AppAppBarTheme.darkAppBarTheme,
     checkboxTheme: AppCheckBoxTheme.checkboxThemeData,
+    dialogBackgroundColor: Colors.black,
   );
 }
