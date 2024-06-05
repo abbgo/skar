@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:skar/styles/theme/parts/app_bar_theme.dart';
+import 'package:skar/styles/theme/parts/checkbox_theme.dart';
+import 'package:skar/styles/theme/parts/elevated_button_theme.dart';
+import 'package:skar/styles/theme/parts/text_theme.dart';
+
+class AppTheme {
+  AppTheme._();
+  static final ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
+    fontFamily: 'HeyWowRegular',
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: Colors.white,
+    textTheme: AppTextTheme.lightTextTheme,
+    elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
+    appBarTheme: AppAppBarTheme.lightAppBarTheme,
+    checkboxTheme: AppCheckBoxTheme.checkboxThemeData,
+  );
+
+  static final ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
+    fontFamily: 'HeyWowRegular',
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: Colors.black,
+    textTheme: AppTextTheme.darkTextTheme,
+    elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
+    appBarTheme: AppAppBarTheme.darkAppBarTheme,
+    checkboxTheme: AppCheckBoxTheme.checkboxThemeData,
+  );
+}

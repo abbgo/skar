@@ -15,8 +15,7 @@ class StatuteButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
 
-    return Container(
-      color: Colors.white,
+    return SizedBox(
       width: screenProperties(context).width,
       child: Consumer(
         builder: (context, ref, child) {
@@ -31,20 +30,9 @@ class StatuteButton extends StatelessWidget {
                 warningShowGeneralDialog(context);
               }
             },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
-              child: Text(
-                lang.next,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: Text(lang.next),
             ),
           );
         },

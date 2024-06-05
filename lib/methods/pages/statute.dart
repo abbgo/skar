@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-Container containerMethod(double height, BuildContext context) {
-  return Container(
-    height: height,
-    color: Colors.white.withOpacity(0.3),
-  );
-}
-
 Future<Object?> warningShowGeneralDialog(BuildContext context) {
   var lang = AppLocalizations.of(context)!;
 

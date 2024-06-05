@@ -14,34 +14,28 @@ class StatuteCheckBox extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () => ref.read(checkBoxProvider.notifier).state = !isChecked,
-      child: Container(
-        color: const Color.fromRGBO(255, 255, 255, 1),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Transform.scale(
-              scale: 1.0,
-              child: SizedBox(
-                width: 20,
-                child: Checkbox(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(3),
-                  ),
-                  value: isChecked,
-                  onChanged: (bool? newValue) {
-                    ref.read(checkBoxProvider.notifier).state = !isChecked;
-                  },
-                  activeColor: elevatedButtonColor,
-                ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Transform.scale(
+            scale: 1.0,
+            child: SizedBox(
+              width: 20,
+              child: Checkbox(
+                value: isChecked,
+                onChanged: (bool? newValue) {
+                  ref.read(checkBoxProvider.notifier).state = !isChecked;
+                },
+                activeColor: elevatedButtonColor,
               ),
             ),
-            const SizedBox(width: 5),
-            Text(
-              lang.acceptStatute,
-              style: const TextStyle(fontSize: 14),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(width: 5),
+          Text(
+            lang.acceptStatute,
+            style: const TextStyle(fontSize: 14),
+          ),
+        ],
       ),
     );
   }

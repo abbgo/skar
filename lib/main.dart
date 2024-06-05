@@ -5,9 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skar/database/config.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
-import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/start.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/styles/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,22 +31,9 @@ class MyApp extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'HeyWowRegular',
-        textTheme:
-            Theme.of(context).textTheme.apply(fontFamily: 'HeyWowRegular'),
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          scrolledUnderElevation: 0,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(elevatedButtonColor),
-          ),
-        ),
-      ),
+      themeMode: ThemeMode.system,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: const StartPage(),
       locale: Locale(language),
     );

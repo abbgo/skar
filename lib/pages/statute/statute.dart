@@ -12,24 +12,15 @@ class StatutePage extends StatelessWidget {
     var lang = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 50, 24, 15),
+      appBar: AppBar(title: Text(lang.termsOfService)),
+      body: const Padding(
+        padding: EdgeInsets.fromLTRB(24, 0, 24, 15),
         child: Column(
           children: [
-            Center(
-              child: Text(
-                lang.termsOfService,
-                style: const TextStyle(
-                  color: Color(0xFF3E3E40),
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            const StatuteContent(),
-            const StatuteCheckBox(),
-            const StatuteButton(),
+            SizedBox(height: 8),
+            StatuteContent(),
+            StatuteCheckBox(),
+            StatuteButton(),
           ],
         ),
       ),
