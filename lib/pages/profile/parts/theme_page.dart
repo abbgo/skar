@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/methods/pages/theme.dart';
 import 'package:skar/models/theme.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 
@@ -28,7 +29,7 @@ class ThemePage extends StatelessWidget {
           }
 
           return ListTile(
-            // onTap: () => showLanguageMethod(context),
+            onTap: () => showThemeMethod(context),
             leading: const Icon(Icons.contrast, color: Colors.white),
             title: Text(
               lang.theme,
