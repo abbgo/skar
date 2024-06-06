@@ -37,12 +37,12 @@ class BottomNavigationPage extends ConsumerWidget {
           bottomNavigationBarItemMethod(
             lang.map,
             const Icon(Icons.travel_explore, size: 24),
-            isLightBrightness ? Colors.white : Colors.black,
+            isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
           ),
           bottomNavigationBarItemMethod(
             lang.myFavorites,
             const Icon(Icons.favorite_border, size: 24),
-            isLightBrightness ? Colors.white : Colors.black,
+            isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
           ),
           bottomNavigationBarItemMethod(
             lang.search,
@@ -51,7 +51,7 @@ class BottomNavigationPage extends ConsumerWidget {
               color: isLightBrightness ? elevatedButtonColor : Colors.white,
               height: 24,
             ),
-            isLightBrightness ? Colors.white : Colors.black,
+            isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
           ),
           bottomNavigationBarItemMethod(
             lang.settings,
@@ -60,7 +60,7 @@ class BottomNavigationPage extends ConsumerWidget {
               color: isLightBrightness ? elevatedButtonColor : Colors.white,
               height: 22,
             ),
-            isLightBrightness ? Colors.white : Colors.black,
+            isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
           ),
         ],
         currentIndex: selectedIndex,
