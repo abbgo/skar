@@ -16,6 +16,8 @@ class MapSearchAndMapTypeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
+
     return Positioned(
       top: screenProperties(context).topSafeArea + 5,
       right: 10,
@@ -23,7 +25,6 @@ class MapSearchAndMapTypeButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            style: IconButton.styleFrom(backgroundColor: Colors.white),
             onPressed: () => goToPage(
               context,
               SearchShopPage(
@@ -32,15 +33,22 @@ class MapSearchAndMapTypeButton extends StatelessWidget {
               ),
               false,
             ),
-            icon: Icon(Icons.search, color: elevatedButtonColor, size: 22),
+            icon: Icon(
+              Icons.search,
+              color: isLightBrightness ? elevatedButtonColor : Colors.white,
+              size: 22,
+            ),
           ),
           Consumer(
             builder: (context, ref, child) {
               return IconButton(
-                style: IconButton.styleFrom(backgroundColor: Colors.white),
                 onPressed: () =>
                     ref.read(isHybridMapProvider.notifier).change(),
-                icon: Icon(Icons.layers, color: elevatedButtonColor, size: 22),
+                icon: Icon(
+                  Icons.layers,
+                  color: isLightBrightness ? elevatedButtonColor : Colors.white,
+                  size: 22,
+                ),
               );
             },
           ),

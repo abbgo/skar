@@ -10,11 +10,13 @@ import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
 ScreenProperties screenProperties(BuildContext context) {
-  ScreenProperties screenProperties = ScreenProperties(0, 0, 0);
+  ScreenProperties screenProperties = ScreenProperties(0, 0, 0, true);
 
   screenProperties.width = MediaQuery.of(context).size.width;
   screenProperties.height = MediaQuery.of(context).size.height;
   screenProperties.topSafeArea = MediaQuery.of(context).viewPadding.top;
+  Brightness brightness = MediaQuery.of(context).platformBrightness;
+  screenProperties.isLightBrightness = brightness == Brightness.light;
 
   return screenProperties;
 }

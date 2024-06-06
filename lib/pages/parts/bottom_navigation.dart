@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/functions.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/parts/bottom_navigation.dart';
@@ -15,7 +16,7 @@ class BottomNavigationPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
     int selectedIndex = ref.watch(selectedBottomIndexProvider);
 
     List<Widget> pages = [
@@ -36,34 +37,30 @@ class BottomNavigationPage extends ConsumerWidget {
           bottomNavigationBarItemMethod(
             lang.map,
             const Icon(Icons.travel_explore, size: 24),
-            brightness == Brightness.light ? Colors.white : Colors.black,
+            isLightBrightness ? Colors.white : Colors.black,
           ),
           bottomNavigationBarItemMethod(
             lang.myFavorites,
             const Icon(Icons.favorite_border, size: 24),
-            brightness == Brightness.light ? Colors.white : Colors.black,
+            isLightBrightness ? Colors.white : Colors.black,
           ),
           bottomNavigationBarItemMethod(
             lang.search,
             Image.asset(
               "assets/icons/search.png",
-              color: brightness == Brightness.light
-                  ? elevatedButtonColor
-                  : Colors.white,
+              color: isLightBrightness ? elevatedButtonColor : Colors.white,
               height: 24,
             ),
-            brightness == Brightness.light ? Colors.white : Colors.black,
+            isLightBrightness ? Colors.white : Colors.black,
           ),
           bottomNavigationBarItemMethod(
             lang.settings,
             Image.asset(
               "assets/icons/setting.png",
-              color: brightness == Brightness.light
-                  ? elevatedButtonColor
-                  : Colors.white,
+              color: isLightBrightness ? elevatedButtonColor : Colors.white,
               height: 22,
             ),
-            brightness == Brightness.light ? Colors.white : Colors.black,
+            isLightBrightness ? Colors.white : Colors.black,
           ),
         ],
         currentIndex: selectedIndex,

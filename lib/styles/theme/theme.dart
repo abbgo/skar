@@ -3,6 +3,7 @@ import 'package:skar/styles/theme/parts/app_bar_theme.dart';
 import 'package:skar/styles/theme/parts/bottom_navigation_bar_theme.dart';
 import 'package:skar/styles/theme/parts/checkbox_theme.dart';
 import 'package:skar/styles/theme/parts/elevated_button_theme.dart';
+import 'package:skar/styles/theme/parts/icon_button_theme.dart';
 import 'package:skar/styles/theme/parts/text_theme.dart';
 
 class AppTheme {
@@ -19,6 +20,7 @@ class AppTheme {
     dialogBackgroundColor: Colors.white,
     bottomNavigationBarTheme:
         AppBottomNavigationBar.lightBottomNavigationBarThemeData,
+    iconButtonTheme: AppIconButtonTheme.lightIconButtonTheme,
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -33,5 +35,6 @@ class AppTheme {
     dialogBackgroundColor: Colors.black,
     bottomNavigationBarTheme:
         AppBottomNavigationBar.darkBottomNavigationBarThemeData,
+    iconButtonTheme: AppIconButtonTheme.darkIconButtonTheme,
   );
 }
