@@ -34,7 +34,7 @@ class AppTheme {
     elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
     appBarTheme: AppAppBarTheme.darkAppBarTheme,
     checkboxTheme: AppCheckBoxTheme.checkboxThemeData,
-    dialogBackgroundColor: Colors.black,
+    dialogBackgroundColor: dialogColorDarkTheme,
     bottomNavigationBarTheme:
         AppBottomNavigationBar.darkBottomNavigationBarThemeData,
     iconButtonTheme: AppIconButtonTheme.darkIconButtonTheme,
