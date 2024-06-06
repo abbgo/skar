@@ -40,7 +40,9 @@ class ProductFavoriteButton extends ConsumerWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: isLightBrightness
+                        ? Colors.grey.withOpacity(0.5)
+                        : Colors.white.withOpacity(.5),
                     blurRadius: 10.0,
                     spreadRadius: 2.0,
                   ),
@@ -52,7 +54,11 @@ class ProductFavoriteButton extends ConsumerWidget {
                 radius: 15,
                 child: Icon(
                   data ? Icons.favorite : Icons.favorite_border,
-                  color: data ? Colors.red : Colors.black,
+                  color: data
+                      ? Colors.red
+                      : isLightBrightness
+                          ? Colors.black
+                          : Colors.white,
                   size: 16,
                 ),
               ),
