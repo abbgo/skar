@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/methods/parts/input.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/params/product_param.dart';
@@ -15,6 +16,7 @@ class ShopSearchField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
 
     return SizedBox(
       height: 40,
@@ -24,20 +26,13 @@ class ShopSearchField extends ConsumerWidget {
         autofocus: forShops ? true : false,
         textInputAction: TextInputAction.search,
         textAlignVertical: TextAlignVertical.center,
-        cursorColor: elevatedButtonColor,
+        cursorColor: isLightBrightness ? elevatedButtonColor : Colors.white,
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(top: 0, left: 20),
+          focusedBorder: inputBorder(context),
+          border: inputBorder(context),
           hintText: forShops ? lang.searchShop : lang.searchProduct,
-          filled: true,
-          fillColor: Colors.white,
-          enabledBorder: outlinedInputBorder(),
-          focusedBorder: outlinedInputBorder(),
           suffixIcon: IconButton(
-            icon: Icon(
-              Icons.backspace_outlined,
-              color: elevatedButtonColor,
-              size: 18,
-            ),
+            icon: const Icon(Icons.backspace_outlined, size: 18),
             onPressed: () async {
               if (forShops) {
                 ref.read(shopSearchProvider.notifier).state = '';
@@ -60,11 +55,4 @@ class ShopSearchField extends ConsumerWidget {
       ),
     );
   }
-}
-
-OutlineInputBorder outlinedInputBorder() {
-  return OutlineInputBorder(
-    borderSide: BorderSide(color: elevatedButtonColor),
-    borderRadius: const BorderRadius.all(Radius.circular(20)),
-  );
 }
