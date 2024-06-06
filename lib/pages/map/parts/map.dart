@@ -69,7 +69,7 @@ class Map extends ConsumerWidget {
               },
             ),
             MapSearchAndMapTypeButton(mapController: mapController),
-            MapButtons(mapController: mapController),
+            LocationButton(mapController: mapController),
             const ShopList(),
           ],
         );

@@ -5,8 +5,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/providers/pages/map.dart';
 
-class MapButtons extends ConsumerWidget {
-  const MapButtons({super.key, required this.mapController});
+class LocationButton extends ConsumerWidget {
+  const LocationButton({super.key, required this.mapController});
 
   final Completer<GoogleMapController> mapController;
 

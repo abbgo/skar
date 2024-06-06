@@ -34,9 +34,11 @@ class ShopList extends ConsumerWidget {
       child: AnimatedContainer(
         height: screenProperties(context).height * bannerHeight,
         width: screenProperties(context).width,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          color: screenProperties(context).isLightBrightness
+              ? Colors.white
+              : Colors.black,
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
           ),
@@ -92,9 +94,11 @@ class ShopList extends ConsumerWidget {
       padding: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
       child: Container(
         width: screenProperties(context).width * 0.35,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+        decoration: BoxDecoration(
+          color: screenProperties(context).isLightBrightness
+              ? Colors.white
+              : Colors.black,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,9 +115,7 @@ class ShopList extends ConsumerWidget {
                 padding:
                     const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 8),
                 child: Container(
-                  constraints: const BoxConstraints(
-                    maxHeight: double.infinity,
-                  ),
+                  constraints: const BoxConstraints(maxHeight: double.infinity),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
