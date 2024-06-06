@@ -6,7 +6,7 @@ class AppTabBarTheme {
 
   static TabBarTheme lightTabBarTheme = TabBarTheme(
     labelPadding: const EdgeInsets.only(bottom: 10),
-    labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+    labelStyle: const TextStyle(fontFamily: 'HeyWowRegular'),
     labelColor: elevatedButtonColor,
     indicatorColor: elevatedButtonColor,
     dividerColor: Colors.white,
@@ -14,7 +14,7 @@ class AppTabBarTheme {
 
   static TabBarTheme darkTabBarTheme = TabBarTheme(
     labelPadding: const EdgeInsets.only(bottom: 10),
-    labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+    labelStyle: const TextStyle(fontFamily: 'HeyWowRegular'),
     labelColor: Colors.white,
     indicatorColor: Colors.white,
     dividerColor: scaffoldColorDarkTheme,
