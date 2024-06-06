@@ -22,7 +22,6 @@ class ShopListTile extends StatelessWidget {
     return SizedBox(
       height: cardHeight,
       child: Card(
-        elevation: 3,
         child: Row(
           children: [
             ShopListTileImage(shop: shop, cardHeight: cardHeight),

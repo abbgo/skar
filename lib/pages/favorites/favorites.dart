@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:skar/pages/favorites/parts/products.dart';
 import 'package:skar/pages/favorites/parts/shops.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:skar/styles/colors.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
@@ -35,14 +34,8 @@ class _FavoritesPageState extends State<FavoritesPage>
       appBar: AppBar(
         toolbarHeight: 0,
         bottom: TabBar(
-          labelPadding: const EdgeInsets.only(bottom: 10),
-          labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-          labelColor: elevatedButtonColor,
-          indicatorColor: elevatedButtonColor,
           controller: _tabController,
           indicatorWeight: 2,
-          dividerColor: Colors.white,
-          overlayColor: WidgetStateColor.transparent,
           tabs: [
             Text(lang.myFavoriteShops),
             Text(lang.myFavoriteProducts),

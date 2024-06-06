@@ -27,9 +27,6 @@ class ProductCard extends ConsumerWidget {
     bool isTM = ref.watch(langProvider) == 'tr';
 
     return Card(
-      surfaceTintColor: Colors.white,
-      color: Colors.white,
-      elevation: 3,
       child: Stack(
         children: [
           Column(
@@ -54,7 +51,7 @@ class ProductCard extends ConsumerWidget {
                 16,
                 TextDecoration.none,
                 FontWeight.bold,
-                Colors.black,
+                null,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +69,7 @@ class ProductCard extends ConsumerWidget {
                           14,
                           TextDecoration.lineThrough,
                           FontWeight.normal,
-                          Colors.black,
+                          null,
                         )
                       : const SizedBox(),
                 ],

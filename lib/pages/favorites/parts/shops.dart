@@ -27,7 +27,8 @@ class FavoriteShops extends ConsumerWidget {
               }
               if (data.shops!.isEmpty) {
                 return NoFavorites(
-                    text: AppLocalizations.of(context)!.noFavoriteShops);
+                  text: AppLocalizations.of(context)!.noFavoriteShops,
+                );
               }
               var favorites = data.shops!;
               return ListView.builder(
