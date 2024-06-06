@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:skar/helpers/functions.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/map.dart';
@@ -24,6 +25,7 @@ class ShopListTileMapButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isTM = ref.watch(langProvider) == 'tr';
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
 
     return IconButton(
       onPressed: () async {
@@ -56,7 +58,10 @@ class ShopListTileMapButton extends ConsumerWidget {
           Navigator.pop(context);
         }
       },
-      icon: Icon(Icons.travel_explore, color: elevatedButtonColor),
+      icon: Icon(
+        Icons.travel_explore,
+        color: isLightBrightness ? elevatedButtonColor : Colors.white,
+      ),
     );
   }
 }

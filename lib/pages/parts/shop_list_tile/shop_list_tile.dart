@@ -22,8 +22,6 @@ class ShopListTile extends StatelessWidget {
     return SizedBox(
       height: cardHeight,
       child: Card(
-        surfaceTintColor: Colors.white,
-        color: Colors.white,
         elevation: 3,
         child: Row(
           children: [

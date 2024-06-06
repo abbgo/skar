@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/favorite.dart';
 import 'package:skar/models/favorite_type.dart';
 import 'package:skar/providers/database/favorite.dart';
 import 'package:skar/providers/models/favorite.dart';
+import 'package:skar/styles/colors.dart';
 
 class ShopFavoriteButton extends ConsumerWidget {
   const ShopFavoriteButton({super.key, required this.shopID});
@@ -13,6 +15,7 @@ class ShopFavoriteButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
     Favorite favorite = Favorite(id: shopID, type: FavoriteType.shop);
     AsyncValue<bool> hasInFavorites =
         ref.watch(hasInFavoritesProvider(favorite));
@@ -36,7 +39,11 @@ class ShopFavoriteButton extends ConsumerWidget {
             },
             child: Icon(
               data ? Icons.favorite : Icons.favorite_border,
-              color: data ? Colors.red : Colors.black,
+              color: data
+                  ? Colors.red
+                  : isLightBrightness
+                      ? elevatedButtonColor
+                      : Colors.white,
             ),
           );
         },

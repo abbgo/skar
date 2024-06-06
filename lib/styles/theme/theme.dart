@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/styles/theme/parts/app_bar_theme.dart';
 import 'package:skar/styles/theme/parts/bottom_navigation_bar_theme.dart';
+import 'package:skar/styles/theme/parts/card_theme.dart';
 import 'package:skar/styles/theme/parts/checkbox_theme.dart';
 import 'package:skar/styles/theme/parts/elevated_button_theme.dart';
 import 'package:skar/styles/theme/parts/icon_button_theme.dart';
@@ -25,6 +26,7 @@ class AppTheme {
         AppBottomNavigationBar.lightBottomNavigationBarThemeData,
     iconButtonTheme: AppIconButtonTheme.lightIconButtonTheme,
     inputDecorationTheme: AppInputTheme.lightInputTheme,
+    cardTheme: AppCardTheme.lightCardTheme,
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -41,5 +43,6 @@ class AppTheme {
         AppBottomNavigationBar.darkBottomNavigationBarThemeData,
     iconButtonTheme: AppIconButtonTheme.darkIconButtonTheme,
     inputDecorationTheme: AppInputTheme.darkInputTheme,
+    cardTheme: AppCardTheme.darkCardTheme,
   );
 }

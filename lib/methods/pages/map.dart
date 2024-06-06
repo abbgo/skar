@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/shop/shop.dart';
+import 'package:skar/styles/colors.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 
 Container listviewCallButtonMethod(BuildContext context, Shop shop) {
+  bool isLightBrightness = screenProperties(context).isLightBrightness;
+
   return Container(
     alignment: Alignment.topCenter,
     child: IconButton(
+      style: IconButton.styleFrom(
+        backgroundColor: isLightBrightness ? null : scaffoldColorDarkTheme,
+      ),
       onPressed: () => showCallBottomSheet(context, shop.phones!),
       icon: const Icon(Icons.call, color: Color(0xFF4AC76D), size: 20),
     ),

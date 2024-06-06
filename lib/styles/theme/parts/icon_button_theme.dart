@@ -9,6 +9,6 @@ class AppIconButtonTheme {
   );
 
   static IconButtonThemeData darkIconButtonTheme = IconButtonThemeData(
-    style: IconButton.styleFrom(backgroundColor: scaffoldColorDarkTheme),
+    style: IconButton.styleFrom(backgroundColor: dialogColorDarkTheme),
   );
 }

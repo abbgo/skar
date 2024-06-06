@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/styles/colors.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/shop/parts/shop_favorite_button.dart';
@@ -38,10 +37,9 @@ class ShopListTileData extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         isTM ? shop.nameTM : shop.nameRU,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: elevatedButtonColor,
                         ),
                       ),
                       Text(
