@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/helpers/static_data.dart';
+import 'package:skar/styles/colors.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/shop/parts/shop_favorite_button.dart';

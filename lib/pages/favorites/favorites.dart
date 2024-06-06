@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:skar/helpers/static_data.dart';
 import 'package:skar/pages/favorites/parts/products.dart';
 import 'package:skar/pages/favorites/parts/shops.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/styles/colors.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});

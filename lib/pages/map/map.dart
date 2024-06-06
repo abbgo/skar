@@ -11,14 +11,11 @@ class MapPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     permissionHandler(ref);
-
     bool isLoading = ref.watch(loadProvider);
     bool hasPermission = ref.watch(locationPermissionProvider);
 
     return isLoading
-        ? Center(
-            child: Image.asset("assets/animated_icons/animated_map.gif"),
-          )
+        ? const Center(child: CircularProgressIndicator())
         : hasPermission
             ? map.Map()
             : permission.LocationPermission(ref: ref);

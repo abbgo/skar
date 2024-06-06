@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
-import 'package:skar/helpers/static_data.dart';
+import 'package:skar/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/providers/params/shop_param.dart';

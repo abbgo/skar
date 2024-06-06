@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skar/styles/colors.dart';
 import 'package:skar/styles/theme/parts/app_bar_theme.dart';
 import 'package:skar/styles/theme/parts/bottom_navigation_bar_theme.dart';
 import 'package:skar/styles/theme/parts/checkbox_theme.dart';
@@ -27,7 +28,7 @@ class AppTheme {
     useMaterial3: true,
     fontFamily: 'HeyWowRegular',
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: scaffoldColorDarkTheme,
     textTheme: AppTextTheme.darkTextTheme,
     elevatedButtonTheme: AppElevatedButtonTheme.lightElevatedButtonTheme,
     appBarTheme: AppAppBarTheme.darkAppBarTheme,
