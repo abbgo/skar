@@ -9,6 +9,7 @@ import 'package:skar/styles/theme/parts/text_theme.dart';
 
 class AppTheme {
   AppTheme._();
+
   static final ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     fontFamily: 'HeyWowRegular',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skar/styles/colors.dart';
 
 class AppAppBarTheme {
   AppAppBarTheme._();
@@ -16,11 +17,11 @@ class AppAppBarTheme {
     centerTitle: true,
   );
 
-  static const darkAppBarTheme = AppBarTheme(
-    backgroundColor: Colors.black,
+  static AppBarTheme darkAppBarTheme = AppBarTheme(
+    backgroundColor: scaffoldColorDarkTheme,
     elevation: 0,
     scrolledUnderElevation: 0,
-    titleTextStyle: TextStyle(
+    titleTextStyle: const TextStyle(
       fontFamily: 'HeyWowRegular',
       color: Colors.white,
       fontWeight: FontWeight.bold,
