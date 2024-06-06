@@ -10,6 +10,7 @@ import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/services/shop.dart';
+import 'package:skar/styles/colors.dart';
 
 class ShopList extends ConsumerWidget {
   const ShopList({super.key});
@@ -37,7 +38,7 @@ class ShopList extends ConsumerWidget {
         decoration: BoxDecoration(
           color: screenProperties(context).isLightBrightness
               ? Colors.white
-              : Colors.black,
+              : scaffoldColorDarkTheme,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
@@ -97,7 +98,7 @@ class ShopList extends ConsumerWidget {
         decoration: BoxDecoration(
           color: screenProperties(context).isLightBrightness
               ? Colors.white
-              : Colors.black,
+              : scaffoldColorDarkTheme,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(

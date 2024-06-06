@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skar/styles/colors.dart';
 
 class AppIconButtonTheme {
   AppIconButtonTheme._();
@@ -8,6 +9,6 @@ class AppIconButtonTheme {
   );
 
   static IconButtonThemeData darkIconButtonTheme = IconButtonThemeData(
-    style: IconButton.styleFrom(backgroundColor: Colors.black),
+    style: IconButton.styleFrom(backgroundColor: scaffoldColorDarkTheme),
   );
 }
