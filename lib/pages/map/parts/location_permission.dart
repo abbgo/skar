@@ -14,6 +14,7 @@ class LocationPermission extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
 
     return Center(
       child: SizedBox(
@@ -23,7 +24,9 @@ class LocationPermission extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/location_permission.jpeg",
+              isLightBrightness
+                  ? "assets/images/location_permission.jpeg"
+                  : "assets/images/location_permission_dark.jpg",
               height: screenProperties(context).height * 0.3,
             ),
             Text(
