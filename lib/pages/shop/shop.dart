@@ -12,6 +12,7 @@ import 'package:skar/pages/shop/parts/shop_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/params/product_param.dart';
+import 'package:skar/styles/colors.dart';
 
 class ShopPage extends ConsumerWidget {
   const ShopPage({super.key, required this.shopID});
@@ -21,6 +22,7 @@ class ShopPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ScreenProperties screenSize = screenProperties(context);
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
 
     bool isTM = ref.watch(langProvider) == 'tr';
     var shop = ref.watch(fetchShopProvider(shopID));
@@ -39,7 +41,8 @@ class ShopPage extends ConsumerWidget {
             slivers: [
               ShopImage(shopImage: shopData.shop!.image!),
               SliverAppBar(
-                backgroundColor: Colors.white,
+                backgroundColor:
+                    isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
                 pinned: true,
                 elevation: 0,
                 scrolledUnderElevation: 0,

@@ -82,11 +82,7 @@ showCallBottomSheet(BuildContext context, List<dynamic> shopPhones) {
 Text shopTextMethod(double fontSize, String text, FontWeight fontWeight) {
   return Text(
     text,
-    style: TextStyle(
-      color: Colors.black,
-      fontSize: fontSize,
-      fontWeight: fontWeight,
-    ),
+    style: TextStyle(fontSize: fontSize, fontWeight: fontWeight),
     textAlign: TextAlign.center,
     maxLines: 2,
   );
