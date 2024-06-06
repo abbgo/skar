@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/services.dart';
+import 'package:skar/helpers/functions.dart';
 
 Padding shopCardTextMethod(
   String text,
@@ -30,9 +31,11 @@ showCallBottomSheet(BuildContext context, List<dynamic> shopPhones) {
     context: context,
     builder: (context) => Container(
       margin: const EdgeInsets.all(20),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+      decoration: BoxDecoration(
+        color: screenProperties(context).isLightBrightness
+            ? Colors.white
+            : Colors.black,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       child: Wrap(
         children: shopPhones
