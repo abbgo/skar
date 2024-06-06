@@ -10,12 +10,19 @@ class MapPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
     permissionHandler(ref);
     bool isLoading = ref.watch(loadProvider);
     bool hasPermission = ref.watch(locationPermissionProvider);
 
     return isLoading
-        ? const Center(child: CircularProgressIndicator())
+        ? Center(
+            child: Image.asset(
+              isLightBrightness
+                  ? 'assets/animated_icons/animated_map.gif'
+                  : 'assets/animated_icons/animated_map_dark.gif',
+            ),
+          )
         : hasPermission
             ? map.Map()
             : permission.LocationPermission(ref: ref);

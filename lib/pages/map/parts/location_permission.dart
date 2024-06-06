@@ -26,7 +26,7 @@ class LocationPermission extends StatelessWidget {
             Image.asset(
               isLightBrightness
                   ? "assets/images/location_permission.jpeg"
-                  : "assets/images/location_permission_dark.jpg",
+                  : "assets/images/location_permission_dark.jpeg",
               height: screenProperties(context).height * 0.3,
             ),
             Text(

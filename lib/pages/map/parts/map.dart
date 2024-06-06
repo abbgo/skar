@@ -20,6 +20,7 @@ class Map extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
     Set<Marker> markers = ref.watch(markersProvider);
     AsyncValue<ResultShop> shopsForMap =
         ref.watch(shopsForMapProvider(context));
@@ -76,7 +77,11 @@ class Map extends ConsumerWidget {
       },
       error: (error, stackTrace) => errorMethod(error),
       loading: () => Center(
-        child: Image.asset("assets/animated_icons/animated_map.gif"),
+        child: Image.asset(
+          isLightBrightness
+              ? 'assets/animated_icons/animated_map.gif'
+              : 'assets/animated_icons/animated_map_dark.gif',
+        ),
       ),
     );
   }
