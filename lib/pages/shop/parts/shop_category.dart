@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/models/category.dart';
@@ -16,6 +17,7 @@ class ShopCategory extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
     bool isTM = ref.watch(langProvider) == 'tr';
     var categories = ref.watch(fetchCategoriesByShopIDProvider(shopID));
     var shopCategories = ref.watch(shopCategoriesProvider);
@@ -51,9 +53,16 @@ class ShopCategory extends ConsumerWidget {
                               true;
                         },
                         style: IconButton.styleFrom(
+                          backgroundColor:
+                              isLightBrightness ? null : scaffoldColorDarkTheme,
                           padding: const EdgeInsets.symmetric(vertical: 3),
                         ),
-                        icon: Icon(Icons.home, color: elevatedButtonColor),
+                        icon: Icon(
+                          Icons.home,
+                          color: isLightBrightness
+                              ? elevatedButtonColor
+                              : Colors.white,
+                        ),
                       ),
                       Expanded(
                         child: ListView.separated(
@@ -90,15 +99,23 @@ class ShopCategory extends ConsumerWidget {
                                         horizontal: 5,
                                       ),
                                     ),
-                                    child: Text(shopCategory.name,
-                                        style: TextStyle(
-                                            color: elevatedButtonColor)),
+                                    child: Text(
+                                      shopCategory.name,
+                                      style: TextStyle(
+                                        color: isLightBrightness
+                                            ? elevatedButtonColor
+                                            : Colors.white,
+                                      ),
+                                    ),
                                   )
                                 : const SizedBox();
                           },
                           separatorBuilder: (context, index) => Icon(
-                              Icons.chevron_right,
-                              color: elevatedButtonColor),
+                            Icons.chevron_right,
+                            color: isLightBrightness
+                                ? elevatedButtonColor
+                                : Colors.white,
+                          ),
                         ),
                       ),
                     ],
