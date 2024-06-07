@@ -13,7 +13,9 @@ class ShowImage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
     int selectedImage = ref.watch(selectedImageProvider);
+
     return Scaffold(
       body: Column(
         children: [
@@ -32,7 +34,10 @@ class ShowImage extends ConsumerWidget {
                 top: 20,
                 left: 5,
                 child: IconButton(
-                  style: IconButton.styleFrom(backgroundColor: Colors.white),
+                  style: IconButton.styleFrom(
+                    backgroundColor:
+                        isLightBrightness ? Colors.white : dialogColorDarkTheme,
+                  ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -54,7 +59,9 @@ class ShowImage extends ConsumerWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       border: Border.all(
-                        color: elevatedButtonColor,
+                        color: isLightBrightness
+                            ? elevatedButtonColor
+                            : Colors.white,
                         width: selectedImage == index ? 2 : 0,
                       ),
                     ),
