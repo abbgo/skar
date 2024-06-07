@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/pages/parts/appbar_leading_back_button.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/product/parts/price_and_brend.dart';
 import 'package:skar/pages/product/parts/product_color_page.dart';
@@ -33,6 +34,7 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const AppBarLeadingBackButton(),
         elevation: 0,
         scrolledUnderElevation: 0,
         actions: [ProductPageFavoriteButton(productID: widget.productID)],
