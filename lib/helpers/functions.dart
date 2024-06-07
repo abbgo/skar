@@ -59,7 +59,7 @@ Future<bool> checkAndGetCurrentLocation(WidgetRef ref) async {
         zoom: 15,
       );
 
-      ref.read(cameraPositionProvider.notifier).state = cameraPosition;
+      await ref.read(cameraPositionProvider.notifier).change(cameraPosition);
 
       ShopParams shopParams =
           ShopParams(latitude: value.latitude, longitude: value.longitude);

@@ -3,9 +3,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/styles/colors.dart';
 
 class AppBarLeadingBackButton extends StatelessWidget {
-  const AppBarLeadingBackButton({
-    super.key,
-  });
+  const AppBarLeadingBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {

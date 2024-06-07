@@ -47,7 +47,7 @@ class ShopListTileMapButton extends ConsumerWidget {
           target: LatLng(shop.latitude!, shop.longitude!),
           zoom: 20,
         );
-        ref.read(cameraPositionProvider.notifier).state = cameraPosition;
+        await ref.read(cameraPositionProvider.notifier).change(cameraPosition);
 
         if (forFavorite) {
           ref.read(selectedBottomIndexProvider.notifier).state = 0;

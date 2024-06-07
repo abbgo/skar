@@ -1,7 +1,5 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/datas/static.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
@@ -13,13 +11,8 @@ import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
 class SearchShopResult extends ConsumerWidget {
-  const SearchShopResult({
-    super.key,
-    required this.mapController,
-    required this.mapPageContext,
-  });
+  const SearchShopResult({super.key, required this.mapPageContext});
 
-  final Completer<GoogleMapController> mapController;
   final BuildContext mapPageContext;
 
   @override

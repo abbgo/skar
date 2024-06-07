@@ -1,7 +1,5 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/pages/search_shop/search_shop.dart';
@@ -9,9 +7,7 @@ import 'package:skar/providers/pages/map.dart';
 import 'package:skar/styles/colors.dart';
 
 class MapSearchAndMapTypeButton extends StatelessWidget {
-  const MapSearchAndMapTypeButton({super.key, required this.mapController});
-
-  final Completer<GoogleMapController> mapController;
+  const MapSearchAndMapTypeButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +22,7 @@ class MapSearchAndMapTypeButton extends StatelessWidget {
           IconButton(
             onPressed: () => goToPage(
               context,
-              SearchShopPage(
-                mapController: mapController,
-                mapPageContext: context,
-              ),
+              SearchShopPage(mapPageContext: context),
               false,
             ),
             icon: Icon(

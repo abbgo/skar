@@ -1,14 +1,10 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/providers/pages/map.dart';
 
 class LocationButton extends ConsumerWidget {
-  const LocationButton({super.key, required this.mapController});
-
-  final Completer<GoogleMapController> mapController;
+  const LocationButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
