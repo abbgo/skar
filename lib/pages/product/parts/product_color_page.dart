@@ -17,6 +17,7 @@ class ProductColorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
     int selectedColor = ref.watch(selectedProductColorProvider);
 
     return Column(
@@ -39,7 +40,9 @@ class ProductColorPage extends ConsumerWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
                     border: Border.all(
-                      color: elevatedButtonColor,
+                      color: isLightBrightness
+                          ? elevatedButtonColor
+                          : Colors.white,
                       width: selectedColor == index ? 2 : 0,
                     ),
                   ),
@@ -47,7 +50,6 @@ class ProductColorPage extends ConsumerWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     child: InkWell(
                       onTap: () {
-                        // changeColor(index);
                         ref.read(selectedProductColorProvider.notifier).state =
                             index;
                         ref.read(activeImageColorProvider.notifier).state = 0;
