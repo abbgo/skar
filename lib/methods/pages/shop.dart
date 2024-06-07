@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter/services.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/styles/colors.dart';
 
 Padding shopCardTextMethod(
   String text,
@@ -26,15 +27,15 @@ Padding shopCardTextMethod(
 }
 
 showCallBottomSheet(BuildContext context, List<dynamic> shopPhones) {
+  bool isLightBrightness = screenProperties(context).isLightBrightness;
+
   showModalBottomSheet(
     backgroundColor: Colors.transparent,
     context: context,
     builder: (context) => Container(
       margin: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: screenProperties(context).isLightBrightness
-            ? Colors.white
-            : Colors.black,
+        color: isLightBrightness ? Colors.white : dialogColorDarkTheme,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       child: Wrap(
@@ -55,9 +56,11 @@ showCallBottomSheet(BuildContext context, List<dynamic> shopPhones) {
                         await Clipboard.setData(
                             ClipboardData(text: e.toString()));
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.copy_all,
-                        color: Colors.black,
+                        color: isLightBrightness
+                            ? elevatedButtonColor
+                            : Colors.white,
                       ),
                     ),
                     IconButton(
