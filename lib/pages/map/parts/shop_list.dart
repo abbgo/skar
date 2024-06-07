@@ -66,6 +66,8 @@ class ShopList extends ConsumerWidget {
 
                     return responseAsync.when(
                       skipError: true,
+                      skipLoadingOnRefresh: true,
+                      skipLoadingOnReload: true,
                       data: (response) {
                         if (response.error != '') {
                           return null;
@@ -78,7 +80,7 @@ class ShopList extends ConsumerWidget {
                         return listviewChildMethod(context, shop, isTM);
                       },
                       error: (error, stackTrace) => errorMethod(error),
-                      loading: () => loadWidget,
+                      loading: () => null,
                     );
                   },
                 ),
