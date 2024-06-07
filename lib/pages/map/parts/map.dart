@@ -31,7 +31,7 @@ class Map extends ConsumerWidget {
       cameraPositionProvider,
       (previous, next) async {
         GoogleMapController controller = await mapController.future;
-        controller.animateCamera(CameraUpdate.newCameraPosition(next));
+        await controller.animateCamera(CameraUpdate.newCameraPosition(next));
       },
     );
 
