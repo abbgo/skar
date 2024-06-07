@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/functions.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/product.dart';
@@ -15,6 +16,8 @@ class ProductPriceAndBrend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -37,7 +40,7 @@ class ProductPriceAndBrend extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color: elevatedButtonColor,
+                          color: isLightBrightness ? elevatedButtonColor : null,
                         ),
                       ),
                     );
