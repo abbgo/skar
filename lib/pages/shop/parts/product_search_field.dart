@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/methods/parts/input.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/pages/shop.dart';
@@ -11,6 +12,8 @@ class ProductSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
+
     return Padding(
       padding: const EdgeInsets.only(right: 25),
       child: SizedBox(
@@ -22,11 +25,19 @@ class ProductSearchField extends StatelessWidget {
               autofocus: true,
               textInputAction: TextInputAction.search,
               textAlignVertical: TextAlignVertical.center,
-              cursorColor: elevatedButtonColor,
+              cursorColor:
+                  isLightBrightness ? elevatedButtonColor : Colors.white,
               decoration: InputDecoration(
+                focusedBorder: inputBorder(context),
+                border: inputBorder(context),
                 hintText: AppLocalizations.of(context)!.searchProduct,
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.close, color: elevatedButtonColor, size: 24),
+                  icon: Icon(
+                    Icons.close,
+                    color:
+                        isLightBrightness ? elevatedButtonColor : Colors.white,
+                    size: 24,
+                  ),
                   onPressed: () {
                     ref.read(openSearchBarProvider.notifier).state = false;
                     ref.read(shopProductSearchProvider.notifier).state = '';
