@@ -13,76 +13,86 @@ import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
-class Map extends ConsumerWidget {
-  Map({super.key});
-
-  final Completer<GoogleMapController> mapController = Completer();
+class Map extends StatefulWidget {
+  const Map({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<Map> createState() => _MapState();
+}
+
+class _MapState extends State<Map> {
+  final Completer<GoogleMapController> _mapController = Completer();
+
+  @override
+  Widget build(BuildContext context) {
     bool isLightBrightness = screenProperties(context).isLightBrightness;
-    Set<Marker> markers = ref.watch(markersProvider);
-    AsyncValue<ResultShop> shopsForMap =
-        ref.watch(shopsForMapProvider(context));
-    bool isHybridMap = ref.watch(isHybridMapProvider);
-    CameraPosition cameraPosition = ref.watch(cameraPositionProvider);
 
-    ref.listen(
-      cameraPositionProvider,
-      (previous, next) async {
-        GoogleMapController controller = await mapController.future;
-        controller.animateCamera(CameraUpdate.newCameraPosition(next));
-      },
-    );
+    return Consumer(
+      builder: (context, ref, child) {
+        Set<Marker> markers = ref.watch(markersProvider);
+        AsyncValue<ResultShop> shopsForMap =
+            ref.watch(shopsForMapProvider(context));
+        bool isHybridMap = ref.watch(isHybridMapProvider);
+        CameraPosition cameraPosition = ref.watch(cameraPositionProvider);
 
-    return Stack(
-      alignment: Alignment.bottomRight,
-      children: [
-        shopsForMap.when(
-          skipError: true,
-          skipLoadingOnReload: true,
-          skipLoadingOnRefresh: true,
-          data: (data) {
-            return GoogleMap(
-              markers: markers,
-              initialCameraPosition: cameraPosition,
-              mapType: isHybridMap ? MapType.hybrid : MapType.normal,
-              myLocationButtonEnabled: false,
-              onMapCreated: (GoogleMapController controller) {
-                if (!mapController.isCompleted) {
-                  mapController.complete(controller);
-                }
-              },
-              onCameraMove: (CameraPosition position) async {
-                double kilometer = await calculateMapWidthInKm(
-                  position.zoom.toInt(),
-                  context,
-                );
-
-                ShopParams shopParams = ShopParams(
-                  latitude: position.target.latitude,
-                  longitude: position.target.longitude,
-                  kilometer: kilometer.toInt(),
-                );
-                await ref
-                    .read(shopParamProvider.notifier)
-                    .changeForMap(shopParams);
-              },
-            );
+        ref.listen(
+          cameraPositionProvider,
+          (previous, next) async {
+            GoogleMapController controller = await _mapController.future;
+            controller.animateCamera(CameraUpdate.newCameraPosition(next));
           },
-          error: (error, stackTrace) => errorMethod(error),
-          loading: () => Center(
-            child: Image.asset(
-              isLightBrightness
-                  ? 'assets/animated_icons/animated_map.gif'
-                  : 'assets/animated_icons/animated_map_dark.gif',
+        );
+
+        return Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            shopsForMap.when(
+              skipError: true,
+              skipLoadingOnReload: true,
+              skipLoadingOnRefresh: true,
+              data: (data) {
+                return GoogleMap(
+                  markers: markers,
+                  initialCameraPosition: cameraPosition,
+                  mapType: isHybridMap ? MapType.hybrid : MapType.normal,
+                  myLocationButtonEnabled: false,
+                  onMapCreated: (GoogleMapController controller) {
+                    if (!_mapController.isCompleted) {
+                      _mapController.complete(controller);
+                    }
+                  },
+                  onCameraMove: (CameraPosition position) async {
+                    double kilometer = await calculateMapWidthInKm(
+                      position.zoom.toInt(),
+                      context,
+                    );
+
+                    ShopParams shopParams = ShopParams(
+                      latitude: position.target.latitude,
+                      longitude: position.target.longitude,
+                      kilometer: kilometer.toInt(),
+                    );
+                    await ref
+                        .read(shopParamProvider.notifier)
+                        .changeForMap(shopParams);
+                  },
+                );
+              },
+              error: (error, stackTrace) => errorMethod(error),
+              loading: () => Center(
+                child: Image.asset(
+                  isLightBrightness
+                      ? 'assets/animated_icons/animated_map.gif'
+                      : 'assets/animated_icons/animated_map_dark.gif',
+                ),
+              ),
             ),
-          ),
-        ),
-        const MapSearchAndMapTypeButton(),
-        const LocationButton(),
-        const ShopList(),
-      ],
+            const MapSearchAndMapTypeButton(),
+            const LocationButton(),
+            const ShopList(),
+          ],
+        );
+      },
     );
   }
 }
