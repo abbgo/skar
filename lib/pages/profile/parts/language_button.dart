@@ -19,10 +19,8 @@ class LanguageButton extends ConsumerWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           backgroundColor:
-              language == lang ? elevatedButtonColor : Colors.white,
+              language == lang ? Colors.white : elevatedButtonColor,
           elevation: 3,
         ),
         onPressed: () async {
@@ -41,7 +39,7 @@ class LanguageButton extends ConsumerWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: language == lang ? Colors.white : elevatedButtonColor,
+            color: language == lang ? elevatedButtonColor : Colors.white,
           ),
         ),
       ),

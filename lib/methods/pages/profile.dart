@@ -7,7 +7,6 @@ Future<dynamic> showLanguageMethod(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog.adaptive(
-        backgroundColor: Colors.white,
         title: Text(
           AppLocalizations.of(context)!.selectLanguage,
           textAlign: TextAlign.center,
