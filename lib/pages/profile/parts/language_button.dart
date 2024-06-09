@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/functions.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/pages/parts/bottom_navigation.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
@@ -13,15 +14,18 @@ class LanguageButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = screenProperties(context).isLightBrightness;
     String language = ref.read(langProvider);
 
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor:
-              language == lang ? Colors.white : elevatedButtonColor,
-          elevation: 3,
+          backgroundColor: language == lang
+              ? elevatedButtonColor
+              : isLightBrightness
+                  ? Colors.white
+                  : dialogColorDarkTheme,
         ),
         onPressed: () async {
           await ref.read(langProvider.notifier).update(lang);
@@ -39,7 +43,11 @@ class LanguageButton extends ConsumerWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: language == lang ? elevatedButtonColor : Colors.white,
+            color: language == lang
+                ? Colors.white
+                : isLightBrightness
+                    ? elevatedButtonColor
+                    : Colors.white,
           ),
         ),
       ),

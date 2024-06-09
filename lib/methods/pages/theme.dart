@@ -9,7 +9,6 @@ Future<dynamic> showThemeMethod(BuildContext context) {
     builder: (BuildContext context) {
       var lang = AppLocalizations.of(context)!;
       return AlertDialog.adaptive(
-        backgroundColor: Colors.white,
         title: Text(lang.selectTheme, textAlign: TextAlign.center),
         content: Column(
           mainAxisSize: MainAxisSize.min,
