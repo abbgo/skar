@@ -12,7 +12,7 @@ class ThemeButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
     int selectedTheme = ref.read(themeProvider);
 
     return SizedBox(
@@ -25,7 +25,12 @@ class ThemeButton extends ConsumerWidget {
                   ? Colors.white
                   : dialogColorDarkTheme,
         ),
-        onPressed: () {},
+        onPressed: () async {
+          await ref.read(themeProvider.notifier).update(theme);
+          if (context.mounted) {
+            Navigator.pop(context);
+          }
+        },
         child: Text(
           text,
           style: TextStyle(

@@ -13,7 +13,7 @@ class ShowImage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
     int selectedImage = ref.watch(selectedImageProvider);
 
     return Scaffold(

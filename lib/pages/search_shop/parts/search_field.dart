@@ -16,7 +16,7 @@ class ShopSearchField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
 
     return SizedBox(
       height: 40,
@@ -28,8 +28,8 @@ class ShopSearchField extends ConsumerWidget {
         textAlignVertical: TextAlignVertical.center,
         cursorColor: isLightBrightness ? elevatedButtonColor : Colors.white,
         decoration: InputDecoration(
-          focusedBorder: inputBorder(context),
-          border: inputBorder(context),
+          focusedBorder: inputBorder(context, ref),
+          border: inputBorder(context, ref),
           hintText: forShops ? lang.searchShop : lang.searchProduct,
           suffixIcon: IconButton(
             icon: const Icon(Icons.backspace_outlined, size: 18),

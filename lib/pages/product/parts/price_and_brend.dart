@@ -16,8 +16,6 @@ class ProductPriceAndBrend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -35,13 +33,20 @@ class ProductPriceAndBrend extends StatelessWidget {
                     return GestureDetector(
                       onTap: () => goToPage(
                           context, ShopPage(shopID: product.shop!.id), false),
-                      child: Text(
-                        isTM ? product.shop!.nameTM : product.shop!.nameRU,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: isLightBrightness ? elevatedButtonColor : null,
-                        ),
+                      child: Consumer(
+                        builder: (context, ref, child) {
+                          bool isLightBrightness = isLightTheme(context, ref);
+                          return Text(
+                            isTM ? product.shop!.nameTM : product.shop!.nameRU,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: isLightBrightness
+                                  ? elevatedButtonColor
+                                  : null,
+                            ),
+                          );
+                        },
                       ),
                     );
                   },

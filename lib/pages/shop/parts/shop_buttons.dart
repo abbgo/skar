@@ -16,7 +16,7 @@ class ShopPageButtons extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool openSearchBar = ref.watch(openSearchBarProvider);
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

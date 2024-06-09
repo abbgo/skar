@@ -22,7 +22,7 @@ class ShopPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ScreenProperties screenSize = screenProperties(context);
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
 
     bool isTM = ref.watch(langProvider) == 'tr';
     var shop = ref.watch(fetchShopProvider(shopID));

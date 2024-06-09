@@ -6,12 +6,12 @@ import 'package:skar/pages/search_shop/search_shop.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/styles/colors.dart';
 
-class MapSearchAndMapTypeButton extends StatelessWidget {
+class MapSearchAndMapTypeButton extends ConsumerWidget {
   const MapSearchAndMapTypeButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = isLightTheme(context, ref);
 
     return Positioned(
       top: screenProperties(context).topSafeArea + 5,

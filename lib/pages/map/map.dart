@@ -10,7 +10,7 @@ class MapPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
     permissionHandler(ref);
     bool isLoading = ref.watch(loadProvider);
     bool hasPermission = ref.watch(locationPermissionProvider);

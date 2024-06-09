@@ -16,7 +16,7 @@ class BottomNavigationPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
     int selectedIndex = ref.watch(selectedBottomIndexProvider);
 
     List<Widget> pages = [

@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/call_button.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
 import 'package:skar/providers/pages/map.dart';
@@ -17,6 +18,8 @@ class ShopList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = isLightTheme(context, ref);
+
     var lang = AppLocalizations.of(context)!;
     double bannerHeight = ref.watch(bannerHeightProvider);
     double turns = ref.watch(turnsProvider);
@@ -36,9 +39,7 @@ class ShopList extends ConsumerWidget {
         height: screenProperties(context).height * bannerHeight,
         width: screenProperties(context).width,
         decoration: BoxDecoration(
-          color: screenProperties(context).isLightBrightness
-              ? Colors.white
-              : scaffoldColorDarkTheme,
+          color: isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
@@ -77,7 +78,12 @@ class ShopList extends ConsumerWidget {
                           return null;
                         }
                         final shop = response.shops![indexInPage];
-                        return listviewChildMethod(context, shop, isTM);
+                        return listviewChildMethod(
+                          context,
+                          shop,
+                          isTM,
+                          isLightBrightness,
+                        );
                       },
                       error: (error, stackTrace) => errorMethod(error),
                       loading: () => null,
@@ -92,15 +98,18 @@ class ShopList extends ConsumerWidget {
     );
   }
 
-  Padding listviewChildMethod(BuildContext context, Shop shop, bool isTM) {
+  Padding listviewChildMethod(
+    BuildContext context,
+    Shop shop,
+    bool isTM,
+    bool isLightBrightness,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(left: 8, top: 8, right: 8, bottom: 8),
       child: Container(
         width: screenProperties(context).width * 0.35,
         decoration: BoxDecoration(
-          color: screenProperties(context).isLightBrightness
-              ? Colors.white
-              : scaffoldColorDarkTheme,
+          color: isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
@@ -132,7 +141,7 @@ class ShopList extends ConsumerWidget {
                       Expanded(
                         flex: 1,
                         child: SingleChildScrollView(
-                          child: listviewCallButtonMethod(context, shop),
+                          child: CallButton(shop: shop),
                         ),
                       )
                     ],

@@ -7,12 +7,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/pages/shop.dart';
 import 'package:skar/providers/params/product_param.dart';
 
-class ProductSearchField extends StatelessWidget {
+class ProductSearchField extends ConsumerWidget {
   const ProductSearchField({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = isLightTheme(context, ref);
 
     return Padding(
       padding: const EdgeInsets.only(right: 25),
@@ -28,8 +28,8 @@ class ProductSearchField extends StatelessWidget {
               cursorColor:
                   isLightBrightness ? elevatedButtonColor : Colors.white,
               decoration: InputDecoration(
-                focusedBorder: inputBorder(context),
-                border: inputBorder(context),
+                focusedBorder: inputBorder(context, ref),
+                border: inputBorder(context, ref),
                 hintText: AppLocalizations.of(context)!.searchProduct,
                 suffixIcon: IconButton(
                   icon: Icon(

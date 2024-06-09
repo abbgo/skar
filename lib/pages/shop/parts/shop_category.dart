@@ -17,7 +17,7 @@ class ShopCategory extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
     bool isTM = ref.watch(langProvider) == 'tr';
     var categories = ref.watch(fetchCategoriesByShopIDProvider(shopID));
     var shopCategories = ref.watch(shopCategoriesProvider);

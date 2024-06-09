@@ -17,7 +17,7 @@ class ProductColorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
     int selectedColor = ref.watch(selectedProductColorProvider);
 
     return Column(

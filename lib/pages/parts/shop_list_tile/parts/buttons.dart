@@ -25,7 +25,7 @@ class ShopListTileMapButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isTM = ref.watch(langProvider) == 'tr';
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
 
     return IconButton(
       onPressed: () async {

@@ -14,7 +14,7 @@ class LanguageButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
     String language = ref.read(langProvider);
 
     return SizedBox(

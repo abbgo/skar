@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:skar/database/config.dart';
+import 'package:skar/models/theme.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/pages/start.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -26,12 +27,23 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ThemeMode? themeMode = ThemeMode.system;
     String language = ref.watch(langProvider);
+    int theme = ref.watch(themeProvider);
+
+    if (theme == ThemeType.system) {
+      themeMode = ThemeMode.system;
+    } else if (theme == ThemeType.white) {
+      themeMode = ThemeMode.light;
+    } else {
+      themeMode = ThemeMode.dark;
+    }
+
     return MaterialApp(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
+      themeMode: themeMode,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       home: const StartPage(),

@@ -15,7 +15,7 @@ class ShopFavoriteButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
+    bool isLightBrightness = isLightTheme(context, ref);
     Favorite favorite = Favorite(id: shopID, type: FavoriteType.shop);
     AsyncValue<bool> hasInFavorites =
         ref.watch(hasInFavoritesProvider(favorite));

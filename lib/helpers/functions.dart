@@ -5,20 +5,33 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/datas/screen.dart';
 import 'package:skar/helpers/permissions.dart';
+import 'package:skar/models/theme.dart';
+import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
 ScreenProperties screenProperties(BuildContext context) {
-  ScreenProperties screenProperties = ScreenProperties(0, 0, 0, true);
+  ScreenProperties screenProperties = ScreenProperties(0, 0, 0);
 
   screenProperties.width = MediaQuery.of(context).size.width;
   screenProperties.height = MediaQuery.of(context).size.height;
   screenProperties.topSafeArea = MediaQuery.of(context).viewPadding.top;
-  Brightness brightness = MediaQuery.of(context).platformBrightness;
-  screenProperties.isLightBrightness = brightness == Brightness.light;
 
   return screenProperties;
+}
+
+bool isLightTheme(BuildContext context, WidgetRef ref) {
+  int theme = ref.watch(themeProvider);
+  Brightness brightness = MediaQuery.of(context).platformBrightness;
+  // screenProperties.isLightBrightness = brightness == Brightness.light;
+  if (theme == ThemeType.system) {
+    return brightness == Brightness.light;
+  }
+  if (theme == ThemeType.white) {
+    return true;
+  }
+  return false;
 }
 
 Future<double> calculateMapWidthInKm(

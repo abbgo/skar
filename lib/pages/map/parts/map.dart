@@ -25,8 +25,6 @@ class _MapState extends State<Map> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLightBrightness = screenProperties(context).isLightBrightness;
-
     return Consumer(
       builder: (context, ref, child) {
         Set<Marker> markers = ref.watch(markersProvider);
@@ -80,10 +78,15 @@ class _MapState extends State<Map> {
               },
               error: (error, stackTrace) => errorMethod(error),
               loading: () => Center(
-                child: Image.asset(
-                  isLightBrightness
-                      ? 'assets/animated_icons/animated_map.gif'
-                      : 'assets/animated_icons/animated_map_dark.gif',
+                child: Consumer(
+                  builder: (context, ref, child) {
+                    bool isLightBrightness = isLightTheme(context, ref);
+                    return Image.asset(
+                      isLightBrightness
+                          ? 'assets/animated_icons/animated_map.gif'
+                          : 'assets/animated_icons/animated_map_dark.gif',
+                    );
+                  },
                 ),
               ),
             ),
