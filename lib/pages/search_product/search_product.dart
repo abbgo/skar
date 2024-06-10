@@ -10,8 +10,6 @@ class SearchProductPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
-        scrolledUnderElevation: 0,
         title: ShopSearchField(forShops: false),
         centerTitle: true,
       ),

@@ -35,8 +35,6 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       appBar: AppBar(
         leading: const AppBarLeadingBackButton(),
-        elevation: 0,
-        scrolledUnderElevation: 0,
         actions: [ProductPageFavoriteButton(productID: widget.productID)],
       ),
       body: Padding(
