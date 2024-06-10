@@ -7,6 +7,7 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/parts/shop_list_tile/shop_list_tile.dart';
 import 'package:skar/providers/models/shop.dart';
+import 'package:skar/providers/pages/search_shop.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
@@ -19,6 +20,9 @@ class SearchShopResult extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     String search = ref.watch(shopSearchProvider);
     bool hasShops = ref.watch(hasShopsProvider);
+    ScrollController scrollController =
+        ref.watch(searchShopScrollControllerProvider);
+
     return search != ''
         ? !hasShops
             ? const NoResult()
@@ -26,6 +30,7 @@ class SearchShopResult extends ConsumerWidget {
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 height: screenProperties(context).height,
                 child: ListView.builder(
+                  controller: scrollController,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     final page = index ~/ pageSize + 1;
