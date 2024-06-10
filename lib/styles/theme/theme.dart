@@ -5,6 +5,7 @@ import 'package:skar/styles/theme/parts/bottom_navigation_bar_theme.dart';
 import 'package:skar/styles/theme/parts/card_theme.dart';
 import 'package:skar/styles/theme/parts/checkbox_theme.dart';
 import 'package:skar/styles/theme/parts/elevated_button_theme.dart';
+import 'package:skar/styles/theme/parts/floating_action_button_theme.dart';
 import 'package:skar/styles/theme/parts/icon_button_theme.dart';
 import 'package:skar/styles/theme/parts/input_theme.dart';
 import 'package:skar/styles/theme/parts/tab_bar_theme.dart';
@@ -29,6 +30,8 @@ class AppTheme {
     inputDecorationTheme: AppInputTheme.lightInputTheme,
     cardTheme: AppCardTheme.lightCardTheme,
     tabBarTheme: AppTabBarTheme.lightTabBarTheme,
+    floatingActionButtonTheme:
+        AppFloatingActionButtonTheme.lightFloatingActionButtonTheme,
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -47,5 +50,7 @@ class AppTheme {
     inputDecorationTheme: AppInputTheme.darkInputTheme,
     cardTheme: AppCardTheme.darkCardTheme,
     tabBarTheme: AppTabBarTheme.darkTabBarTheme,
+    floatingActionButtonTheme:
+        AppFloatingActionButtonTheme.darkFloatingActionButtonTheme,
   );
 }

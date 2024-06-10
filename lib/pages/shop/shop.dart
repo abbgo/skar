@@ -11,6 +11,7 @@ import 'package:skar/pages/shop/parts/shop_category.dart';
 import 'package:skar/pages/shop/parts/shop_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/models/shop.dart';
+import 'package:skar/providers/pages/product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/styles/colors.dart';
 
@@ -27,6 +28,10 @@ class ShopPage extends ConsumerWidget {
     bool isTM = ref.watch(langProvider) == 'tr';
     var shop = ref.watch(fetchShopProvider(shopID));
     bool hasProducts = ref.watch(hasShopProductsProvider);
+    ScrollController scrollController =
+        ref.watch(productScrollControllerProvider);
+    bool openProductNavigateToTopButton =
+        ref.watch(openProductNavigateToTopButtonProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -38,6 +43,7 @@ class ShopPage extends ConsumerWidget {
           }
 
           return CustomScrollView(
+            controller: scrollController,
             slivers: [
               ShopImage(shopImage: shopData.shop!.image!),
               SliverAppBar(
@@ -85,6 +91,21 @@ class ShopPage extends ConsumerWidget {
         error: (error, stackTrace) => errorMethod(error),
         loading: () => loadWidget,
       ),
+      floatingActionButton: openProductNavigateToTopButton
+          ? FloatingActionButton(
+              onPressed: () async {
+                scrollController.animateTo(
+                  scrollController.position.minScrollExtent,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.fastOutSlowIn,
+                );
+              },
+              child: Icon(
+                Icons.arrow_upward,
+                color: isLightBrightness ? Colors.white : Colors.black,
+              ),
+            )
+          : null,
     );
   }
 }
