@@ -51,14 +51,15 @@ Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
         isTM ? shop.nameTM : shop.nameRU,
         style: const TextStyle(
           fontSize: 24,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          shadows: [
-            Shadow(offset: Offset(-1.5, -1.5), color: Colors.red),
-            Shadow(offset: Offset(1.5, -1.5), color: Colors.red),
-            Shadow(offset: Offset(1.5, 1.5), color: Colors.red),
-            Shadow(offset: Offset(-1.5, 1.5), color: Colors.red),
-          ],
+          // color: Colors.white,
+          color: Colors.black,
+          // fontWeight: FontWeight.bold,
+          // shadows: [
+          //   Shadow(offset: Offset(-1.5, -1.5), color: Colors.red),
+          //   Shadow(offset: Offset(1.5, -1.5), color: Colors.red),
+          //   Shadow(offset: Offset(1.5, 1.5), color: Colors.red),
+          //   Shadow(offset: Offset(-1.5, 1.5), color: Colors.red),
+          // ],
         ),
       ),
       Image.asset('assets/icons/shirt_location.png', height: 50),

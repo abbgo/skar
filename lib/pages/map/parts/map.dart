@@ -22,6 +22,7 @@ class Map extends StatefulWidget {
 
 class _MapState extends State<Map> {
   final Completer<GoogleMapController> _mapController = Completer();
+  late CameraPosition _position;
 
   @override
   Widget build(BuildContext context) {
@@ -54,20 +55,24 @@ class _MapState extends State<Map> {
                   initialCameraPosition: cameraPosition,
                   mapType: isHybridMap ? MapType.hybrid : MapType.normal,
                   myLocationButtonEnabled: false,
+                  zoomControlsEnabled: false,
                   onMapCreated: (GoogleMapController controller) {
                     if (!_mapController.isCompleted) {
                       _mapController.complete(controller);
                     }
                   },
                   onCameraMove: (CameraPosition position) async {
+                    _position = position;
+                  },
+                  onCameraIdle: () async {
                     double kilometer = await calculateMapWidthInKm(
-                      position.zoom.toInt(),
+                      _position.zoom.toInt(),
                       context,
                     );
 
                     ShopParams shopParams = ShopParams(
-                      latitude: position.target.latitude,
-                      longitude: position.target.longitude,
+                      latitude: _position.target.latitude,
+                      longitude: _position.target.longitude,
                       kilometer: kilometer.toInt(),
                     );
                     await ref
