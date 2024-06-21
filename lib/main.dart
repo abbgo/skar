@@ -13,7 +13,7 @@ import 'package:skar/styles/theme/theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance(); // shared preferences
-  SystemChrome.setPreferredOrientations([
+  await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]); // app dine portrait gornusinde bolmagy ucin
