@@ -17,70 +17,74 @@ class ShowImage extends ConsumerWidget {
     int selectedImage = ref.watch(selectedImageProvider);
 
     return Scaffold(
-      body: Column(
-        children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: screenProperties(context).height * .8,
-                child: InteractiveViewer(
-                  minScale: 0.01,
-                  maxScale: 4,
-                  child: showCachImageMethod(images[selectedImage]),
-                ),
-              ),
-              Positioned(
-                top: 20,
-                left: 5,
-                child: IconButton(
-                  style: IconButton.styleFrom(
-                    backgroundColor:
-                        isLightBrightness ? Colors.white : dialogColorDarkTheme,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: screenProperties(context).height * .7,
+                  child: InteractiveViewer(
+                    minScale: 0.01,
+                    maxScale: 4,
+                    child: showCachImageMethod(images[selectedImage]),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.adaptive.arrow_back),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: images.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Container(
-                    width: screenProperties(context).width * .3,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      border: Border.all(
-                        color: isLightBrightness
-                            ? elevatedButtonColor
-                            : Colors.white,
-                        width: selectedImage == index ? 2 : 0,
-                      ),
+                Positioned(
+                  top: 20,
+                  left: 5,
+                  child: IconButton(
+                    style: IconButton.styleFrom(
+                      backgroundColor: isLightBrightness
+                          ? Colors.white
+                          : dialogColorDarkTheme,
                     ),
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: InkWell(
-                        onTap: () {
-                          ref.read(selectedImageProvider.notifier).state =
-                              index;
-                        },
-                        child: showCachImageMethod(images[index]),
-                      ),
-                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.adaptive.arrow_back),
                   ),
-                );
-              },
+                ),
+              ],
             ),
-          ),
-        ],
+            const SizedBox(height: 10),
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: images.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Container(
+                      width: screenProperties(context).width * .3,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          color: isLightBrightness
+                              ? elevatedButtonColor
+                              : Colors.white,
+                          width: selectedImage == index ? 2 : 0,
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        child: InkWell(
+                          onTap: () {
+                            ref.read(selectedImageProvider.notifier).state =
+                                index;
+                          },
+                          child: showCachImageMethod(images[index]),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
