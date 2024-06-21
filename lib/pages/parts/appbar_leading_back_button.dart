@@ -16,7 +16,7 @@ class AppBarLeadingBackButton extends ConsumerWidget {
             isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
       ),
       onPressed: () => Navigator.pop(context),
-      icon: const Icon(Icons.arrow_back),
+      icon: Icon(Icons.adaptive.arrow_back),
     );
   }
 }
