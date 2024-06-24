@@ -21,14 +21,33 @@ class ShopPageButtons extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconButton(
-          style: IconButton.styleFrom(
-            backgroundColor: isLightBrightness ? null : scaffoldColorDarkTheme,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.adaptive.arrow_back),
+        Row(
+          children: [
+            IconButton(
+              style: IconButton.styleFrom(
+                backgroundColor:
+                    isLightBrightness ? null : scaffoldColorDarkTheme,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.adaptive.arrow_back),
+            ),
+            openSearchBar
+                ? const SizedBox()
+                : Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: shop.hasDelivery!
+                        ? Image.asset(
+                            "assets/icons/has_shipping.png",
+                            height: 23,
+                          )
+                        : Image.asset(
+                            "assets/icons/no_shipping.png",
+                            height: 23,
+                          ),
+                  ),
+          ],
         ),
         openSearchBar
             ? const ProductSearchField()
