@@ -1,11 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class Shop extends Equatable {
+class Shop {
   final String id, nameTM, nameRU;
   final String? addressTM, addressRU;
   final String? image;
   final double? latitude, longitude;
   final List<dynamic>? phones;
+  final bool? hasDelivery;
   // final List<Product>? products;
   // final List<Kategory>? categories;
 
@@ -19,6 +20,7 @@ class Shop extends Equatable {
     this.addressTM,
     this.addressRU,
     this.phones,
+    this.hasDelivery,
     // this.products,
     // this.categories,
   });
@@ -34,6 +36,7 @@ class Shop extends Equatable {
       addressTM: '',
       addressRU: '',
       phones: [],
+      hasDelivery: false,
     );
   }
 
@@ -48,6 +51,7 @@ class Shop extends Equatable {
       addressTM: json['address_tm'] ?? "",
       addressRU: json['address_ru'] ?? "",
       phones: json['phones'] ?? [],
+      hasDelivery: json['has_delivery'] ?? false,
       // categories: json['shop_categories'] == null
       //     ? []
       //     : List<Kategory>.from(
@@ -65,18 +69,19 @@ class Shop extends Equatable {
     );
   }
 
-  @override
-  List<Object?> get props => [
-        id,
-        nameTM,
-        nameRU,
-        addressTM,
-        addressRU,
-        image,
-        latitude,
-        longitude,
-        phones
-      ];
+  // @override
+  // List<Object?> get props => [
+  //       id,
+  //       nameTM,
+  //       nameRU,
+  //       addressTM,
+  //       addressRU,
+  //       image,
+  //       latitude,
+  //       longitude,
+  //       phones,
+  //       hasDelivery,
+  //     ];
 }
 
 class ResultShop extends Equatable {
@@ -84,24 +89,12 @@ class ResultShop extends Equatable {
   final Shop? shop;
   final String error;
 
-  const ResultShop({
-    this.shops,
-    this.shop,
-    required this.error,
-  });
+  const ResultShop({this.shops, this.shop, required this.error});
 
   factory ResultShop.defaultResult() {
-    return const ResultShop(
-      shops: null,
-      shop: null,
-      error: '',
-    );
+    return const ResultShop(shops: null, shop: null, error: '');
   }
 
   @override
-  List<Object?> get props => [
-        shops,
-        shop,
-        error,
-      ];
+  List<Object?> get props => [shops, shop, error];
 }
