@@ -20,7 +20,18 @@ class ShippingButton extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.shop),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: hasShipping
+                ? Image.asset(
+                    "assets/icons/has_shipping.png",
+                    height: 23,
+                  )
+                : Image.asset(
+                    "assets/icons/no_shipping.png",
+                    height: 23,
+                  ),
+          ),
           Icon(Icons.info, size: 10, color: elevatedButtonColor),
         ],
       ),

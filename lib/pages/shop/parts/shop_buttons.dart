@@ -37,18 +37,6 @@ class ShopPageButtons extends ConsumerWidget {
             openSearchBar
                 ? const SizedBox()
                 : ShippingButton(hasShipping: shop.hasShipping!)
-            // : Padding(
-            //     padding: const EdgeInsets.only(left: 10),
-            //     child: shop.hasDelivery!
-            //         ? Image.asset(
-            //             "assets/icons/has_shipping.png",
-            //             height: 23,
-            //           )
-            //         : Image.asset(
-            //             "assets/icons/no_shipping.png",
-            //             height: 23,
-            //           ),
-            //   ),
           ],
         ),
         openSearchBar
