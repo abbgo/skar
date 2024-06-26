@@ -34,7 +34,9 @@ class ShopPageButtons extends ConsumerWidget {
               },
               icon: Icon(Icons.adaptive.arrow_back),
             ),
-            openSearchBar ? const SizedBox() : const ShippingButton()
+            openSearchBar
+                ? const SizedBox()
+                : ShippingButton(hasShipping: shop.hasShipping!)
             // : Padding(
             //     padding: const EdgeInsets.only(left: 10),
             //     child: shop.hasDelivery!

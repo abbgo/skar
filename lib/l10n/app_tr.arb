@@ -48,5 +48,7 @@
     "selectTheme":"Tema saýlaň",
     "whiteTheme":"Açyk tema",
     "blackTheme":"Gara tema",
-    "systemTheme":"Sistema temasy"
+    "systemTheme":"Sistema temasy",
+    "hasShipping":"Eltip bermek hyzmaty bar",
+    "noShipping":"Eltip bermek hyzmaty ýok"
 }

@@ -6,7 +6,7 @@ class Shop {
   final String? image;
   final double? latitude, longitude;
   final List<dynamic>? phones;
-  final bool? hasDelivery;
+  final bool? hasShipping;
   // final List<Product>? products;
   // final List<Kategory>? categories;
 
@@ -20,7 +20,7 @@ class Shop {
     this.addressTM,
     this.addressRU,
     this.phones,
-    this.hasDelivery,
+    this.hasShipping,
     // this.products,
     // this.categories,
   });
@@ -36,7 +36,7 @@ class Shop {
       addressTM: '',
       addressRU: '',
       phones: [],
-      hasDelivery: false,
+      hasShipping: false,
     );
   }
 
@@ -51,7 +51,7 @@ class Shop {
       addressTM: json['address_tm'] ?? "",
       addressRU: json['address_ru'] ?? "",
       phones: json['phones'] ?? [],
-      hasDelivery: json['has_delivery'] ?? false,
+      hasShipping: json['has_shipping'] ?? false,
       // categories: json['shop_categories'] == null
       //     ? []
       //     : List<Kategory>.from(

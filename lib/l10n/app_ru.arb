@@ -48,5 +48,7 @@
     "selectTheme":"Выберите тему",
     "whiteTheme":"Белая тема",
     "blackTheme":"Черная тема",
-    "systemTheme":"Системная тема"
+    "systemTheme":"Системная тема",
+    "hasShipping":"Есть доставка",
+    "noShipping":"Нет доставки"
 }

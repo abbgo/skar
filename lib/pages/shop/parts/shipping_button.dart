@@ -1,30 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:skar/helpers/functions.dart';
+import 'package:skar/helpers/snackbars.dart';
 import 'package:skar/styles/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShippingButton extends StatelessWidget {
-  const ShippingButton({super.key, this.hasDelivery});
+  const ShippingButton({super.key, required this.hasShipping});
 
-  final bool? hasDelivery;
+  final bool hasShipping;
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
+
     return GestureDetector(
-      onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Snackbar message'),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          margin: EdgeInsets.only(
-            bottom: screenProperties(context).height -
-                (screenProperties(context).topSafeArea + 80),
-            right: 20,
-            left: 20,
-          ),
-        ));
-      },
+      onTap: () => showTopSnackbar(
+        context,
+        hasShipping ? lang.hasShipping : lang.noShipping,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

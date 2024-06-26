@@ -48,5 +48,7 @@
     "selectTheme":"Select theme",
     "whiteTheme":"White theme",
     "blackTheme":"Black theme",
-    "systemTheme":"System theme"
+    "systemTheme":"System theme",
+    "hasShipping":"Has shipping",
+    "noShipping":"No shipping"
 }
