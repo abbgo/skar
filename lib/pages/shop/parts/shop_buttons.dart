@@ -4,6 +4,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/shop/parts/product_search_field.dart';
+import 'package:skar/pages/shop/parts/shipping_button.dart';
 import 'package:skar/pages/shop/parts/shop_favorite_button.dart';
 import 'package:skar/providers/pages/shop.dart';
 import 'package:skar/styles/colors.dart';
@@ -33,20 +34,19 @@ class ShopPageButtons extends ConsumerWidget {
               },
               icon: Icon(Icons.adaptive.arrow_back),
             ),
-            openSearchBar
-                ? const SizedBox()
-                : Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: shop.hasDelivery!
-                        ? Image.asset(
-                            "assets/icons/has_shipping.png",
-                            height: 23,
-                          )
-                        : Image.asset(
-                            "assets/icons/no_shipping.png",
-                            height: 23,
-                          ),
-                  ),
+            openSearchBar ? const SizedBox() : const ShippingButton()
+            // : Padding(
+            //     padding: const EdgeInsets.only(left: 10),
+            //     child: shop.hasDelivery!
+            //         ? Image.asset(
+            //             "assets/icons/has_shipping.png",
+            //             height: 23,
+            //           )
+            //         : Image.asset(
+            //             "assets/icons/no_shipping.png",
+            //             height: 23,
+            //           ),
+            //   ),
           ],
         ),
         openSearchBar
