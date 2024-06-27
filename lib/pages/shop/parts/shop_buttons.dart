@@ -36,7 +36,10 @@ class ShopPageButtons extends ConsumerWidget {
             ),
             openSearchBar
                 ? const SizedBox()
-                : ShippingButton(hasShipping: shop.hasShipping!)
+                : ShippingButton(
+                    hasShipping: shop.hasShipping!,
+                    isLightBrightness: isLightBrightness,
+                  )
           ],
         ),
         openSearchBar

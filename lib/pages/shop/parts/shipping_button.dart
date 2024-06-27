@@ -4,9 +4,14 @@ import 'package:skar/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShippingButton extends StatelessWidget {
-  const ShippingButton({super.key, required this.hasShipping});
+  const ShippingButton({
+    super.key,
+    required this.hasShipping,
+    required this.isLightBrightness,
+  });
 
   final bool hasShipping;
+  final bool isLightBrightness;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +37,11 @@ class ShippingButton extends StatelessWidget {
                     height: 23,
                   ),
           ),
-          Icon(Icons.info, size: 10, color: elevatedButtonColor),
+          Icon(
+            Icons.info,
+            size: 10,
+            color: isLightBrightness ? elevatedButtonColor : Colors.white,
+          ),
         ],
       ),
     );
