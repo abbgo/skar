@@ -3,8 +3,8 @@ import 'package:skar/database/functions/favorite.dart';
 import 'package:skar/models/favorite_type.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/models/shop.dart';
-import 'package:skar/providers/models/product.dart';
-import 'package:skar/providers/models/shop.dart';
+import 'package:skar/providers/api/product.dart';
+import 'package:skar/providers/api/shop.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/providers/params/shop_param.dart';
 

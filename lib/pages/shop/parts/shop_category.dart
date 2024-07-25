@@ -6,7 +6,7 @@ import 'package:skar/styles/colors.dart';
 import 'package:skar/models/category.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
-import 'package:skar/providers/models/category.dart';
+import 'package:skar/providers/api/category.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/services/category.dart';
 

@@ -8,7 +8,7 @@ import 'package:skar/pages/product/parts/product_color_page.dart';
 import 'package:skar/pages/product/parts/product_image.dart';
 import 'package:skar/pages/product/parts/product_page_favorite_button.dart';
 import 'package:skar/pages/product/parts/similar_products.dart';
-import 'package:skar/providers/models/product.dart';
+import 'package:skar/providers/api/product.dart';
 import 'package:skar/providers/pages/product.dart';
 
 class ProductPage extends StatefulWidget {

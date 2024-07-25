@@ -5,7 +5,7 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/favorite.dart';
 import 'package:skar/models/favorite_type.dart';
 import 'package:skar/providers/database/favorite.dart';
-import 'package:skar/providers/models/favorite.dart';
+import 'package:skar/providers/api/favorite.dart';
 import 'package:skar/styles/colors.dart';
 
 class ShopFavoriteButton extends ConsumerWidget {

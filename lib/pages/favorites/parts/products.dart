@@ -8,7 +8,7 @@ import 'package:skar/pages/favorites/parts/no_favorites.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/parts/product_card/product_card.dart';
 import 'package:skar/pages/product/product.dart';
-import 'package:skar/providers/models/favorite.dart';
+import 'package:skar/providers/api/favorite.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

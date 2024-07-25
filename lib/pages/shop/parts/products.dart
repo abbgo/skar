@@ -7,8 +7,8 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/pages/parts/product_card/product_card.dart';
 import 'package:skar/pages/product/product.dart';
-import 'package:skar/providers/models/category.dart';
-import 'package:skar/providers/models/product.dart';
+import 'package:skar/providers/api/category.dart';
+import 'package:skar/providers/api/product.dart';
 import 'package:skar/services/product.dart';
 
 class ShopProducts extends ConsumerWidget {

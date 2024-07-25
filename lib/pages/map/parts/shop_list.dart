@@ -8,7 +8,7 @@ import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/call_button.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
-import 'package:skar/providers/models/shop.dart';
+import 'package:skar/providers/api/shop.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/services/shop.dart';
 import 'package:skar/styles/colors.dart';

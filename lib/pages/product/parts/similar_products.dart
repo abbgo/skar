@@ -9,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/parts/product_card/product_card.dart';
 import 'package:skar/pages/product/product.dart';
-import 'package:skar/providers/models/product.dart';
+import 'package:skar/providers/api/product.dart';
 import 'package:skar/services/product.dart';
 
 class SimilarProducts extends ConsumerWidget {

@@ -10,7 +10,7 @@ import 'package:skar/pages/shop/parts/shop_buttons.dart';
 import 'package:skar/pages/shop/parts/shop_category.dart';
 import 'package:skar/pages/shop/parts/shop_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
-import 'package:skar/providers/models/shop.dart';
+import 'package:skar/providers/api/shop.dart';
 import 'package:skar/providers/pages/product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/styles/colors.dart';

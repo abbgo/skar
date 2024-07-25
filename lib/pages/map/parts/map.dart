@@ -8,7 +8,7 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
 import 'package:skar/pages/map/parts/search_button.dart';
 import 'package:skar/pages/map/parts/shop_list.dart';
-import 'package:skar/providers/models/shop.dart';
+import 'package:skar/providers/api/shop.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';

@@ -5,10 +5,11 @@ import 'package:skar/datas/static.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
+import 'package:skar/models/product.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/parts/product_card/product_card.dart';
 import 'package:skar/pages/product/product.dart';
-import 'package:skar/providers/models/product.dart';
+import 'package:skar/providers/api/product.dart';
 import 'package:skar/providers/pages/search_product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/services/product.dart';
@@ -48,9 +49,12 @@ class SearchProductResult extends ConsumerWidget {
                   shopID: '',
                 );
 
-                var responseAsync = ref.watch(fetchProductsProvider(params));
+                final AsyncValue<ResultProduct> responseAsync =
+                    ref.watch(fetchProductsProvider(params));
 
                 return responseAsync.when(
+                  skipLoadingOnRefresh: true,
+                  skipLoadingOnReload: true,
                   skipError: true,
                   data: (productsData) {
                     if (productsData.error != '') {

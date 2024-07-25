@@ -10,6 +10,7 @@ var fetchProductsProvider =
     FutureProvider.autoDispose.family<ResultProduct, ProductParams>(
   (ref, params) async {
     ResultProduct result = ResultProduct.defaultResult();
+
     String search = params.shopID != ''
         ? ref.watch(shopProductSearchProvider)
         : ref.watch(productSearchProvider);
