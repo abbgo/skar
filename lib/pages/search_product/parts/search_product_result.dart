@@ -49,23 +49,23 @@ class SearchProductResult extends ConsumerWidget {
                   shopID: '',
                 );
 
-                final AsyncValue<ResultProduct> responseAsync =
+                final AsyncValue<ResultProduct> products =
                     ref.watch(fetchProductsProvider(params));
 
-                return responseAsync.when(
+                return products.when(
                   skipLoadingOnRefresh: true,
                   skipLoadingOnReload: true,
                   skipError: true,
-                  data: (productsData) {
-                    if (productsData.error != '') {
+                  data: (response) {
+                    if (response.error != '') {
                       return null;
                     }
 
-                    if (indexInPage >= productsData.products!.length) {
+                    if (indexInPage >= response.products!.length) {
                       return null;
                     }
 
-                    final product = productsData.products![indexInPage];
+                    Product product = response.products![indexInPage];
                     return GestureDetector(
                       onTap: () => goToPage(
                         context,
