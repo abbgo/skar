@@ -19,7 +19,7 @@ class SearchProductPage extends ConsumerWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: ShopSearchField(forShops: false),
+        title: const ShopSearchField(forShops: false),
         centerTitle: true,
       ),
       body: const SearchProductResult(),

@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/pages/shop/parts/categories_list.dart';
 import 'package:skar/styles/colors.dart';
-import 'package:skar/models/category.dart';
 import 'package:skar/pages/parts/error.dart';
-import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/api/category.dart';
 import 'package:skar/providers/params/product_param.dart';
-import 'package:skar/services/category.dart';
 
 class ShopCategory extends ConsumerWidget {
   const ShopCategory({super.key, required this.shopID});
@@ -18,7 +16,6 @@ class ShopCategory extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isLightBrightness = isLightTheme(context, ref);
-    bool isTM = ref.watch(langProvider) == 'tr';
     var categories = ref.watch(fetchCategoriesByShopIDProvider(shopID));
     var shopCategories = ref.watch(shopCategoriesProvider);
 
@@ -123,12 +120,11 @@ class ShopCategory extends ConsumerWidget {
                 )
               else
                 const SizedBox(),
-              listCategoriesMethod(
-                shopCategories.length > 1
+              CategoriesList(
+                categories: shopCategories.length > 1
                     ? shopCategories.last.childCategories!
                     : categoriesData.categories!,
-                isTM,
-              ),
+              )
             ],
           ),
         );
@@ -139,47 +135,7 @@ class ShopCategory extends ConsumerWidget {
     );
   }
 
-  SizedBox listCategoriesMethod(List<Kategory> categories, bool isTM) {
-    return SizedBox(
-      height: 30,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          var category = categories[index];
-
-          return Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Consumer(
-              builder: (context, ref, child) {
-                return ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  onPressed: () async {
-                    await ref.read(shopCategoriesProvider.notifier).addCategory(
-                          ShopCategories(
-                            categoryID: category.id,
-                            name: isTM ? category.nameTM : category.nameRU,
-                            childCategories: category.childCategories,
-                            selectedCategories: [category.id],
-                          ),
-                        );
-                    ref.read(hasShopProductsProvider.notifier).state = true;
-                  },
-                  child: Text(
-                    isTM ? category.nameTM : category.nameRU,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                );
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
+  // SizedBox listCategoriesMethod(List<Kategory> categories, bool isTM) {
+  //   ;
+  // }
 }
