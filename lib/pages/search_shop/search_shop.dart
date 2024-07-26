@@ -32,7 +32,7 @@ class SearchShopPage extends ConsumerWidget {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: const AppBarLeadingBackButton(),
-          title: ShopSearchField(forShops: true),
+          title: const ShopSearchField(forShops: true),
         ),
         body: SearchShopResult(mapPageContext: mapPageContext),
         floatingActionButton: openSearchShopNavigateToTopButton

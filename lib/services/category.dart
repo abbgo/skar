@@ -8,7 +8,9 @@ import 'package:skar/models/category.dart';
 class CategoryService {
   // FETCH CATEGORIES BY SHOP ID -----------------------------------------------
   Future<List<Kategory>> fetchCategoriesByShopID(String shopID) async {
-    final Uri uri = Uri.parse('$apiUrl/categories/$shopID');
+    final Uri uri = Uri.parse('$apiUrl/categories').replace(
+      queryParameters: {'limit': '20', 'page': '1', 'shop_id': shopID},
+    );
 
     try {
       Response response = await http.get(uri);

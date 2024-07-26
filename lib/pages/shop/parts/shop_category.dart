@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/models/category.dart';
 import 'package:skar/pages/shop/parts/categories_list.dart';
+import 'package:skar/services/category.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/api/category.dart';
@@ -16,8 +18,9 @@ class ShopCategory extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isLightBrightness = isLightTheme(context, ref);
-    var categories = ref.watch(fetchCategoriesByShopIDProvider(shopID));
-    var shopCategories = ref.watch(shopCategoriesProvider);
+    AsyncValue<ResultCategory> categories =
+        ref.watch(fetchCategoriesByShopIDProvider(shopID));
+    List<ShopCategories> shopCategories = ref.watch(shopCategoriesProvider);
 
     return categories.when(
       skipError: true,
@@ -134,8 +137,4 @@ class ShopCategory extends ConsumerWidget {
       loading: () => SizedBox(height: 65, child: loadWidget),
     );
   }
-
-  // SizedBox listCategoriesMethod(List<Kategory> categories, bool isTM) {
-  //   ;
-  // }
 }

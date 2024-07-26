@@ -11,17 +11,21 @@ var fetchCategoriesByShopIDProvider =
     ResultCategory result = ResultCategory.defaultResult();
 
     try {
-      var categories =
+      List<Kategory> categories =
           await ref.read(categoryApiProvider).fetchCategoriesByShopID(shopID);
+
       await ref.read(shopCategoriesProvider.notifier).addCategory(
             ShopCategories(
               categoryID: '',
               name: '',
               childCategories: categories,
               selectedCategories: List.generate(
-                  categories.length, (index) => categories[index].id),
+                categories.length,
+                (index) => categories[index].id,
+              ),
             ),
           );
+
       result = ResultCategory(error: '', categories: categories);
     } catch (e) {
       result = ResultCategory(error: e.toString());
