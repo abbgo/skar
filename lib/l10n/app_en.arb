@@ -50,5 +50,6 @@
     "blackTheme":"Black theme",
     "systemTheme":"System theme",
     "hasShipping":"Has shipping",
-    "noShipping":"No shipping"
+    "noShipping":"No shipping",
+    "products":"Products"
 }

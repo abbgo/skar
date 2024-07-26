@@ -45,12 +45,8 @@ class BottomNavigationPage extends ConsumerWidget {
             isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
           ),
           bottomNavigationBarItemMethod(
-            lang.search,
-            Image.asset(
-              "assets/icons/search.png",
-              color: isLightBrightness ? elevatedButtonColor : Colors.white,
-              height: 24,
-            ),
+            lang.products,
+            const Icon(Icons.shopping_bag_outlined, size: 24),
             isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
           ),
           bottomNavigationBarItemMethod(

@@ -50,5 +50,6 @@
     "blackTheme":"Черная тема",
     "systemTheme":"Системная тема",
     "hasShipping":"Есть доставка",
-    "noShipping":"Нет доставки"
+    "noShipping":"Нет доставки",
+    "products":"Продукты"
 }
