@@ -55,6 +55,7 @@ var fetchProductProvider = FutureProvider.family<ResultProduct, String>(
     try {
       Product product =
           await ref.read(productApiProvider).fetchProduct(productID);
+
       result = ResultProduct(error: '', product: product);
     } catch (e) {
       result = ResultProduct(error: e.toString());
