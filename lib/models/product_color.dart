@@ -15,7 +15,7 @@ class ProductColor {
     return ProductColor(
       id: json['id'],
       name: json['name'] ?? "",
-      images: json['image'] == null
+      images: json['images'] == null
           ? []
           : List<ProductColorImage>.from(
               json['images'].map(

@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/models/product_color.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/providers/pages/product.dart';
 
 class ShowImage extends ConsumerWidget {
   const ShowImage({super.key, required this.images});
 
-  final List<dynamic> images;
+  final List<ProductColorImage> images;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +29,7 @@ class ShowImage extends ConsumerWidget {
                   child: InteractiveViewer(
                     minScale: 0.01,
                     maxScale: 4,
-                    child: showCachImageMethod(images[selectedImage]),
+                    child: showCachImageMethod(images[selectedImage].image),
                   ),
                 ),
                 Positioned(
@@ -75,7 +76,7 @@ class ShowImage extends ConsumerWidget {
                             ref.read(selectedImageProvider.notifier).state =
                                 index;
                           },
-                          child: showCachImageMethod(images[index]),
+                          child: showCachImageMethod(images[index].image),
                         ),
                       ),
                     ),

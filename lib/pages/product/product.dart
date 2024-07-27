@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
+import 'package:skar/models/product.dart';
 import 'package:skar/pages/parts/appbar_leading_back_button.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/product/parts/price_and_brend.dart';
@@ -41,7 +42,8 @@ class _ProductPageState extends State<ProductPage> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Consumer(
           builder: (context, ref, child) {
-            var product = ref.watch(fetchProductProvider(widget.productID));
+            AsyncValue<ResultProduct> product =
+                ref.watch(fetchProductProvider(widget.productID));
             int selectedColors = ref.watch(selectedProductColorProvider);
 
             return product.when(
@@ -50,6 +52,7 @@ class _ProductPageState extends State<ProductPage> {
                 if (productData.error != '') {
                   return const SomeThingWrong();
                 }
+
                 return ListView(
                   children: [
                     ProductImage(

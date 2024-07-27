@@ -38,7 +38,9 @@ class ProductImage extends StatelessWidget {
                   },
                   itemCount: productColor.images!.length,
                   itemBuilder: (context, index) {
-                    return showCachImageMethod(productColor.images![index]);
+                    return showCachImageMethod(
+                      productColor.images![index].image,
+                    );
                   },
                 ),
               ),

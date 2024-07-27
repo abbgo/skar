@@ -55,8 +55,9 @@ class ProductColorPage extends ConsumerWidget {
                         ref.read(activeImageColorProvider.notifier).state = 0;
                         pageController.jumpTo(0);
                       },
-                      child:
-                          showCachImageMethod(productColors[index].images![0]),
+                      child: showCachImageMethod(
+                        productColors[index].images![0].image,
+                      ),
                     ),
                   ),
                 ),
