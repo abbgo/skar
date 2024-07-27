@@ -17,15 +17,17 @@ class ProductService {
     String search,
     String lang,
   ) async {
-    final Uri uri = Uri.parse('$apiUrl/$api').replace(queryParameters: {
-      'limit': limit.toString(),
-      'page': page.toString(),
-      'categories': categories,
-      'shop_id': shopID,
-      'product_id': productID,
-      'search': search,
-      'lang': lang,
-    });
+    final Uri uri = Uri.parse('$apiUrl/$api').replace(
+      queryParameters: {
+        'limit': limit.toString(),
+        'page': page.toString(),
+        'categories': categories,
+        'shop_id': shopID,
+        'product_id': productID,
+        'search': search,
+        'lang': lang,
+      },
+    );
 
     try {
       Response response = await http.get(uri);

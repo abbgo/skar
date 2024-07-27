@@ -5,6 +5,7 @@ import 'package:skar/datas/static.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
+import 'package:skar/models/product.dart';
 import 'package:skar/pages/parts/product_card/product_card.dart';
 import 'package:skar/pages/product/product.dart';
 import 'package:skar/providers/api/category.dart';
@@ -41,7 +42,8 @@ class ShopProducts extends ConsumerWidget {
                 productID: '',
               );
 
-              var responseAsync = ref.watch(fetchProductsProvider(params));
+              AsyncValue<ResultProduct> responseAsync =
+                  ref.watch(fetchProductsProvider(params));
 
               return responseAsync.when(
                 skipError: true,
