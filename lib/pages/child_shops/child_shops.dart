@@ -32,7 +32,7 @@ class ChildShopsPage extends ConsumerWidget {
           ref: ref,
         ),
       ),
-      body: const ChildShopsBody(),
+      body: ChildShopsBody(parentShopID: parentShopID),
     );
   }
 }
