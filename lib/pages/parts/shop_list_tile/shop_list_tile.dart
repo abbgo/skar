@@ -26,11 +26,13 @@ class ShopListTile extends StatelessWidget {
           children: [
             ShopListTileImage(shop: shop, cardHeight: cardHeight),
             ShopListTileData(shop: shop, forFavorite: forFavorite),
-            ShopListTileMapButton(
-              shop: shop,
-              mapPageContext: mapPageContext!,
-              forFavorite: forFavorite,
-            ),
+            mapPageContext != null
+                ? ShopListTileMapButton(
+                    shop: shop,
+                    mapPageContext: mapPageContext!,
+                    forFavorite: forFavorite,
+                  )
+                : const SizedBox(),
           ],
         ),
       ),
