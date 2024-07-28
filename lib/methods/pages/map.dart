@@ -96,7 +96,13 @@ Future<BitmapDescriptor> generateMarkerIcon(bool isTM, Shop shop) {
       Image.asset('assets/icons/shirt_location.png', height: 50),
     ],
   ).toBitmapDescriptor(
-    logicalSize: const Size(1000, 200),
-    imageSize: const Size(1000, 200),
+    logicalSize: Size(
+      1000,
+      (shop.parentShop!.id == null || shop.parentShop!.id!.isEmpty) ? 100 : 200,
+    ),
+    imageSize: Size(
+      1000,
+      (shop.parentShop!.id == null || shop.parentShop!.id!.isEmpty) ? 100 : 200,
+    ),
   );
 }
