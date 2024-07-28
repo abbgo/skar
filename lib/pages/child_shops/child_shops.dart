@@ -28,7 +28,7 @@ class ChildShopsPage extends ConsumerWidget {
           },
           autofocus: false,
           hintText: lang.searchShop,
-          initText: '',
+          initText: ref.watch(childShopsSearchProvider),
           ref: ref,
         ),
       ),
