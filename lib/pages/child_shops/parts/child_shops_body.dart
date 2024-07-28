@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/static.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/error.dart';
+import 'package:skar/providers/api/shop.dart';
 import 'package:skar/providers/pages/child_shops.dart';
 import 'package:skar/services/shop.dart';
 
@@ -31,6 +33,9 @@ class ChildShopsBody extends ConsumerWidget {
                   isRandom: false,
                   parentShopID: parentShopID,
                 );
+
+                final AsyncValue<ResultShop> responseAsync =
+                    ref.watch(fetchChildShopsProvider(shopParams));
               },
             ),
           );
