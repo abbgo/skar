@@ -4,12 +4,16 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/pages/search_product/parts/search_product_result.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:skar/providers/pages/search_product.dart';
+import 'package:skar/providers/params/product_param.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SearchProductPage extends ConsumerWidget {
   const SearchProductPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var lang = AppLocalizations.of(context)!;
+
     ScrollController scrollController =
         ref.watch(searchProductScrollControllerProvider);
     bool openSearchProductNavigateToTopButton =
@@ -19,7 +23,18 @@ class SearchProductPage extends ConsumerWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const SearchField(forShops: false),
+        title: SearchField(
+          onPressed: () {
+            ref.read(productSearchProvider.notifier).state = '';
+          },
+          onSubmitted: (value) {
+            ref.read(productSearchProvider.notifier).state = value;
+            ref.read(hasProductsProvider.notifier).state = true;
+          },
+          autofocus: false,
+          hintText: lang.searchProduct,
+          initText: ref.watch(productSearchProvider),
+        ),
         centerTitle: true,
       ),
       body: const SearchProductResult(),
