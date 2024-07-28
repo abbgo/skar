@@ -26,6 +26,7 @@ class SearchProductPage extends ConsumerWidget {
         title: SearchField(
           onPressed: () {
             ref.read(productSearchProvider.notifier).state = '';
+            ref.read(hasProductsProvider.notifier).state = true;
           },
           onSubmitted: (value) {
             ref.read(productSearchProvider.notifier).state = value;
