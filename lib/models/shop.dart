@@ -8,6 +8,7 @@ class Shop {
   final List<dynamic>? phones;
   final bool? hasShipping;
   final bool? isShoppingCenter;
+  final Shop? parentShop;
 
   const Shop({
     required this.id,
@@ -21,6 +22,7 @@ class Shop {
     this.phones,
     this.hasShipping,
     this.isShoppingCenter,
+    this.parentShop,
   });
 
   factory Shop.defaultShop() {
@@ -36,6 +38,7 @@ class Shop {
       phones: [],
       hasShipping: false,
       isShoppingCenter: false,
+      parentShop: null,
     );
   }
 
@@ -52,6 +55,9 @@ class Shop {
       phones: json['phones'] ?? [],
       hasShipping: json['has_shipping'] ?? false,
       isShoppingCenter: json['is_shopping_center'] ?? false,
+      parentShop: json['parent_shop'] == null
+          ? Shop.defaultShop()
+          : Shop.fromJson(json['parent_shop']),
     );
   }
 }
