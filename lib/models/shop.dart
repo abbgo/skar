@@ -7,6 +7,7 @@ class Shop {
   final double? latitude, longitude;
   final List<dynamic>? phones;
   final bool? hasShipping;
+  final bool? isShoppingCenter;
   // final List<Product>? products;
   // final List<Kategory>? categories;
 
@@ -21,6 +22,7 @@ class Shop {
     this.addressRU,
     this.phones,
     this.hasShipping,
+    this.isShoppingCenter,
     // this.products,
     // this.categories,
   });
@@ -37,6 +39,7 @@ class Shop {
       addressRU: '',
       phones: [],
       hasShipping: false,
+      isShoppingCenter: false,
     );
   }
 
@@ -52,6 +55,7 @@ class Shop {
       addressRU: json['address_ru'] ?? "",
       phones: json['phones'] ?? [],
       hasShipping: json['has_shipping'] ?? false,
+      isShoppingCenter: json['is_shopping_center'] ?? false,
       // categories: json['shop_categories'] == null
       //     ? []
       //     : List<Kategory>.from(
