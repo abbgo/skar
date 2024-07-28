@@ -73,8 +73,12 @@ Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
 Future<BitmapDescriptor> generateMarkerIcon(bool isTM, Shop shop) {
   return Column(
     children: [
-      shop.parentShop != null
-          ? Container(
+      shop.parentShop!.id == null || shop.parentShop!.id!.isEmpty
+          ? Text(
+              isTM ? shop.nameTM! : shop.nameRU!,
+              style: const TextStyle(fontSize: 24, color: Colors.black),
+            )
+          : Container(
               color: Colors.green,
               child: Column(
                 children: [
@@ -88,10 +92,6 @@ Future<BitmapDescriptor> generateMarkerIcon(bool isTM, Shop shop) {
                   ),
                 ],
               ),
-            )
-          : Text(
-              isTM ? shop.nameTM! : shop.nameRU!,
-              style: const TextStyle(fontSize: 24, color: Colors.black),
             ),
       Image.asset('assets/icons/shirt_location.png', height: 50),
     ],
