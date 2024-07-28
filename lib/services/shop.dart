@@ -38,6 +38,7 @@ class ShopService {
     required bool isRandom,
     required String search,
     required String lang,
+    required String parentShopID,
   }) async {
     Uri uri = Uri.parse('$apiUrl/shops').replace(
       queryParameters: {
@@ -46,6 +47,7 @@ class ShopService {
         'is_random': isRandom.toString(),
         'search': search,
         'lang': lang,
+        'parent_shop_id': parentShopID,
       },
     );
 

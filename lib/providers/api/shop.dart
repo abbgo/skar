@@ -66,6 +66,7 @@ var fetchShopsProvider =
             isRandom: shopParams.isRandom!,
             search: search,
             lang: isTM ? 'tm' : 'ru',
+            parentShopID: '',
           );
 
       ref.read(hasShopsProvider.notifier).state = shops.isNotEmpty;
@@ -93,6 +94,7 @@ var fetchChildShopsProvider =
             isRandom: shopParams.isRandom!,
             search: search,
             lang: isTM ? 'tm' : 'ru',
+            parentShopID: shopParams.parentShopID!,
           );
 
       ref.read(hasChildShopsProvider.notifier).state = shops.isNotEmpty;
@@ -116,6 +118,7 @@ var fetchBrendShopsProvider = FutureProvider.family<ResultShop, ShopParams>(
             isRandom: shopParams.isRandom!,
             search: '',
             lang: '',
+            parentShopID: '',
           );
       result = ResultShop(shops: shops, error: '');
     } catch (e) {

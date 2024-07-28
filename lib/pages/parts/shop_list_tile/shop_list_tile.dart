@@ -8,13 +8,13 @@ class ShopListTile extends StatelessWidget {
   const ShopListTile({
     super.key,
     required this.shop,
-    required this.mapPageContext,
+    this.mapPageContext,
     required this.forFavorite,
   });
 
   final Shop shop;
   static const double cardHeight = 110.0;
-  final BuildContext mapPageContext;
+  final BuildContext? mapPageContext;
   final bool forFavorite;
 
   @override
@@ -28,7 +28,7 @@ class ShopListTile extends StatelessWidget {
             ShopListTileData(shop: shop, forFavorite: forFavorite),
             ShopListTileMapButton(
               shop: shop,
-              mapPageContext: mapPageContext,
+              mapPageContext: mapPageContext!,
               forFavorite: forFavorite,
             ),
           ],
