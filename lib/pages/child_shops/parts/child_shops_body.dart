@@ -4,6 +4,7 @@ import 'package:skar/datas/static.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/pages/parts/error.dart';
 import 'package:skar/providers/pages/child_shops.dart';
+import 'package:skar/services/shop.dart';
 
 class ChildShopsBody extends ConsumerWidget {
   const ChildShopsBody({super.key, required this.parentShopID});
@@ -24,6 +25,12 @@ class ChildShopsBody extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final page = index ~/ pageSize + 1;
                 final indexInPage = index % pageSize;
+
+                ShopParams shopParams = ShopParams(
+                  page: page,
+                  isRandom: false,
+                  parentShopID: parentShopID,
+                );
               },
             ),
           );
