@@ -12,6 +12,7 @@ class SearchField extends StatefulWidget {
     required this.autofocus,
     required this.hintText,
     required this.initText,
+    required this.ref,
   });
 
   final void Function() onPressed;
@@ -19,6 +20,7 @@ class SearchField extends StatefulWidget {
   final bool autofocus;
   final String hintText;
   final String initText;
+  final WidgetRef ref;
 
   @override
   State<SearchField> createState() => _SearchFieldState();
@@ -35,36 +37,32 @@ class _SearchFieldState extends State<SearchField> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        bool isLightBrightness = isLightTheme(context, ref);
-        searchCtrl.text = widget.initText;
+    bool isLightBrightness = isLightTheme(context, widget.ref);
+    searchCtrl.text = widget.initText;
 
-        return SizedBox(
-          height: 40,
-          width: screenProperties(context).width - 70,
-          child: TextField(
-            controller: searchCtrl,
-            autofocus: widget.autofocus,
-            textInputAction: TextInputAction.search,
-            textAlignVertical: TextAlignVertical.center,
-            cursorColor: isLightBrightness ? elevatedButtonColor : Colors.white,
-            decoration: InputDecoration(
-              focusedBorder: inputBorder(context, ref),
-              border: inputBorder(context, ref),
-              hintText: widget.hintText,
-              suffixIcon: IconButton(
-                icon: const Icon(Icons.backspace_outlined, size: 18),
-                onPressed: () {
-                  widget.onPressed();
-                  searchCtrl.clear();
-                },
-              ),
-            ),
-            onSubmitted: (value) => widget.onSubmitted(value),
+    return SizedBox(
+      height: 40,
+      width: screenProperties(context).width - 70,
+      child: TextField(
+        controller: searchCtrl,
+        autofocus: widget.autofocus,
+        textInputAction: TextInputAction.search,
+        textAlignVertical: TextAlignVertical.center,
+        cursorColor: isLightBrightness ? elevatedButtonColor : Colors.white,
+        decoration: InputDecoration(
+          focusedBorder: inputBorder(context, widget.ref),
+          border: inputBorder(context, widget.ref),
+          hintText: widget.hintText,
+          suffixIcon: IconButton(
+            icon: const Icon(Icons.backspace_outlined, size: 18),
+            onPressed: () {
+              widget.onPressed();
+              searchCtrl.clear();
+            },
           ),
-        );
-      },
+        ),
+        onSubmitted: (value) => widget.onSubmitted(value),
+      ),
     );
   }
 }

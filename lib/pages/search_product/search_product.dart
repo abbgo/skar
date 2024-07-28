@@ -34,6 +34,7 @@ class SearchProductPage extends ConsumerWidget {
           autofocus: false,
           hintText: lang.searchProduct,
           initText: ref.watch(productSearchProvider),
+          ref: ref,
         ),
         centerTitle: true,
       ),

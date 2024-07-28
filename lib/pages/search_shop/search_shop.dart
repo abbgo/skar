@@ -44,6 +44,7 @@ class SearchShopPage extends ConsumerWidget {
             autofocus: true,
             hintText: lang.searchShop,
             initText: ref.watch(shopSearchProvider),
+            ref: ref,
           ),
         ),
         body: SearchShopResult(mapPageContext: mapPageContext),
