@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/child_shops/child_shops.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/map.dart';
@@ -29,7 +30,9 @@ final shopsForMapProvider =
                 Marker(
                   markerId: MarkerId(shop.id),
                   position: LatLng(shop.latitude!, shop.longitude!),
-                  onTap: () => goToPage(arg, ShopPage(shopID: shop.id), false),
+                  onTap: () => shop.isShoppingCenter!
+                      ? goToPage(arg, const ChildShopsPage(), false)
+                      : goToPage(arg, ShopPage(shopID: shop.id), false),
                   icon: await generateMarkerIconMethod(isTM, shop),
                 ),
               );
