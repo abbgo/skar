@@ -8,8 +8,6 @@ class Shop {
   final List<dynamic>? phones;
   final bool? hasShipping;
   final bool? isShoppingCenter;
-  // final List<Product>? products;
-  // final List<Kategory>? categories;
 
   const Shop({
     required this.id,
@@ -23,8 +21,6 @@ class Shop {
     this.phones,
     this.hasShipping,
     this.isShoppingCenter,
-    // this.products,
-    // this.categories,
   });
 
   factory Shop.defaultShop() {
@@ -56,36 +52,8 @@ class Shop {
       phones: json['phones'] ?? [],
       hasShipping: json['has_shipping'] ?? false,
       isShoppingCenter: json['is_shopping_center'] ?? false,
-      // categories: json['shop_categories'] == null
-      //     ? []
-      //     : List<Kategory>.from(
-      //         json['shop_categories'].map(
-      //           (categoryJson) => Kategory.fromJson(categoryJson),
-      //         ),
-      //       ),
-      // products: json['products'] == null
-      //     ? []
-      //     : List<Product>.from(
-      //         json['products'].map(
-      //           (productJson) => Product.fromJson(productJson),
-      //         ),
-      //       ),
     );
   }
-
-  // @override
-  // List<Object?> get props => [
-  //       id,
-  //       nameTM,
-  //       nameRU,
-  //       addressTM,
-  //       addressRU,
-  //       image,
-  //       latitude,
-  //       longitude,
-  //       phones,
-  //       hasDelivery,
-  //     ];
 }
 
 class ResultShop extends Equatable {
