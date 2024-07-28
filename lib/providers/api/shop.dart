@@ -7,6 +7,7 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/child_shops/child_shops.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
+import 'package:skar/providers/pages/child_shops.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
@@ -84,7 +85,7 @@ var fetchChildShopsProvider =
     ResultShop result = ResultShop.defaultResult();
 
     try {
-      String search = ref.watch(shopSearchProvider);
+      String search = ref.watch(childShopsSearchProvider);
       bool isTM = ref.read(langProvider) == 'tr';
 
       List<Shop> shops = await ref.read(apiProvider).fetchShops(
@@ -94,7 +95,7 @@ var fetchChildShopsProvider =
             lang: isTM ? 'tm' : 'ru',
           );
 
-      ref.read(hasShopsProvider.notifier).state = shops.isNotEmpty;
+      ref.read(hasChildShopsProvider.notifier).state = shops.isNotEmpty;
 
       result = ResultShop(shops: shops, error: '');
     } catch (e) {
