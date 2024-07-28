@@ -7,16 +7,16 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/providers/params/shop_param.dart';
 
-class ShopSearchField extends StatefulWidget {
-  const ShopSearchField({super.key, required this.forShops});
+class SearchField extends StatefulWidget {
+  const SearchField({super.key, required this.forShops});
 
   final bool forShops;
 
   @override
-  State<ShopSearchField> createState() => _ShopSearchFieldState();
+  State<SearchField> createState() => _SearchFieldState();
 }
 
-class _ShopSearchFieldState extends State<ShopSearchField> {
+class _SearchFieldState extends State<SearchField> {
   final TextEditingController searchCtrl = TextEditingController();
 
   @override
