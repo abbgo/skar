@@ -59,7 +59,7 @@ class ShopPageButtons extends ConsumerWidget {
                       color: isLightBrightness ? null : Colors.white,
                     ),
                   ),
-                  ShopFavoriteButton(shopID: shop.id),
+                  ShopFavoriteButton(shopID: shop.id!),
                   IconButton(
                     style: IconButton.styleFrom(
                       backgroundColor:

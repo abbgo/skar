@@ -18,7 +18,7 @@ class ShopListTileData extends StatelessWidget {
     return Expanded(
       flex: 2,
       child: GestureDetector(
-        onTap: () => goToPage(context, ShopPage(shopID: shop.id), false),
+        onTap: () => goToPage(context, ShopPage(shopID: shop.id!), false),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Consumer(
@@ -36,7 +36,7 @@ class ShopListTileData extends StatelessWidget {
                       Text(
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        isTM ? shop.nameTM : shop.nameRU,
+                        isTM ? shop.nameTM! : shop.nameRU!,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -50,7 +50,7 @@ class ShopListTileData extends StatelessWidget {
                       ),
                     ],
                   ),
-                  ShopFavoriteButton(shopID: shop.id),
+                  ShopFavoriteButton(shopID: shop.id!),
                 ],
               );
             },

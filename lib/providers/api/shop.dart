@@ -34,10 +34,10 @@ final shopsForMapProvider =
                   onTap: () => shop.isShoppingCenter!
                       ? goToPage(
                           arg,
-                          ChildShopsPage(parentShopID: shop.id),
+                          ChildShopsPage(parentShopID: shop.id!),
                           false,
                         )
-                      : goToPage(arg, ShopPage(shopID: shop.id), false),
+                      : goToPage(arg, ShopPage(shopID: shop.id!), false),
                   icon: await generateMarkerIconMethod(isTM, shop),
                 ),
               );

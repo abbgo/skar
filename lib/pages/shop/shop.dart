@@ -61,7 +61,7 @@ class ShopPage extends ConsumerWidget {
                     children: [
                       shopTextMethod(
                         18,
-                        isTM ? shopData.shop!.nameTM : shopData.shop!.nameRU,
+                        isTM ? shopData.shop!.nameTM! : shopData.shop!.nameRU!,
                         FontWeight.bold,
                       ),
                       shopTextMethod(

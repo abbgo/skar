@@ -36,7 +36,7 @@ class ShopListTileMapButton extends ConsumerWidget {
                 position: LatLng(shop.latitude!, shop.longitude!),
                 onTap: () => goToPage(
                   mapPageContext,
-                  ShopPage(shopID: shop.id),
+                  ShopPage(shopID: shop.id!),
                   false,
                 ),
                 icon: await generateMarkerIcon(isTM, shop),

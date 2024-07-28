@@ -32,12 +32,14 @@ class ProductPriceAndBrend extends StatelessWidget {
                     bool isTM = ref.watch(langProvider) == 'tr';
                     return GestureDetector(
                       onTap: () => goToPage(
-                          context, ShopPage(shopID: product.shop!.id), false),
+                          context, ShopPage(shopID: product.shop!.id!), false),
                       child: Consumer(
                         builder: (context, ref, child) {
                           bool isLightBrightness = isLightTheme(context, ref);
                           return Text(
-                            isTM ? product.shop!.nameTM : product.shop!.nameRU,
+                            isTM
+                                ? product.shop!.nameTM!
+                                : product.shop!.nameRU!,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,

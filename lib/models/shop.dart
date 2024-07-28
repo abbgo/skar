@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Shop {
-  final String id, nameTM, nameRU;
-  final String? addressTM, addressRU;
+  final String? id, nameTM, nameRU, addressTM, addressRU;
   final String? image;
   final double? latitude, longitude;
   final List<dynamic>? phones;
@@ -11,9 +10,9 @@ class Shop {
   final Shop? parentShop;
 
   const Shop({
-    required this.id,
-    required this.nameRU,
-    required this.nameTM,
+    this.id,
+    this.nameRU,
+    this.nameTM,
     this.latitude,
     this.longitude,
     this.image,
@@ -44,9 +43,9 @@ class Shop {
 
   factory Shop.fromJson(Map<String, dynamic> json) {
     return Shop(
-      id: json['id'],
-      nameRU: json['name_ru'],
-      nameTM: json['name_tm'],
+      id: json['id'] ?? '',
+      nameRU: json['name_ru'] ?? '',
+      nameTM: json['name_tm'] ?? '',
       latitude: json['latitude'] ?? 0,
       longitude: json['longitude'] ?? 0,
       image: json['image'] ?? "",

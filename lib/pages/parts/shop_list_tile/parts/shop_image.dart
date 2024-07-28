@@ -16,7 +16,7 @@ class ShopListTileImage extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: GestureDetector(
-        onTap: () => goToPage(context, ShopPage(shopID: shop.id), false),
+        onTap: () => goToPage(context, ShopPage(shopID: shop.id!), false),
         child: SizedBox(
           height: cardHeight,
           child: ClipRRect(

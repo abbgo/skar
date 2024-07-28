@@ -9,7 +9,7 @@ import 'package:widget_to_marker/widget_to_marker.dart';
 
 Text listviewNameColumnMethod(Shop shop, bool isTM) {
   return Text(
-    isTM ? shop.nameTM : shop.nameRU,
+    isTM ? shop.nameTM! : shop.nameRU!,
     style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
   );
 }
@@ -35,7 +35,7 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
       child: Consumer(
         builder: (context, ref, child) {
           return GestureDetector(
-            onTap: () => goToPage(context, ShopPage(shopID: shop.id), false),
+            onTap: () => goToPage(context, ShopPage(shopID: shop.id!), false),
             child: showCachImageMethod(shop.image!),
           );
         },
@@ -48,7 +48,7 @@ Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
   return Column(
     children: [
       Text(
-        isTM ? shop.nameTM : shop.nameRU,
+        isTM ? shop.nameTM! : shop.nameRU!,
         style: const TextStyle(
           fontSize: 24,
           // color: Colors.white,
@@ -73,27 +73,26 @@ Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
 Future<BitmapDescriptor> generateMarkerIcon(bool isTM, Shop shop) {
   return Column(
     children: [
-      Container(
-        color: Colors.green,
-        child: Column(
-          children: [
-            const Text(
-              'Berkarar sowda merkezi',
-              style: const TextStyle(
-                fontSize: 24,
-                color: Colors.black,
+      shop.parentShop != null
+          ? Container(
+              color: Colors.green,
+              child: Column(
+                children: [
+                  Text(
+                    isTM ? shop.parentShop!.nameTM! : shop.parentShop!.nameRU!,
+                    style: const TextStyle(fontSize: 24, color: Colors.black),
+                  ),
+                  Text(
+                    isTM ? shop.nameTM! : shop.nameRU!,
+                    style: const TextStyle(fontSize: 24, color: Colors.black),
+                  ),
+                ],
               ),
+            )
+          : Text(
+              isTM ? shop.nameTM! : shop.nameRU!,
+              style: const TextStyle(fontSize: 24, color: Colors.black),
             ),
-            Text(
-              isTM ? shop.nameTM : shop.nameRU,
-              style: const TextStyle(
-                fontSize: 24,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
-      ),
       Image.asset('assets/icons/shirt_location.png', height: 50),
     ],
   ).toBitmapDescriptor(
