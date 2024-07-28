@@ -31,7 +31,11 @@ final shopsForMapProvider =
                   markerId: MarkerId(shop.id),
                   position: LatLng(shop.latitude!, shop.longitude!),
                   onTap: () => shop.isShoppingCenter!
-                      ? goToPage(arg, const ChildShopsPage(), false)
+                      ? goToPage(
+                          arg,
+                          ChildShopsPage(parentShopID: shop.id),
+                          false,
+                        )
                       : goToPage(arg, ShopPage(shopID: shop.id), false),
                   icon: await generateMarkerIconMethod(isTM, shop),
                 ),
