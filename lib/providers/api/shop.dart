@@ -29,7 +29,7 @@ final shopsForMapProvider =
         for (Shop shop in shops) {
           await ref.read(markersProvider.notifier).addMarker(
                 Marker(
-                  markerId: MarkerId(shop.id),
+                  markerId: MarkerId('${shop.latitude}-${shop.longitude}'),
                   position: LatLng(shop.latitude!, shop.longitude!),
                   onTap: () => shop.isShoppingCenter!
                       ? goToPage(

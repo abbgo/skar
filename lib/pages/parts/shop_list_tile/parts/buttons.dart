@@ -32,14 +32,14 @@ class ShopListTileMapButton extends ConsumerWidget {
         await ref.read(markersProvider.notifier).removeAllMarkers();
         await ref.read(markersProvider.notifier).addMarker(
               Marker(
-                markerId: MarkerId(shop.id),
+                markerId: MarkerId('${shop.latitude}-${shop.longitude}'),
                 position: LatLng(shop.latitude!, shop.longitude!),
                 onTap: () => goToPage(
                   mapPageContext,
                   ShopPage(shopID: shop.id),
                   false,
                 ),
-                icon: await generateMarkerIconMethod(isTM, shop),
+                icon: await generateMarkerIcon(isTM, shop),
               ),
             );
 

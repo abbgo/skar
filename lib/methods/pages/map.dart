@@ -69,3 +69,35 @@ Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
     imageSize: const Size(1000, 100),
   );
 }
+
+Future<BitmapDescriptor> generateMarkerIcon(bool isTM, Shop shop) {
+  return Column(
+    children: [
+      Container(
+        color: Colors.green,
+        child: Column(
+          children: [
+            const Text(
+              'Berkarar sowda merkezi',
+              style: const TextStyle(
+                fontSize: 24,
+                color: Colors.black,
+              ),
+            ),
+            Text(
+              isTM ? shop.nameTM : shop.nameRU,
+              style: const TextStyle(
+                fontSize: 24,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+      ),
+      Image.asset('assets/icons/shirt_location.png', height: 50),
+    ],
+  ).toBitmapDescriptor(
+    logicalSize: const Size(1000, 200),
+    imageSize: const Size(1000, 200),
+  );
+}
