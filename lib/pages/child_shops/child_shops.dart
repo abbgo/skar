@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/pages/child_shops/parts/child_shops_body.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/pages/child_shops.dart';
@@ -31,9 +32,7 @@ class ChildShopsPage extends ConsumerWidget {
           ref: ref,
         ),
       ),
-      body: const Center(
-        child: Text('Child shops'),
-      ),
+      body: const ChildShopsBody(),
     );
   }
 }
