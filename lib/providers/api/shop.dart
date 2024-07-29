@@ -38,7 +38,7 @@ final shopsForMapProvider =
                           false,
                         )
                       : goToPage(arg, ShopPage(shopID: shop.id!), false),
-                  icon: await generateMarkerIconMethod(isTM, shop),
+                  icon: await generateMarkerIcon(isTM, shop),
                 ),
               );
         }

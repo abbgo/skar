@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/marker_widget/marker_widget.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 
@@ -44,58 +45,34 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
   );
 }
 
-Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
-  return Column(
-    children: [
-      Text(
-        isTM ? shop.nameTM! : shop.nameRU!,
-        style: const TextStyle(
-          fontSize: 24,
-          // color: Colors.white,
-          color: Colors.black,
-          // fontWeight: FontWeight.bold,
-          // shadows: [
-          //   Shadow(offset: Offset(-1.5, -1.5), color: Colors.red),
-          //   Shadow(offset: Offset(1.5, -1.5), color: Colors.red),
-          //   Shadow(offset: Offset(1.5, 1.5), color: Colors.red),
-          //   Shadow(offset: Offset(-1.5, 1.5), color: Colors.red),
-          // ],
-        ),
-      ),
-      Image.asset('assets/icons/shirt_location.png', height: 50),
-    ],
-  ).toBitmapDescriptor(
-    logicalSize: const Size(1000, 100),
-    imageSize: const Size(1000, 100),
-  );
-}
+// Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
+//   return Column(
+//     children: [
+//       Text(
+//         isTM ? shop.nameTM! : shop.nameRU!,
+//         style: const TextStyle(
+//           fontSize: 24,
+//           // color: Colors.white,
+//           color: Colors.black,
+//           // fontWeight: FontWeight.bold,
+//           // shadows: [
+//           //   Shadow(offset: Offset(-1.5, -1.5), color: Colors.red),
+//           //   Shadow(offset: Offset(1.5, -1.5), color: Colors.red),
+//           //   Shadow(offset: Offset(1.5, 1.5), color: Colors.red),
+//           //   Shadow(offset: Offset(-1.5, 1.5), color: Colors.red),
+//           // ],
+//         ),
+//       ),
+//       Image.asset('assets/icons/shirt_location.png', height: 50),
+//     ],
+//   ).toBitmapDescriptor(
+//     logicalSize: const Size(1000, 100),
+//     imageSize: const Size(1000, 100),
+//   );
+// }
 
 Future<BitmapDescriptor> generateMarkerIcon(bool isTM, Shop shop) {
-  return Column(
-    children: [
-      shop.parentShop!.id == null || shop.parentShop!.id!.isEmpty
-          ? Text(
-              isTM ? shop.nameTM! : shop.nameRU!,
-              style: const TextStyle(fontSize: 24, color: Colors.black),
-            )
-          : Container(
-              color: Colors.green,
-              child: Column(
-                children: [
-                  Text(
-                    isTM ? shop.parentShop!.nameTM! : shop.parentShop!.nameRU!,
-                    style: const TextStyle(fontSize: 24, color: Colors.black),
-                  ),
-                  Text(
-                    isTM ? shop.nameTM! : shop.nameRU!,
-                    style: const TextStyle(fontSize: 24, color: Colors.black),
-                  ),
-                ],
-              ),
-            ),
-      Image.asset('assets/icons/shirt_location.png', height: 50),
-    ],
-  ).toBitmapDescriptor(
+  return MarkerWidget(shop: shop, isTM: isTM).toBitmapDescriptor(
     logicalSize: Size(
       1000,
       (shop.parentShop!.id == null || shop.parentShop!.id!.isEmpty) ? 100 : 200,
