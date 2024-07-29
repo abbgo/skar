@@ -37,10 +37,15 @@ class ShopWithParentMarker extends StatelessWidget {
                       ? 0
                       : 10,
             ),
-            Text(
-              isTM ? shop.addressTM! : shop.addressRU!,
-              style: const TextStyle(fontSize: 24, color: Colors.green),
-            ),
+            Text.rich(
+              TextSpan(
+                text: isTM ? 'Salgysy: ' : 'Адрес: ',
+                style: const TextStyle(fontSize: 24, color: Colors.black),
+                children: [
+                  TextSpan(text: isTM ? shop.addressTM! : shop.addressRU!),
+                ],
+              ),
+            )
           ],
         ),
       ),
