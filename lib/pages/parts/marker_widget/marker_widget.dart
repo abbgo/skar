@@ -3,16 +3,22 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/marker_widget/parts/shop_with_parent_marker.dart';
 
 class MarkerWidget extends StatelessWidget {
-  const MarkerWidget({super.key, required this.shop, required this.isTM});
+  const MarkerWidget({
+    super.key,
+    required this.shop,
+    required this.isTM,
+    required this.forOnTap,
+  });
 
   final Shop shop;
   final bool isTM;
+  final bool forOnTap;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        shop.parentShop!.id == null || shop.parentShop!.id!.isEmpty
+        !forOnTap
             ? Text(
                 isTM ? shop.nameTM! : shop.nameRU!,
                 style: const TextStyle(fontSize: 24, color: Colors.black),

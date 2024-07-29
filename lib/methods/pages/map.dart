@@ -74,15 +74,11 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
 Future<BitmapDescriptor> generateMarkerIcon(
   bool isTM,
   Shop shop,
+  bool forOnTap,
 ) {
-  return MarkerWidget(shop: shop, isTM: isTM).toBitmapDescriptor(
-    logicalSize: Size(
-      1000,
-      (shop.parentShop!.id == null || shop.parentShop!.id!.isEmpty) ? 100 : 200,
-    ),
-    imageSize: Size(
-      1000,
-      (shop.parentShop!.id == null || shop.parentShop!.id!.isEmpty) ? 100 : 200,
-    ),
+  return MarkerWidget(shop: shop, isTM: isTM, forOnTap: forOnTap)
+      .toBitmapDescriptor(
+    logicalSize: Size(1000, forOnTap ? 200 : 100),
+    imageSize: Size(1000, forOnTap ? 200 : 100),
   );
 }

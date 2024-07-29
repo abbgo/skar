@@ -39,7 +39,7 @@ class ShopListTileMapButton extends ConsumerWidget {
                   ShopPage(shopID: shop.id!),
                   false,
                 ),
-                icon: await generateMarkerIcon(isTM, shop),
+                icon: await generateMarkerIcon(isTM, shop, true),
               ),
             );
 
