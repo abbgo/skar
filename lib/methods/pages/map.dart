@@ -71,7 +71,10 @@ Container listviewImageMethod(BuildContext context, Shop shop, bool isTM) {
 //   );
 // }
 
-Future<BitmapDescriptor> generateMarkerIcon(bool isTM, Shop shop) {
+Future<BitmapDescriptor> generateMarkerIcon(
+  bool isTM,
+  Shop shop,
+) {
   return MarkerWidget(shop: shop, isTM: isTM).toBitmapDescriptor(
     logicalSize: Size(
       1000,

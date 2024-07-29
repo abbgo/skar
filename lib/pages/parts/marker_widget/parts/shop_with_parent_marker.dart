@@ -10,14 +10,16 @@ class ShopWithParentMarker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
+    return Card(
+      color: Colors.white,
+      elevation: 3,
       child: Column(
         children: [
           Text(
             isTM ? shop.parentShop!.nameTM! : shop.parentShop!.nameRU!,
             style: const TextStyle(fontSize: 24, color: Colors.black),
           ),
+          const SizedBox(height: 20),
           Text(
             isTM ? shop.nameTM! : shop.nameRU!,
             style: const TextStyle(fontSize: 24, color: Colors.black),
