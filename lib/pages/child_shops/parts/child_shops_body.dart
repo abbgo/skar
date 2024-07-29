@@ -19,12 +19,16 @@ class ChildShopsBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool hasShops = ref.watch(hasChildShopsProvider);
 
+    ScrollController scrollController =
+        ref.watch(childShopsScrollControllerProvider);
+
     return !hasShops
         ? const NoResult()
         : Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
             height: screenProperties(context).height,
             child: ListView.builder(
+              controller: scrollController,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 final page = index ~/ pageSize + 1;
