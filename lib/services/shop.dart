@@ -49,7 +49,7 @@ class ShopService {
         'search': search,
         'lang': lang,
         'parent_shop_id': parentShopID,
-        'is_shopping_center': isShoppingCenter,
+        'is_shopping_center': isShoppingCenter.toString(),
       },
     );
 
