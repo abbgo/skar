@@ -67,6 +67,7 @@ var fetchShopsProvider =
             search: search,
             lang: isTM ? 'tm' : 'ru',
             parentShopID: '',
+            isShoppingCenter: true,
           );
 
       ref.read(hasShopsProvider.notifier).state = shops.isNotEmpty;
@@ -95,6 +96,7 @@ var fetchChildShopsProvider =
             search: search,
             lang: isTM ? 'tm' : 'ru',
             parentShopID: shopParams.parentShopID!,
+            isShoppingCenter: false,
           );
 
       ref.read(hasChildShopsProvider.notifier).state = shops.isNotEmpty;
@@ -119,6 +121,7 @@ var fetchBrendShopsProvider = FutureProvider.family<ResultShop, ShopParams>(
             search: '',
             lang: '',
             parentShopID: '',
+            isShoppingCenter: false,
           );
       result = ResultShop(shops: shops, error: '');
     } catch (e) {

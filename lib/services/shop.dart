@@ -39,6 +39,7 @@ class ShopService {
     required String search,
     required String lang,
     required String parentShopID,
+    required bool isShoppingCenter,
   }) async {
     Uri uri = Uri.parse('$apiUrl/shops').replace(
       queryParameters: {
@@ -48,6 +49,7 @@ class ShopService {
         'search': search,
         'lang': lang,
         'parent_shop_id': parentShopID,
+        'is_shopping_center': isShoppingCenter,
       },
     );
 
@@ -115,7 +117,6 @@ class ShopParams extends Equatable {
   final bool? isRandom;
   final int? page;
   final String? parentShopID;
-  final bool? isShoppingCenter;
 
   const ShopParams({
     this.latitude,
@@ -124,7 +125,6 @@ class ShopParams extends Equatable {
     this.isRandom,
     this.page,
     this.parentShopID,
-    this.isShoppingCenter,
   });
 
   @override
@@ -135,7 +135,6 @@ class ShopParams extends Equatable {
         isRandom,
         page,
         parentShopID,
-        isShoppingCenter
       ];
 
   ShopParams copyWith({
@@ -146,7 +145,6 @@ class ShopParams extends Equatable {
     String? search,
     int? page,
     String? parentShopID,
-    bool? isShoppingCenter,
   }) {
     return ShopParams(
       latitude: latitude ?? this.latitude,
@@ -155,7 +153,6 @@ class ShopParams extends Equatable {
       isRandom: isRandom ?? this.isRandom,
       page: page ?? this.page,
       parentShopID: parentShopID ?? this.parentShopID,
-      isShoppingCenter: isShoppingCenter ?? this.isShoppingCenter,
     );
   }
 }
