@@ -5,7 +5,7 @@ import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/marker_widget/marker_widget.dart';
-import 'package:skar/pages/parts/select_shop_bottom_sheet.dart';
+import 'package:skar/pages/parts/select_shop_bottom_sheet/select_shop_bottom_sheet.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 
