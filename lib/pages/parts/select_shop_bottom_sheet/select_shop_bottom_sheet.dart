@@ -17,8 +17,11 @@ class SelectShopBottomSheet extends StatelessWidget {
       ),
       child: Wrap(
         children: [
-          SelectShopBottomSheetCard(shop: shop),
-          SelectShopBottomSheetCard(shop: shop.parentShop!),
+          SelectShopBottomSheetCard(shop: shop, forParentShop: false),
+          SelectShopBottomSheetCard(
+            shop: shop.parentShop!,
+            forParentShop: true,
+          ),
         ],
       ),
     );
