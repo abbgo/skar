@@ -41,11 +41,13 @@ class ShopListTileMapButton extends ConsumerWidget {
                         ChildShopsPage(parentShopID: shop.id!),
                         false,
                       )
-                    : goToPage(
-                        mapPageContext,
-                        ShopPage(shopID: shop.id!),
-                        false,
-                      ),
+                    : shop.parentShop == null
+                        ? goToPage(
+                            mapPageContext,
+                            ShopPage(shopID: shop.id!),
+                            false,
+                          )
+                        : showSelectShopBottomSheet(context, shop),
                 icon: await generateMarkerIcon(isTM, shop, true),
               ),
             );
