@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/navigation.dart';
+import 'package:skar/pages/child_shops/child_shops.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/methods/pages/map.dart';
@@ -34,11 +35,17 @@ class ShopListTileMapButton extends ConsumerWidget {
               Marker(
                 markerId: MarkerId('${shop.latitude}-${shop.longitude}'),
                 position: LatLng(shop.latitude!, shop.longitude!),
-                onTap: () => goToPage(
-                  mapPageContext,
-                  ShopPage(shopID: shop.id!),
-                  false,
-                ),
+                onTap: () => shop.isShoppingCenter!
+                    ? goToPage(
+                        mapPageContext,
+                        ChildShopsPage(parentShopID: shop.id!),
+                        false,
+                      )
+                    : goToPage(
+                        mapPageContext,
+                        ShopPage(shopID: shop.id!),
+                        false,
+                      ),
                 icon: await generateMarkerIcon(isTM, shop, true),
               ),
             );
