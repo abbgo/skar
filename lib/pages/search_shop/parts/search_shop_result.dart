@@ -18,54 +18,50 @@ class SearchShopResult extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String search = ref.watch(shopSearchProvider);
     bool hasShops = ref.watch(hasShopsProvider);
     ScrollController scrollController =
         ref.watch(searchShopScrollControllerProvider);
 
-    return search != ''
-        ? !hasShops
-            ? const NoResult()
-            : Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                height: screenProperties(context).height,
-                child: ListView.builder(
-                  controller: scrollController,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final page = index ~/ pageSize + 1;
-                    final indexInPage = index % pageSize;
+    return !hasShops
+        ? const NoResult()
+        : Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            height: screenProperties(context).height,
+            child: ListView.builder(
+              controller: scrollController,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                final page = index ~/ pageSize + 1;
+                final indexInPage = index % pageSize;
 
-                    ShopParams shopParams =
-                        ShopParams(page: page, isRandom: false);
+                ShopParams shopParams = ShopParams(page: page, isRandom: false);
 
-                    final AsyncValue<ResultShop> responseAsync =
-                        ref.watch(fetchShopsProvider(shopParams));
+                final AsyncValue<ResultShop> responseAsync =
+                    ref.watch(fetchShopsProvider(shopParams));
 
-                    return responseAsync.when(
-                      skipLoadingOnRefresh: true,
-                      skipLoadingOnReload: true,
-                      skipError: true,
-                      data: (response) {
-                        if (response.error != '') {
-                          return null;
-                        }
-                        if (indexInPage >= response.shops!.length) {
-                          return null;
-                        }
-                        final shop = response.shops![indexInPage];
-                        return ShopListTile(
-                          shop: shop,
-                          mapPageContext: mapPageContext,
-                          forFavorite: false,
-                        );
-                      },
-                      error: (error, stackTrace) => errorMethod(error),
-                      loading: () => null,
+                return responseAsync.when(
+                  skipLoadingOnRefresh: true,
+                  skipLoadingOnReload: true,
+                  skipError: true,
+                  data: (response) {
+                    if (response.error != '') {
+                      return null;
+                    }
+                    if (indexInPage >= response.shops!.length) {
+                      return null;
+                    }
+                    final shop = response.shops![indexInPage];
+                    return ShopListTile(
+                      shop: shop,
+                      mapPageContext: mapPageContext,
+                      forFavorite: false,
                     );
                   },
-                ),
-              )
-        : const SizedBox();
+                  error: (error, stackTrace) => errorMethod(error),
+                  loading: () => null,
+                );
+              },
+            ),
+          );
   }
 }
