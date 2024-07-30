@@ -33,7 +33,6 @@ class ChildShopsPage extends ConsumerWidget {
             ref.read(childShopsSearchProvider.notifier).state = value;
             ref.read(hasChildShopsProvider.notifier).state = true;
           },
-          autofocus: false,
           hintText: lang.searchShop,
           initText: ref.watch(childShopsSearchProvider),
           ref: ref,

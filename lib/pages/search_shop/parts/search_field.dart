@@ -9,7 +9,6 @@ class SearchField extends StatefulWidget {
     super.key,
     required this.onPressed,
     required this.onSubmitted,
-    required this.autofocus,
     required this.hintText,
     required this.initText,
     required this.ref,
@@ -17,7 +16,6 @@ class SearchField extends StatefulWidget {
 
   final void Function() onPressed;
   final void Function(String) onSubmitted;
-  final bool autofocus;
   final String hintText;
   final String initText;
   final WidgetRef ref;
@@ -45,7 +43,6 @@ class _SearchFieldState extends State<SearchField> {
       width: screenProperties(context).width - 70,
       child: TextField(
         controller: searchCtrl,
-        autofocus: widget.autofocus,
         textInputAction: TextInputAction.search,
         textAlignVertical: TextAlignVertical.center,
         cursorColor: isLightBrightness ? elevatedButtonColor : Colors.white,

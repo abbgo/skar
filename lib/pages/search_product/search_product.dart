@@ -32,7 +32,6 @@ class SearchProductPage extends ConsumerWidget {
             ref.read(productSearchProvider.notifier).state = value;
             ref.read(hasProductsProvider.notifier).state = true;
           },
-          autofocus: false,
           hintText: lang.searchProduct,
           initText: ref.watch(productSearchProvider),
           ref: ref,
