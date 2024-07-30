@@ -50,7 +50,9 @@ class ShopListTileData extends StatelessWidget {
                       ),
                     ],
                   ),
-                  ShopFavoriteButton(shopID: shop.id!),
+                  shop.isShoppingCenter!
+                      ? const SizedBox()
+                      : ShopFavoriteButton(shopID: shop.id!),
                 ],
               );
             },
