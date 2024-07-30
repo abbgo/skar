@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/child_shops/child_shops.dart';
 import 'package:skar/pages/shop/shop.dart';
 
 class ShopListTileImage extends StatelessWidget {
@@ -16,7 +17,9 @@ class ShopListTileImage extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: GestureDetector(
-        onTap: () => goToPage(context, ShopPage(shopID: shop.id!), false),
+        onTap: () => shop.isShoppingCenter!
+            ? goToPage(context, ChildShopsPage(parentShopID: shop.id!), false)
+            : goToPage(context, ShopPage(shopID: shop.id!), false),
         child: SizedBox(
           height: cardHeight,
           child: ClipRRect(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/child_shops/child_shops.dart';
 import 'package:skar/pages/shop/parts/shop_favorite_button.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
@@ -18,7 +19,9 @@ class ShopListTileData extends StatelessWidget {
     return Expanded(
       flex: 2,
       child: GestureDetector(
-        onTap: () => goToPage(context, ShopPage(shopID: shop.id!), false),
+        onTap: () => shop.isShoppingCenter!
+            ? goToPage(context, ChildShopsPage(parentShopID: shop.id!), false)
+            : goToPage(context, ShopPage(shopID: shop.id!), false),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Consumer(
