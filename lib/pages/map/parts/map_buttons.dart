@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
-import 'package:skar/methods/navigation.dart';
-import 'package:skar/pages/search_shop/search_shop.dart';
+import 'package:skar/pages/map/parts/search_shop_button.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/styles/colors.dart';
 
-class MapSearchAndMapTypeButton extends ConsumerWidget {
-  const MapSearchAndMapTypeButton({super.key});
+class MapButtons extends ConsumerWidget {
+  const MapButtons({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,18 +18,7 @@ class MapSearchAndMapTypeButton extends ConsumerWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          IconButton(
-            onPressed: () => goToPage(
-              context,
-              SearchShopPage(mapPageContext: context),
-              false,
-            ),
-            icon: Icon(
-              Icons.search,
-              color: isLightBrightness ? elevatedButtonColor : Colors.white,
-              size: 22,
-            ),
-          ),
+          const SearchShopButton(),
           Consumer(
             builder: (context, ref, child) {
               return IconButton(

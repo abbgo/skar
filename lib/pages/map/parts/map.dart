@@ -6,7 +6,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/map/parts/bottom_shops.dart';
-import 'package:skar/pages/map/parts/search_button.dart';
+import 'package:skar/pages/map/parts/map_buttons.dart';
 import 'package:skar/pages/map/parts/shop_list.dart';
 import 'package:skar/providers/api/shop.dart';
 import 'package:skar/providers/pages/map.dart';
@@ -95,7 +95,7 @@ class _MapState extends State<Map> {
                 ),
               ),
             ),
-            const MapSearchAndMapTypeButton(),
+            const MapButtons(),
             const LocationButton(),
             const ShopList(),
           ],
