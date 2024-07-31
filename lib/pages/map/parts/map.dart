@@ -95,7 +95,7 @@ class _MapState extends State<Map> {
                 ),
               ),
             ),
-            const MapButtons(),
+            MapButtons(mapController: _mapController),
             const LocationButton(),
             const ShopList(),
           ],
