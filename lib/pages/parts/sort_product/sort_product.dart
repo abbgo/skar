@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:skar/pages/parts/sort_product/sort_product_card.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SortProduct extends StatelessWidget {
   const SortProduct({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
+
     return Container(
       margin: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
@@ -14,9 +17,9 @@ class SortProduct extends StatelessWidget {
       ),
       child: Wrap(
         children: [
-          SortProductCard(text: 'Baslangyc yagdayy', value: ''),
-          SortProductCard(text: 'Arzandan-Gymmada', value: '0-1'),
-          SortProductCard(text: 'Gymmatdan-Arzana', value: '1-0'),
+          SortProductCard(text: lang.defaultSort, value: ''),
+          SortProductCard(text: lang.lowestPrice, value: '0-1'),
+          SortProductCard(text: lang.highestPrice, value: '1-0'),
         ],
       ),
     );

@@ -53,5 +53,8 @@
     "noShipping":"Eltip bermek hyzmaty ýok",
     "products":"Harytlar",
     "sort":"Sort",
-    "filter":"Filter"
+    "filter":"Filter",
+    "defaultSort":"Başlangyç ýagdaýy",
+    "lowestPrice":"Arzandan gymmada",
+    "highestPrice":"Gymmatdan arzana"
 }

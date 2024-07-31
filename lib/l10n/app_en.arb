@@ -53,5 +53,8 @@
     "noShipping":"No shipping",
     "products":"Products",
     "sort":"Sort",
-    "filter":"Filter"
+    "filter":"Filter",
+    "defaultSort":"Default",
+    "lowestPrice":"The lowest price",
+    "highestPrice":"The highest price"
 }

@@ -53,5 +53,8 @@
     "noShipping":"Нет доставки",
     "products":"Продукты",
     "sort":"Сортировать",
-    "filter":"Фильтр"
+    "filter":"Фильтр",
+    "defaultSort":"По умолчанию",
+    "lowestPrice":"Самая низкая цена",
+    "highestPrice":"Самая высокая цена"
 }
