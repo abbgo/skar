@@ -23,10 +23,15 @@ class DecreaseZoomButton extends ConsumerWidget {
       child: Container(
         height: 40,
         width: 40,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          border: Border(top: BorderSide(color: Colors.black, width: .1)),
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          color: isLightBrightness ? Colors.white : dialogColorDarkTheme,
+          border: Border(
+            top: BorderSide(
+              color: isLightBrightness ? Colors.black : Colors.white,
+              width: .1,
+            ),
+          ),
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),
           ),

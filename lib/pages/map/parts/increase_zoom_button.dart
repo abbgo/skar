@@ -23,10 +23,15 @@ class IncreaseZoomButton extends ConsumerWidget {
       child: Container(
         height: 40,
         width: 40,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          border: Border(bottom: BorderSide(color: Colors.black, width: .1)),
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          color: isLightBrightness ? Colors.white : dialogColorDarkTheme,
+          border: Border(
+            bottom: BorderSide(
+              color: isLightBrightness ? Colors.black : Colors.white,
+              width: .1,
+            ),
+          ),
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
           ),
