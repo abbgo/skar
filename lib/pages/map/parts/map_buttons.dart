@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/pages/map/parts/decrease_zoom_button.dart';
 import 'package:skar/pages/map/parts/increase_zoom_button.dart';
 import 'package:skar/pages/map/parts/map_type_button.dart';
 import 'package:skar/pages/map/parts/search_shop_button.dart';
@@ -19,6 +20,7 @@ class MapButtons extends ConsumerWidget {
           SearchShopButton(),
           MapTypeButton(),
           IncreaseZoomButton(),
+          DecreaseZoomButton(),
         ],
       ),
     );
