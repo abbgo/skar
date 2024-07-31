@@ -46,7 +46,7 @@ class SearchProductPage extends ConsumerWidget {
           ),
           SortAndFilterProduct(
             text: 'Filter',
-            icon: Icons.filter_alt,
+            icon: Icons.filter_alt_outlined,
             onTap: () {},
           ),
         ],
