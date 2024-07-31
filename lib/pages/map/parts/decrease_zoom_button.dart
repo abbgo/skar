@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/functions.dart';
+import 'package:skar/styles/colors.dart';
 
-class DecreaseZoomButton extends StatelessWidget {
+class DecreaseZoomButton extends ConsumerWidget {
   const DecreaseZoomButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    bool isLightBrightness = isLightTheme(context, ref);
+
     return GestureDetector(
       child: Container(
         height: 40,
@@ -17,7 +22,10 @@ class DecreaseZoomButton extends StatelessWidget {
             bottomRight: Radius.circular(20),
           ),
         ),
-        child: const Icon(Icons.remove),
+        child: Icon(
+          Icons.remove,
+          color: isLightBrightness ? elevatedButtonColor : Colors.white,
+        ),
       ),
     );
   }
