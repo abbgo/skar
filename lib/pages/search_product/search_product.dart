@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/methods/pages/search_product.dart';
 import 'package:skar/pages/parts/sort_and_filter_product/sort_and_filter_product.dart';
 import 'package:skar/pages/search_product/parts/search_product_result.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
@@ -42,7 +43,7 @@ class SearchProductPage extends ConsumerWidget {
           SortAndFilterProduct(
             text: 'Sort',
             icon: Icons.swap_vert,
-            onTap: () {},
+            onTap: () => showSortProductBottomSheet(context),
           ),
           SortAndFilterProduct(
             text: 'Filter',
