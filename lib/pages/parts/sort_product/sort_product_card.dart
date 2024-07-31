@@ -15,13 +15,14 @@ class SortProductCard extends ConsumerWidget {
 
     return Card(
       child: RadioListTile(
-        activeColor: elevatedButtonColor,
-        title: Text(text),
-        value: value,
-        groupValue: sortProductPrice,
-        onChanged: (value) =>
-            ref.read(sortProductPriceProvider.notifier).state = value!,
-      ),
+          activeColor: elevatedButtonColor,
+          title: Text(text),
+          value: value,
+          groupValue: sortProductPrice,
+          onChanged: (value) {
+            ref.read(sortProductPriceProvider.notifier).state = value!;
+            Navigator.pop(context);
+          }),
     );
   }
 }
