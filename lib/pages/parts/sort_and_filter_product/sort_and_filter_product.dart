@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/methods/pages/search_product.dart';
 import 'package:skar/styles/colors.dart';
 
 class SortAndFilterProduct extends ConsumerWidget {
@@ -8,19 +9,19 @@ class SortAndFilterProduct extends ConsumerWidget {
     super.key,
     required this.text,
     required this.icon,
-    required this.onTap,
+    required this.forSort,
   });
 
   final String text;
   final IconData icon;
-  final Function onTap;
+  final bool forSort;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isLightBrightness = isLightTheme(context, ref);
 
     return GestureDetector(
-      onTap: onTap(),
+      onTap: forSort ? () => showSortProductBottomSheet(context) : () {},
       child: Container(
         margin: const EdgeInsets.only(right: 10),
         padding: const EdgeInsets.all(8),

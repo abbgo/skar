@@ -51,5 +51,7 @@
     "systemTheme":"Sistema temasy",
     "hasShipping":"Eltip bermek hyzmaty bar",
     "noShipping":"Eltip bermek hyzmaty ýok",
-    "products":"Harytlar"
+    "products":"Harytlar",
+    "sort":"Sort",
+    "filter":"Filter"
 }

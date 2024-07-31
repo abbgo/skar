@@ -51,5 +51,7 @@
     "systemTheme":"Системная тема",
     "hasShipping":"Есть доставка",
     "noShipping":"Нет доставки",
-    "products":"Продукты"
+    "products":"Продукты",
+    "sort":"Сортировать",
+    "filter":"Фильтр"
 }
