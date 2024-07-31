@@ -16,6 +16,7 @@ class ProductService {
     String productID,
     String search,
     String lang,
+    String sort,
   ) async {
     final Uri uri = Uri.parse('$apiUrl/$api').replace(
       queryParameters: {
@@ -26,6 +27,7 @@ class ProductService {
         'product_id': productID,
         'search': search,
         'lang': lang,
+        'sort': sort,
       },
     );
 

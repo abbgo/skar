@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
+import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/services/product.dart';
 
@@ -15,6 +16,7 @@ var fetchProductsProvider =
         ? ref.watch(shopProductSearchProvider)
         : ref.watch(productSearchProvider);
     bool isTM = ref.read(langProvider) == 'tr';
+    String sortProductPrice = ref.watch(sortProductPriceProvider);
 
     try {
       List<Product> products = await ref.read(productApiProvider).fetchProducts(
@@ -26,6 +28,7 @@ var fetchProductsProvider =
             params.productID,
             search,
             isTM ? 'tm' : 'ru',
+            sortProductPrice,
           );
 
       if (params.api == 'products') {
