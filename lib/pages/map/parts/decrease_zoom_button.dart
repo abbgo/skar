@@ -11,6 +11,7 @@ class DecreaseZoomButton extends StatelessWidget {
         width: 40,
         decoration: const BoxDecoration(
           color: Colors.white,
+          border: Border(top: BorderSide(color: Colors.black, width: .1)),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),

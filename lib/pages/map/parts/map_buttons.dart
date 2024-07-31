@@ -14,13 +14,14 @@ class MapButtons extends ConsumerWidget {
     return Positioned(
       top: screenProperties(context).topSafeArea + 5,
       right: 10,
-      child: const Column(
+      child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SearchShopButton(),
-          MapTypeButton(),
-          IncreaseZoomButton(),
-          DecreaseZoomButton(),
+          const SearchShopButton(),
+          const MapTypeButton(),
+          SizedBox(height: screenProperties(context).height / 2 - 200),
+          const IncreaseZoomButton(),
+          const DecreaseZoomButton(),
         ],
       ),
     );

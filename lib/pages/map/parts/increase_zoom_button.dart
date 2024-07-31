@@ -11,6 +11,7 @@ class IncreaseZoomButton extends StatelessWidget {
         width: 40,
         decoration: const BoxDecoration(
           color: Colors.white,
+          border: Border(bottom: BorderSide(color: Colors.black, width: .1)),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
