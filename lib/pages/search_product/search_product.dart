@@ -39,7 +39,8 @@ class SearchProductPage extends ConsumerWidget {
         ),
         centerTitle: true,
         actions: const [
-          SortAndFilterProduct(),
+          SortAndFilterProduct(text: 'Sort', icon: Icons.swap_vert),
+          SortAndFilterProduct(text: 'Filter', icon: Icons.filter_alt),
         ],
       ),
       body: const SearchProductResult(),

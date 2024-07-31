@@ -4,7 +4,14 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/styles/colors.dart';
 
 class SortAndFilterProduct extends ConsumerWidget {
-  const SortAndFilterProduct({super.key});
+  const SortAndFilterProduct({
+    super.key,
+    required this.text,
+    required this.icon,
+  });
+
+  final String text;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,12 +30,12 @@ class SortAndFilterProduct extends ConsumerWidget {
       child: Row(
         children: [
           Icon(
-            Icons.swap_vert,
+            icon,
             size: 20,
             color: isLightBrightness ? elevatedButtonColor : null,
           ),
           Text(
-            'Sort',
+            text,
             style: TextStyle(
               color: isLightBrightness ? elevatedButtonColor : null,
             ),
