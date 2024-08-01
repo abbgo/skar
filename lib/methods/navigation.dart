@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
-goToPage(
-  BuildContext context,
-  Widget page,
-  bool forReplace,
-) {
+goToPage(BuildContext context, Widget page, bool forReplace) {
   return context.mounted
       ? forReplace
           ? Navigator.pushReplacement(

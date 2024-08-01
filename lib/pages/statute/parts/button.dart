@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/statute.dart';
-import 'package:skar/pages/parts/bottom_navigation.dart';
+import 'package:skar/pages/parts/bottom_navigation/bottom_navigation.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/pages/statute.dart';
