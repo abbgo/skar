@@ -13,10 +13,12 @@ class SearchShopButton extends ConsumerWidget {
     bool isLightBrightness = isLightTheme(context, ref);
 
     return IconButton(
-      onPressed: () => goToPage(
+      onPressed: () => Navigator.push(
         context,
-        SearchShopPage(mapPageContext: context),
-        false,
+        CustomePageRoute(
+          child: SearchShopPage(mapPageContext: context),
+          direction: AxisDirection.left,
+        ),
       ),
       icon: Icon(
         Icons.search,
