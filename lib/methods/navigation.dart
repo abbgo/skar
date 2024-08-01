@@ -14,11 +14,11 @@ goToPage(BuildContext context, Widget page, bool forReplace) {
       : null;
 }
 
-class CustomePageRoute extends PageRouteBuilder {
+class CustomPageRoute extends PageRouteBuilder {
   final Widget child;
   final AxisDirection direction;
 
-  CustomePageRoute({required this.child, this.direction = AxisDirection.right})
+  CustomPageRoute({required this.child, this.direction = AxisDirection.right})
       : super(
           transitionDuration: const Duration(milliseconds: 300),
           reverseTransitionDuration: const Duration(milliseconds: 300),

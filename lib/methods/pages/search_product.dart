@@ -8,3 +8,12 @@ showSortProductBottomSheet(BuildContext context) {
     builder: (context) => const SortProduct(),
   );
 }
+
+showFilterProductBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    context: context,
+    builder: (context) => const Center(child: Text('salam')),
+  );
+}

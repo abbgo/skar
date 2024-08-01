@@ -21,7 +21,9 @@ class SortAndFilterProduct extends ConsumerWidget {
     bool isLightBrightness = isLightTheme(context, ref);
 
     return GestureDetector(
-      onTap: forSort ? () => showSortProductBottomSheet(context) : () {},
+      onTap: forSort
+          ? () => showSortProductBottomSheet(context)
+          : () => showFilterProductBottomSheet(context),
       child: Container(
         margin: const EdgeInsets.only(right: 10),
         padding: const EdgeInsets.all(8),

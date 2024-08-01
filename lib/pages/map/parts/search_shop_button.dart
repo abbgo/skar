@@ -15,7 +15,7 @@ class SearchShopButton extends ConsumerWidget {
     return IconButton(
       onPressed: () => Navigator.push(
         context,
-        CustomePageRoute(
+        CustomPageRoute(
           child: SearchShopPage(mapPageContext: context),
           direction: AxisDirection.left,
         ),
