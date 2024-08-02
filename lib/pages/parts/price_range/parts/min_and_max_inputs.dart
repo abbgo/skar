@@ -30,8 +30,10 @@ class _MinAndMaxInputsState extends State<MinAndMaxInputs> {
       padding: const EdgeInsets.only(left: 15, top: 10, right: 15),
       child: Consumer(
         builder: (context, ref, child) {
-          minPriceCtrl.text = ref.watch(minPriceProvider).toString();
-          maxPriceCtrl.text = ref.watch(maxPriceProvider).toString();
+          String priceRange = ref.watch(priceRangeProvider);
+          List<String> prices = priceRange.split('-');
+          minPriceCtrl.text = prices[0];
+          maxPriceCtrl.text = prices[1];
 
           return Row(
             children: [
