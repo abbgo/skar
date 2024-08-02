@@ -18,6 +18,11 @@ var fetchProductsProvider =
     bool isTM = ref.read(langProvider) == 'tr';
     String sortProductPrice = ref.watch(sortProductPriceProvider);
 
+    String priceRange = ref.watch(priceRangeProvider);
+    List<String> prices = priceRange.split('-');
+    String minPrice = prices[0];
+    String maxPrice = prices[1];
+
     try {
       List<Product> products = await ref.read(productApiProvider).fetchProducts(
             params.api,
@@ -29,6 +34,8 @@ var fetchProductsProvider =
             search,
             isTM ? 'tm' : 'ru',
             sortProductPrice,
+            minPrice,
+            maxPrice,
           );
 
       if (params.api == 'products') {

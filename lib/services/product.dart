@@ -17,6 +17,8 @@ class ProductService {
     String search,
     String lang,
     String sort,
+    String minPrice,
+    String maxPrice,
   ) async {
     final Uri uri = Uri.parse('$apiUrl/$api').replace(
       queryParameters: {
@@ -28,6 +30,8 @@ class ProductService {
         'search': search,
         'lang': lang,
         'sort': sort,
+        'min_price': minPrice,
+        'max_price': maxPrice,
       },
     );
 
