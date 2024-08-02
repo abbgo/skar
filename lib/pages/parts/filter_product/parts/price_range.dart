@@ -16,7 +16,7 @@ class PriceRange extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         CustomPageRoute(
-          child: const PriceRangePage(),
+          child: PriceRangePage(),
           direction: AxisDirection.left,
         ),
       ),
