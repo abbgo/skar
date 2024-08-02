@@ -27,7 +27,7 @@ class FilterProduct extends StatelessWidget {
               ],
             ),
           ),
-          SaveButton(),
+          FilterProductSaveButton(),
         ],
       ),
     );
