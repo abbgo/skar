@@ -60,5 +60,6 @@
     "select":"Выбирать",
     "priceRange":"Ценовой диапазон",
     "theLowestPrice":"Самая низкая цена",
-    "theHighestPrice":"Самая высокая цена"
+    "theHighestPrice":"Самая высокая цена",
+    "man":"ман"
 }
