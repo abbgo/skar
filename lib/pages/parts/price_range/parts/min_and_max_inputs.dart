@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/methods/parts/input.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MinAndMaxInputs extends StatefulWidget {
   const MinAndMaxInputs({super.key});
@@ -23,6 +24,8 @@ class _MinAndMaxInputsState extends State<MinAndMaxInputs> {
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
+
     return Padding(
       padding: const EdgeInsets.only(left: 15, top: 10, right: 15),
       child: Consumer(
@@ -38,7 +41,7 @@ class _MinAndMaxInputsState extends State<MinAndMaxInputs> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     focusedBorder: inputBorder(context, ref),
-                    labelText: ' In pes baha ',
+                    labelText: ' ${lang.theLowestPrice} ',
                   ),
                 ),
               ),
@@ -49,7 +52,7 @@ class _MinAndMaxInputsState extends State<MinAndMaxInputs> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: inputBorder(context, ref),
-                    labelText: ' In yokary baha ',
+                    labelText: ' ${lang.theHighestPrice} ',
                   ),
                 ),
               ),

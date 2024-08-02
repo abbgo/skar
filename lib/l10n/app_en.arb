@@ -58,5 +58,7 @@
     "lowestPrice":"The lowest price",
     "highestPrice":"The highest price",
     "select":"Select",
-    "priceRange":"Price range"
+    "priceRange":"Price range",
+    "theLowestPrice":"The lowest price",
+    "theHighestPrice":"The highest price"
 }

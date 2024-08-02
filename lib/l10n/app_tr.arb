@@ -58,5 +58,7 @@
     "lowestPrice":"Arzandan gymmada",
     "highestPrice":"Gymmatdan arzana",
     "select":"Saýlaň",
-    "priceRange":"Bahalar aralygy"
+    "priceRange":"Bahalar aralygy",
+    "theLowestPrice":"Iň pes baha",
+    "theHighestPrice":"Iň ýokary baha"
 }

@@ -58,5 +58,7 @@
     "lowestPrice":"Самая низкая цена",
     "highestPrice":"Самая высокая цена",
     "select":"Выбирать",
-    "priceRange":"Ценовой диапазон"
+    "priceRange":"Ценовой диапазон",
+    "theLowestPrice":"Самая низкая цена",
+    "theHighestPrice":"Самая высокая цена"
 }
