@@ -21,11 +21,9 @@ var fetchProductsProvider =
     String sortProductPrice = ref.watch(sortProductPriceProvider);
 
     String priceRange = ref.read(priceRangeProvider);
-    if (priceRange != '0-0') {
-      List<String> prices = priceRange.split('-');
-      minPrice = prices[0];
-      maxPrice = prices[1];
-    }
+    List<String> prices = priceRange.split('-');
+    minPrice = prices[0];
+    maxPrice = prices[1];
 
     try {
       List<Product> products = await ref.read(productApiProvider).fetchProducts(
@@ -47,7 +45,7 @@ var fetchProductsProvider =
           ref.read(hasShopProductsProvider.notifier).state =
               products.isNotEmpty;
         } else {
-          if (search != '') {
+          if (search != '' || maxPrice != '0') {
             ref.read(hasProductsProvider.notifier).state = products.isNotEmpty;
           }
         }

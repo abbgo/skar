@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/api/product.dart';
+import 'package:skar/providers/params/product_param.dart';
 
 class FilterProductSaveButton extends ConsumerWidget {
   const FilterProductSaveButton({super.key});
@@ -16,6 +17,7 @@ class FilterProductSaveButton extends ConsumerWidget {
       width: screenProperties(context).width,
       child: ElevatedButton(
         onPressed: () {
+          ref.read(hasProductsProvider.notifier).state = true;
           ref.invalidate(fetchProductsProvider);
           Navigator.pop(context);
         },
