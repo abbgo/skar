@@ -56,5 +56,7 @@
     "filter":"Filter",
     "defaultSort":"Default",
     "lowestPrice":"The lowest price",
-    "highestPrice":"The highest price"
+    "highestPrice":"The highest price",
+    "select":"Select",
+    "priceRange":"Price range"
 }

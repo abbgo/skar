@@ -56,5 +56,7 @@
     "filter":"Filter",
     "defaultSort":"Başlangyç ýagdaýy",
     "lowestPrice":"Arzandan gymmada",
-    "highestPrice":"Gymmatdan arzana"
+    "highestPrice":"Gymmatdan arzana",
+    "select":"Saýlaň",
+    "priceRange":"Bahalar aralygy"
 }
