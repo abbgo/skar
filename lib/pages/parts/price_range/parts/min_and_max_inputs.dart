@@ -4,23 +4,12 @@ import 'package:skar/pages/parts/price_range/parts/min_max_input.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MinAndMaxInputs extends StatefulWidget {
-  const MinAndMaxInputs({super.key});
+class MinAndMaxInputs extends StatelessWidget {
+  const MinAndMaxInputs(
+      {super.key, required this.minPriceCtrl, required this.maxPriceCtrl});
 
-  @override
-  State<MinAndMaxInputs> createState() => _MinAndMaxInputsState();
-}
-
-class _MinAndMaxInputsState extends State<MinAndMaxInputs> {
-  final TextEditingController minPriceCtrl = TextEditingController();
-  final TextEditingController maxPriceCtrl = TextEditingController();
-
-  @override
-  void dispose() {
-    minPriceCtrl.dispose();
-    maxPriceCtrl.dispose();
-    super.dispose();
-  }
+  final TextEditingController minPriceCtrl;
+  final TextEditingController maxPriceCtrl;
 
   @override
   Widget build(BuildContext context) {
