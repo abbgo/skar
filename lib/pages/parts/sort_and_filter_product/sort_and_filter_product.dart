@@ -53,6 +53,7 @@ class SortAndFilterProduct extends ConsumerWidget {
               text,
               style: TextStyle(
                 color: isLightBrightness ? elevatedButtonColor : null,
+                fontSize: 12,
               ),
             ),
           ],

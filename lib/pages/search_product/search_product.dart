@@ -7,6 +7,7 @@ import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:skar/providers/pages/search_product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/styles/colors.dart';
 
 class SearchProductPage extends ConsumerWidget {
   const SearchProductPage({super.key});
@@ -20,36 +21,57 @@ class SearchProductPage extends ConsumerWidget {
     bool openSearchProductNavigateToTopButton =
         ref.watch(openSearchProductNavigateToTopButtonProvider);
     bool isLightBrightness = isLightTheme(context, ref);
+    bool openSearch = ref.watch(openProductSearchProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: SearchField(
-          onPressed: () {
-            ref.read(productSearchProvider.notifier).state = '';
-            ref.read(hasProductsProvider.notifier).state = true;
-          },
-          onSubmitted: (value) {
-            ref.read(productSearchProvider.notifier).state = value;
-            ref.read(hasProductsProvider.notifier).state = true;
-          },
-          hintText: lang.searchProduct,
-          initText: ref.watch(productSearchProvider),
-          ref: ref,
-        ),
-        centerTitle: true,
-        actions: [
-          SortAndFilterProduct(
-            text: lang.sort,
-            icon: Icons.swap_vert,
-            forSort: true,
-          ),
-          SortAndFilterProduct(
-            text: lang.filter,
-            icon: Icons.filter_alt_outlined,
-            forSort: false,
-          ),
-        ],
+        title: openSearch
+            ? SearchField(
+                onPressed: () {
+                  ref.read(openProductSearchProvider.notifier).state = false;
+                  ref.read(productSearchProvider.notifier).state = '';
+                  ref.read(hasProductsProvider.notifier).state = true;
+                },
+                onSubmitted: (value) {
+                  ref.read(productSearchProvider.notifier).state = value;
+                  ref.read(hasProductsProvider.notifier).state = true;
+                },
+                hintText: lang.searchProduct,
+                initText: ref.watch(productSearchProvider),
+                ref: ref,
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SortAndFilterProduct(
+                    text: lang.sort,
+                    icon: Icons.swap_vert,
+                    forSort: true,
+                  ),
+                  SortAndFilterProduct(
+                    text: lang.filter,
+                    icon: Icons.filter_alt_outlined,
+                    forSort: false,
+                  ),
+                  IconButton(
+                    style: IconButton.styleFrom(
+                      backgroundColor:
+                          isLightBrightness ? null : scaffoldColorDarkTheme,
+                    ),
+                    onPressed: () => ref
+                        .read(openProductSearchProvider.notifier)
+                        .state = true,
+                    icon: Image.asset(
+                      "assets/icons/search.png",
+                      height: 25,
+                      color: isLightBrightness
+                          ? elevatedButtonColor
+                          : Colors.white,
+                    ),
+                  ),
+                ],
+              ),
       ),
       body: const SearchProductResult(),
       floatingActionButton: openSearchProductNavigateToTopButton

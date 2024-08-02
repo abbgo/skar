@@ -56,7 +56,9 @@ class ShopPageButtons extends ConsumerWidget {
                     icon: Image.asset(
                       "assets/icons/search.png",
                       height: 25,
-                      color: isLightBrightness ? null : Colors.white,
+                      color: isLightBrightness
+                          ? elevatedButtonColor
+                          : Colors.white,
                     ),
                   ),
                   ShopFavoriteButton(shopID: shop.id!),
