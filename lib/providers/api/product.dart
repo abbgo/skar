@@ -11,6 +11,8 @@ var fetchProductsProvider =
     FutureProvider.autoDispose.family<ResultProduct, ProductParams>(
   (ref, params) async {
     ResultProduct result = ResultProduct.defaultResult();
+    String minPrice = '';
+    String maxPrice = '';
 
     String search = params.shopID != ''
         ? ref.watch(shopProductSearchProvider)
@@ -18,10 +20,12 @@ var fetchProductsProvider =
     bool isTM = ref.read(langProvider) == 'tr';
     String sortProductPrice = ref.watch(sortProductPriceProvider);
 
-    String priceRange = ref.watch(priceRangeProvider);
-    List<String> prices = priceRange.split('-');
-    String minPrice = prices[0];
-    String maxPrice = prices[1];
+    String priceRange = ref.read(priceRangeProvider);
+    if (priceRange != '0-0') {
+      List<String> prices = priceRange.split('-');
+      minPrice = prices[0];
+      maxPrice = prices[1];
+    }
 
     try {
       List<Product> products = await ref.read(productApiProvider).fetchProducts(
