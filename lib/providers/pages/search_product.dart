@@ -18,3 +18,6 @@ var searchProductScrollControllerProvider =
 
 var openSearchProductNavigateToTopButtonProvider =
     StateProvider.autoDispose<bool>((ref) => false);
+
+final openProductSearchProvider =
+    StateProvider.autoDispose<bool>((ref) => false);
