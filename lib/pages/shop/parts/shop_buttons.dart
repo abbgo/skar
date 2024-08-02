@@ -73,15 +73,6 @@ class ShopPageButtons extends ConsumerWidget {
                           : Colors.white,
                     ),
                   ),
-                  // ShopFavoriteButton(shopID: shop.id!),
-                  // IconButton(
-                  //   style: IconButton.styleFrom(
-                  //     backgroundColor:
-                  //         isLightBrightness ? null : scaffoldColorDarkTheme,
-                  //   ),
-                  //   onPressed: () => showCallBottomSheet(context, shop.phones!),
-                  //   icon: const Icon(Icons.call, color: Colors.green),
-                  // ),
                 ],
               ),
       ],
