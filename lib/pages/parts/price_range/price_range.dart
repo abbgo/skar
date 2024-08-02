@@ -52,7 +52,10 @@ class _PriceRangePageState extends State<PriceRangePage> {
               ],
             ),
           ),
-          const PriceRangeSaveButton(),
+          PriceRangeSaveButton(
+            minPriceCtrl: minPriceCtrl,
+            maxPriceCtrl: maxPriceCtrl,
+          ),
         ],
       ),
     );

@@ -3,7 +3,11 @@ import 'package:skar/helpers/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PriceRangeSaveButton extends StatelessWidget {
-  const PriceRangeSaveButton({super.key});
+  const PriceRangeSaveButton(
+      {super.key, required this.minPriceCtrl, required this.maxPriceCtrl});
+
+  final TextEditingController minPriceCtrl;
+  final TextEditingController maxPriceCtrl;
 
   @override
   Widget build(BuildContext context) {
