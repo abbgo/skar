@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
-import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/sort_and_filter_product/sort_and_filter_product.dart';
 import 'package:skar/pages/shop/parts/product_search_field.dart';
 import 'package:skar/pages/shop/parts/shipping_button.dart';
-import 'package:skar/pages/shop/parts/shop_favorite_button.dart';
 import 'package:skar/providers/pages/shop.dart';
 import 'package:skar/styles/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShopPageButtons extends ConsumerWidget {
   const ShopPageButtons({super.key, required this.shop});
@@ -16,6 +16,8 @@ class ShopPageButtons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var lang = AppLocalizations.of(context)!;
+
     bool openSearchBar = ref.watch(openSearchBarProvider);
     bool isLightBrightness = isLightTheme(context, ref);
 
@@ -46,6 +48,16 @@ class ShopPageButtons extends ConsumerWidget {
             ? const ProductSearchField()
             : Row(
                 children: [
+                  SortAndFilterProduct(
+                    text: lang.sort,
+                    icon: Icons.swap_vert,
+                    forSort: true,
+                  ),
+                  SortAndFilterProduct(
+                    text: lang.filter,
+                    icon: Icons.filter_alt_outlined,
+                    forSort: false,
+                  ),
                   IconButton(
                     style: IconButton.styleFrom(
                       backgroundColor:
@@ -61,15 +73,15 @@ class ShopPageButtons extends ConsumerWidget {
                           : Colors.white,
                     ),
                   ),
-                  ShopFavoriteButton(shopID: shop.id!),
-                  IconButton(
-                    style: IconButton.styleFrom(
-                      backgroundColor:
-                          isLightBrightness ? null : scaffoldColorDarkTheme,
-                    ),
-                    onPressed: () => showCallBottomSheet(context, shop.phones!),
-                    icon: const Icon(Icons.call, color: Colors.green),
-                  ),
+                  // ShopFavoriteButton(shopID: shop.id!),
+                  // IconButton(
+                  //   style: IconButton.styleFrom(
+                  //     backgroundColor:
+                  //         isLightBrightness ? null : scaffoldColorDarkTheme,
+                  //   ),
+                  //   onPressed: () => showCallBottomSheet(context, shop.phones!),
+                  //   icon: const Icon(Icons.call, color: Colors.green),
+                  // ),
                 ],
               ),
       ],

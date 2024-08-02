@@ -45,7 +45,7 @@ class ShopPage extends ConsumerWidget {
           return CustomScrollView(
             controller: scrollController,
             slivers: [
-              ShopImage(shopImage: shopData.shop!.image!),
+              ShopImage(shop: shopData.shop!),
               SliverAppBar(
                 backgroundColor:
                     isLightBrightness ? Colors.white : scaffoldColorDarkTheme,

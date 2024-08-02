@@ -34,7 +34,7 @@ class SortAndFilterProduct extends ConsumerWidget {
               ),
       child: Container(
         margin: const EdgeInsets.only(right: 10),
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           border: Border.all(
