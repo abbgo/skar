@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:skar/providers/pages/sort_and_filter_product.dart';
 
 class PriceRangeSaveButton extends StatelessWidget {
   const PriceRangeSaveButton(
@@ -17,7 +19,18 @@ class PriceRangeSaveButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SizedBox(
         width: screenProperties(context).width,
-        child: ElevatedButton(onPressed: () {}, child: Text(lang.select)),
+        child: Consumer(
+          builder: (context, ref, child) {
+            return ElevatedButton(
+              onPressed: () {
+                ref.read(priceRangeProvider.notifier).state =
+                    '${minPriceCtrl.text}-${maxPriceCtrl.text}';
+                Navigator.pop(context);
+              },
+              child: Text(lang.select),
+            );
+          },
+        ),
       ),
     );
   }
