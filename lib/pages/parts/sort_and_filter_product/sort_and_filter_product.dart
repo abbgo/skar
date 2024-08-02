@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/search_product.dart';
+import 'package:skar/pages/parts/filter_product/filter_product.dart';
 import 'package:skar/styles/colors.dart';
 
 class SortAndFilterProduct extends ConsumerWidget {
@@ -23,7 +25,13 @@ class SortAndFilterProduct extends ConsumerWidget {
     return GestureDetector(
       onTap: forSort
           ? () => showSortProductBottomSheet(context)
-          : () => showFilterProductBottomSheet(context),
+          : () => Navigator.push(
+                context,
+                CustomPageRoute(
+                  child: const FilterProduct(),
+                  direction: AxisDirection.up,
+                ),
+              ),
       child: Container(
         margin: const EdgeInsets.only(right: 10),
         padding: const EdgeInsets.all(8),
