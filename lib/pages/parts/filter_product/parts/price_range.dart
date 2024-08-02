@@ -5,21 +5,32 @@ import 'package:skar/methods/navigation.dart';
 import 'package:skar/pages/parts/price_range/price_range.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
 
-class PriceRange extends StatelessWidget {
+class PriceRange extends ConsumerWidget {
   const PriceRange({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
+    String priceRange = ref.watch(priceRangeProvider);
 
     return ListTile(
-      title: Text(lang.priceRange),
-      subtitle: Consumer(
-        builder: (context, ref, child) {
-          String priceRange = ref.watch(priceRangeProvider);
-          return Text(priceRange);
-        },
+      title: Text(
+        lang.priceRange,
+        style: const TextStyle(fontWeight: FontWeight.bold),
       ),
+      subtitle: priceRange == '0-0'
+          ? null
+          : Row(
+              children: [
+                Text(priceRange),
+                const SizedBox(width: 10),
+                GestureDetector(
+                  onTap: () =>
+                      ref.read(priceRangeProvider.notifier).state = '0-0',
+                  child: const Icon(Icons.cancel_outlined),
+                ),
+              ],
+            ),
       trailing: Icon(Icons.adaptive.arrow_forward),
       onTap: () => Navigator.push(
         context,
