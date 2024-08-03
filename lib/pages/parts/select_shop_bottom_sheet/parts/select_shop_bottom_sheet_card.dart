@@ -30,7 +30,7 @@ class SelectShopBottomSheetCard extends ConsumerWidget {
         onTap: () => forParentShop
             ? goToPage(
                 context,
-                ChildShopsPage(parentShopID: shop.parentShop!.id!),
+                ChildShopsPage(parentShopID: shop.id!),
                 false,
               )
             : goToPage(context, ShopPage(shopID: shop.id!), false),
