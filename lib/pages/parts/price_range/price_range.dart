@@ -5,7 +5,9 @@ import 'package:skar/pages/parts/price_range/parts/price_range_save_button.dart'
 import 'package:skar/pages/parts/price_range/parts/radio_list_tile.dart';
 
 class PriceRangePage extends StatefulWidget {
-  const PriceRangePage({super.key});
+  const PriceRangePage({super.key, required this.forSearchProduct});
+
+  final bool forSearchProduct;
 
   @override
   State<PriceRangePage> createState() => _PriceRangePageState();
@@ -47,6 +49,7 @@ class _PriceRangePageState extends State<PriceRangePage> {
                 MinAndMaxInputs(
                   minPriceCtrl: minPriceCtrl,
                   maxPriceCtrl: maxPriceCtrl,
+                  forSearchProduct: widget.forSearchProduct,
                 ),
                 ...priceRanges.map((e) => RadioListTileWidget(priceRange: e)),
               ],

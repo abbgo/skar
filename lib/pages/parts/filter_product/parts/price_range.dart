@@ -42,7 +42,7 @@ class PriceRange extends ConsumerWidget {
       onTap: () => Navigator.push(
         context,
         CustomPageRoute(
-          child: const PriceRangePage(),
+          child: PriceRangePage(forSearchProduct: forSearchProduct),
           direction: AxisDirection.left,
         ),
       ),
