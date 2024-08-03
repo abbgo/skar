@@ -4,7 +4,9 @@ import 'package:skar/pages/parts/filter_product/parts/filter_product_save_button
 import 'package:skar/pages/parts/filter_product/parts/price_range.dart';
 
 class FilterProduct extends StatelessWidget {
-  const FilterProduct({super.key});
+  const FilterProduct({super.key, required this.forSearchProduct});
+
+  final bool forSearchProduct;
 
   @override
   Widget build(BuildContext context) {

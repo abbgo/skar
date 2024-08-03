@@ -1,64 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/search_product.dart';
 import 'package:skar/pages/parts/filter_product/filter_product.dart';
-import 'package:skar/styles/colors.dart';
+import 'package:skar/pages/parts/sort_and_filter_product/parts/icon_body.dart';
 
-class SortAndFilterProduct extends ConsumerWidget {
+class SortAndFilterProduct extends StatelessWidget {
   const SortAndFilterProduct({
     super.key,
     required this.text,
     required this.icon,
     required this.forSort,
+    required this.forSearchProduct,
   });
 
   final String text;
   final IconData icon;
   final bool forSort;
+  final bool forSearchProduct;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    bool isLightBrightness = isLightTheme(context, ref);
-
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: forSort
           ? () => showSortProductBottomSheet(context)
           : () => Navigator.push(
                 context,
                 CustomPageRoute(
-                  child: const FilterProduct(),
+                  child: FilterProduct(forSearchProduct: forSearchProduct),
                   direction: AxisDirection.up,
                 ),
               ),
-      child: Container(
-        margin: const EdgeInsets.only(right: 10),
-        padding: const EdgeInsets.all(5),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          border: Border.all(
-            color: isLightBrightness ? elevatedButtonColor : Colors.white,
-          ),
-          color: isLightBrightness ? Colors.white : dialogColorDarkTheme,
-        ),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              size: 20,
-              color: isLightBrightness ? elevatedButtonColor : null,
-            ),
-            Text(
-              text,
-              style: TextStyle(
-                color: isLightBrightness ? elevatedButtonColor : null,
-                fontSize: 12,
-              ),
-            ),
-          ],
-        ),
-      ),
+      child: IconBody(text: text, icon: icon),
     );
   }
 }
