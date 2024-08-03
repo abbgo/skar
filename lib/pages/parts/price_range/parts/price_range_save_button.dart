@@ -15,22 +15,20 @@ class PriceRangeSaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SizedBox(
-        width: screenProperties(context).width,
-        child: Consumer(
-          builder: (context, ref, child) {
-            return ElevatedButton(
-              onPressed: () {
-                ref.read(priceRangeProvider.notifier).state =
-                    '${minPriceCtrl.text}-${maxPriceCtrl.text}';
-                Navigator.pop(context);
-              },
-              child: Text(lang.select),
-            );
-          },
-        ),
+    return Container(
+      width: screenProperties(context).width,
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      child: Consumer(
+        builder: (context, ref, child) {
+          return ElevatedButton(
+            onPressed: () {
+              ref.read(priceRangeProvider.notifier).state =
+                  '${minPriceCtrl.text}-${maxPriceCtrl.text}';
+              Navigator.pop(context);
+            },
+            child: Text(lang.select),
+          );
+        },
       ),
     );
   }

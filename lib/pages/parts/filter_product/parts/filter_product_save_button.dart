@@ -13,7 +13,7 @@ class FilterProductSaveButton extends ConsumerWidget {
     var lang = AppLocalizations.of(context)!;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
       width: screenProperties(context).width,
       child: ElevatedButton(
         onPressed: () {
