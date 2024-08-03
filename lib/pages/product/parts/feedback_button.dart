@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
+import 'package:skar/methods/pages/product.dart';
 import 'package:skar/styles/colors.dart';
 
 class FeedbackButton extends ConsumerWidget {
@@ -11,7 +12,7 @@ class FeedbackButton extends ConsumerWidget {
     bool isLightBrightness = isLightTheme(context, ref);
 
     return IconButton(
-      onPressed: () {},
+      onPressed: () => showFeedbackBottomSheet(context),
       icon: Icon(
         Icons.feedback_outlined,
         color: isLightBrightness ? elevatedButtonColor : Colors.white,

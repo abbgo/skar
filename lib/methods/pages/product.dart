@@ -45,3 +45,11 @@ Padding titleMethod(
     ),
   );
 }
+
+showFeedbackBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    backgroundColor: Colors.transparent,
+    context: context,
+    builder: (context) => CallBottomSheet(shopPhones: shopPhones),
+  );
+}
