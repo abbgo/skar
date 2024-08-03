@@ -12,7 +12,7 @@ class LanguagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
-      color: elevatedButtonColor.withOpacity(.8),
+      color: elevatedButtonColor,
       child: Consumer(
         builder: (context, ref, child) {
           String language = ref.watch(langProvider);
