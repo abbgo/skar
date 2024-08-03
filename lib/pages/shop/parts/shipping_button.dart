@@ -26,13 +26,17 @@ class ShippingButton extends StatelessWidget {
 
     return Tooltip(
       key: _tooltipKey,
-      message: hasShipping ? lang.hasShipping : lang.noShipping,
+      message: hasShipping ? '${lang.hasShipping} !' : '${lang.noShipping} !',
+      textStyle: const TextStyle(color: Colors.white),
       decoration: ShapeDecoration(
         shape: const ToolTipCustomDecoration(),
         color: elevatedButtonColor,
       ),
       preferBelow: false,
       verticalOffset: 10,
+      waitDuration: const Duration(seconds: 1),
+      showDuration: const Duration(seconds: 2),
+      padding: const EdgeInsets.all(2),
       child: GestureDetector(
         onTap: () => _showTooltip(),
         child: Row(
