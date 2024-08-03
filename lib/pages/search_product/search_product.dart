@@ -48,11 +48,13 @@ class SearchProductPage extends ConsumerWidget {
                     text: lang.sort,
                     icon: Icons.swap_vert,
                     forSort: true,
+                    forSearchProduct: true,
                   ),
                   SortAndFilterProduct(
                     text: lang.filter,
                     icon: Icons.filter_alt_outlined,
                     forSort: false,
+                    forSearchProduct: true,
                   ),
                   IconButton(
                     style: IconButton.styleFrom(

@@ -52,11 +52,13 @@ class ShopPageButtons extends ConsumerWidget {
                     text: lang.sort,
                     icon: Icons.swap_vert,
                     forSort: true,
+                    forSearchProduct: false,
                   ),
                   SortAndFilterProduct(
                     text: lang.filter,
                     icon: Icons.filter_alt_outlined,
                     forSort: false,
+                    forSearchProduct: false,
                   ),
                   IconButton(
                     style: IconButton.styleFrom(

@@ -20,16 +20,14 @@ class FilterProduct extends StatelessWidget {
         ),
         title: Text(lang.filter),
       ),
-      body: const Column(
+      body: Column(
         children: [
           Expanded(
             child: Column(
-              children: [
-                PriceRange(),
-              ],
+              children: [PriceRange(forSearchProduct: forSearchProduct)],
             ),
           ),
-          FilterProductSaveButton(),
+          const FilterProductSaveButton(),
         ],
       ),
     );
