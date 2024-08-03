@@ -5,11 +5,16 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
 
 class PriceRangeSaveButton extends StatelessWidget {
-  const PriceRangeSaveButton(
-      {super.key, required this.minPriceCtrl, required this.maxPriceCtrl});
+  const PriceRangeSaveButton({
+    super.key,
+    required this.minPriceCtrl,
+    required this.maxPriceCtrl,
+    required this.forSearchProduct,
+  });
 
   final TextEditingController minPriceCtrl;
   final TextEditingController maxPriceCtrl;
+  final bool forSearchProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +27,14 @@ class PriceRangeSaveButton extends StatelessWidget {
         builder: (context, ref, child) {
           return ElevatedButton(
             onPressed: () {
-              ref.read(priceRangeProvider.notifier).state =
-                  '${minPriceCtrl.text}-${maxPriceCtrl.text}';
+              if (forSearchProduct) {
+                ref.read(searchProductPriceRangeProvider.notifier).state =
+                    '${minPriceCtrl.text}-${maxPriceCtrl.text}';
+              } else {
+                ref.read(priceRangeProvider.notifier).state =
+                    '${minPriceCtrl.text}-${maxPriceCtrl.text}';
+              }
+
               Navigator.pop(context);
             },
             child: Text(lang.select),

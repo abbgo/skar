@@ -61,6 +61,7 @@ class _PriceRangePageState extends State<PriceRangePage> {
           PriceRangeSaveButton(
             minPriceCtrl: minPriceCtrl,
             maxPriceCtrl: maxPriceCtrl,
+            forSearchProduct: widget.forSearchProduct,
           ),
         ],
       ),
