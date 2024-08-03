@@ -4,6 +4,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/complaint.dart';
 import 'package:skar/pages/parts/error.dart';
+import 'package:skar/pages/parts/feedback/feedback_body.dart';
 import 'package:skar/providers/api/complaint.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/services/complaint.dart';
@@ -31,13 +32,7 @@ class FeedbackPage extends ConsumerWidget {
           }
 
           List<Complaint> complaints = response.complaints!;
-          return ListView.builder(
-            itemCount: complaints.length,
-            itemBuilder: (context, index) {
-              Complaint complaint = complaints[index];
-              return Text(isTM ? complaint.textTM : complaint.textRU);
-            },
-          );
+          return FeedbackBody(complaints: complaints, isTM: isTM);
         },
         error: (error, stackTrace) => errorMethod(error),
         loading: () => loadWidget,
