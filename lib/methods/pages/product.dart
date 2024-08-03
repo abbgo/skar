@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skar/pages/parts/feedback/feedback_page.dart';
 import 'package:skar/styles/colors.dart';
 
 Row productPriceMethod(num? price, num? oldPrice) {
@@ -50,6 +51,6 @@ showFeedbackBottomSheet(BuildContext context) {
   showModalBottomSheet(
     backgroundColor: Colors.transparent,
     context: context,
-    builder: (context) => CallBottomSheet(shopPhones: shopPhones),
+    builder: (context) => const FeedbackPage(),
   );
 }
