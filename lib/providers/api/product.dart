@@ -20,7 +20,9 @@ var fetchProductsProvider =
     bool isTM = ref.read(langProvider) == 'tr';
     String sortProductPrice = ref.watch(sortProductPriceProvider);
 
-    String priceRange = ref.read(priceRangeProvider);
+    String priceRange = params.shopID == ''
+        ? ref.read(searchProductPriceRangeProvider)
+        : ref.read(priceRangeProvider);
     List<String> prices = priceRange.split('-');
     minPrice = prices[0];
     maxPrice = prices[1];
