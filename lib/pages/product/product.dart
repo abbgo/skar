@@ -4,6 +4,7 @@ import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/pages/parts/appbar_leading_back_button.dart';
 import 'package:skar/pages/parts/error.dart';
+import 'package:skar/pages/product/parts/feedback_button.dart';
 import 'package:skar/pages/product/parts/price_and_brend.dart';
 import 'package:skar/pages/product/parts/product_color_page.dart';
 import 'package:skar/pages/product/parts/product_image.dart';
@@ -36,7 +37,10 @@ class _ProductPageState extends State<ProductPage> {
     return Scaffold(
       appBar: AppBar(
         leading: const AppBarLeadingBackButton(),
-        actions: [ProductPageFavoriteButton(productID: widget.productID)],
+        actions: [
+          ProductPageFavoriteButton(productID: widget.productID),
+          const FeedbackButton(),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),

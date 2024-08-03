@@ -40,7 +40,7 @@ class ProductPageFavoriteButton extends ConsumerWidget {
             color: data
                 ? Colors.red
                 : isLightBrightness
-                    ? Colors.black
+                    ? elevatedButtonColor
                     : Colors.white,
           ),
         );
