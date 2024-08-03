@@ -6,13 +6,17 @@ import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:skar/styles/colors.dart';
 
 class RadioListTileWidget extends ConsumerWidget {
-  const RadioListTileWidget({super.key, required this.priceRange});
+  const RadioListTileWidget(
+      {super.key, required this.priceRange, required this.forSearchProduct});
 
   final PriceRangeClass priceRange;
+  final bool forSearchProduct;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String selectedPriceRange = ref.watch(priceRangeProvider);
+    String selectedPriceRange = forSearchProduct
+        ? ref.watch(searchProductPriceRangeProvider)
+        : ref.watch(priceRangeProvider);
     bool isLightBrightness = isLightTheme(context, ref);
 
     return RadioListTile.adaptive(
@@ -20,8 +24,9 @@ class RadioListTileWidget extends ConsumerWidget {
       title: Text(priceRange.name),
       value: priceRange.range,
       groupValue: selectedPriceRange,
-      onChanged: (value) =>
-          ref.read(priceRangeProvider.notifier).state = value!,
+      onChanged: (value) => forSearchProduct
+          ? ref.read(searchProductPriceRangeProvider.notifier).state = value!
+          : ref.read(priceRangeProvider.notifier).state = value!,
     );
   }
 }

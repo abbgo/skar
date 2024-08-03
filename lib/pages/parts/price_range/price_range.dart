@@ -51,7 +51,10 @@ class _PriceRangePageState extends State<PriceRangePage> {
                   maxPriceCtrl: maxPriceCtrl,
                   forSearchProduct: widget.forSearchProduct,
                 ),
-                ...priceRanges.map((e) => RadioListTileWidget(priceRange: e)),
+                ...priceRanges.map((e) => RadioListTileWidget(
+                      priceRange: e,
+                      forSearchProduct: widget.forSearchProduct,
+                    )),
               ],
             ),
           ),
