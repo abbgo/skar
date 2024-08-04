@@ -62,5 +62,7 @@
     "theLowestPrice":"The lowest price",
     "theHighestPrice":"The highest price",
     "man":"man",
-    "someErrorOccurred":"Some error occurred"
+    "someErrorOccurred":"Some error occurred",
+    "selectReasonFeedback":"Select the reason for feedback",
+    "feedbackSent":"Feedback sent"
 }

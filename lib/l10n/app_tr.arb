@@ -62,5 +62,7 @@
     "theLowestPrice":"Iň pes baha",
     "theHighestPrice":"Iň ýokary baha",
     "man":"man",
-    "someErrorOccurred":"Käbir ýalňyşlyk ýüze çykdy"
+    "someErrorOccurred":"Käbir ýalňyşlyk ýüze çykdy",
+    "selectReasonFeedback":"Seslenmäniň sebäbini saýlaň",
+    "feedbackSent":"Seslenme ugradyldy"
 }

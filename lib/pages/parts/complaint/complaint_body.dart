@@ -5,6 +5,7 @@ import 'package:skar/models/complaint.dart';
 import 'package:skar/models/complaint_product.dart';
 import 'package:skar/providers/api/complaint_product.dart';
 import 'package:skar/services/complaint_product.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ComplaintBody extends StatelessWidget {
   const ComplaintBody({
@@ -20,13 +21,15 @@ class ComplaintBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var lang = AppLocalizations.of(context)!;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         ListTile(
-          title: const Text(
-            'Seslenmanin sebabini saylan',
-            style: TextStyle(fontWeight: FontWeight.bold),
+          title: Text(
+            lang.selectReasonFeedback,
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           trailing: IconButton(
             onPressed: () => Navigator.pop(context),
@@ -58,7 +61,7 @@ class ComplaintBody extends StatelessWidget {
 
                     if (result.error == '') {
                       if (context.mounted) {
-                        showSuccess(context, 'Seslenmaniz ugradyldy');
+                        showSuccess(context, lang.feedbackSent);
                         Navigator.pop(context);
                       }
                     }
