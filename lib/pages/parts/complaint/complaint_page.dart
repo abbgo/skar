@@ -4,14 +4,14 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/complaint.dart';
 import 'package:skar/pages/parts/error.dart';
-import 'package:skar/pages/parts/feedback/feedback_body.dart';
+import 'package:skar/pages/parts/complaint/complaint_body.dart';
 import 'package:skar/providers/api/complaint.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/services/complaint.dart';
 import 'package:skar/styles/colors.dart';
 
-class FeedbackPage extends ConsumerWidget {
-  const FeedbackPage({super.key});
+class ComplaintPage extends ConsumerWidget {
+  const ComplaintPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,7 +32,7 @@ class FeedbackPage extends ConsumerWidget {
           }
 
           List<Complaint> complaints = response.complaints!;
-          return FeedbackBody(complaints: complaints, isTM: isTM);
+          return ComplaintBody(complaints: complaints, isTM: isTM);
         },
         error: (error, stackTrace) => errorMethod(error),
         loading: () => loadWidget,
