@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/snackbars.dart';
 import 'package:skar/models/complaint.dart';
 import 'package:skar/models/complaint_product.dart';
 import 'package:skar/providers/api/complaint_product.dart';
@@ -46,6 +47,7 @@ class ComplaintBody extends StatelessWidget {
                       complaintID: complaint.id,
                       productID: productID,
                     );
+
                     var params = ComplaintProductParams(
                       context: context,
                       complaintProduct: complaintProduct,
@@ -56,12 +58,7 @@ class ComplaintBody extends StatelessWidget {
 
                     if (result.error == '') {
                       if (context.mounted) {
-                        // showSuccess(
-                        //   context,
-                        //   productID != ''
-                        //       ? lang.informationChangedSuccessfully
-                        //       : lang.informationCreatedSuccessfully,
-                        // );
+                        showSuccess(context, 'Seslenmaniz ugradyldy');
                         Navigator.pop(context);
                       }
                     }

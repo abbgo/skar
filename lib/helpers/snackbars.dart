@@ -26,3 +26,16 @@ void showSomeErr(BuildContext context) {
 
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
+showSuccess(BuildContext context, String text) {
+  var snackBar = SnackBar(
+    content: Text(
+      text,
+      style: const TextStyle(color: Colors.white),
+    ),
+    duration: const Duration(seconds: 3),
+    backgroundColor: Colors.green,
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
