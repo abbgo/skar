@@ -10,7 +10,7 @@ class ComplaintProduct {
     return const ComplaintProduct(complaintID: '', productID: '');
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {'complaint_id': complaintID, 'product_id': productID};
   }
 }
