@@ -65,7 +65,6 @@ class ComplaintBody extends StatelessWidget {
                         Navigator.pop(context);
                       }
                     }
-                    ;
                   },
                 ),
               );
