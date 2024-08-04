@@ -13,3 +13,16 @@ void showIntConnErr(BuildContext context) {
 
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
+
+void showSomeErr(BuildContext context) {
+  var snackBar = SnackBar(
+    content: Text(
+      AppLocalizations.of(context)!.someErrorOccurred,
+      style: const TextStyle(color: Colors.white),
+    ),
+    duration: const Duration(seconds: 3),
+    backgroundColor: Colors.red,
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}

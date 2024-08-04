@@ -61,5 +61,6 @@
     "priceRange":"Ценовой диапазон",
     "theLowestPrice":"Самая низкая цена",
     "theHighestPrice":"Самая высокая цена",
-    "man":"ман"
+    "man":"ман",
+    "someErrorOccurred":"Произошла какая-то ошибка"
 }

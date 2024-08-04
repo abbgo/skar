@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/complaint_product.dart';
 import 'package:http/http.dart' as http;
@@ -46,4 +47,14 @@ class ResultComplaintProduct extends Equatable {
 
   @override
   List<Object?> get props => [message, error];
+}
+
+class ComplaintProductParams extends Equatable {
+  final ComplaintProduct? complaintProduct;
+  final BuildContext? context;
+
+  const ComplaintProductParams({this.complaintProduct, this.context});
+
+  @override
+  List<Object?> get props => [complaintProduct, context];
 }

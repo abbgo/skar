@@ -1,5 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/internet.dart';
 
 enum ConnectivityStatus { notDetermined, isConnected, isDisonnected }
 
@@ -38,4 +40,9 @@ class ConnectivityStatusNotifier extends StateNotifier<ConnectivityStatus> {
 
 final connectivityStatusProviders = StateNotifierProvider((ref) {
   return ConnectivityStatusNotifier();
+});
+
+var checkInternetConnProvider =
+    FutureProvider.autoDispose.family<bool, BuildContext>((ref, arg) async {
+  return await checkIntWithContextConn(arg);
 });
