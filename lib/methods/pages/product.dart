@@ -47,10 +47,10 @@ Padding titleMethod(
   );
 }
 
-showFeedbackBottomSheet(BuildContext context) {
+showFeedbackBottomSheet(BuildContext context, String productID) {
   showModalBottomSheet(
     backgroundColor: Colors.transparent,
     context: context,
-    builder: (context) => const ComplaintPage(),
+    builder: (context) => ComplaintPage(productID: productID),
   );
 }

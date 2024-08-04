@@ -11,7 +11,7 @@ class ComplaintProductApiService {
   Future<ResultComplaintProduct> createComplaintProduct({
     required ComplaintProduct complaintProduct,
   }) async {
-    Uri uri = Uri.parse('$apiUrl/back/products');
+    Uri uri = Uri.parse('$apiUrl/complaint-products');
 
     try {
       http.Response response = await http.post(

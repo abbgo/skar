@@ -4,15 +4,17 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/pages/product.dart';
 import 'package:skar/styles/colors.dart';
 
-class FeedbackButton extends ConsumerWidget {
-  const FeedbackButton({super.key});
+class ComplaintButton extends ConsumerWidget {
+  const ComplaintButton({super.key, required this.productID});
+
+  final String productID;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isLightBrightness = isLightTheme(context, ref);
 
     return IconButton(
-      onPressed: () => showFeedbackBottomSheet(context),
+      onPressed: () => showFeedbackBottomSheet(context, productID),
       icon: Icon(
         Icons.feedback_outlined,
         color: isLightBrightness ? elevatedButtonColor : Colors.white,

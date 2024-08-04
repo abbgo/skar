@@ -11,7 +11,9 @@ import 'package:skar/services/complaint.dart';
 import 'package:skar/styles/colors.dart';
 
 class ComplaintPage extends ConsumerWidget {
-  const ComplaintPage({super.key});
+  const ComplaintPage({super.key, required this.productID});
+
+  final String productID;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,7 +34,11 @@ class ComplaintPage extends ConsumerWidget {
           }
 
           List<Complaint> complaints = response.complaints!;
-          return ComplaintBody(complaints: complaints, isTM: isTM);
+          return ComplaintBody(
+            complaints: complaints,
+            isTM: isTM,
+            productID: productID,
+          );
         },
         error: (error, stackTrace) => errorMethod(error),
         loading: () => loadWidget,
