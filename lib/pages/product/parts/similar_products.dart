@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/datas/screen.dart';
-import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/product.dart';
@@ -19,8 +17,6 @@ class SimilarProducts extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ScreenProperties screenSize = screenProperties(context);
-
     ProductParams params = ProductParams(
       api: 'products/similars',
       limit: 10,
@@ -50,7 +46,7 @@ class SimilarProducts extends ConsumerWidget {
               AppLocalizations.of(context)!.similarProducts,
             ),
             SizedBox(
-              height: screenSize.height * 0.35,
+              height: 360,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: productsData.products!.length,
