@@ -6,29 +6,32 @@ import 'package:skar/pages/child_shops/child_shops.dart';
 import 'package:skar/pages/shop/shop.dart';
 
 class ShopListTileImage extends StatelessWidget {
-  const ShopListTileImage(
-      {super.key, required this.shop, required this.cardHeight});
+  const ShopListTileImage({
+    super.key,
+    required this.shop,
+    required this.cardHeight,
+    required this.cardWidth,
+  });
 
   final Shop shop;
   final double cardHeight;
+  final double cardWidth;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: GestureDetector(
-        onTap: () => shop.isShoppingCenter!
-            ? goToPage(context, ChildShopsPage(parentShopID: shop.id!), false)
-            : goToPage(context, ShopPage(shopID: shop.id!), false),
-        child: SizedBox(
-          height: cardHeight,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-            ),
-            child: showCachImageMethod(shop.image!),
+    return GestureDetector(
+      onTap: () => shop.isShoppingCenter!
+          ? goToPage(context, ChildShopsPage(parentShopID: shop.id!), false)
+          : goToPage(context, ShopPage(shopID: shop.id!), false),
+      child: SizedBox(
+        height: cardHeight,
+        width: cardWidth,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
           ),
+          child: showCachImageMethod(shop.image!),
         ),
       ),
     );
