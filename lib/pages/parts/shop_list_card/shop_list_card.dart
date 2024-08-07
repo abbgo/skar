@@ -4,6 +4,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/call_button.dart';
+import 'package:skar/pages/parts/shop_list_card/parts/shop_list_card_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/styles/colors.dart';
 
@@ -28,12 +29,7 @@ class ShopListCard extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              flex: 2,
-              child: Center(
-                child: listviewImageMethod(context, shop, isTM),
-              ),
-            ),
+            ShopListCardImage(shop: shop),
             Expanded(
               flex: 1,
               child: Padding(

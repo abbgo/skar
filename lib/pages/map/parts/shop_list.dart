@@ -5,7 +5,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/shop.dart';
-import 'package:skar/pages/map/parts/shop_list_card.dart';
+import 'package:skar/pages/parts/shop_list_card/shop_list_card.dart';
 import 'package:skar/providers/api/shop.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/services/shop.dart';
