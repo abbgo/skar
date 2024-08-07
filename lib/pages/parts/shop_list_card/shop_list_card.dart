@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/models/shop.dart';
-import 'package:skar/pages/parts/call_button.dart';
+import 'package:skar/pages/parts/shop_list_card/parts/shop_list_card_data.dart';
 import 'package:skar/pages/parts/shop_list_card/parts/shop_list_card_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/styles/colors.dart';
@@ -29,38 +29,7 @@ class ShopListCard extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ShopListCardImage(shop: shop),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 8),
-                child: Container(
-                  constraints: const BoxConstraints(maxHeight: double.infinity),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            isTM ? shop.nameTM! : shop.nameRU!,
-                            style: const TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: SingleChildScrollView(
-                          child: CallButton(shop: shop),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            ShopListCardData(isTM: isTM, shop: shop),
           ],
         ),
       ),
