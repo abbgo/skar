@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/models/product.dart';
@@ -17,51 +16,48 @@ class FavoriteProducts extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var lang = AppLocalizations.of(context)!;
     bool hasFavoriteProducts = ref.watch(hasFavoriteProductsProvider);
     AsyncValue<ResultProduct> favoriteProducts =
         ref.watch(fetchFavoriteProductsProvider);
 
     return !hasFavoriteProducts
-        ? NoFavorites(text: AppLocalizations.of(context)!.noFavoriteProducts)
+        ? NoFavorites(text: lang.noFavoriteProducts)
         : favoriteProducts.when(
             data: (data) {
               if (data.error != '' || data.products == null) {
                 return const SomeThingWrong();
               }
               if (data.products!.isEmpty) {
-                return NoFavorites(
-                    text: AppLocalizations.of(context)!.noFavoriteProducts);
+                return NoFavorites(text: lang.noFavoriteProducts);
               }
+
               var favorites = data.products!;
-              return CustomScrollView(
-                slivers: [
-                  SliverGrid.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 8,
-                      mainAxisExtent: screenProperties(context).height * 0.35,
+              return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 2,
+                  mainAxisSpacing: 8,
+                  mainAxisExtent: 360,
+                ),
+                itemCount: favorites.length,
+                itemBuilder: (context, index) {
+                  Product product = favorites[index];
+                  return Padding(
+                    padding: index % 2 == 0
+                        ? const EdgeInsets.only(left: 5)
+                        : const EdgeInsets.only(right: 5),
+                    child: GestureDetector(
+                      onTap: () => goToPage(
+                          context, ProductPage(productID: product.id), false),
+                      child: ProductCard(
+                        product: product,
+                        forSimilarProducts: false,
+                        forFavorites: true,
+                      ),
                     ),
-                    itemCount: favorites.length,
-                    itemBuilder: (context, index) {
-                      Product product = favorites[index];
-                      return Padding(
-                        padding: index % 2 == 0
-                            ? const EdgeInsets.only(left: 5)
-                            : const EdgeInsets.only(right: 5),
-                        child: GestureDetector(
-                          onTap: () => goToPage(context,
-                              ProductPage(productID: product.id), false),
-                          child: ProductCard(
-                            product: product,
-                            forSimilarProducts: false,
-                            forFavorites: true,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                  );
+                },
               );
             },
             error: (error, stackTrace) => errorMethod(error),
