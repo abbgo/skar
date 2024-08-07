@@ -37,7 +37,7 @@ class ShopListTileData extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         isTM ? shop.nameTM! : shop.nameRU!,
                         style: const TextStyle(
