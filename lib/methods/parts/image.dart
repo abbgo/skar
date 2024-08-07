@@ -23,36 +23,38 @@ class ShowImage extends ConsumerWidget {
           padding: const EdgeInsets.only(bottom: 10),
           child: Column(
             children: [
-              Stack(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: (screenProperties(context).width / 3) * 4,
-                    child: InteractiveViewer(
-                      minScale: 0.01,
-                      maxScale: 4,
-                      child: showCachImageMethod(images[selectedImage].image),
-                    ),
-                  ),
-                  Positioned(
-                    top: 20,
-                    left: 5,
-                    child: IconButton(
-                      style: IconButton.styleFrom(
-                        backgroundColor: isLightBrightness
-                            ? Colors.white
-                            : dialogColorDarkTheme,
+              Expanded(
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: double.infinity,
+                      child: InteractiveViewer(
+                        minScale: 0.01,
+                        maxScale: 4,
+                        child: showCachImageMethod(images[selectedImage].image),
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(Icons.adaptive.arrow_back),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      top: 20,
+                      left: 5,
+                      child: IconButton(
+                        style: IconButton.styleFrom(
+                          backgroundColor: isLightBrightness
+                              ? Colors.white
+                              : dialogColorDarkTheme,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.adaptive.arrow_back),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
-              Expanded(
+              SizedBox(
+                height: (screenProperties(context).width / 3) * 1.2,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: images.length,
