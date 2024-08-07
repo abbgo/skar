@@ -27,7 +27,7 @@ class ShowImage extends ConsumerWidget {
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: screenProperties(context).height * .7,
+                    height: (screenProperties(context).width / 3) * 4,
                     child: InteractiveViewer(
                       minScale: 0.01,
                       maxScale: 4,

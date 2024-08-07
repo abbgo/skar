@@ -30,7 +30,7 @@ class ProductImage extends StatelessWidget {
               ),
               child: SizedBox(
                 width: double.infinity,
-                height: screenProperties(context).height / 2,
+                height: (screenProperties(context).width / 3) * 4,
                 child: PageView.builder(
                   controller: pageController,
                   onPageChanged: (value) {
