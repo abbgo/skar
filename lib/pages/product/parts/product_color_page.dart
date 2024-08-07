@@ -28,7 +28,7 @@ class ProductColorPage extends ConsumerWidget {
           "${AppLocalizations.of(context)!.colors} ( ${productColors.length} ${AppLocalizations.of(context)!.differentColor} )",
         ),
         SizedBox(
-          height: screenProperties(context).height / 5,
+          height: (screenProperties(context).width / 3) * 1.2,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: productColors.length,
