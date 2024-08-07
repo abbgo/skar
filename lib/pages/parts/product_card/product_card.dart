@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/datas/screen.dart';
-import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/models/product.dart';
@@ -23,7 +21,6 @@ class ProductCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ScreenProperties screenSize = screenProperties(context);
     bool isTM = ref.watch(langProvider) == 'tr';
 
     return Card(
@@ -35,10 +32,8 @@ class ProductCard extends ConsumerWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 child: CachedNetworkImage(
-                  width: forSimilarProducts
-                      ? screenSize.width * .5 - 30
-                      : double.infinity,
-                  height: screenSize.height * .25,
+                  height: 280,
+                  width: 210,
                   imageUrl: "$pathUrl/${product.image}",
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       loadWidget,

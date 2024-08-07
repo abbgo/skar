@@ -19,6 +19,7 @@ Padding shopCardTextMethod(
         color: color,
       ),
       maxLines: 2,
+      overflow: TextOverflow.ellipsis,
     ),
   );
 }

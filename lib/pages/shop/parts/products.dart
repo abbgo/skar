@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skar/datas/screen.dart';
 import 'package:skar/datas/static.dart';
-import 'package:skar/helpers/functions.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/models/product.dart';
@@ -18,16 +16,15 @@ class ShopProducts extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ScreenProperties screenSize = screenProperties(context);
     var shopCategories = ref.watch(shopCategoriesProvider);
 
     return shopCategories.isNotEmpty
         ? SliverGrid.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 2,
               mainAxisSpacing: 8,
-              mainAxisExtent: screenSize.height * 0.35,
+              mainAxisExtent: 360,
             ),
             itemBuilder: (context, index) {
               final page = index ~/ pageSize + 1;
