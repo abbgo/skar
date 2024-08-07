@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
-import 'package:skar/methods/pages/map.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/call_button.dart';
 import 'package:skar/pages/parts/shop_list_card/parts/shop_list_card_image.dart';
@@ -44,7 +43,11 @@ class ShopListCard extends ConsumerWidget {
                       Expanded(
                         flex: 4,
                         child: SingleChildScrollView(
-                          child: listviewNameColumnMethod(shop, isTM),
+                          child: Text(
+                            isTM ? shop.nameTM! : shop.nameRU!,
+                            style: const TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                       Expanded(

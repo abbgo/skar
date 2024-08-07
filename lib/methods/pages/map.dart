@@ -5,13 +5,6 @@ import 'package:skar/pages/parts/marker_widget/marker_widget.dart';
 import 'package:skar/pages/parts/select_shop_bottom_sheet/select_shop_bottom_sheet.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 
-Text listviewNameColumnMethod(Shop shop, bool isTM) {
-  return Text(
-    isTM ? shop.nameTM! : shop.nameRU!,
-    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-  );
-}
-
 // Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
 //   return Column(
 //     children: [
