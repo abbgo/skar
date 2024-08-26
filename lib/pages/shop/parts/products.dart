@@ -48,10 +48,10 @@ class ShopProducts extends ConsumerWidget {
                   if (productsData.error != '') {
                     return null;
                   }
-
                   if (indexInPage >= productsData.products!.length) {
                     return null;
                   }
+
                   final product = productsData.products![indexInPage];
                   return GestureDetector(
                     onTap: () => goToPage(

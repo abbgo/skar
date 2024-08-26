@@ -43,7 +43,7 @@ var fetchProductsProvider =
           );
 
       if (params.api == 'products') {
-        if (params.shopID != '' && search != '') {
+        if (params.shopID != '' || search != '') {
           ref.read(hasShopProductsProvider.notifier).state =
               products.isNotEmpty;
         } else {
