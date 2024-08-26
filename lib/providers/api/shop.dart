@@ -70,7 +70,9 @@ var fetchShopsProvider =
             isShoppingCenter: true,
           );
 
-      ref.read(hasShopsProvider.notifier).state = shops.isNotEmpty;
+      if (search != '') {
+        ref.read(hasShopsProvider.notifier).state = shops.isNotEmpty;
+      }
 
       result = ResultShop(shops: shops, error: '');
     } catch (e) {

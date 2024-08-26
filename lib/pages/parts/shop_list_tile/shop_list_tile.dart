@@ -27,7 +27,7 @@ class ShopListTile extends StatelessWidget {
             ShopListTileImage(
               shop: shop,
               cardHeight: cardHeight,
-              cardWidth: 160,
+              cardWidth: 140,
             ),
             ShopListTileData(shop: shop, forFavorite: forFavorite),
             mapPageContext != null
