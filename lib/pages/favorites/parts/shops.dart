@@ -31,17 +31,20 @@ class FavoriteShops extends ConsumerWidget {
                 );
               }
               var favorites = data.shops!;
-              return ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: favorites.length,
-                itemBuilder: (context, index) {
-                  Shop shop = favorites[index];
-                  return ShopListTile(
-                    shop: shop,
-                    mapPageContext: context,
-                    forFavorite: true,
-                  );
-                },
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: favorites.length,
+                  itemBuilder: (context, index) {
+                    Shop shop = favorites[index];
+                    return ShopListTile(
+                      shop: shop,
+                      mapPageContext: context,
+                      forFavorite: true,
+                    );
+                  },
+                ),
               );
             },
             error: (error, stackTrace) => errorMethod(error),
