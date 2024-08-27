@@ -47,11 +47,13 @@ var fetchProductsProvider =
           );
 
       if (params.api == 'products') {
-        if (params.shopID != '' || search != '') {
+        if ((params.shopID != '' && params.page == 1) ||
+            (search != '' && params.page == 1)) {
           ref.read(hasShopProductsProvider.notifier).state =
               products.isNotEmpty;
         } else {
-          if (search != '' || maxPrice != '0') {
+          if ((search != '' && params.page == 1) ||
+              (maxPrice != '0' && params.page == 1)) {
             ref.read(hasProductsProvider.notifier).state = products.isNotEmpty;
           }
         }
