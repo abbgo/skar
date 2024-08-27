@@ -76,6 +76,7 @@ class SearchProductPage extends ConsumerWidget {
               ),
       ),
       body: const SearchProductResult(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: openSearchProductNavigateToTopButton
           ? FloatingActionButton(
               onPressed: () async {
