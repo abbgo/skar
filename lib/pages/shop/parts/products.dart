@@ -32,7 +32,7 @@ class ShopProducts extends ConsumerWidget {
 
               ProductParams params = ProductParams(
                 api: 'products',
-                limit: 10,
+                limit: pageSize,
                 page: page,
                 categories: shopCategories.last.selectedCategories!,
                 shopID: shopID,

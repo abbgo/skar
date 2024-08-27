@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/datas/static.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/pages/product.dart';
@@ -19,7 +20,7 @@ class SimilarProducts extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ProductParams params = ProductParams(
       api: 'products/similars',
-      limit: 10,
+      limit: pageSize,
       page: 1,
       categories: const [],
       shopID: '',

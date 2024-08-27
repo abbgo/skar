@@ -38,6 +38,7 @@ class ShopPage extends ConsumerWidget {
       onPopInvoked: (bool didPop) {
         if (didPop) {
           ref.read(priceRangeProvider.notifier).state = '0-0';
+          ref.read(sortProductPriceProvider.notifier).state = '';
           return;
         }
       },
