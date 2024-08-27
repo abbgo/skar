@@ -47,6 +47,7 @@ class SearchShopPage extends ConsumerWidget {
           ),
         ),
         body: SearchShopResult(mapPageContext: mapPageContext),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         floatingActionButton: openSearchShopNavigateToTopButton
             ? FloatingActionButton(
                 onPressed: () async {
