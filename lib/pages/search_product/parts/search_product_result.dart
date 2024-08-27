@@ -42,7 +42,7 @@ class SearchProductResult extends ConsumerWidget {
 
               ProductParams params = ProductParams(
                 api: 'products',
-                limit: 10,
+                limit: pageSize,
                 page: page,
                 productID: '',
                 categories: const [],
@@ -60,7 +60,6 @@ class SearchProductResult extends ConsumerWidget {
                   if (response.error != '') {
                     return null;
                   }
-
                   if (indexInPage >= response.products!.length) {
                     return null;
                   }
