@@ -22,7 +22,7 @@ class SortAndFilterProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: forSort
-          ? () => showSortProductBottomSheet(context)
+          ? () => showSortProductBottomSheet(context, forSearchProduct)
           : () => Navigator.push(
                 context,
                 CustomPageRoute(

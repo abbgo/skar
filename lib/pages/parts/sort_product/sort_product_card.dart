@@ -5,14 +5,22 @@ import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:skar/styles/colors.dart';
 
 class SortProductCard extends ConsumerWidget {
-  const SortProductCard({super.key, required this.text, required this.value});
+  const SortProductCard({
+    super.key,
+    required this.text,
+    required this.value,
+    required this.forSearchProduct,
+  });
 
   final String text;
   final String value;
+  final bool forSearchProduct;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String sortProductPrice = ref.watch(sortProductPriceProvider);
+    String sortProductPrice = forSearchProduct
+        ? ref.watch(sortSearchProductPriceProvider)
+        : ref.watch(sortProductPriceProvider);
     bool isLightBrightness = isLightTheme(context, ref);
 
     return Card(
@@ -22,7 +30,11 @@ class SortProductCard extends ConsumerWidget {
         value: value,
         groupValue: sortProductPrice,
         onChanged: (value) {
-          ref.read(sortProductPriceProvider.notifier).state = value!;
+          if (forSearchProduct) {
+            ref.read(sortSearchProductPriceProvider.notifier).state = value!;
+          } else {
+            ref.read(sortProductPriceProvider.notifier).state = value!;
+          }
           Navigator.pop(context);
         },
       ),

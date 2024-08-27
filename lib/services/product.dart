@@ -35,6 +35,9 @@ class ProductService {
       },
     );
 
+    print('------------------====================');
+    print(uri);
+
     try {
       Response response = await http.get(uri);
       var jsonData = json.decode(response.body);

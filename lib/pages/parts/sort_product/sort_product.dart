@@ -3,7 +3,9 @@ import 'package:skar/pages/parts/sort_product/sort_product_card.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SortProduct extends StatelessWidget {
-  const SortProduct({super.key});
+  const SortProduct({super.key, required this.forSearchProduct});
+
+  final bool forSearchProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +19,21 @@ class SortProduct extends StatelessWidget {
       ),
       child: Wrap(
         children: [
-          SortProductCard(text: lang.defaultSort, value: ''),
-          SortProductCard(text: lang.lowestPrice, value: '0-1'),
-          SortProductCard(text: lang.highestPrice, value: '1-0'),
+          SortProductCard(
+            text: lang.defaultSort,
+            value: '',
+            forSearchProduct: forSearchProduct,
+          ),
+          SortProductCard(
+            text: lang.lowestPrice,
+            value: '0-1',
+            forSearchProduct: forSearchProduct,
+          ),
+          SortProductCard(
+            text: lang.highestPrice,
+            value: '1-0',
+            forSearchProduct: forSearchProduct,
+          ),
         ],
       ),
     );
