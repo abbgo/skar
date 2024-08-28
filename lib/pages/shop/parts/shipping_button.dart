@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:skar/styles/tooltip_decoration.dart';
 
 class ShippingButton extends StatelessWidget {
   ShippingButton({
@@ -13,32 +13,32 @@ class ShippingButton extends StatelessWidget {
   final bool hasShipping;
   final bool isLightBrightness;
 
-  final GlobalKey _tooltipKey = GlobalKey();
-
-  void _showTooltip() {
-    final dynamic tooltip = _tooltipKey.currentState;
-    tooltip?.ensureTooltipVisible();
-  }
+  final tooltipController = JustTheController();
 
   @override
   Widget build(BuildContext context) {
     var lang = AppLocalizations.of(context)!;
 
-    return Tooltip(
-      key: _tooltipKey,
-      message: hasShipping ? '${lang.hasShipping} !' : '${lang.noShipping} !',
-      textStyle: const TextStyle(color: Colors.white),
-      decoration: ShapeDecoration(
-        shape: const ToolTipCustomDecoration(),
-        color: elevatedButtonColor,
+    return JustTheTooltip(
+      elevation: 6,
+      backgroundColor: elevatedButtonColor,
+      controller: tooltipController,
+      preferredDirection: AxisDirection.up,
+      content: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          hasShipping ? '${lang.hasShipping} !' : '${lang.noShipping} !',
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
-      preferBelow: false,
-      verticalOffset: 10,
-      waitDuration: const Duration(seconds: 1),
-      showDuration: const Duration(seconds: 2),
-      padding: const EdgeInsets.all(2),
       child: GestureDetector(
-        onTap: () => _showTooltip(),
+        onTap: () {
+          if (tooltipController.value == TooltipStatus.isHidden) {
+            tooltipController.showTooltip();
+          } else {
+            tooltipController.hideTooltip();
+          }
+        },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

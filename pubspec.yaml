@@ -51,6 +51,7 @@ dependencies:
   shared_preferences: ^2.2.3
   shared_preferences_riverpod: ^0.3.0
   equatable: ^2.0.5
+  just_the_tooltip: ^0.0.12
 
 dev_dependencies:
   flutter_test:
