@@ -35,7 +35,7 @@ class ShopPage extends ConsumerWidget {
         ref.watch(openProductNavigateToTopButtonProvider);
 
     return PopScope(
-      onPopInvoked: (bool didPop) {
+      onPopInvokedWithResult: (didPop, result) {
         if (didPop) {
           ref.read(priceRangeProvider.notifier).state = '0-0';
           ref.read(sortProductPriceProvider.notifier).state = '';

@@ -25,7 +25,7 @@ class SearchShopPage extends ConsumerWidget {
 
     return PopScope(
       canPop: true,
-      onPopInvoked: (bool didPop) {
+      onPopInvokedWithResult: (didPop, result) {
         if (didPop) {
           ref.read(shopSearchProvider.notifier).state = '';
           return;

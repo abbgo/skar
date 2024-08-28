@@ -17,7 +17,6 @@ class ShopListTileData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 2,
       child: GestureDetector(
         onTap: () => shop.isShoppingCenter!
             ? goToPage(context, ChildShopsPage(parentShopID: shop.id!), false)

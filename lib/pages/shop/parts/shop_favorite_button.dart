@@ -21,7 +21,7 @@ class ShopFavoriteButton extends ConsumerWidget {
         ref.watch(hasInFavoritesProvider(favorite));
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.only(right: 10),
       child: hasInFavorites.when(
         skipError: true,
         skipLoadingOnRefresh: true,
