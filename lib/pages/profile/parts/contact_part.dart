@@ -17,7 +17,7 @@ class ContactPart extends StatelessWidget {
         onTap: () => showContactBottomSheet(context),
         leading: const Icon(Icons.perm_phone_msg_outlined, color: Colors.white),
         title: Text(
-          lang.theme,
+          lang.contact,
           style: const TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
