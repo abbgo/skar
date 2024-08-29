@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:skar/methods/pages/contact.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:skar/methods/pages/theme.dart';
 
 class ContactPart extends StatelessWidget {
   const ContactPart({super.key});
@@ -14,7 +14,7 @@ class ContactPart extends StatelessWidget {
       elevation: 3,
       color: elevatedButtonColor,
       child: ListTile(
-        onTap: () => showThemeMethod(context),
+        onTap: () => showContactBottomSheet(context),
         leading: const Icon(Icons.perm_phone_msg_outlined, color: Colors.white),
         title: Text(
           lang.theme,
