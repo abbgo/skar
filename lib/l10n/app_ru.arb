@@ -64,5 +64,6 @@
     "man":"ман",
     "someErrorOccurred":"Произошла какая-то ошибка",
     "selectReasonFeedback":"Выберите причину отзыва",
-    "feedbackSent":"Отзыв отправлен"
+    "feedbackSent":"Отзыв отправлен",
+    "contact":"Связаться"
 }

@@ -64,5 +64,6 @@
     "man":"man",
     "someErrorOccurred":"Some error occurred",
     "selectReasonFeedback":"Select the reason for feedback",
-    "feedbackSent":"Feedback sent"
+    "feedbackSent":"Feedback sent",
+    "contact":"Contact"
 }
