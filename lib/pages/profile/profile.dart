@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skar/pages/profile/parts/contact_part.dart';
 import 'package:skar/pages/profile/parts/language.dart';
 import 'package:skar/pages/profile/parts/theme_page.dart';
 
@@ -14,6 +15,7 @@ class ProfilePage extends StatelessWidget {
         children: const [
           LanguagePage(),
           ThemePage(),
+          ContactPart(),
         ],
       ),
     );
