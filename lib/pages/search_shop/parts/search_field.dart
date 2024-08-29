@@ -40,7 +40,6 @@ class _SearchFieldState extends State<SearchField> {
 
     return SizedBox(
       height: 40,
-      width: screenProperties(context).width - 70,
       child: TextField(
         controller: searchCtrl,
         textInputAction: TextInputAction.search,
@@ -50,9 +49,9 @@ class _SearchFieldState extends State<SearchField> {
           focusedBorder: inputBorder(context, widget.ref),
           border: inputBorder(context, widget.ref),
           hintText: widget.hintText,
-          suffixIcon: IconButton(
-            icon: const Icon(Icons.backspace_outlined, size: 18),
-            onPressed: () {
+          suffixIcon: GestureDetector(
+            child: const Icon(Icons.backspace_outlined, size: 18),
+            onTap: () {
               widget.onPressed();
               searchCtrl.clear();
             },
