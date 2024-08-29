@@ -21,8 +21,8 @@ var fetchProductsProvider =
     bool isTM = ref.read(langProvider) == 'tr';
 
     String sortProductPrice = params.shopID == ''
-        ? ref.watch(sortProductPriceProvider)
-        : ref.watch(sortSearchProductPriceProvider);
+        ? ref.watch(sortSearchProductPriceProvider)
+        : ref.watch(sortProductPriceProvider);
 
     String priceRange = params.shopID == ''
         ? ref.read(searchProductPriceRangeProvider)

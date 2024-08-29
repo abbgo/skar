@@ -24,16 +24,16 @@ class SortProductCard extends ConsumerWidget {
     bool isLightBrightness = isLightTheme(context, ref);
 
     return Card(
-      child: RadioListTile(
+      child: RadioListTile<String>(
         activeColor: isLightBrightness ? elevatedButtonColor : Colors.white,
         title: Text(text),
         value: value,
         groupValue: sortProductPrice,
-        onChanged: (value) {
+        onChanged: (newValue) {
           if (forSearchProduct) {
-            ref.read(sortSearchProductPriceProvider.notifier).state = value!;
+            ref.read(sortSearchProductPriceProvider.notifier).state = newValue!;
           } else {
-            ref.read(sortProductPriceProvider.notifier).state = value!;
+            ref.read(sortProductPriceProvider.notifier).state = newValue!;
           }
           Navigator.pop(context);
         },
