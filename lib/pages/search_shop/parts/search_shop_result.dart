@@ -41,10 +41,12 @@ class SearchShopResult extends ConsumerWidget {
                 skipError: true,
                 data: (response) {
                   if (response.error != '') {
-                    return null;
+                    // return null;
+                    return const SizedBox();
                   }
                   if (indexInPage >= response.shops!.length) {
-                    return null;
+                    // return null;
+                    return const SizedBox();
                   }
 
                   Shop shop = response.shops![indexInPage];
@@ -55,7 +57,8 @@ class SearchShopResult extends ConsumerWidget {
                   );
                 },
                 error: (error, stackTrace) => errorMethod(error),
-                loading: () => null,
+                // loading: () => null,
+                loading: () => const SizedBox(),
               );
             },
           );
