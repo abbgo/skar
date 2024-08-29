@@ -31,14 +31,14 @@ class ProductSearchField extends ConsumerWidget {
                 focusedBorder: inputBorder(context, ref),
                 border: inputBorder(context, ref),
                 hintText: AppLocalizations.of(context)!.searchProduct,
-                suffixIcon: IconButton(
-                  icon: Icon(
+                suffixIcon: GestureDetector(
+                  child: Icon(
                     Icons.close,
                     color:
                         isLightBrightness ? elevatedButtonColor : Colors.white,
                     size: 24,
                   ),
-                  onPressed: () {
+                  onTap: () {
                     ref.read(openSearchBarProvider.notifier).state = false;
                     ref.read(shopProductSearchProvider.notifier).state = '';
                     ref.read(hasShopProductsProvider.notifier).state = true;
