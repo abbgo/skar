@@ -52,8 +52,7 @@ final shopsForMapProvider =
   },
 );
 
-var fetchShopsProvider =
-    FutureProvider.autoDispose.family<ResultShop, ShopParams>(
+var fetchShopsProvider = FutureProvider.family<ResultShop, ShopParams>(
   (ref, shopParams) async {
     ResultShop result = ResultShop.defaultResult();
 

@@ -25,6 +25,6 @@ var shopParamProvider =
   (ref) => ShopParamsNotifier(),
 );
 
-var shopSearchProvider = StateProvider.autoDispose<String>((ref) => '');
+var shopSearchProvider = StateProvider<String>((ref) => '');
 var hasShopsProvider = StateProvider.autoDispose<bool>((ref) => true);
 var hasFavoriteShopsProvider = StateProvider.autoDispose<bool>((ref) => true);

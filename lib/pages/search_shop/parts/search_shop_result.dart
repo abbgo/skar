@@ -23,44 +23,44 @@ class SearchShopResult extends ConsumerWidget {
 
     return !hasShops
         ? const NoResult()
-        : ListView.builder(
-            controller: scrollController,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              final page = index ~/ pageSize + 1;
-              final indexInPage = index % pageSize;
+        : Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: ListView.builder(
+              controller: scrollController,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                final page = index ~/ pageSize + 1;
+                final indexInPage = index % pageSize;
 
-              ShopParams shopParams = ShopParams(page: page, isRandom: false);
+                ShopParams shopParams = ShopParams(page: page, isRandom: false);
 
-              final AsyncValue<ResultShop> responseAsync =
-                  ref.watch(fetchShopsProvider(shopParams));
+                final AsyncValue<ResultShop> responseAsync =
+                    ref.watch(fetchShopsProvider(shopParams));
 
-              return responseAsync.when(
-                skipLoadingOnRefresh: true,
-                skipLoadingOnReload: true,
-                skipError: true,
-                data: (response) {
-                  if (response.error != '') {
-                    // return null;
-                    return const SizedBox();
-                  }
-                  if (indexInPage >= response.shops!.length) {
-                    // return null;
-                    return const SizedBox();
-                  }
+                return responseAsync.when(
+                  skipLoadingOnRefresh: true,
+                  skipLoadingOnReload: true,
+                  skipError: true,
+                  data: (response) {
+                    if (response.error != '') {
+                      return null;
+                    }
+                    if (indexInPage >= response.shops!.length) {
+                      return null;
+                    }
 
-                  Shop shop = response.shops![indexInPage];
-                  return ShopListTile(
-                    shop: shop,
-                    mapPageContext: mapPageContext,
-                    forFavorite: false,
-                  );
-                },
-                error: (error, stackTrace) => errorMethod(error),
-                // loading: () => null,
-                loading: () => const SizedBox(),
-              );
-            },
+                    Shop shop = response.shops![indexInPage];
+                    return ShopListTile(
+                      shop: shop,
+                      mapPageContext: mapPageContext,
+                      forFavorite: false,
+                    );
+                  },
+                  error: (error, stackTrace) => errorMethod(error),
+                  loading: () => null,
+                );
+              },
+            ),
           );
   }
 }
