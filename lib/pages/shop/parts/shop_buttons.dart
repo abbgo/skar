@@ -5,7 +5,6 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/sort_and_filter_product/sort_and_filter_product.dart';
 import 'package:skar/pages/shop/parts/product_search_field.dart';
 import 'package:skar/pages/shop/parts/shipping_button.dart';
-import 'package:skar/providers/pages/shop.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,67 +17,55 @@ class ShopPageButtons extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
-
-    bool openSearchBar = ref.watch(openSearchBarProvider);
     bool isLightBrightness = isLightTheme(context, ref);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor:
-                    isLightBrightness ? null : scaffoldColorDarkTheme,
-              ),
-              onPressed: () {
-                ref.read(priceRangeProvider.notifier).state = '0-0';
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.adaptive.arrow_back),
+            Row(
+              children: [
+                IconButton(
+                  style: IconButton.styleFrom(
+                    backgroundColor:
+                        isLightBrightness ? null : scaffoldColorDarkTheme,
+                  ),
+                  onPressed: () {
+                    ref.read(priceRangeProvider.notifier).state = '0-0';
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.adaptive.arrow_back),
+                ),
+                ShippingButton(
+                  hasShipping: shop.hasShipping!,
+                  isLightBrightness: isLightBrightness,
+                ),
+              ],
             ),
-            openSearchBar
-                ? const SizedBox()
-                : ShippingButton(
-                    hasShipping: shop.hasShipping!,
-                    isLightBrightness: isLightBrightness,
-                  )
+            // openSearchBar
+            const ProductSearchField()
           ],
         ),
-        openSearchBar
-            ? const ProductSearchField()
-            : Row(
-                children: [
-                  SortAndFilterProduct(
-                    text: lang.sort,
-                    icon: Icons.swap_vert,
-                    forSort: true,
-                    forSearchProduct: false,
-                  ),
-                  SortAndFilterProduct(
-                    text: lang.filter,
-                    icon: Icons.filter_alt_outlined,
-                    forSort: false,
-                    forSearchProduct: false,
-                  ),
-                  IconButton(
-                    style: IconButton.styleFrom(
-                      backgroundColor:
-                          isLightBrightness ? null : scaffoldColorDarkTheme,
-                    ),
-                    onPressed: () =>
-                        ref.read(openSearchBarProvider.notifier).state = true,
-                    icon: Image.asset(
-                      "assets/icons/search.png",
-                      height: 25,
-                      color: isLightBrightness
-                          ? elevatedButtonColor
-                          : Colors.white,
-                    ),
-                  ),
-                ],
+        SizedBox(
+          height: 35,
+          child: Row(
+            children: [
+              SortAndFilterProduct(
+                text: lang.sort,
+                icon: Icons.swap_vert,
+                forSort: true,
+                forSearchProduct: false,
               ),
+              SortAndFilterProduct(
+                text: lang.filter,
+                icon: Icons.filter_alt_outlined,
+                forSort: false,
+                forSearchProduct: false,
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

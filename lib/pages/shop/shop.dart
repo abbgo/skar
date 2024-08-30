@@ -61,7 +61,7 @@ class ShopPage extends ConsumerWidget {
                   pinned: true,
                   elevation: 0,
                   scrolledUnderElevation: 0,
-                  toolbarHeight: screenSize.height / 5 + 20,
+                  toolbarHeight: screenSize.height / 5 + 60,
                   automaticallyImplyLeading: false,
                   flexibleSpace: Padding(
                     padding:
