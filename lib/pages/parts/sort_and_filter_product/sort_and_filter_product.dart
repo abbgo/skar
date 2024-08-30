@@ -31,7 +31,7 @@ class SortAndFilterProduct extends StatelessWidget {
                     direction: AxisDirection.up,
                   ),
                 ),
-        child: IconBody(text: text, icon: icon),
+        child: IconBody(text: text, icon: icon, forSort: forSort),
       ),
     );
   }
