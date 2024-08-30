@@ -26,10 +26,12 @@ class SearchField extends StatefulWidget {
 
 class _SearchFieldState extends State<SearchField> {
   final TextEditingController searchCtrl = TextEditingController();
+  FocusNode myFocusNode = FocusNode();
 
   @override
   void dispose() {
     searchCtrl.dispose();
+    myFocusNode.dispose();
     super.dispose();
   }
 
@@ -41,6 +43,7 @@ class _SearchFieldState extends State<SearchField> {
     return SizedBox(
       height: 35,
       child: TextField(
+        focusNode: myFocusNode,
         controller: searchCtrl,
         textInputAction: TextInputAction.search,
         textAlignVertical: TextAlignVertical.center,
@@ -50,8 +53,9 @@ class _SearchFieldState extends State<SearchField> {
           border: inputBorder(context, widget.ref),
           hintText: widget.hintText,
           suffixIcon: GestureDetector(
-            child: const Icon(Icons.backspace_outlined, size: 18),
+            child: const Icon(Icons.close, size: 18),
             onTap: () {
+              myFocusNode.unfocus();
               widget.onPressed();
               searchCtrl.clear();
             },

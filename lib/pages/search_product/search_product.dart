@@ -20,7 +20,6 @@ class SearchProductPage extends ConsumerWidget {
     bool openSearchProductNavigateToTopButton =
         ref.watch(openSearchProductNavigateToTopButtonProvider);
     bool isLightBrightness = isLightTheme(context, ref);
-    // bool openSearch = ref.watch(openProductSearchProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
