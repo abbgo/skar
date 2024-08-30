@@ -16,8 +16,10 @@ class ConnectivityStatusNotifier extends StateNotifier<ConnectivityStatus> {
       lastResult = ConnectivityStatus.isDisonnected;
     }
     lastResult = ConnectivityStatus.notDetermined;
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      switch (result) {
+    Connectivity()
+        .onConnectivityChanged
+        .listen((List<ConnectivityResult> results) {
+      switch (results.first) {
         case ConnectivityResult.mobile:
           newState = ConnectivityStatus.isConnected;
           break;
