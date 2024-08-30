@@ -24,7 +24,7 @@ class ShopProducts extends ConsumerWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 2,
               mainAxisSpacing: 8,
-              mainAxisExtent: 360,
+              mainAxisExtent: 310,
             ),
             itemBuilder: (context, index) {
               final page = index ~/ pageSize + 1;

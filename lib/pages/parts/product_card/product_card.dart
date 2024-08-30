@@ -32,8 +32,8 @@ class ProductCard extends ConsumerWidget {
               ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 child: CachedNetworkImage(
-                  height: 280,
-                  width: 210,
+                  height: 240,
+                  width: 180,
                   imageUrl: "$pathUrl/${product.image}",
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       loadWidget,
