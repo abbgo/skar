@@ -20,17 +20,19 @@ class SortAndFilterProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: forSort
-          ? () => showSortProductBottomSheet(context, forSearchProduct)
-          : () => Navigator.push(
-                context,
-                CustomPageRoute(
-                  child: FilterProduct(forSearchProduct: forSearchProduct),
-                  direction: AxisDirection.up,
+    return Expanded(
+      child: GestureDetector(
+        onTap: forSort
+            ? () => showSortProductBottomSheet(context, forSearchProduct)
+            : () => Navigator.push(
+                  context,
+                  CustomPageRoute(
+                    child: FilterProduct(forSearchProduct: forSearchProduct),
+                    direction: AxisDirection.up,
+                  ),
                 ),
-              ),
-      child: IconBody(text: text, icon: icon),
+        child: IconBody(text: text, icon: icon),
+      ),
     );
   }
 }

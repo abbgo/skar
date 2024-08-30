@@ -7,7 +7,6 @@ import 'package:skar/pages/search_shop/parts/search_field.dart';
 import 'package:skar/providers/pages/search_product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:skar/styles/colors.dart';
 
 class SearchProductPage extends ConsumerWidget {
   const SearchProductPage({super.key});
@@ -21,61 +20,50 @@ class SearchProductPage extends ConsumerWidget {
     bool openSearchProductNavigateToTopButton =
         ref.watch(openSearchProductNavigateToTopButtonProvider);
     bool isLightBrightness = isLightTheme(context, ref);
-    bool openSearch = ref.watch(openProductSearchProvider);
+    // bool openSearch = ref.watch(openProductSearchProvider);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: openSearch
-            ? SearchField(
-                onPressed: () {
-                  ref.read(openProductSearchProvider.notifier).state = false;
-                  ref.read(productSearchProvider.notifier).state = '';
-                  ref.read(hasProductsProvider.notifier).state = true;
-                },
-                onSubmitted: (value) {
-                  ref.read(productSearchProvider.notifier).state = value;
-                  ref.read(hasProductsProvider.notifier).state = true;
-                },
-                hintText: lang.searchProduct,
-                initText: ref.watch(productSearchProvider),
-                ref: ref,
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  SortAndFilterProduct(
-                    text: lang.sort,
-                    icon: Icons.swap_vert,
-                    forSort: true,
-                    forSearchProduct: true,
-                  ),
-                  SortAndFilterProduct(
-                    text: lang.filter,
-                    icon: Icons.filter_alt_outlined,
-                    forSort: false,
-                    forSearchProduct: true,
-                  ),
-                  IconButton(
-                    style: IconButton.styleFrom(
-                      backgroundColor:
-                          isLightBrightness ? null : scaffoldColorDarkTheme,
-                    ),
-                    onPressed: () => ref
-                        .read(openProductSearchProvider.notifier)
-                        .state = true,
-                    icon: Image.asset(
-                      "assets/icons/search.png",
-                      height: 25,
-                      color: isLightBrightness
-                          ? elevatedButtonColor
-                          : Colors.white,
-                    ),
-                  ),
-                ],
-              ),
+        title: SearchField(
+          onPressed: () {
+            ref.read(productSearchProvider.notifier).state = '';
+            ref.read(hasProductsProvider.notifier).state = true;
+          },
+          onSubmitted: (value) {
+            ref.read(productSearchProvider.notifier).state = value;
+            ref.read(hasProductsProvider.notifier).state = true;
+          },
+          hintText: lang.searchProduct,
+          initText: ref.watch(productSearchProvider),
+          ref: ref,
+        ),
       ),
-      body: const SearchProductResult(),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            height: 35,
+            child: Row(
+              children: [
+                SortAndFilterProduct(
+                  text: lang.sort,
+                  icon: Icons.swap_vert,
+                  forSort: true,
+                  forSearchProduct: true,
+                ),
+                SortAndFilterProduct(
+                  text: lang.filter,
+                  icon: Icons.filter_alt_outlined,
+                  forSort: false,
+                  forSearchProduct: true,
+                ),
+              ],
+            ),
+          ),
+          const SearchProductResult(),
+        ],
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: openSearchProductNavigateToTopButton
           ? FloatingActionButton(

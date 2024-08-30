@@ -25,8 +25,7 @@ class SearchProductResult extends ConsumerWidget {
     if (!hasProducts) {
       return const NoResult();
     } else {
-      return Padding(
-        padding: const EdgeInsets.only(top: 15),
+      return Expanded(
         child: GridView.builder(
           physics: const BouncingScrollPhysics(),
           controller: scrollController,

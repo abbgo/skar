@@ -17,23 +17,18 @@ class IconBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool isLightBrightness = isLightTheme(context, ref);
 
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        border: Border.all(
-          color: isLightBrightness ? elevatedButtonColor : Colors.white,
-        ),
-        color: isLightBrightness ? Colors.white : dialogColorDarkTheme,
-      ),
+    return SizedBox(
+      width: double.maxFinite,
+      height: double.maxFinite,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             icon,
             size: 20,
             color: isLightBrightness ? elevatedButtonColor : null,
           ),
+          const SizedBox(width: 5),
           Text(
             text,
             style: TextStyle(

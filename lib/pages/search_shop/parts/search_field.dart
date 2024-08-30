@@ -39,7 +39,7 @@ class _SearchFieldState extends State<SearchField> {
     searchCtrl.text = widget.initText;
 
     return SizedBox(
-      height: 40,
+      height: 35,
       child: TextField(
         controller: searchCtrl,
         textInputAction: TextInputAction.search,
