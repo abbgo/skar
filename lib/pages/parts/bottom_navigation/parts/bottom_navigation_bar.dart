@@ -45,6 +45,7 @@ class BottomNavigationBarPart extends ConsumerWidget {
       ],
       currentIndex: selectedIndex,
       onTap: (value) {
+        FocusManager.instance.primaryFocus!.unfocus();
         ref.read(selectedBottomIndexProvider.notifier).state = value;
       },
     );
