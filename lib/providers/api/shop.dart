@@ -24,6 +24,7 @@ final shopsForMapProvider =
       List<Shop> shops =
           await ref.read(apiProvider).fetchShopsForMap('shops/map', shopParams);
       bool isTM = ref.read(langProvider) == 'tr';
+      bool isHybridMap = await ref.read(isHybridMapProvider);
 
       if (shops.isNotEmpty) {
         for (Shop shop in shops) {
@@ -38,7 +39,8 @@ final shopsForMapProvider =
                           false,
                         )
                       : goToPage(arg, ShopPage(shopID: shop.id!), false),
-                  icon: await generateMarkerIcon(isTM, shop, false),
+                  icon:
+                      await generateMarkerIcon(isTM, shop, false, isHybridMap),
                 ),
               );
         }

@@ -35,9 +35,14 @@ Future<BitmapDescriptor> generateMarkerIcon(
   bool isTM,
   Shop shop,
   bool forOnTap,
+  bool isHybrid,
 ) {
-  return MarkerWidget(shop: shop, isTM: isTM, forOnTap: forOnTap)
-      .toBitmapDescriptor(
+  return MarkerWidget(
+    shop: shop,
+    isTM: isTM,
+    forOnTap: forOnTap,
+    isHybrid: isHybrid,
+  ).toBitmapDescriptor(
     logicalSize: Size(1000, forOnTap ? 200 : 100),
     imageSize: Size(1000, forOnTap ? 200 : 100),
   );
