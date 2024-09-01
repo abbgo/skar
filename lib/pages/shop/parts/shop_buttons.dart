@@ -43,7 +43,6 @@ class ShopPageButtons extends ConsumerWidget {
                 ),
               ],
             ),
-            // openSearchBar
             const ProductSearchField()
           ],
         ),
