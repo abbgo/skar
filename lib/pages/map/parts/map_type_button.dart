@@ -13,8 +13,9 @@ class MapTypeButton extends ConsumerWidget {
 
     return IconButton(
       onPressed: () async {
-        await ref.read(markersProvider.notifier).removeAllMarkers();
-        await ref.read(isHybridMapProvider.notifier).change();
+        await ref.read(markersProvider.notifier).removeAllMarkers().then(
+              (value) => ref.read(isHybridMapProvider.notifier).change(),
+            );
       },
       icon: Icon(
         Icons.layers,

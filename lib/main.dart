@@ -51,5 +51,3 @@ class MyApp extends ConsumerWidget {
     );
   }
 }
-
-// show suggestion trigger ucin command + i
