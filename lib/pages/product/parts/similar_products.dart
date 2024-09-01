@@ -47,7 +47,7 @@ class SimilarProducts extends ConsumerWidget {
               AppLocalizations.of(context)!.similarProducts,
             ),
             SizedBox(
-              height: 360,
+              height: 310,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: productsData.products!.length,
