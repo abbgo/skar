@@ -38,7 +38,7 @@ class FavoriteProducts extends ConsumerWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 2,
                   mainAxisSpacing: 8,
-                  mainAxisExtent: 360,
+                  mainAxisExtent: 310,
                 ),
                 itemCount: favorites.length,
                 itemBuilder: (context, index) {
