@@ -42,7 +42,7 @@ final markersProvider =
 class HybridMapNotifier extends StateNotifier<bool> {
   HybridMapNotifier() : super(false);
 
-  void change() {
+  Future<void> change() async {
     state = !state;
   }
 }
