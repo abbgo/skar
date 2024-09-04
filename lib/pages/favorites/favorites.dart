@@ -37,8 +37,16 @@ class _FavoritesPageState extends State<FavoritesPage>
           controller: _tabController,
           indicatorWeight: 2,
           tabs: [
-            Text(lang.myFavoriteShops),
-            Text(lang.myFavoriteProducts),
+            Text(
+              lang.myFavoriteShops,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              lang.myFavoriteProducts,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ],
         ),
       ),

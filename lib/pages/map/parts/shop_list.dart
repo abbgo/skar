@@ -96,7 +96,7 @@ class ShopList extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          lang.proposedShops,
+          lang.recommendedShops,
           style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
         ),
         AnimatedRotation(

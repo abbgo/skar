@@ -28,7 +28,7 @@ class ComplaintBody extends StatelessWidget {
       children: [
         ListTile(
           title: Text(
-            lang.selectReasonFeedback,
+            lang.toComplain,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           trailing: IconButton(

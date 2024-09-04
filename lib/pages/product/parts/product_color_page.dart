@@ -17,6 +17,7 @@ class ProductColorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var lang = AppLocalizations.of(context)!;
     bool isLightBrightness = isLightTheme(context, ref);
     int selectedColor = ref.watch(selectedProductColorProvider);
 
@@ -25,7 +26,7 @@ class ProductColorPage extends ConsumerWidget {
       children: [
         titleMethod(
           context,
-          "${AppLocalizations.of(context)!.colors} ( ${productColors.length} ${AppLocalizations.of(context)!.differentColor} )",
+          "${lang.productColors} ( ${productColors.length} ${lang.differentColor} )",
         ),
         SizedBox(
           height: (screenProperties(context).width / 3) * 1.2,
@@ -65,10 +66,7 @@ class ProductColorPage extends ConsumerWidget {
             },
           ),
         ),
-        titleMethod(
-          context,
-          AppLocalizations.of(context)!.body,
-        ),
+        titleMethod(context, lang.body),
         SizedBox(
           height: 50,
           child: ListView.builder(

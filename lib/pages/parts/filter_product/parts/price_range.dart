@@ -19,7 +19,7 @@ class PriceRange extends ConsumerWidget {
 
     return ListTile(
       title: Text(
-        lang.priceRange,
+        lang.productPrice,
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: priceRange == '0-0'

@@ -39,7 +39,7 @@ class _PriceRangePageState extends State<PriceRangePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(lang.priceRange),
+        title: Text(lang.productPrice),
       ),
       body: Column(
         children: [
