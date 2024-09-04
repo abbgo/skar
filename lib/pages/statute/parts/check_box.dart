@@ -30,10 +30,14 @@ class StatuteCheckBox extends ConsumerWidget {
               ),
             ),
           ),
-          const SizedBox(width: 5),
-          Text(
-            lang.acceptStatute,
-            style: const TextStyle(fontSize: 14),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              lang.acceptStatute,
+              style: const TextStyle(fontSize: 14),
+            ),
           ),
         ],
       ),
