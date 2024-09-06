@@ -52,7 +52,7 @@ class ProductCard extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   shopCardTextMethod(
-                    "${product.price} man",
+                    "${product.price} TMT",
                     14,
                     TextDecoration.none,
                     FontWeight.bold,
@@ -60,7 +60,7 @@ class ProductCard extends ConsumerWidget {
                   ),
                   product.oldPrice != 0
                       ? shopCardTextMethod(
-                          "${product.oldPrice} man",
+                          "${product.oldPrice} TMT",
                           14,
                           TextDecoration.lineThrough,
                           FontWeight.normal,

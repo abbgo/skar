@@ -15,12 +15,12 @@ class PriceRangePage extends StatefulWidget {
 
 class _PriceRangePageState extends State<PriceRangePage> {
   final List<PriceRangeClass> priceRanges = [
-    PriceRangeClass(name: '0 man - 100 man', range: '0-100'),
-    PriceRangeClass(name: '100 man - 200 man', range: '100-200'),
-    PriceRangeClass(name: '200 man - 500 man', range: '200-500'),
-    PriceRangeClass(name: '500 man - 1000 man', range: '500-1000'),
-    PriceRangeClass(name: '1000 man - 2000 man', range: '1000-2000'),
-    PriceRangeClass(name: '2000 man - 10000 man', range: '2000-10000'),
+    PriceRangeClass(name: '0 TMT - 100 TMT', range: '0-100'),
+    PriceRangeClass(name: '100 TMT - 200 TMT', range: '100-200'),
+    PriceRangeClass(name: '200 TMT - 500 TMT', range: '200-500'),
+    PriceRangeClass(name: '500 TMT - 1000 TMT', range: '500-1000'),
+    PriceRangeClass(name: '1000 TMT - 2000 TMT', range: '1000-2000'),
+    PriceRangeClass(name: '2000 TMT - 10000 TMT', range: '2000-10000'),
   ];
 
   final TextEditingController minPriceCtrl = TextEditingController();

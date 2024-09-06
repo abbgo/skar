@@ -7,7 +7,7 @@ Row productPriceMethod(num? price, num? oldPrice) {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
-        "$price man",
+        "$price TMT",
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 16,
@@ -17,7 +17,7 @@ Row productPriceMethod(num? price, num? oldPrice) {
       const SizedBox(width: 10),
       oldPrice != 0
           ? Text(
-              "$oldPrice man",
+              "$oldPrice TMT",
               style: const TextStyle(
                 fontSize: 16,
                 decoration: TextDecoration.lineThrough,
