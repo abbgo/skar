@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
+import 'package:skar/providers/pages/search_product.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/services/product.dart';
@@ -64,6 +65,7 @@ var fetchProductsProvider =
       result = ResultProduct(error: e.toString());
     }
 
+    ref.read(loadSearchProductProvider.notifier).state = false;
     return result;
   },
 );

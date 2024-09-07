@@ -21,73 +21,87 @@ class SearchProductResult extends ConsumerWidget {
     bool hasProducts = ref.watch(hasProductsProvider);
     ScrollController scrollController =
         ref.watch(searchProductScrollControllerProvider);
+    final bool loading = ref.watch(loadSearchProductProvider);
 
-    if (!hasProducts) {
-      return const NoResult();
-    } else {
-      return Expanded(
-        child: GridView.builder(
-          physics: const BouncingScrollPhysics(),
-          controller: scrollController,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 2,
-            mainAxisSpacing: 8,
-            mainAxisExtent: 310,
-          ),
-          itemBuilder: (context, index) {
-            final page = index ~/ pageSize + 1;
-            final indexInPage = index % pageSize;
-
-            ProductParams params = ProductParams(
-              api: 'products',
-              limit: pageSize,
-              page: page,
-              productID: '',
-              categories: const [],
-              shopID: '',
-            );
-
-            final AsyncValue<ResultProduct> products =
-                ref.watch(fetchProductsProvider(params));
-
-            return products.when(
-              skipLoadingOnRefresh: true,
-              skipLoadingOnReload: true,
-              skipError: true,
-              data: (response) {
-                if (response.error != '') {
-                  return null;
-                }
-                if (indexInPage >= response.products!.length) {
-                  return null;
-                }
-
-                Product product = response.products![indexInPage];
-                return GestureDetector(
-                  onTap: () => goToPage(
-                    context,
-                    ProductPage(productID: product.id),
-                    false,
+    return !hasProducts
+        ? const NoResult()
+        : Expanded(
+            child: Stack(
+              children: [
+                GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  controller: scrollController,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 2,
+                    mainAxisSpacing: 8,
+                    mainAxisExtent: 310,
                   ),
-                  child: Padding(
-                    padding: index % 2 == 0
-                        ? const EdgeInsets.only(left: 5)
-                        : const EdgeInsets.only(right: 5),
-                    child: ProductCard(
-                      product: product,
-                      forSimilarProducts: false,
-                      forFavorites: false,
-                    ),
-                  ),
-                );
-              },
-              error: (error, stackTrace) => errorMethod(error),
-              loading: () => null,
-            );
-          },
-        ),
-      );
-    }
+                  itemBuilder: (context, index) {
+                    final page = index ~/ pageSize + 1;
+                    final indexInPage = index % pageSize;
+
+                    ProductParams params = ProductParams(
+                      api: 'products',
+                      limit: pageSize,
+                      page: page,
+                      productID: '',
+                      categories: const [],
+                      shopID: '',
+                    );
+
+                    final AsyncValue<ResultProduct> products =
+                        ref.watch(fetchProductsProvider(params));
+
+                    return products.when(
+                      skipLoadingOnRefresh: true,
+                      skipLoadingOnReload: true,
+                      skipError: true,
+                      data: (response) {
+                        if (response.error != '') {
+                          return null;
+                        }
+                        if (indexInPage >= response.products!.length) {
+                          return null;
+                        }
+
+                        Product product = response.products![indexInPage];
+                        return GestureDetector(
+                          onTap: () => goToPage(
+                            context,
+                            ProductPage(productID: product.id),
+                            false,
+                          ),
+                          child: Padding(
+                            padding: index % 2 == 0
+                                ? const EdgeInsets.only(left: 5)
+                                : const EdgeInsets.only(right: 5),
+                            child: ProductCard(
+                              product: product,
+                              forSimilarProducts: false,
+                              forFavorites: false,
+                            ),
+                          ),
+                        );
+                      },
+                      error: (error, stackTrace) => errorMethod(error),
+                      loading: () {
+                        if (!loading) {
+                          Future.delayed(
+                            const Duration(),
+                            () => ref
+                                .read(loadSearchProductProvider.notifier)
+                                .state = true,
+                          );
+                        }
+                        return null;
+                      },
+                    );
+                  },
+                ),
+                loading ? loadWidget : const SizedBox(),
+              ],
+            ),
+          );
   }
 }
