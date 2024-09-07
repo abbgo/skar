@@ -18,53 +18,68 @@ class ChildShopsBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool hasShops = ref.watch(hasChildShopsProvider);
-
     ScrollController scrollController =
         ref.watch(childShopsScrollControllerProvider);
+    bool loading = ref.watch(loadChildShopsProvider);
 
-    return !hasShops
-        ? const NoResult()
-        : Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            height: screenProperties(context).height,
-            child: ListView.builder(
-              controller: scrollController,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                final page = index ~/ pageSize + 1;
-                final indexInPage = index % pageSize;
+    return Stack(
+      children: [
+        !hasShops
+            ? const NoResult()
+            : Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                height: screenProperties(context).height,
+                child: ListView.builder(
+                  controller: scrollController,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    final page = index ~/ pageSize + 1;
+                    final indexInPage = index % pageSize;
 
-                ShopParams shopParams = ShopParams(
-                  page: page,
-                  isRandom: false,
-                  parentShopID: parentShopID,
-                );
+                    ShopParams shopParams = ShopParams(
+                      page: page,
+                      isRandom: false,
+                      parentShopID: parentShopID,
+                    );
 
-                final AsyncValue<ResultShop> responseAsync =
-                    ref.watch(fetchChildShopsProvider(shopParams));
+                    final AsyncValue<ResultShop> responseAsync =
+                        ref.watch(fetchChildShopsProvider(shopParams));
 
-                return responseAsync.when(
-                  skipLoadingOnRefresh: true,
-                  skipLoadingOnReload: true,
-                  skipError: true,
-                  data: (response) {
-                    if (response.error != '') {
-                      return null;
-                    }
-                    if (indexInPage >= response.shops!.length) {
-                      return null;
-                    }
-                    final shop = response.shops![indexInPage];
-                    return ShopListTile(
-                      shop: shop,
-                      forFavorite: false,
+                    return responseAsync.when(
+                      skipLoadingOnRefresh: true,
+                      skipLoadingOnReload: true,
+                      skipError: true,
+                      data: (response) {
+                        if (response.error != '') {
+                          return null;
+                        }
+                        if (indexInPage >= response.shops!.length) {
+                          return null;
+                        }
+                        final shop = response.shops![indexInPage];
+                        return ShopListTile(
+                          shop: shop,
+                          forFavorite: false,
+                        );
+                      },
+                      error: (error, stackTrace) => errorMethod(error),
+                      loading: () {
+                        if (!loading) {
+                          Future.delayed(
+                            const Duration(),
+                            () => ref
+                                .read(loadChildShopsProvider.notifier)
+                                .state = true,
+                          );
+                        }
+                        return null;
+                      },
                     );
                   },
-                  error: (error, stackTrace) => errorMethod(error),
-                  loading: () => null,
-                );
-              },
-            ),
-          );
+                ),
+              ),
+        loading ? loadWidget : const SizedBox(),
+      ],
+    );
   }
 }

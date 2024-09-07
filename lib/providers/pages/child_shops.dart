@@ -23,3 +23,5 @@ var childShopsScrollControllerProvider =
 
 var openChildShopsProductNavigateToTopButtonProvider =
     StateProvider.autoDispose<bool>((ref) => false);
+
+final loadChildShopsProvider = StateProvider.autoDispose<bool>((ref) => true);
