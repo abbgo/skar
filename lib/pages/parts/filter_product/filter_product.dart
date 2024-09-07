@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:skar/pages/parts/filter_product/parts/filter_categories.dart';
+import 'package:skar/pages/parts/filter_product/parts/filter_categories_button.dart';
 import 'package:skar/pages/parts/filter_product/parts/filter_product_save_button.dart';
 import 'package:skar/pages/parts/filter_product/parts/price_range.dart';
 
@@ -27,7 +27,7 @@ class FilterProduct extends StatelessWidget {
             child: Column(
               children: [
                 PriceRange(forSearchProduct: forSearchProduct),
-                const FilterCategories(),
+                const FilterCategoriesButton(),
               ],
             ),
           ),
