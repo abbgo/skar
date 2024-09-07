@@ -64,5 +64,6 @@
     "someErrorOccurred":"Произошла какая-то ошибка",
     "toComplain":"Пожаловаться",
     "feedbackSent":"Отзыв отправлен",
-    "contact":"Связаться"
+    "contact":"Связаться",
+    "categories":"Категории"
 }

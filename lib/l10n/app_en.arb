@@ -64,5 +64,6 @@
     "someErrorOccurred":"Some error occurred",
     "toComplain":"To complain",
     "feedbackSent":"Feedback sent",
-    "contact":"Contact"
+    "contact":"Contact",
+    "categories":"Categories"
 }
