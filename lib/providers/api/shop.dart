@@ -9,6 +9,7 @@ import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/child_shops.dart';
 import 'package:skar/providers/pages/map.dart';
+import 'package:skar/providers/pages/search_shop.dart';
 import 'package:skar/providers/params/shop_param.dart';
 import 'package:skar/services/shop.dart';
 
@@ -80,6 +81,7 @@ var fetchShopsProvider = FutureProvider.family<ResultShop, ShopParams>(
       result = ResultShop(error: e.toString());
     }
 
+    ref.read(loadSearchShopProvider.notifier).state = false;
     return result;
   },
 );

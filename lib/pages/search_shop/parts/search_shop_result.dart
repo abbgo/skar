@@ -20,47 +20,64 @@ class SearchShopResult extends ConsumerWidget {
     bool hasShops = ref.watch(hasShopsProvider);
     ScrollController scrollController =
         ref.watch(searchShopScrollControllerProvider);
+    final bool loading = ref.watch(loadSearchShopProvider);
 
-    return !hasShops
-        ? const NoResult()
-        : Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: ListView.builder(
-              controller: scrollController,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                final page = index ~/ pageSize + 1;
-                final indexInPage = index % pageSize;
+    return Stack(
+      children: [
+        !hasShops
+            ? const NoResult()
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: ListView.builder(
+                  controller: scrollController,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    final page = index ~/ pageSize + 1;
+                    final indexInPage = index % pageSize;
 
-                ShopParams shopParams = ShopParams(page: page, isRandom: false);
+                    ShopParams shopParams =
+                        ShopParams(page: page, isRandom: false);
 
-                final AsyncValue<ResultShop> responseAsync =
-                    ref.watch(fetchShopsProvider(shopParams));
+                    final AsyncValue<ResultShop> responseAsync =
+                        ref.watch(fetchShopsProvider(shopParams));
 
-                return responseAsync.when(
-                  skipLoadingOnRefresh: true,
-                  skipLoadingOnReload: true,
-                  skipError: true,
-                  data: (response) {
-                    if (response.error != '') {
-                      return null;
-                    }
-                    if (indexInPage >= response.shops!.length) {
-                      return null;
-                    }
+                    return responseAsync.when(
+                      skipLoadingOnRefresh: true,
+                      skipLoadingOnReload: true,
+                      skipError: true,
+                      data: (response) {
+                        if (response.error != '') {
+                          return null;
+                        }
+                        if (indexInPage >= response.shops!.length) {
+                          return null;
+                        }
 
-                    Shop shop = response.shops![indexInPage];
-                    return ShopListTile(
-                      shop: shop,
-                      mapPageContext: mapPageContext,
-                      forFavorite: false,
+                        Shop shop = response.shops![indexInPage];
+                        return ShopListTile(
+                          shop: shop,
+                          mapPageContext: mapPageContext,
+                          forFavorite: false,
+                        );
+                      },
+                      error: (error, stackTrace) => errorMethod(error),
+                      loading: () {
+                        if (!loading) {
+                          Future.delayed(
+                            const Duration(),
+                            () => ref
+                                .read(loadSearchShopProvider.notifier)
+                                .state = true,
+                          );
+                        }
+                        return null;
+                      },
                     );
                   },
-                  error: (error, stackTrace) => errorMethod(error),
-                  loading: () => null,
-                );
-              },
-            ),
-          );
+                ),
+              ),
+        loading ? loadWidget : const SizedBox(),
+      ],
+    );
   }
 }

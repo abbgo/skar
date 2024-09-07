@@ -17,3 +17,5 @@ var searchShopScrollControllerProvider =
 
 var openSearchShopNavigateToTopButtonProvider =
     StateProvider.autoDispose<bool>((ref) => false);
+
+final loadSearchShopProvider = StateProvider<bool>((ref) => true);
