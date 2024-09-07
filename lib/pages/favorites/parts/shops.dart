@@ -14,21 +14,20 @@ class FavoriteShops extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var lang = AppLocalizations.of(context)!;
     bool hasFavoriteShops = ref.watch(hasFavoriteShopsProvider);
     AsyncValue<ResultShop> favoriteShops =
         ref.watch(fetchFavoriteShopsProvider);
 
     return !hasFavoriteShops
-        ? NoFavorites(text: AppLocalizations.of(context)!.noFavoriteShops)
+        ? NoFavorites(text: lang.noFavoriteShops)
         : favoriteShops.when(
             data: (data) {
               if (data.error != '' || data.shops == null) {
                 return const SomeThingWrong();
               }
               if (data.shops!.isEmpty) {
-                return NoFavorites(
-                  text: AppLocalizations.of(context)!.noFavoriteShops,
-                );
+                return NoFavorites(text: lang.noFavoriteShops);
               }
               var favorites = data.shops!;
               return Padding(
