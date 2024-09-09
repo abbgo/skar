@@ -16,6 +16,7 @@ class ChildCategoriesCheckBoxList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      tilePadding: const EdgeInsets.only(right: 32),
       collapsedIconColor: elevatedButtonColor,
       iconColor: elevatedButtonColor,
       title: Text(isTM ? category.nameTM : category.nameRU),
