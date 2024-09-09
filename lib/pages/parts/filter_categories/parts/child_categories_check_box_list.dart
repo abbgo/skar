@@ -7,11 +7,10 @@ class ChildCategoriesCheckBoxList extends StatelessWidget {
     super.key,
     required this.category,
     required this.isTM,
-    required this.isSelected,
   });
 
   final Kategory category;
-  final bool isTM, isSelected;
+  final bool isTM;
 
   @override
   Widget build(BuildContext context) {
