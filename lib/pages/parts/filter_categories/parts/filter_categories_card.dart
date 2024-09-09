@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/models/category.dart';
 import 'package:skar/pages/parts/filter_categories/parts/category_check_box.dart';
+import 'package:skar/pages/parts/filter_categories/parts/child_categories_check_box_list.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/filter_categories.dart';
 
@@ -22,8 +23,9 @@ class FilterCategoriesCard extends ConsumerWidget {
             isTM: isTM,
             isSelected: isSelected,
           )
-        : ExpansionTile(
-            title: Text(isTM ? category.nameTM : category.nameRU),
+        : ChildCategoriesCheckBoxList(
+            category: category,
+            isTM: isTM,
           );
   }
 }
