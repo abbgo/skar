@@ -26,6 +26,7 @@ class FilterCategoriesCard extends ConsumerWidget {
         : ChildCategoriesCheckBoxList(
             category: category,
             isTM: isTM,
+            isSelected: isSelected,
           );
   }
 }
