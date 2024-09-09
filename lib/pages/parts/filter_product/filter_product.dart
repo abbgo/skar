@@ -27,7 +27,9 @@ class FilterProduct extends StatelessWidget {
             child: Column(
               children: [
                 PriceRange(forSearchProduct: forSearchProduct),
-                const FilterCategoriesButton(),
+                forSearchProduct
+                    ? const FilterCategoriesButton()
+                    : const SizedBox(),
               ],
             ),
           ),
