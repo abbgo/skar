@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skar/models/category.dart';
 import 'package:skar/pages/parts/filter_categories/parts/filter_categories_card.dart';
+import 'package:skar/styles/colors.dart';
 
 class ChildCategoriesCheckBoxList extends StatelessWidget {
   const ChildCategoriesCheckBoxList({
@@ -15,6 +16,8 @@ class ChildCategoriesCheckBoxList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      collapsedIconColor: elevatedButtonColor,
+      iconColor: elevatedButtonColor,
       title: Text(isTM ? category.nameTM : category.nameRU),
       children: category.childCategories!
           .map((e) => FilterCategoriesCard(category: e))
