@@ -50,66 +50,32 @@ class FilterCategoriesButton extends ConsumerWidget {
                   ),
                   categoryNames == ''
                       ? const SizedBox()
-                      : Expanded(
-                          child: Row(
-                            children: [
-                              Text(categoryNames),
-                              GestureDetector(
-                                onTap: () async {
-                                  await ref
-                                      .read(selectedCategoriesProvider.notifier)
-                                      .removeAllFilterCategory();
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(child: Text(categoryNames)),
+                            GestureDetector(
+                              onTap: () async {
+                                await ref
+                                    .read(selectedCategoriesProvider.notifier)
+                                    .removeAllFilterCategory();
 
-                                  await ref
-                                      .read(filterCategoriesProvider.notifier)
-                                      .removeAllFilterCategories();
-                                },
-                                child: const Icon(Icons.cancel_outlined),
-                              ),
-                            ],
-                          ),
+                                await ref
+                                    .read(filterCategoriesProvider.notifier)
+                                    .removeAllFilterCategories();
+                              },
+                              child: const Icon(Icons.cancel_outlined),
+                            ),
+                          ],
                         ),
                 ],
               ),
             ),
+            const SizedBox(width: 10),
             Icon(Icons.adaptive.arrow_forward),
           ],
         ),
       ),
     );
-
-    // return ListTile(
-    //   title: Text(
-    //     lang.categories,
-    //     style: const TextStyle(fontWeight: FontWeight.bold),
-    //   ),
-    //   subtitle: categoryNames == ''
-    //       ? null
-    //       : Row(
-    //           children: [
-    //             Text(categoryNames),
-    //             GestureDetector(
-    //               onTap: () async {
-    //                 await ref
-    //                     .read(selectedCategoriesProvider.notifier)
-    //                     .removeAllFilterCategory();
-
-    //                 await ref
-    //                     .read(filterCategoriesProvider.notifier)
-    //                     .removeAllFilterCategories();
-    //               },
-    //               child: const Icon(Icons.cancel_outlined),
-    //             ),
-    //           ],
-    //         ),
-    //   trailing: Icon(Icons.adaptive.arrow_forward),
-    //   onTap: () => Navigator.push(
-    //     context,
-    //     CustomPageRoute(
-    //       child: const FilterCategoriesPage(),
-    //       direction: AxisDirection.left,
-    //     ),
-    //   ),
-    // );
   }
 }
