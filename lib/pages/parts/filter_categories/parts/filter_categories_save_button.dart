@@ -16,7 +16,7 @@ class FilterCategoriesSaveButton extends StatelessWidget {
       child: Consumer(
         builder: (context, ref, child) {
           return ElevatedButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pop(context),
             child: Text(lang.select),
           );
         },

@@ -9,6 +9,7 @@ import 'package:skar/pages/parts/error.dart';
 import 'package:skar/pages/parts/product_card/product_card.dart';
 import 'package:skar/pages/product/product.dart';
 import 'package:skar/providers/api/product.dart';
+import 'package:skar/providers/pages/filter_categories.dart';
 import 'package:skar/providers/pages/search_product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:skar/services/product.dart';
@@ -22,6 +23,7 @@ class SearchProductResult extends ConsumerWidget {
     ScrollController scrollController =
         ref.watch(searchProductScrollControllerProvider);
     final bool loading = ref.watch(loadSearchProductProvider);
+    List<String> selectedCategories = ref.read(selectedCategoriesProvider);
 
     return !hasProducts
         ? const NoResult()
@@ -46,7 +48,7 @@ class SearchProductResult extends ConsumerWidget {
                       limit: pageSize,
                       page: page,
                       productID: '',
-                      categories: const [],
+                      categories: selectedCategories,
                       shopID: '',
                     );
 
