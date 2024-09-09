@@ -5,7 +5,6 @@ class Kategory extends Equatable {
   final String? image;
   final List<Kategory>? childCategories;
   final String? parentCategoryID;
-  final bool? isSelected;
 
   const Kategory({
     required this.nameTM,
@@ -14,7 +13,6 @@ class Kategory extends Equatable {
     this.image,
     this.childCategories,
     this.parentCategoryID,
-    this.isSelected,
   });
 
   factory Kategory.defaultCategory() {
@@ -23,7 +21,6 @@ class Kategory extends Equatable {
       nameRU: '',
       nameTM: '',
       image: '',
-      isSelected: false,
     );
   }
 
@@ -41,26 +38,6 @@ class Kategory extends Equatable {
               ),
             ),
       parentCategoryID: json['parent_category_id'] ?? "",
-      isSelected: false,
-    );
-  }
-
-  Kategory copyWith({
-    String? id,
-    String? nameTM,
-    String? nameRU,
-    String? image,
-    List<Kategory>? childCategories,
-    String? parentCategoryID,
-    bool? isSelected,
-  }) {
-    return Kategory(
-      id: id ?? this.id,
-      nameTM: nameTM ?? this.nameTM,
-      nameRU: nameRU ?? this.nameRU,
-      image: image ?? this.image,
-      childCategories: childCategories ?? this.childCategories,
-      isSelected: isSelected ?? this.isSelected,
     );
   }
 

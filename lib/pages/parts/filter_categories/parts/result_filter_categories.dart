@@ -24,12 +24,15 @@ class ResultFilterCategories extends ConsumerWidget {
         }
 
         List<Kategory> categories = response.categories!;
-        return ListView.builder(
-          itemCount: categories.length,
-          itemBuilder: (context, index) {
-            Kategory category = categories[index];
-            return FilterCategoriesCard(category: category);
-          },
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: ListView.builder(
+            itemCount: categories.length,
+            itemBuilder: (context, index) {
+              Kategory category = categories[index];
+              return FilterCategoriesCard(category: category);
+            },
+          ),
         );
       },
       error: (error, stackTrace) => errorMethod(error),
