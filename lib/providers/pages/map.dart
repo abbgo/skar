@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:skar/notifiers/map.dart';
+import 'package:skar/notifiers/pages/map.dart';
 
 final locationPermissionProvider =
     StateProvider.autoDispose<bool>((ref) => false);
