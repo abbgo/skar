@@ -11,6 +11,10 @@ class ShopCategoriesNotifier extends StateNotifier<List<ShopCategories>> {
   Future<void> deleteCategoriesByIndex(int index) async {
     state = state.sublist(0, index + 1);
   }
+}
+
+class FilterCategoriesNotifier extends StateNotifier<List<ShopCategories>> {
+  FilterCategoriesNotifier() : super([]);
 
   Future<void> addOrRemoveFilterCategory(ShopCategories category) async {
     List<ShopCategories> categories = state.map((e) => e).toList();

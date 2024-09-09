@@ -12,4 +12,8 @@ class FilterCategoriesNotifier extends StateNotifier<List<String>> {
       state = categoryIDs;
     }
   }
+
+  Future<void> removeAllFilterCategory() async {
+    state = [];
+  }
 }

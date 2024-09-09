@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/pages/parts/filter_categories/filter_categories.dart';
 import 'package:skar/providers/api/category.dart';
+import 'package:skar/providers/pages/filter_categories.dart';
 import 'package:skar/services/category.dart';
 
 class FilterCategoriesButton extends ConsumerWidget {
@@ -14,7 +15,7 @@ class FilterCategoriesButton extends ConsumerWidget {
     String categoryNames = '';
     var lang = AppLocalizations.of(context)!;
     List<ShopCategories> selectedFilterCategories =
-        ref.watch(shopCategoriesProvider);
+        ref.watch(filterCategoriesProvider);
 
     if (selectedFilterCategories.isNotEmpty) {
       int categoriesLenght = selectedFilterCategories.length;
@@ -36,9 +37,15 @@ class FilterCategoriesButton extends ConsumerWidget {
               children: [
                 Text(categoryNames),
                 GestureDetector(
-                  onTap: () => ref
-                      .read(shopCategoriesProvider.notifier)
-                      .removeAllFilterCategories(),
+                  onTap: () async {
+                    await ref
+                        .read(selectedCategoriesProvider.notifier)
+                        .removeAllFilterCategory();
+
+                    await ref
+                        .read(filterCategoriesProvider.notifier)
+                        .removeAllFilterCategories();
+                  },
                   child: const Icon(Icons.cancel_outlined),
                 ),
               ],

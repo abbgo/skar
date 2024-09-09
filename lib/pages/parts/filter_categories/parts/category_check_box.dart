@@ -32,7 +32,7 @@ class CategoryCheckBox extends ConsumerWidget {
           categoryID: category.id,
         );
         await ref
-            .read(shopCategoriesProvider.notifier)
+            .read(filterCategoriesProvider.notifier)
             .addOrRemoveFilterCategory(selectedCategory);
       },
       title: Text(isTM ? category.nameTM : category.nameRU),
