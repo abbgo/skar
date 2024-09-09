@@ -9,7 +9,7 @@ class CategoryService {
   // FETCH CATEGORIES BY SHOP ID -----------------------------------------------
   Future<List<Kategory>> fetchCategoriesByShopID(String shopID) async {
     final Uri uri = Uri.parse('$apiUrl/categories').replace(
-      queryParameters: {'limit': '20', 'page': '1', 'shop_id': shopID},
+      queryParameters: {'limit': '50', 'page': '1', 'shop_id': shopID},
     );
 
     try {
