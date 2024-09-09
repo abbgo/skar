@@ -6,35 +6,31 @@ import 'package:skar/pages/parts/filter_categories/filter_categories.dart';
 import 'package:skar/providers/api/category.dart';
 import 'package:skar/services/category.dart';
 
-class FilterCategoriesButton extends StatelessWidget {
+class FilterCategoriesButton extends ConsumerWidget {
   const FilterCategoriesButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    String categoryNames = '';
     var lang = AppLocalizations.of(context)!;
+    List<ShopCategories> selectedFilterCategories =
+        ref.watch(shopCategoriesProvider);
+
+    if (selectedFilterCategories.isNotEmpty) {
+      int categoriesLenght = selectedFilterCategories.length;
+      for (var i = 0; i < categoriesLenght; i++) {
+        categoryNames += i != categoriesLenght - 1
+            ? '${selectedFilterCategories[i].name} , '
+            : selectedFilterCategories[i].name;
+      }
+    }
 
     return ListTile(
       title: Text(
         lang.categories,
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
-      subtitle: Consumer(
-        builder: (context, ref, child) {
-          List<ShopCategories> selectedFilterCategories =
-              ref.watch(shopCategoriesProvider);
-
-          String categoryNames = '';
-          int categoriesLenght = selectedFilterCategories.length;
-
-          for (var i = 0; i < categoriesLenght; i++) {
-            categoryNames += i != categoriesLenght - 1
-                ? '${selectedFilterCategories[i].name} , '
-                : selectedFilterCategories[i].name;
-          }
-
-          return Text(categoryNames);
-        },
-      ),
+      subtitle: categoryNames != '' ? Text(categoryNames) : null,
       trailing: Icon(Icons.adaptive.arrow_forward),
       onTap: () => Navigator.push(
         context,
