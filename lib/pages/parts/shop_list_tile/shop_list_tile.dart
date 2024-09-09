@@ -30,7 +30,7 @@ class ShopListTile extends StatelessWidget {
               cardWidth: 140,
             ),
             ShopListTileData(shop: shop, forFavorite: forFavorite),
-            mapPageContext != null
+            mapPageContext != null && !shop.atHome!
                 ? ShopListTileMapButton(
                     shop: shop,
                     mapPageContext: mapPageContext!,
