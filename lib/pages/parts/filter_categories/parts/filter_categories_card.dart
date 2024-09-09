@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/models/category.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/filter_categories.dart';
+import 'package:skar/styles/colors.dart';
 
 class FilterCategoriesCard extends ConsumerWidget {
   const FilterCategoriesCard({super.key, required this.category});
@@ -13,11 +14,23 @@ class FilterCategoriesCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool isTM = ref.watch(langProvider) == 'tr';
     List<String> selectedCategories = ref.watch(selectedCategoriesProvider);
+    bool isSelected = selectedCategories.contains(category.id);
 
     return category.childCategories!.isEmpty
         ? CheckboxListTile(
-            value: selectedCategories.contains(category.id),
-            onChanged: (value) {},
+            activeColor: elevatedButtonColor,
+            value: isSelected,
+            onChanged: (value) async {
+              if (isSelected) {
+                await ref
+                    .read(selectedCategoriesProvider.notifier)
+                    .removeCategory(category.id);
+              } else {
+                await ref
+                    .read(selectedCategoriesProvider.notifier)
+                    .addCategory(category.id);
+              }
+            },
             title: Text(isTM ? category.nameTM : category.nameRU),
           )
         : ExpansionTile(
