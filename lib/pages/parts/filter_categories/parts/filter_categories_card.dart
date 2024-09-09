@@ -12,6 +12,14 @@ class FilterCategoriesCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     bool isTM = ref.watch(langProvider) == 'tr';
 
-    return Text(isTM ? category.nameTM : category.nameRU);
+    return category.childCategories!.isEmpty
+        ? CheckboxListTile(
+            value: category.isSelected,
+            onChanged: (value) {},
+            title: Text(isTM ? category.nameTM : category.nameRU),
+          )
+        : ExpansionTile(
+            title: Text(isTM ? category.nameTM : category.nameRU),
+          );
   }
 }
