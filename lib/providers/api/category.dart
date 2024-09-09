@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/models/category.dart';
+import 'package:skar/notifiers/api/category.dart';
 import 'package:skar/services/category.dart';
 
 final categoryApiProvider =
@@ -51,19 +52,6 @@ var fetchCategoriesProvider = FutureProvider.autoDispose<ResultCategory>(
     return result;
   },
 );
-
-// ----------------------------------------------------------------------------
-class ShopCategoriesNotifier extends StateNotifier<List<ShopCategories>> {
-  ShopCategoriesNotifier() : super([]);
-
-  Future<void> addCategory(ShopCategories shopCategory) async {
-    state = [...state, shopCategory];
-  }
-
-  Future<void> deleteCategoriesByIndex(int index) async {
-    state = state.sublist(0, index + 1);
-  }
-}
 
 var shopCategoriesProvider = StateNotifierProvider.autoDispose<
     ShopCategoriesNotifier, List<ShopCategories>>((ref) {
