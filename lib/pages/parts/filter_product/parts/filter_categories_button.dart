@@ -20,9 +20,19 @@ class FilterCategoriesButton extends StatelessWidget {
       ),
       subtitle: Consumer(
         builder: (context, ref, child) {
-          List<ShopCategories> shopCategories =
+          List<ShopCategories> selectedFilterCategories =
               ref.watch(shopCategoriesProvider);
-          return Text(shopCategories.length.toString());
+
+          String categoryNames = '';
+          int categoriesLenght = selectedFilterCategories.length;
+
+          for (var i = 0; i < categoriesLenght; i++) {
+            categoryNames += i != categoriesLenght - 1
+                ? '${selectedFilterCategories[i].name} , '
+                : selectedFilterCategories[i].name;
+          }
+
+          return Text(categoryNames);
         },
       ),
       trailing: Icon(Icons.adaptive.arrow_forward),
