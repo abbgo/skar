@@ -35,6 +35,23 @@ var fetchCategoriesByShopIDProvider =
   },
 );
 
+var fetchCategoriesProvider = FutureProvider.autoDispose<ResultCategory>(
+  (ref) async {
+    ResultCategory result = ResultCategory.defaultResult();
+
+    try {
+      List<Kategory> categories =
+          await ref.read(categoryApiProvider).fetchCategoriesByShopID('');
+
+      result = ResultCategory(error: '', categories: categories);
+    } catch (e) {
+      result = ResultCategory(error: e.toString());
+    }
+
+    return result;
+  },
+);
+
 // ----------------------------------------------------------------------------
 class ShopCategoriesNotifier extends StateNotifier<List<ShopCategories>> {
   ShopCategoriesNotifier() : super([]);
