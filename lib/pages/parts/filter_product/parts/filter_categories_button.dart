@@ -30,7 +30,19 @@ class FilterCategoriesButton extends ConsumerWidget {
         lang.categories,
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
-      subtitle: categoryNames != '' ? Text(categoryNames) : null,
+      subtitle: categoryNames == ''
+          ? null
+          : Row(
+              children: [
+                Text(categoryNames),
+                GestureDetector(
+                  onTap: () => ref
+                      .read(shopCategoriesProvider.notifier)
+                      .removeAllFilterCategories(),
+                  child: const Icon(Icons.cancel_outlined),
+                ),
+              ],
+            ),
       trailing: Icon(Icons.adaptive.arrow_forward),
       onTap: () => Navigator.push(
         context,
