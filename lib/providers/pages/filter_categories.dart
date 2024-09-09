@@ -1,4 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/notifiers/pages/filter_categories.dart';
 
-var selectedCategoriesProvider =
-    StateProvider.autoDispose<List<String>>((ref) => []);
+final selectedCategoriesProvider =
+    StateNotifierProvider.autoDispose<FilterCategoriesNotifier, List<String>>(
+  (ref) => FilterCategoriesNotifier(),
+);
