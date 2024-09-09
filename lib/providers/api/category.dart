@@ -54,6 +54,5 @@ var fetchCategoriesProvider = FutureProvider.autoDispose<ResultCategory>(
 );
 
 var shopCategoriesProvider = StateNotifierProvider.autoDispose<
-    ShopCategoriesNotifier, List<ShopCategories>>((ref) {
-  return ShopCategoriesNotifier();
-});
+    ShopCategoriesNotifier,
+    List<ShopCategories>>((ref) => ShopCategoriesNotifier());

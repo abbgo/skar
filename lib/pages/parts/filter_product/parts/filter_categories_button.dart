@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/pages/parts/filter_categories/filter_categories.dart';
+import 'package:skar/providers/api/category.dart';
+import 'package:skar/services/category.dart';
 
 class FilterCategoriesButton extends StatelessWidget {
   const FilterCategoriesButton({super.key});
@@ -14,6 +17,13 @@ class FilterCategoriesButton extends StatelessWidget {
       title: Text(
         lang.categories,
         style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
+      subtitle: Consumer(
+        builder: (context, ref, child) {
+          List<ShopCategories> shopCategories =
+              ref.watch(shopCategoriesProvider);
+          return Text(shopCategories.length.toString());
+        },
       ),
       trailing: Icon(Icons.adaptive.arrow_forward),
       onTap: () => Navigator.push(

@@ -8,6 +8,16 @@ class ShopCategoriesNotifier extends StateNotifier<List<ShopCategories>> {
     state = [...state, shopCategory];
   }
 
+  Future<void> addOrRemoveFilterCategory(ShopCategories category) async {
+    List<ShopCategories> categories = state.map((e) => e).toList();
+    if (!categories.contains(category)) {
+      state = [...state, category];
+    } else {
+      categories.remove(category);
+      state = categories;
+    }
+  }
+
   Future<void> deleteCategoriesByIndex(int index) async {
     state = state.sublist(0, index + 1);
   }

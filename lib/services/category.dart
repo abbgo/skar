@@ -37,6 +37,7 @@ class ShopCategories extends Equatable {
   final String categoryID;
   final List<Kategory>? childCategories;
   final List<String>? selectedCategories;
+
   const ShopCategories({
     required this.name,
     required this.categoryID,
