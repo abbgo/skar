@@ -26,38 +26,90 @@ class FilterCategoriesButton extends ConsumerWidget {
       }
     }
 
-    return ListTile(
-      title: Text(
-        lang.categories,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-      ),
-      subtitle: categoryNames == ''
-          ? null
-          : Row(
-              children: [
-                Text(categoryNames),
-                GestureDetector(
-                  onTap: () async {
-                    await ref
-                        .read(selectedCategoriesProvider.notifier)
-                        .removeAllFilterCategory();
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 25, top: 10, bottom: 10),
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          CustomPageRoute(
+            child: const FilterCategoriesPage(),
+            direction: AxisDirection.left,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    lang.categories,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  categoryNames == ''
+                      ? const SizedBox()
+                      : Expanded(
+                          child: Row(
+                            children: [
+                              Text(categoryNames),
+                              GestureDetector(
+                                onTap: () async {
+                                  await ref
+                                      .read(selectedCategoriesProvider.notifier)
+                                      .removeAllFilterCategory();
 
-                    await ref
-                        .read(filterCategoriesProvider.notifier)
-                        .removeAllFilterCategories();
-                  },
-                  child: const Icon(Icons.cancel_outlined),
-                ),
-              ],
+                                  await ref
+                                      .read(filterCategoriesProvider.notifier)
+                                      .removeAllFilterCategories();
+                                },
+                                child: const Icon(Icons.cancel_outlined),
+                              ),
+                            ],
+                          ),
+                        ),
+                ],
+              ),
             ),
-      trailing: Icon(Icons.adaptive.arrow_forward),
-      onTap: () => Navigator.push(
-        context,
-        CustomPageRoute(
-          child: const FilterCategoriesPage(),
-          direction: AxisDirection.left,
+            Icon(Icons.adaptive.arrow_forward),
+          ],
         ),
       ),
     );
+
+    // return ListTile(
+    //   title: Text(
+    //     lang.categories,
+    //     style: const TextStyle(fontWeight: FontWeight.bold),
+    //   ),
+    //   subtitle: categoryNames == ''
+    //       ? null
+    //       : Row(
+    //           children: [
+    //             Text(categoryNames),
+    //             GestureDetector(
+    //               onTap: () async {
+    //                 await ref
+    //                     .read(selectedCategoriesProvider.notifier)
+    //                     .removeAllFilterCategory();
+
+    //                 await ref
+    //                     .read(filterCategoriesProvider.notifier)
+    //                     .removeAllFilterCategories();
+    //               },
+    //               child: const Icon(Icons.cancel_outlined),
+    //             ),
+    //           ],
+    //         ),
+    //   trailing: Icon(Icons.adaptive.arrow_forward),
+    //   onTap: () => Navigator.push(
+    //     context,
+    //     CustomPageRoute(
+    //       child: const FilterCategoriesPage(),
+    //       direction: AxisDirection.left,
+    //     ),
+    //   ),
+    // );
   }
 }
