@@ -21,15 +21,9 @@ class FilterCategoriesCard extends ConsumerWidget {
             activeColor: elevatedButtonColor,
             value: isSelected,
             onChanged: (value) async {
-              if (isSelected) {
-                await ref
-                    .read(selectedCategoriesProvider.notifier)
-                    .removeCategory(category.id);
-              } else {
-                await ref
-                    .read(selectedCategoriesProvider.notifier)
-                    .addCategory(category.id);
-              }
+              await ref
+                  .read(selectedCategoriesProvider.notifier)
+                  .addOrRemoveCategory(category.id);
             },
             title: Text(isTM ? category.nameTM : category.nameRU),
           )
