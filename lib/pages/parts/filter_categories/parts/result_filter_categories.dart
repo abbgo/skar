@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/static_data.dart';
 import 'package:skar/models/category.dart';
 import 'package:skar/pages/parts/error.dart';
+import 'package:skar/pages/parts/filter_categories/parts/filter_categories_card.dart';
 import 'package:skar/providers/api/category.dart';
 
 class ResultFilterCategories extends ConsumerWidget {
@@ -27,7 +28,7 @@ class ResultFilterCategories extends ConsumerWidget {
           itemCount: categories.length,
           itemBuilder: (context, index) {
             Kategory category = categories[index];
-            return Text(category.nameTM);
+            return FilterCategoriesCard(category: category);
           },
         );
       },
