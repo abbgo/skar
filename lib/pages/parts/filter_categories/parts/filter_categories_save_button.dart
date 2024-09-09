@@ -4,12 +4,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FilterCategoriesSaveButton extends StatelessWidget {
-  const FilterCategoriesSaveButton({
-    super.key,
-    required this.forSearchProduct,
-  });
-
-  final bool forSearchProduct;
+  const FilterCategoriesSaveButton({super.key});
 
   @override
   Widget build(BuildContext context) {

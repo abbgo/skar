@@ -16,10 +16,8 @@ class FilterCategoriesPage extends StatelessWidget {
       ),
       body: const Column(
         children: [
-          Expanded(
-            child: ResultFilterCategories(),
-          ),
-          FilterCategoriesSaveButton(forSearchProduct: true),
+          Expanded(child: ResultFilterCategories()),
+          FilterCategoriesSaveButton(),
         ],
       ),
     );
