@@ -40,8 +40,8 @@ final shopsForMapProvider =
                           false,
                         )
                       : goToPage(arg, ShopPage(shopID: shop.id!), false),
-                  icon:
-                      await generateMarkerIcon(isTM, shop, false, isHybridMap),
+                  icon: await generateMarkerIcon(
+                      isTM, shop, false, isHybridMap, false),
                 ),
               );
         }

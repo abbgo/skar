@@ -117,7 +117,6 @@ class ShopParams extends Equatable {
   final bool? isRandom;
   final int? page;
   final String? parentShopID;
-  final bool? showShopName;
 
   const ShopParams({
     this.latitude,
@@ -126,7 +125,6 @@ class ShopParams extends Equatable {
     this.isRandom,
     this.page,
     this.parentShopID,
-    this.showShopName,
   });
 
   @override
@@ -137,7 +135,6 @@ class ShopParams extends Equatable {
         isRandom,
         page,
         parentShopID,
-        showShopName,
       ];
 
   ShopParams copyWith({
@@ -148,7 +145,6 @@ class ShopParams extends Equatable {
     String? search,
     int? page,
     String? parentShopID,
-    bool? showShopName,
   }) {
     return ShopParams(
       latitude: latitude ?? this.latitude,
@@ -157,7 +153,6 @@ class ShopParams extends Equatable {
       isRandom: isRandom ?? this.isRandom,
       page: page ?? this.page,
       parentShopID: parentShopID ?? this.parentShopID,
-      showShopName: showShopName ?? this.showShopName,
     );
   }
 }

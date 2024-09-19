@@ -9,37 +9,62 @@ class MarkerWidget extends StatelessWidget {
     required this.isTM,
     required this.forOnTap,
     required this.isHybrid,
+    required this.showShopName,
   });
 
   final Shop shop;
   final bool isTM;
   final bool forOnTap;
   final bool isHybrid;
+  final bool showShopName;
 
   @override
   Widget build(BuildContext context) {
+    Widget iconTopWidget = const SizedBox();
+
+    if (forOnTap) {
+      iconTopWidget = ShopWithParentMarker(shop: shop, isTM: isTM);
+    } else if (showShopName) {
+      iconTopWidget = Text(
+        isTM ? shop.nameTM! : shop.nameRU!,
+        style: TextStyle(
+          fontSize: 24,
+          color: isHybrid ? Colors.white : Colors.black,
+          shadows: isHybrid
+              ? const [
+                  Shadow(offset: Offset(-1.5, -1.5), color: Colors.black),
+                  Shadow(offset: Offset(1.5, -1.5), color: Colors.black),
+                  Shadow(offset: Offset(1.5, 1.5), color: Colors.black),
+                  Shadow(offset: Offset(-1.5, 1.5), color: Colors.black),
+                ]
+              : [],
+        ),
+      );
+    }
+
     return Column(
       children: [
-        !forOnTap
-            ? Text(
-                isTM ? shop.nameTM! : shop.nameRU!,
-                style: TextStyle(
-                  fontSize: 24,
-                  color: isHybrid ? Colors.white : Colors.black,
-                  shadows: isHybrid
-                      ? const [
-                          Shadow(
-                              offset: Offset(-1.5, -1.5), color: Colors.black),
-                          Shadow(
-                              offset: Offset(1.5, -1.5), color: Colors.black),
-                          Shadow(offset: Offset(1.5, 1.5), color: Colors.black),
-                          Shadow(
-                              offset: Offset(-1.5, 1.5), color: Colors.black),
-                        ]
-                      : [],
-                ),
-              )
-            : ShopWithParentMarker(shop: shop, isTM: isTM),
+        iconTopWidget,
+        // !forOnTap
+        //     ? Text(
+        //         isTM ? shop.nameTM! : shop.nameRU!,
+        //         style: TextStyle(
+        //           fontSize: 24,
+        //           color: isHybrid ? Colors.white : Colors.black,
+        //           shadows: isHybrid
+        //               ? const [
+        //                   Shadow(
+        //                       offset: Offset(-1.5, -1.5), color: Colors.black),
+        //                   Shadow(
+        //                       offset: Offset(1.5, -1.5), color: Colors.black),
+        //                   Shadow(offset: Offset(1.5, 1.5), color: Colors.black),
+        //                   Shadow(
+        //                       offset: Offset(-1.5, 1.5), color: Colors.black),
+        //                 ]
+        //               : [],
+        //         ),
+        //       )
+        //     : ShopWithParentMarker(shop: shop, isTM: isTM),
         Image.asset('assets/icons/shirt_location.png', height: 50),
       ],
     );

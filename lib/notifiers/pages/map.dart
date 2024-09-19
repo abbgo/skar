@@ -25,6 +25,23 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
     var firstElement = state.toList().sublist(0, 1);
     state = firstElement.toSet();
   }
+
+  Future<void> removeMarkersByPosition(Set<Marker> markersToRemove) async {
+    List<Marker> listOfState = state.toList();
+    List<Marker> listOfRemovedMarkers = markersToRemove.toList();
+
+    List<Marker> updatedMarkers = listOfState.where(
+      (marker) {
+        return !listOfRemovedMarkers.any(
+          (removeMarker) =>
+              removeMarker.position.latitude != marker.position.latitude &&
+              removeMarker.position.longitude != marker.position.longitude,
+        );
+      },
+    ).toList();
+
+    state = updatedMarkers.toSet();
+  }
 }
 
 class HybridMapNotifier extends StateNotifier<bool> {

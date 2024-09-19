@@ -54,6 +54,7 @@ class _MapState extends State<Map> {
                   trafficEnabled: false,
                   buildingsEnabled: false,
                   indoorViewEnabled: false,
+                  compassEnabled: false,
                   minMaxZoomPreference: const MinMaxZoomPreference(10, 17),
                   markers: markers,
                   initialCameraPosition: cameraPosition,
@@ -74,11 +75,27 @@ class _MapState extends State<Map> {
                       context,
                     );
 
+                    bool showShopName = _position.zoom.toInt() >= 16;
+
+                    if (showShopName) {
+                      final GoogleMapController controller =
+                          await _mapController.future;
+                      final LatLngBounds visibleBounds =
+                          await controller.getVisibleRegion();
+
+                      Set<Marker> visibleMarkers = markers.where((marker) {
+                        return visibleBounds.contains(marker.position);
+                      }).toSet();
+
+                      await ref
+                          .read(markersProvider.notifier)
+                          .removeMarkersByPosition(visibleMarkers);
+                    }
+
                     ShopParams shopParams = ShopParams(
                       latitude: _position.target.latitude,
                       longitude: _position.target.longitude,
                       kilometer: kilometer.toInt(),
-                      showShopName: _position.zoom.toInt() >= 15,
                     );
                     await ref
                         .read(shopParamProvider.notifier)

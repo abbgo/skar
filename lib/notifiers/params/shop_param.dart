@@ -8,7 +8,6 @@ class ShopParamsNotifier extends StateNotifier<ShopParams> {
             latitude: 0,
             longitude: 0,
             kilometer: 2,
-            showShopName: false,
           ),
         );
 
@@ -17,7 +16,6 @@ class ShopParamsNotifier extends StateNotifier<ShopParams> {
       latitude: params.latitude,
       longitude: params.longitude,
       kilometer: params.kilometer,
-      showShopName: params.showShopName,
     );
   }
 }
