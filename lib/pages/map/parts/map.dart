@@ -51,6 +51,10 @@ class _MapState extends State<Map> {
               skipLoadingOnRefresh: true,
               data: (data) {
                 return GoogleMap(
+                  trafficEnabled: false,
+                  buildingsEnabled: false,
+                  indoorViewEnabled: false,
+                  minMaxZoomPreference: const MinMaxZoomPreference(10, 17),
                   markers: markers,
                   initialCameraPosition: cameraPosition,
                   mapType: isHybridMap ? MapType.hybrid : MapType.normal,

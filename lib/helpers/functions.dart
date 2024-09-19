@@ -38,11 +38,15 @@ Future<double> calculateMapWidthInKm(
   int zoomLevel,
   BuildContext context,
 ) async {
+  if (zoomLevel >= 15) {
+    return 1;
+  }
   const earthCircumferenceKm = 40075.0;
   int totalPixels = 256 * (1 << zoomLevel);
   double metersPerPixel = earthCircumferenceKm * 1000 / totalPixels;
   double mapWidthInMeters = screenProperties(context).width * metersPerPixel;
   double mapWidthInKm = mapWidthInMeters / 1000;
+
   return mapWidthInKm;
 }
 
