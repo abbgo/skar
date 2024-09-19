@@ -21,7 +21,7 @@ final shopsForMapProvider =
     ResultShop result = ResultShop.defaultResult();
 
     try {
-      var shopParams = ref.watch(shopParamProvider);
+      ShopParams shopParams = ref.watch(shopParamProvider);
       bool isHybridMap = await ref.watch(isHybridMapProvider);
       List<Shop> shops =
           await ref.read(apiProvider).fetchShopsForMap('shops/map', shopParams);
