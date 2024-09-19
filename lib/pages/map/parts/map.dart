@@ -78,6 +78,7 @@ class _MapState extends State<Map> {
                       latitude: _position.target.latitude,
                       longitude: _position.target.longitude,
                       kilometer: kilometer.toInt(),
+                      showShopName: _position.zoom.toInt() >= 15,
                     );
                     await ref
                         .read(shopParamProvider.notifier)
