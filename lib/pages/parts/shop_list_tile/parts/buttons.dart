@@ -50,8 +50,7 @@ class ShopListTileMapButton extends ConsumerWidget {
                             false,
                           )
                         : showSelectShopBottomSheet(mapPageContext, shop),
-                icon: await generateMarkerIcon(
-                    isTM, shop, true, isHybridMap, true),
+                icon: await generateMarkerIcon(isTM, shop, true, isHybridMap),
               ),
             );
 
