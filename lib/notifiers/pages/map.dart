@@ -21,10 +21,10 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
     }
   }
 
-  Future<void> removeAllMarkers() async {
-    var firstElement = state.toList().sublist(0, 1);
-    state = firstElement.toSet();
-  }
+  // Future<void> removeAllMarkers() async {
+  //   var firstElement = state.toList().sublist(0, 1);
+  //   state = firstElement.toSet();
+  // }
 }
 
 class HybridMapNotifier extends StateNotifier<bool> {

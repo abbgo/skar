@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/snackbars.dart';
-import 'package:skar/providers/internet_connection.dart';
-import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/pages/parts/bottom_navigation/bottom_navigation.dart';
 import 'package:skar/pages/statute/statute.dart';
+import 'package:skar/providers/internet_connection.dart';
+import 'package:skar/providers/local_storadge/setting.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});

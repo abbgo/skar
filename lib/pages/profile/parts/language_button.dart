@@ -29,7 +29,7 @@ class LanguageButton extends ConsumerWidget {
         ),
         onPressed: () async {
           await ref.read(langProvider.notifier).update(lang);
-          await ref.read(markersProvider.notifier).removeAllMarkers();
+          // await ref.read(markersProvider.notifier).removeAllMarkers();
           if (context.mounted) {
             Navigator.pushAndRemoveUntil(
               context,

@@ -12,11 +12,12 @@ class MapTypeButton extends ConsumerWidget {
     bool isLightBrightness = isLightTheme(context, ref);
 
     return IconButton(
-      onPressed: () async {
-        await ref.read(markersProvider.notifier).removeAllMarkers().then(
-              (value) => ref.read(isHybridMapProvider.notifier).change(),
-            );
-      },
+      // onPressed: () async {
+      //   // await ref.read(markersProvider.notifier).removeAllMarkers().then(
+      //   //       (value) => ref.read(isHybridMapProvider.notifier).change(),
+      //   //     );
+      // },
+      onPressed: () => ref.read(isHybridMapProvider.notifier).change(),
       icon: Icon(
         Icons.layers,
         color: isLightBrightness ? elevatedButtonColor : Colors.white,
