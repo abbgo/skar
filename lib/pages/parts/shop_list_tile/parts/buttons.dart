@@ -30,7 +30,7 @@ class ShopListTileMapButton extends ConsumerWidget {
 
     return IconButton(
       onPressed: () async {
-        bool isHybridMap = await ref.read(isHybridMapProvider);
+        // bool isHybridMap = await ref.read(isHybridMapProvider);
         // await ref.read(markersProvider.notifier).removeAllMarkers();
         await ref.read(markersProvider.notifier).addMarker(
               Marker(
@@ -50,7 +50,11 @@ class ShopListTileMapButton extends ConsumerWidget {
                             false,
                           )
                         : showSelectShopBottomSheet(mapPageContext, shop),
-                icon: await generateMarkerIcon(isTM, shop, true, isHybridMap),
+                icon: await generateMarkerIcon(
+                  isTM,
+                  shop,
+                  true, /* isHybridMap */
+                ),
               ),
             );
 

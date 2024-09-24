@@ -27,13 +27,13 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
   // }
 }
 
-class HybridMapNotifier extends StateNotifier<bool> {
-  HybridMapNotifier() : super(false);
+// class HybridMapNotifier extends StateNotifier<bool> {
+//   HybridMapNotifier() : super(false);
 
-  Future<void> change() async {
-    state = !state;
-  }
-}
+//   Future<void> change() async {
+//     state = !state;
+//   }
+// }
 
 class CameraPositionNotifier extends StateNotifier<CameraPosition> {
   CameraPositionNotifier()

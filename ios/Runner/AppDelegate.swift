@@ -1,8 +1,9 @@
-import UIKit
 import Flutter
+import UIKit
 import GoogleMaps // Import GoogleMaps
 
-@UIApplicationMain
+
+@main
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(
     _ application: UIApplication,

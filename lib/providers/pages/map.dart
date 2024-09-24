@@ -14,9 +14,9 @@ final markersProvider =
   (ref) => MarkersNotifier(),
 );
 
-final isHybridMapProvider = StateNotifierProvider<HybridMapNotifier, bool>(
-  (ref) => HybridMapNotifier(),
-);
+// final isHybridMapProvider = StateNotifierProvider<HybridMapNotifier, bool>(
+//   (ref) => HybridMapNotifier(),
+// );
 
 final cameraPositionProvider =
     StateNotifierProvider<CameraPositionNotifier, CameraPosition>(

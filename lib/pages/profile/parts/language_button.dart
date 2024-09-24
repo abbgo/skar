@@ -4,7 +4,6 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:skar/pages/parts/bottom_navigation/bottom_navigation.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
-import 'package:skar/providers/pages/map.dart';
 
 class LanguageButton extends ConsumerWidget {
   const LanguageButton({super.key, required this.text, required this.lang});

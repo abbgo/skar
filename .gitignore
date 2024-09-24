@@ -10,10 +10,6 @@
 .svn/
 migrate_working_dir/
 
-# My private folders and files
-.env
-assets/*
-
 # IntelliJ related
 *.iml
 *.ipr
@@ -45,3 +41,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# My private folders and files
+.env
+assets/*

@@ -1,5 +1,5 @@
 name: skar
-description: "A new Flutter project."
+description: "Skar Project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.3 <4.0.0'
+  sdk: ^3.5.2
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,29 +30,30 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_dotenv: ^5.1.0
-  http: ^1.1.0
-  google_maps_flutter: ^2.4.0
-  geolocator: ^13.0.1
-  widget_to_marker: ^1.0.4
-  custom_map_markers: ^0.0.1
-  flutter_phone_direct_caller: ^2.1.1
-  intl: 0.19.0
-  flutter_localizations:
-    sdk: flutter
-  connectivity_plus: ^6.0.5
-  cached_network_image: ^3.3.1
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.8
+  flutter_dotenv: ^5.1.0
+  http: ^1.2.2
+  google_maps_flutter: ^2.9.0
+  geolocator: ^13.0.1
+  widget_to_marker: ^1.0.6
+  custom_map_markers: ^0.0.2+1
+  intl: ^0.19.0
+  flutter_localizations:
+    sdk: flutter
+  connectivity_plus: ^6.0.5
+  cached_network_image: ^3.4.1
   flutter_riverpod: ^2.5.1
-  sqflite: ^2.3.3
-  shared_preferences: ^2.2.3
+  sqflite: ^2.3.3+1
+  shared_preferences: ^2.3.2
   shared_preferences_riverpod: ^0.3.0
   equatable: ^2.0.5
   just_the_tooltip: ^0.0.12
   markers_cluster_google_maps_flutter: ^0.1.0+2
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -82,13 +83,14 @@ flutter:
     - assets/icons/
     - assets/animated_icons/
     - .env
+    - assets/map/map_style.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
+  # https://flutter.dev/to/resolution-aware-images
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+  # https://flutter.dev/to/asset-from-package
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -108,4 +110,4 @@ flutter:
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  # see https://flutter.dev/to/font-from-package

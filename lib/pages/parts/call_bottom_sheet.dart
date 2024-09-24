@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/styles/colors.dart';
@@ -47,7 +46,7 @@ class CallBottomSheet extends ConsumerWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        FlutterPhoneDirectCaller.callNumber(e.toString());
+                        // FlutterPhoneDirectCaller.callNumber(e.toString());
                       },
                       icon: const Icon(Icons.call, color: Colors.green),
                     ),
