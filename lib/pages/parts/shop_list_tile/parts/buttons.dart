@@ -30,6 +30,7 @@ class ShopListTileMapButton extends ConsumerWidget {
 
     return IconButton(
       onPressed: () async {
+        await ref.read(markersProvider.notifier).removeAllMarkers();
         await ref.read(markersProvider.notifier).addMarker(
               Marker(
                 markerId: MarkerId('${shop.latitude}-${shop.longitude}'),
@@ -48,11 +49,7 @@ class ShopListTileMapButton extends ConsumerWidget {
                             false,
                           )
                         : showSelectShopBottomSheet(mapPageContext, shop),
-                icon: await generateMarkerIcon(
-                  isTM,
-                  shop,
-                  true, /* isHybridMap */
-                ),
+                icon: await generateMarkerIcon(isTM, shop, true),
               ),
             );
 
