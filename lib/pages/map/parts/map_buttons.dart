@@ -6,7 +6,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/pages/map/parts/decrease_zoom_button.dart';
 import 'package:skar/pages/map/parts/increase_zoom_button.dart';
-import 'package:skar/pages/map/parts/map_type_button.dart';
 import 'package:skar/pages/map/parts/search_shop_button.dart';
 
 class MapButtons extends ConsumerWidget {
@@ -23,7 +22,6 @@ class MapButtons extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SearchShopButton(),
-          const MapTypeButton(),
           SizedBox(height: screenProperties(context).height / 2 - 200),
           IncreaseZoomButton(mapController: mapController),
           DecreaseZoomButton(mapController: mapController),

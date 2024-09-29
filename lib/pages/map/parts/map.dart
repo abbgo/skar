@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:markers_cluster_google_maps_flutter/markers_cluster_google_maps_flutter.dart';
@@ -27,7 +26,6 @@ class _MapState extends ConsumerState<Map> {
   late CameraPosition _position;
   late MarkersClusterManager _clusterManager;
   double _currentZoom = 15;
-  late String _mapStyleString;
 
   @override
   void initState() {
@@ -41,10 +39,6 @@ class _MapState extends ConsumerState<Map> {
       clusterOpacity: 1.0,
       clusterTextStyle: const TextStyle(fontSize: 15, color: Colors.white),
     );
-
-    rootBundle.loadString('assets/map/map_style.json').then((string) {
-      _mapStyleString = string;
-    });
   }
 
   // Update clusters based on the current zoom level
@@ -85,7 +79,6 @@ class _MapState extends ConsumerState<Map> {
           skipLoadingOnRefresh: true,
           data: (data) {
             return GoogleMap(
-              style: _mapStyleString,
               trafficEnabled: false,
               buildingsEnabled: false,
               indoorViewEnabled: false,
