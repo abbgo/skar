@@ -23,7 +23,7 @@ class ShopListCardImage extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: showCachImageMethod(shop.image!),
             ),
-            BrandIcon(isBrand: shop.isBrand!),
+            BrandIcon(isBrand: shop.isBrand!, top: 2, left: 2, size: 20),
           ],
         ),
       ),

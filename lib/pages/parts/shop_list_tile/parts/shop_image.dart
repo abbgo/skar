@@ -37,7 +37,7 @@ class ShopListTileImage extends StatelessWidget {
               child: showCachImageMethod(shop.image!),
             ),
           ),
-          BrandIcon(isBrand: shop.isBrand!),
+          BrandIcon(isBrand: shop.isBrand!, top: 2, left: 2, size: 25),
         ],
       ),
     );

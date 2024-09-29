@@ -4,6 +4,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/methods/pages/shop.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/brand_icon.dart';
 import 'package:skar/pages/shop/parts/shop_favorite_button.dart';
 import 'package:skar/styles/colors.dart';
 
@@ -15,6 +16,8 @@ class ShopImage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     bool isLightBrightness = isLightTheme(context, ref);
+    double topSafeArea = screenProperties(context).topSafeArea;
+
     return SliverAppBar(
       backgroundColor:
           isLightBrightness ? Colors.white : scaffoldColorDarkTheme,
@@ -25,12 +28,12 @@ class ShopImage extends ConsumerWidget {
         children: [
           showCachImageMethod(shop.image!),
           Positioned(
-            top: screenProperties(context).topSafeArea + 10,
+            top: topSafeArea + 10,
             right: 60,
             child: ShopFavoriteButton(shopID: shop.id!),
           ),
           Positioned(
-            top: screenProperties(context).topSafeArea,
+            top: topSafeArea,
             right: 10,
             child: IconButton(
               style: IconButton.styleFrom(
@@ -40,6 +43,8 @@ class ShopImage extends ConsumerWidget {
               icon: const Icon(Icons.call, color: Colors.green),
             ),
           ),
+          BrandIcon(
+              isBrand: shop.isBrand!, top: topSafeArea, left: 10, size: 30),
         ],
       ),
     );

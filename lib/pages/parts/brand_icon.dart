@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
 class BrandIcon extends StatelessWidget {
-  const BrandIcon({super.key, required this.isBrand});
+  const BrandIcon({
+    super.key,
+    required this.isBrand,
+    required this.top,
+    required this.left,
+    required this.size,
+  });
 
   final bool isBrand;
+  final double top, left, size;
 
   @override
   Widget build(BuildContext context) {
