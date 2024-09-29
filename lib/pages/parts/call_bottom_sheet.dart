@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:skar/helpers/call_and_sms.dart';
 import 'package:skar/helpers/functions.dart';
 import 'package:skar/styles/colors.dart';
 
@@ -45,9 +46,11 @@ class CallBottomSheet extends ConsumerWidget {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {
-                        // FlutterPhoneDirectCaller.callNumber(e.toString());
-                      },
+                      onPressed: () => sendSMS(e.toString(), ''),
+                      icon: const Icon(Icons.comment, color: Colors.blue),
+                    ),
+                    IconButton(
+                      onPressed: () => makePhoneCall(e.toString()),
                       icon: const Icon(Icons.call, color: Colors.green),
                     ),
                   ],
