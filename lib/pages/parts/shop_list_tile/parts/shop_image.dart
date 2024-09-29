@@ -23,16 +23,27 @@ class ShopListTileImage extends StatelessWidget {
       onTap: () => shop.isShoppingCenter!
           ? goToPage(context, ChildShopsPage(parentShopID: shop.id!), false)
           : goToPage(context, ShopPage(shopID: shop.id!), false),
-      child: SizedBox(
-        height: cardHeight,
-        width: cardWidth,
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(10),
-            bottomLeft: Radius.circular(10),
+      child: Stack(
+        children: [
+          SizedBox(
+            height: cardHeight,
+            width: cardWidth,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+              ),
+              child: showCachImageMethod(shop.image!),
+            ),
           ),
-          child: showCachImageMethod(shop.image!),
-        ),
+          Positioned(
+            top: 2,
+            left: 2,
+            child: shop.isBrand!
+                ? Image.asset('assets/images/brand.png', height: 25, width: 25)
+                : const SizedBox(),
+          ),
+        ],
       ),
     );
   }
