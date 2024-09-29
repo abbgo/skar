@@ -23,7 +23,6 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  // VARIABLES -------------------------------------------
   final PageController _pageController = PageController();
 
   @override

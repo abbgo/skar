@@ -30,8 +30,6 @@ class ShopListTileMapButton extends ConsumerWidget {
 
     return IconButton(
       onPressed: () async {
-        // bool isHybridMap = await ref.read(isHybridMapProvider);
-        // await ref.read(markersProvider.notifier).removeAllMarkers();
         await ref.read(markersProvider.notifier).addMarker(
               Marker(
                 markerId: MarkerId('${shop.latitude}-${shop.longitude}'),

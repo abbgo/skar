@@ -22,7 +22,6 @@ final shopsForMapProvider =
 
     try {
       ShopParams shopParams = ref.watch(shopParamProvider);
-      // bool isHybridMap = await ref.watch(isHybridMapProvider);
       List<Shop> shops =
           await ref.read(apiProvider).fetchShopsForMap('shops/map', shopParams);
       bool isTM = ref.read(langProvider) == 'tr';

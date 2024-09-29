@@ -5,43 +5,15 @@ import 'package:skar/pages/parts/marker_widget/marker_widget.dart';
 import 'package:skar/pages/parts/select_shop_bottom_sheet/select_shop_bottom_sheet.dart';
 import 'package:widget_to_marker/widget_to_marker.dart';
 
-// Future<BitmapDescriptor> generateMarkerIconMethod(bool isTM, Shop shop) {
-//   return Column(
-//     children: [
-//       Text(
-//         isTM ? shop.nameTM! : shop.nameRU!,
-//         style: const TextStyle(
-//           fontSize: 24,
-//           // color: Colors.white,
-//           color: Colors.black,
-//           // fontWeight: FontWeight.bold,
-//           // shadows: [
-//           //   Shadow(offset: Offset(-1.5, -1.5), color: Colors.red),
-//           //   Shadow(offset: Offset(1.5, -1.5), color: Colors.red),
-//           //   Shadow(offset: Offset(1.5, 1.5), color: Colors.red),
-//           //   Shadow(offset: Offset(-1.5, 1.5), color: Colors.red),
-//           // ],
-//         ),
-//       ),
-//       Image.asset('assets/icons/shirt_location.png', height: 50),
-//     ],
-//   ).toBitmapDescriptor(
-//     logicalSize: const Size(1000, 100),
-//     imageSize: const Size(1000, 100),
-//   );
-// }
-
 Future<BitmapDescriptor> generateMarkerIcon(
   bool isTM,
   Shop shop,
   bool forOnTap,
-  // bool isHybrid,
 ) {
   return MarkerWidget(
     shop: shop,
     isTM: isTM,
     forOnTap: forOnTap,
-    // isHybrid: isHybrid,
   ).toBitmapDescriptor(
     logicalSize: Size(1000, forOnTap ? 200 : 100),
     imageSize: Size(1000, forOnTap ? 200 : 100),

@@ -20,20 +20,7 @@ class MarkersNotifier extends StateNotifier<Set<Marker>> {
       state = {...state, marker};
     }
   }
-
-  // Future<void> removeAllMarkers() async {
-  //   var firstElement = state.toList().sublist(0, 1);
-  //   state = firstElement.toSet();
-  // }
 }
-
-// class HybridMapNotifier extends StateNotifier<bool> {
-//   HybridMapNotifier() : super(false);
-
-//   Future<void> change() async {
-//     state = !state;
-//   }
-// }
 
 class CameraPositionNotifier extends StateNotifier<CameraPosition> {
   CameraPositionNotifier()

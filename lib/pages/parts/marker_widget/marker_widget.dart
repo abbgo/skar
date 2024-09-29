@@ -8,13 +8,11 @@ class MarkerWidget extends StatelessWidget {
     required this.shop,
     required this.isTM,
     required this.forOnTap,
-    // required this.isHybrid,
   });
 
   final Shop shop;
   final bool isTM;
   final bool forOnTap;
-  // final bool isHybrid;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +31,6 @@ class MarkerWidget extends StatelessWidget {
             Shadow(offset: Offset(1.5, 1.5), color: Colors.black),
             Shadow(offset: Offset(-1.5, 1.5), color: Colors.black),
           ],
-          // color: isHybrid ? Colors.white : Colors.black,
-          // shadows: isHybrid
-          //     ? const [
-          //         Shadow(offset: Offset(-1.5, -1.5), color: Colors.black),
-          //         Shadow(offset: Offset(1.5, -1.5), color: Colors.black),
-          //         Shadow(offset: Offset(1.5, 1.5), color: Colors.black),
-          //         Shadow(offset: Offset(-1.5, 1.5), color: Colors.black),
-          //       ]
-          //     : [],
         ),
       );
     }

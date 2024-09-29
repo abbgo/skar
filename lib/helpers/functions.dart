@@ -24,7 +24,6 @@ ScreenProperties screenProperties(BuildContext context) {
 bool isLightTheme(BuildContext context, WidgetRef ref) {
   int theme = ref.watch(themeProvider);
   Brightness brightness = MediaQuery.of(context).platformBrightness;
-  // screenProperties.isLightBrightness = brightness == Brightness.light;
   if (theme == ThemeType.system) {
     return brightness == Brightness.light;
   }

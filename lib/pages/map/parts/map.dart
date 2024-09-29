@@ -57,7 +57,6 @@ class _MapState extends ConsumerState<Map> {
   Widget build(BuildContext context) {
     AsyncValue<ResultShop> shopsForMap =
         ref.watch(shopsForMapProvider(context));
-    // bool isHybridMap = ref.watch(isHybridMapProvider);
     CameraPosition cameraPosition = ref.watch(cameraPositionProvider);
 
     ref.listen(
@@ -96,10 +95,8 @@ class _MapState extends ConsumerState<Map> {
               mapToolbarEnabled: false,
               liteModeEnabled: false,
               minMaxZoomPreference: const MinMaxZoomPreference(10, 20),
-              // markers: markers,
               markers: Set<Marker>.of(_clusterManager.getClusteredMarkers()),
               initialCameraPosition: cameraPosition,
-              // mapType: isHybridMap ? MapType.hybrid : MapType.normal,
               mapType: MapType.hybrid,
               onMapCreated: (GoogleMapController controller) async {
                 if (!_mapController.isCompleted) {
