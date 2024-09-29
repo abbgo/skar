@@ -27,6 +27,12 @@ class MarkerWidget extends StatelessWidget {
         isTM ? shop.nameTM! : shop.nameRU!,
         style: const TextStyle(
           fontSize: 24,
+          shadows: [
+            Shadow(offset: Offset(-1.5, -1.5), color: Colors.black),
+            Shadow(offset: Offset(1.5, -1.5), color: Colors.black),
+            Shadow(offset: Offset(1.5, 1.5), color: Colors.black),
+            Shadow(offset: Offset(-1.5, 1.5), color: Colors.black),
+          ],
           // color: isHybrid ? Colors.white : Colors.black,
           // shadows: isHybrid
           //     ? const [
