@@ -3,6 +3,7 @@ import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
 import 'package:skar/pages/child_shops/child_shops.dart';
+import 'package:skar/pages/parts/brand_icon.dart';
 import 'package:skar/pages/shop/shop.dart';
 
 class ShopListTileImage extends StatelessWidget {
@@ -36,13 +37,7 @@ class ShopListTileImage extends StatelessWidget {
               child: showCachImageMethod(shop.image!),
             ),
           ),
-          Positioned(
-            top: 2,
-            left: 2,
-            child: shop.isBrand!
-                ? Image.asset('assets/images/brand.png', height: 25, width: 25)
-                : const SizedBox(),
-          ),
+          BrandIcon(isBrand: shop.isBrand!),
         ],
       ),
     );
