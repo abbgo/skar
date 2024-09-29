@@ -13,11 +13,24 @@ class ShopListCardImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 2,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: GestureDetector(
-          onTap: () => goToPage(context, ShopPage(shopID: shop.id!), false),
-          child: showCachImageMethod(shop.image!),
+      child: GestureDetector(
+        onTap: () => goToPage(context, ShopPage(shopID: shop.id!), false),
+        child: Stack(
+          fit: StackFit.passthrough,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: showCachImageMethod(shop.image!),
+            ),
+            Positioned(
+              top: 2,
+              left: 2,
+              child: shop.isBrand!
+                  ? Image.asset('assets/images/brand.png',
+                      height: 20, width: 20)
+                  : const SizedBox(),
+            ),
+          ],
         ),
       ),
     );
