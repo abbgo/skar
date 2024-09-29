@@ -63,7 +63,19 @@ class _MapState extends ConsumerState<Map> {
 
     ref.listen(
       markersProvider,
-      (previous, next) {
+      (previous, next) async {
+        if (previous!.length > next.length) {
+          _clusterManager = MarkersClusterManager(
+            clusterMarkerSize: 35.0,
+            clusterColor: Colors.blue,
+            clusterBorderThickness: 2.0,
+            clusterBorderColor: Colors.blue[900]!,
+            clusterOpacity: 1.0,
+            clusterTextStyle:
+                const TextStyle(fontSize: 15, color: Colors.white),
+          );
+        }
+
         for (Marker marker in next.toList()) {
           _clusterManager.addMarker(marker);
         }
