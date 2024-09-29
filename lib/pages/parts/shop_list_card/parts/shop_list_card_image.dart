@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:skar/methods/navigation.dart';
 import 'package:skar/methods/parts/image.dart';
 import 'package:skar/models/shop.dart';
+import 'package:skar/pages/parts/brand_icon.dart';
 import 'package:skar/pages/shop/shop.dart';
 
 class ShopListCardImage extends StatelessWidget {
@@ -22,14 +23,7 @@ class ShopListCardImage extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: showCachImageMethod(shop.image!),
             ),
-            Positioned(
-              top: 2,
-              left: 2,
-              child: shop.isBrand!
-                  ? Image.asset('assets/images/brand.png',
-                      height: 20, width: 20)
-                  : const SizedBox(),
-            ),
+            BrandIcon(isBrand: shop.isBrand!),
           ],
         ),
       ),
