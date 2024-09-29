@@ -15,10 +15,10 @@ class BrandIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 2,
-      left: 2,
+      top: top,
+      left: left,
       child: isBrand
-          ? Image.asset('assets/images/brand.png', height: 20, width: 20)
+          ? Image.asset('assets/images/brand.png', height: size, width: size)
           : const SizedBox(),
     );
   }
