@@ -36,16 +36,29 @@ class ProductPriceAndBrend extends StatelessWidget {
                       child: Consumer(
                         builder: (context, ref, child) {
                           bool isLightBrightness = isLightTheme(context, ref);
-                          return Text(
-                            isTM
-                                ? product.shop!.nameTM!
-                                : product.shop!.nameRU!,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: isLightBrightness
-                                  ? elevatedButtonColor
-                                  : null,
+                          return Text.rich(
+                            TextSpan(
+                              text: isTM
+                                  ? product.shop!.nameTM!
+                                  : product.shop!.nameRU!,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: isLightBrightness
+                                    ? elevatedButtonColor
+                                    : null,
+                              ),
+                              children: [
+                                WidgetSpan(
+                                  child: product.shop!.isBrand!
+                                      ? Image.asset(
+                                          'assets/images/brand.png',
+                                          height: 25,
+                                          width: 25,
+                                        )
+                                      : const SizedBox(),
+                                ),
+                              ],
                             ),
                           );
                         },
