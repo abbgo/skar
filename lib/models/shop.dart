@@ -9,6 +9,7 @@ class Shop {
   final bool? isShoppingCenter;
   final Shop? parentShop;
   final bool? atHome;
+  final bool? isBrand;
 
   const Shop({
     this.id,
@@ -24,6 +25,7 @@ class Shop {
     this.isShoppingCenter,
     this.parentShop,
     this.atHome,
+    this.isBrand,
   });
 
   factory Shop.defaultShop() {
@@ -41,6 +43,7 @@ class Shop {
       isShoppingCenter: false,
       parentShop: null,
       atHome: null,
+      isBrand: null,
     );
   }
 
@@ -61,6 +64,7 @@ class Shop {
           ? Shop.defaultShop()
           : Shop.fromJson(json['parent_shop']),
       atHome: json['at_home'] ?? false,
+      isBrand: json['is_brand'] ?? false,
     );
   }
 }
