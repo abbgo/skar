@@ -11,6 +11,7 @@ import 'package:skar/pages/shop/parts/shop_category.dart';
 import 'package:skar/pages/shop/parts/shop_image.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/api/shop.dart';
+import 'package:skar/providers/pages/filter_genders.dart';
 import 'package:skar/providers/pages/product.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:skar/providers/params/product_param.dart';
@@ -35,8 +36,9 @@ class ShopPage extends ConsumerWidget {
         ref.watch(openProductNavigateToTopButtonProvider);
 
     return PopScope(
-      onPopInvokedWithResult: (didPop, result) {
+      onPopInvokedWithResult: (didPop, result) async {
         if (didPop) {
+          await ref.read(productGendersProvider.notifier).removeAllGenders();
           ref.read(priceRangeProvider.notifier).state = '0-0';
           ref.read(sortProductPriceProvider.notifier).state = '';
           return;
