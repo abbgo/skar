@@ -5,3 +5,8 @@ var productGendersProvider =
     StateNotifierProvider<SelectedProductGendersNotifier, List<dynamic>>(
   (ref) => SelectedProductGendersNotifier(),
 );
+
+var productSearchGendersProvider =
+    StateNotifierProvider<SelectedProductGendersNotifier, List<dynamic>>(
+  (ref) => SelectedProductGendersNotifier(),
+);
