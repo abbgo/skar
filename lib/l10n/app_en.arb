@@ -65,5 +65,8 @@
     "toComplain":"To complain",
     "feedbackSent":"Feedback sent",
     "contact":"Contact",
-    "categories":"Categories"
+    "categories":"Categories",
+    "male":"Male",
+    "child":"Child",
+    "female":"Female"
 }

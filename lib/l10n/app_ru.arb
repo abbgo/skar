@@ -65,5 +65,8 @@
     "toComplain":"Пожаловаться",
     "feedbackSent":"Отзыв отправлен",
     "contact":"Связаться",
-    "categories":"Категории"
+    "categories":"Категории",
+    "male":"Мужской",
+    "child":"Ребенок",
+    "female":"Женский"
 }
