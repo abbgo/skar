@@ -48,31 +48,31 @@ class FilterCategoriesButton extends ConsumerWidget {
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  categoryNames == ''
-                      ? const SizedBox()
-                      : Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(child: Text(categoryNames)),
-                            GestureDetector(
-                              onTap: () async {
-                                await ref
-                                    .read(selectedCategoriesProvider.notifier)
-                                    .removeAllFilterCategory();
-
-                                await ref
-                                    .read(filterCategoriesProvider.notifier)
-                                    .removeAllFilterCategories();
-                              },
-                              child: const Icon(Icons.cancel_outlined),
-                            ),
-                          ],
-                        ),
+                  categoryNames == '' ? const SizedBox() : Text(categoryNames)
                 ],
               ),
             ),
             const SizedBox(width: 10),
-            Icon(Icons.adaptive.arrow_forward),
+            Row(
+              children: [
+                categoryNames == ''
+                    ? const SizedBox()
+                    : GestureDetector(
+                        onTap: () async {
+                          await ref
+                              .read(selectedCategoriesProvider.notifier)
+                              .removeAllFilterCategory();
+
+                          await ref
+                              .read(filterCategoriesProvider.notifier)
+                              .removeAllFilterCategories();
+                        },
+                        child: const Icon(Icons.clear),
+                      ),
+                const SizedBox(width: 20),
+                Icon(Icons.adaptive.arrow_forward),
+              ],
+            ),
           ],
         ),
       ),

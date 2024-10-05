@@ -53,32 +53,31 @@ class FilterGenderButton extends ConsumerWidget {
                     'Jynsy',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
-                  genders.isEmpty
-                      ? const SizedBox()
-                      : Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(child: Text(genderNames)),
-                            GestureDetector(
-                              onTap: () async {
-                                forSearchProduct
-                                    ? await ref
-                                        .read(productSearchGendersProvider
-                                            .notifier)
-                                        .removeAllGenders()
-                                    : await ref
-                                        .read(productGendersProvider.notifier)
-                                        .removeAllGenders();
-                              },
-                              child: const Icon(Icons.cancel_outlined),
-                            ),
-                          ],
-                        ),
+                  genderNames == '' ? const SizedBox() : Text(genderNames)
                 ],
               ),
             ),
             const SizedBox(width: 10),
-            Icon(Icons.adaptive.arrow_forward),
+            Row(
+              children: [
+                genderNames == ''
+                    ? const SizedBox()
+                    : GestureDetector(
+                        onTap: () async {
+                          forSearchProduct
+                              ? await ref
+                                  .read(productSearchGendersProvider.notifier)
+                                  .removeAllGenders()
+                              : await ref
+                                  .read(productGendersProvider.notifier)
+                                  .removeAllGenders();
+                        },
+                        child: const Icon(Icons.clear_outlined),
+                      ),
+                const SizedBox(width: 20),
+                Icon(Icons.adaptive.arrow_forward),
+              ],
+            ),
           ],
         ),
       ),
