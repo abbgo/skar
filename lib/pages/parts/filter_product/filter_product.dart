@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/pages/parts/filter_product/parts/filter_categories_button.dart';
+import 'package:skar/pages/parts/filter_product/parts/filter_gender_button.dart';
 import 'package:skar/pages/parts/filter_product/parts/filter_product_save_button.dart';
 import 'package:skar/pages/parts/filter_product/parts/price_range.dart';
 
@@ -30,6 +31,7 @@ class FilterProduct extends StatelessWidget {
                 forSearchProduct
                     ? const FilterCategoriesButton()
                     : const SizedBox(),
+                const FilterGenderButton(),
               ],
             ),
           ),
