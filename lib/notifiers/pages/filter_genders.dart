@@ -12,4 +12,8 @@ class SelectedProductGendersNotifier extends StateNotifier<List<dynamic>> {
   Future<void> removeGender(dynamic gender) async {
     state = state.where((i) => i != gender).toList();
   }
+
+  Future<void> removeAllGenders() async {
+    state = [];
+  }
 }
