@@ -22,23 +22,23 @@ class PriceRange extends ConsumerWidget {
         lang.productPrice,
         style: const TextStyle(fontWeight: FontWeight.bold),
       ),
-      subtitle: priceRange == '0-0'
-          ? null
-          : Row(
-              children: [
-                Text(priceRange),
-                const SizedBox(width: 10),
-                GestureDetector(
-                  onTap: () => forSearchProduct
+      subtitle: priceRange == '0-0' ? null : Text(priceRange),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          priceRange == '0-0'
+              ? const SizedBox.shrink()
+              : IconButton(
+                  onPressed: () => forSearchProduct
                       ? ref
                           .read(searchProductPriceRangeProvider.notifier)
                           .state = '0-0'
                       : ref.read(priceRangeProvider.notifier).state = '0-0',
-                  child: const Icon(Icons.cancel_outlined),
+                  icon: const Icon(Icons.clear),
                 ),
-              ],
-            ),
-      trailing: Icon(Icons.adaptive.arrow_forward),
+          Icon(Icons.adaptive.arrow_forward),
+        ],
+      ),
       onTap: () => Navigator.push(
         context,
         CustomPageRoute(
