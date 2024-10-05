@@ -57,13 +57,12 @@ class FilterGenderButton extends ConsumerWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 10),
             Row(
               children: [
                 genderNames == ''
                     ? const SizedBox()
-                    : GestureDetector(
-                        onTap: () async {
+                    : IconButton(
+                        onPressed: () async {
                           forSearchProduct
                               ? await ref
                                   .read(productSearchGendersProvider.notifier)
@@ -72,9 +71,8 @@ class FilterGenderButton extends ConsumerWidget {
                                   .read(productGendersProvider.notifier)
                                   .removeAllGenders();
                         },
-                        child: const Icon(Icons.clear_outlined),
+                        icon: const Icon(Icons.clear_outlined),
                       ),
-                const SizedBox(width: 20),
                 Icon(Icons.adaptive.arrow_forward),
               ],
             ),

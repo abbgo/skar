@@ -52,13 +52,12 @@ class FilterCategoriesButton extends ConsumerWidget {
                 ],
               ),
             ),
-            const SizedBox(width: 10),
             Row(
               children: [
                 categoryNames == ''
                     ? const SizedBox()
-                    : GestureDetector(
-                        onTap: () async {
+                    : IconButton(
+                        onPressed: () async {
                           await ref
                               .read(selectedCategoriesProvider.notifier)
                               .removeAllFilterCategory();
@@ -67,9 +66,8 @@ class FilterCategoriesButton extends ConsumerWidget {
                               .read(filterCategoriesProvider.notifier)
                               .removeAllFilterCategories();
                         },
-                        child: const Icon(Icons.clear),
+                        icon: const Icon(Icons.clear),
                       ),
-                const SizedBox(width: 20),
                 Icon(Icons.adaptive.arrow_forward),
               ],
             ),
