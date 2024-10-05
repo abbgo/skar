@@ -7,16 +7,16 @@ class FilterGenderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 25, top: 15, bottom: 10),
-      child: GestureDetector(
-        onTap: () => Navigator.push(
-          context,
-          CustomPageRoute(
-            child: const FilterGendersPage(),
-            direction: AxisDirection.left,
-          ),
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        CustomPageRoute(
+          child: const FilterGendersPage(),
+          direction: AxisDirection.left,
         ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, top: 25, right: 25),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

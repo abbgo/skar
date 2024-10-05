@@ -27,7 +27,7 @@ class FilterCategoriesButton extends ConsumerWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 25, top: 10, bottom: 10),
+      padding: const EdgeInsets.only(left: 15, right: 25, top: 10),
       child: GestureDetector(
         onTap: () => Navigator.push(
           context,
