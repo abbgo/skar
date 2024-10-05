@@ -60,7 +60,16 @@ class FilterGenderButton extends ConsumerWidget {
                           children: [
                             Expanded(child: Text(genderNames)),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () async {
+                                forSearchProduct
+                                    ? await ref
+                                        .read(productSearchGendersProvider
+                                            .notifier)
+                                        .removeAllGenders()
+                                    : await ref
+                                        .read(productGendersProvider.notifier)
+                                        .removeAllGenders();
+                              },
                               child: const Icon(Icons.cancel_outlined),
                             ),
                           ],
