@@ -31,7 +31,7 @@ class FilterProduct extends StatelessWidget {
                 forSearchProduct
                     ? const FilterCategoriesButton()
                     : const SizedBox(),
-                const FilterGenderButton(),
+                FilterGenderButton(forSearchProduct: forSearchProduct),
               ],
             ),
           ),

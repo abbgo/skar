@@ -3,7 +3,9 @@ import 'package:skar/methods/navigation.dart';
 import 'package:skar/pages/filter_genders/filter_genders.dart';
 
 class FilterGenderButton extends StatelessWidget {
-  const FilterGenderButton({super.key});
+  const FilterGenderButton({super.key, required this.forSearchProduct});
+
+  final bool forSearchProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class FilterGenderButton extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         CustomPageRoute(
-          child: const FilterGendersPage(),
+          child: FilterGendersPage(forSearchProduct: forSearchProduct),
           direction: AxisDirection.left,
         ),
       ),
