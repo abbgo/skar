@@ -68,5 +68,6 @@
     "categories":"Categories",
     "male":"Male",
     "child":"Child",
-    "female":"Female"
+    "female":"Female",
+    "gender":"Gender"
 }
