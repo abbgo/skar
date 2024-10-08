@@ -15,6 +15,7 @@ var fetchProductsProvider =
     ResultProduct result = ResultProduct.defaultResult();
     String minPrice = '';
     String maxPrice = '';
+    List<String> strGenders = [];
 
     String search = params.shopID != ''
         ? await ref.watch(shopProductSearchProvider)
@@ -23,6 +24,9 @@ var fetchProductsProvider =
     List<dynamic> genders = params.shopID != ''
         ? await ref.watch(productGendersProvider)
         : await ref.watch(productSearchGendersProvider);
+    for (var gender in genders) {
+      strGenders.add(gender.toString());
+    }
 
     bool isTM = ref.read(langProvider) == 'tr';
 
@@ -50,7 +54,7 @@ var fetchProductsProvider =
             sortProductPrice,
             minPrice,
             maxPrice,
-            genders,
+            strGenders,
           );
 
       if (params.api == 'products') {
