@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/models/product.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
+import 'package:skar/providers/pages/filter_genders.dart';
 import 'package:skar/providers/pages/search_product.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:skar/providers/params/product_param.dart';
@@ -16,18 +17,22 @@ var fetchProductsProvider =
     String maxPrice = '';
 
     String search = params.shopID != ''
-        ? ref.watch(shopProductSearchProvider)
-        : ref.watch(productSearchProvider);
+        ? await ref.watch(shopProductSearchProvider)
+        : await ref.watch(productSearchProvider);
+
+    List<dynamic> genders = params.shopID != ''
+        ? await ref.watch(productGendersProvider)
+        : await ref.watch(productSearchGendersProvider);
 
     bool isTM = ref.read(langProvider) == 'tr';
 
     String sortProductPrice = params.shopID == ''
-        ? ref.watch(sortSearchProductPriceProvider)
-        : ref.watch(sortProductPriceProvider);
+        ? await ref.watch(sortSearchProductPriceProvider)
+        : await ref.watch(sortProductPriceProvider);
 
     String priceRange = params.shopID == ''
-        ? ref.read(searchProductPriceRangeProvider)
-        : ref.read(priceRangeProvider);
+        ? await ref.read(searchProductPriceRangeProvider)
+        : await ref.read(priceRangeProvider);
     List<String> prices = priceRange.split('-');
     minPrice = prices[0];
     maxPrice = prices[1];
@@ -45,6 +50,7 @@ var fetchProductsProvider =
             sortProductPrice,
             minPrice,
             maxPrice,
+            genders,
           );
 
       if (params.api == 'products') {

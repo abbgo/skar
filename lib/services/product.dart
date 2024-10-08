@@ -19,7 +19,9 @@ class ProductService {
     String sort,
     String minPrice,
     String maxPrice,
+    List<dynamic> genders,
   ) async {
+    print('================= $genders');
     final Uri uri = Uri.parse('$apiUrl/$api').replace(
       queryParameters: {
         'limit': limit.toString(),
@@ -32,6 +34,7 @@ class ProductService {
         'sort': sort,
         'min_price': minPrice,
         'max_price': maxPrice,
+        'genders': genders,
       },
     );
 
