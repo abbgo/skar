@@ -7,6 +7,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/pages/map/parts/decrease_zoom_button.dart';
 import 'package:skar/pages/map/parts/increase_zoom_button.dart';
 import 'package:skar/pages/map/parts/search_shop_button.dart';
+import 'package:skar/pages/map/parts/shop_filter_button.dart';
 
 class MapButtons extends ConsumerWidget {
   const MapButtons({super.key, required this.mapController});
@@ -22,6 +23,7 @@ class MapButtons extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SearchShopButton(),
+          const ShopFilterButton(),
           SizedBox(height: screenProperties(context).height / 2 - 200),
           IncreaseZoomButton(mapController: mapController),
           DecreaseZoomButton(mapController: mapController),
