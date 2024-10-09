@@ -10,3 +10,8 @@ var productSearchGendersProvider =
     StateNotifierProvider<SelectedProductGendersNotifier, List<dynamic>>(
   (ref) => SelectedProductGendersNotifier(),
 );
+
+var shopGendersProvider =
+    StateNotifierProvider<SelectedProductGendersNotifier, List<dynamic>>(
+  (ref) => SelectedProductGendersNotifier(),
+);
