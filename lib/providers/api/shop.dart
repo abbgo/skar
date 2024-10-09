@@ -8,6 +8,7 @@ import 'package:skar/pages/child_shops/child_shops.dart';
 import 'package:skar/pages/shop/shop.dart';
 import 'package:skar/providers/local_storadge/setting.dart';
 import 'package:skar/providers/pages/child_shops.dart';
+import 'package:skar/providers/pages/filter_genders.dart';
 import 'package:skar/providers/pages/map.dart';
 import 'package:skar/providers/pages/search_shop.dart';
 import 'package:skar/providers/params/shop_param.dart';
@@ -19,11 +20,20 @@ final shopsForMapProvider =
     FutureProvider.autoDispose.family<ResultShop, BuildContext>(
   (ref, arg) async {
     ResultShop result = ResultShop.defaultResult();
+    List<String> strGenders = [];
 
     try {
-      ShopParams shopParams = ref.watch(shopParamProvider);
-      List<Shop> shops =
-          await ref.read(apiProvider).fetchShopsForMap('shops/map', shopParams);
+      ShopParams shopParams = await ref.watch(shopParamProvider);
+
+      List<dynamic> genders = await ref.watch(shopGendersProvider);
+      for (var gender in genders) {
+        strGenders.add(gender.toString());
+      }
+
+      List<Shop> shops = await ref
+          .read(apiProvider)
+          .fetchShopsForMap('shops/map', shopParams, strGenders);
+
       bool isTM = ref.read(langProvider) == 'tr';
 
       if (shops.isNotEmpty) {

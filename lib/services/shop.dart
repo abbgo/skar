@@ -7,14 +7,20 @@ import 'package:skar/models/shop.dart';
 
 class ShopService {
   // fetch shops for map ------------------------------------
-  Future<List<Shop>> fetchShopsForMap(String api, ShopParams shopParams) async {
+  Future<List<Shop>> fetchShopsForMap(
+    String api,
+    ShopParams shopParams,
+    List<String> genders,
+  ) async {
     Uri uri = Uri.parse('$apiUrl/$api').replace(
       queryParameters: {
         'latitude': shopParams.latitude.toString(),
         'longitude': shopParams.longitude.toString(),
         'kilometer': shopParams.kilometer.toString(),
+        'genders': genders,
       },
     );
+
     try {
       Response response = await http.get(uri);
       var jsonData = json.decode(response.body);
