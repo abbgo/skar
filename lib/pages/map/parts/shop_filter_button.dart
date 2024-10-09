@@ -13,13 +13,14 @@ class ShopFilterButton extends ConsumerWidget {
     bool isLightBrightness = isLightTheme(context, ref);
 
     return IconButton(
-      onPressed: () => Navigator.push(
-        context,
-        CustomPageRoute(
-          child: FilterGendersPage(),
-          direction: AxisDirection.left,
-        ),
-      ),
+      // onPressed: () => Navigator.push(
+      //   context,
+      //   CustomPageRoute(
+      //     child: FilterGendersPage(),
+      //     direction: AxisDirection.left,
+      //   ),
+      // ),
+      onPressed: () {},
       icon: Icon(
         Icons.filter_alt_outlined,
         color: isLightBrightness ? elevatedButtonColor : Colors.white,

@@ -5,6 +5,7 @@ import 'package:skar/models/shop.dart';
 import 'package:skar/pages/parts/sort_and_filter_product/sort_and_filter_product.dart';
 import 'package:skar/pages/shop/parts/product_search_field.dart';
 import 'package:skar/pages/shop/parts/shipping_button.dart';
+import 'package:skar/providers/pages/filter_genders.dart';
 import 'package:skar/providers/pages/sort_and_filter_product.dart';
 import 'package:skar/styles/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -55,12 +56,14 @@ class ShopPageButtons extends ConsumerWidget {
                 icon: Icons.swap_vert,
                 forSort: true,
                 forSearchProduct: false,
+                provider: productGendersProvider,
               ),
               SortAndFilterProduct(
                 text: lang.filter,
                 icon: Icons.filter_alt_outlined,
                 forSort: false,
                 forSearchProduct: false,
+                provider: productGendersProvider,
               ),
             ],
           ),

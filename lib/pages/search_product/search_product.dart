@@ -4,6 +4,7 @@ import 'package:skar/helpers/functions.dart';
 import 'package:skar/pages/parts/sort_and_filter_product/sort_and_filter_product.dart';
 import 'package:skar/pages/search_product/parts/search_product_result.dart';
 import 'package:skar/pages/search_shop/parts/search_field.dart';
+import 'package:skar/providers/pages/filter_genders.dart';
 import 'package:skar/providers/pages/search_product.dart';
 import 'package:skar/providers/params/product_param.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -50,12 +51,14 @@ class SearchProductPage extends ConsumerWidget {
                   icon: Icons.swap_vert,
                   forSort: true,
                   forSearchProduct: true,
+                  provider: productSearchGendersProvider,
                 ),
                 SortAndFilterProduct(
                   text: lang.filter,
                   icon: Icons.filter_alt_outlined,
                   forSort: false,
                   forSearchProduct: true,
+                  provider: productSearchGendersProvider,
                 ),
               ],
             ),

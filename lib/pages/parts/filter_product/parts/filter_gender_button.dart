@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/static.dart';
 import 'package:skar/methods/navigation.dart';
+import 'package:skar/notifiers/pages/filter_genders.dart';
 import 'package:skar/pages/filter_genders/filter_genders.dart';
-import 'package:skar/providers/pages/filter_genders.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FilterGenderButton extends ConsumerWidget {
-  const FilterGenderButton({super.key, required this.forSearchProduct});
+  const FilterGenderButton({super.key, required this.provider});
 
-  final bool forSearchProduct;
+  final StateNotifierProvider<SelectedProductGendersNotifier, List<dynamic>>
+      provider;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = AppLocalizations.of(context)!;
     String genderNames = '';
 
-    List<dynamic> genders = forSearchProduct
-        ? ref.watch(productSearchGendersProvider)
-        : ref.watch(productGendersProvider);
+    List<dynamic> genders = ref.watch(provider);
 
     if (genders.isNotEmpty) {
       if (genders.contains(Genders.male)) {
@@ -38,7 +37,7 @@ class FilterGenderButton extends ConsumerWidget {
         onTap: () => Navigator.push(
           context,
           CustomPageRoute(
-            child: FilterGendersPage(forSearchProduct: forSearchProduct),
+            child: FilterGendersPage(provider: provider),
             direction: AxisDirection.left,
           ),
         ),
@@ -63,15 +62,9 @@ class FilterGenderButton extends ConsumerWidget {
                 genderNames == ''
                     ? const SizedBox()
                     : IconButton(
-                        onPressed: () async {
-                          forSearchProduct
-                              ? await ref
-                                  .read(productSearchGendersProvider.notifier)
-                                  .removeAllGenders()
-                              : await ref
-                                  .read(productGendersProvider.notifier)
-                                  .removeAllGenders();
-                        },
+                        onPressed: () async => await ref
+                            .read(provider.notifier)
+                            .removeAllGenders(),
                         icon: const Icon(Icons.clear_outlined),
                       ),
                 Icon(Icons.adaptive.arrow_forward),

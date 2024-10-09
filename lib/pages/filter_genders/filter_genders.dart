@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skar/datas/static.dart';
+import 'package:skar/notifiers/pages/filter_genders.dart';
 import 'package:skar/pages/filter_genders/parts/gender_checkbox_list_tile.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:skar/pages/parts/filter_categories/parts/filter_categories_save_button.dart';
 
 class FilterGendersPage extends StatelessWidget {
-  const FilterGendersPage({super.key, required this.forSearchProduct});
+  const FilterGendersPage({super.key, required this.provider});
 
-  final bool forSearchProduct;
+  final StateNotifierProvider<SelectedProductGendersNotifier, List<dynamic>>
+      provider;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +26,17 @@ class FilterGendersPage extends StatelessWidget {
                 GenderCheckboxListTile(
                   title: lang.male,
                   gender: Genders.male,
-                  forSearchProduct: forSearchProduct,
+                  provider: provider,
                 ),
                 GenderCheckboxListTile(
                   title: lang.female,
                   gender: Genders.female,
-                  forSearchProduct: forSearchProduct,
+                  provider: provider,
                 ),
                 GenderCheckboxListTile(
                   title: lang.child,
                   gender: Genders.child,
-                  forSearchProduct: forSearchProduct,
+                  provider: provider,
                 ),
               ],
             ),
